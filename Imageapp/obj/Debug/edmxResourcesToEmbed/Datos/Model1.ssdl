@@ -1,0 +1,2201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_MenuEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.Hoja1$' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Hoja1$">
+          <Property Name="rfc" Type="nvarchar(max)" />
+          <Property Name="matriz" Type="nvarchar(max)" />
+          <Property Name="sucursales" Type="nvarchar(max)" />
+          <Property Name="representante" Type="nvarchar(max)" />
+          <Property Name="objeto_social" Type="nvarchar(max)" />
+          <Property Name="capital_inicial" Type="nvarchar(max)" />
+          <Property Name="recurso_humano" Type="nvarchar(max)" />
+          <Property Name="recurso_inmobiliario" Type="nvarchar(max)" />
+          <Property Name="recurso_equipo" Type="nvarchar(max)" />
+          <Property Name="estructura_de_costos" Type="nvarchar(max)" />
+          <Property Name="canales_de_distribucion" Type="nvarchar(max)" />
+          <Property Name="recomendación_cliente" Type="nvarchar(max)" />
+          <Property Name="alianzas_estrategicas" Type="nvarchar(max)" />
+          <Property Name="observaciones" Type="nvarchar(max)" />
+          <Property Name="prestamos" Type="nvarchar(max)" />
+          <Property Name="politicas" Type="nvarchar(max)" />
+          <Property Name="contratos" Type="nvarchar(max)" />
+          <Property Name="indice" Type="int" />
+        </EntityType>-->
+  <EntityType Name="tbc_Acciones">
+    <Key>
+      <PropertyRef Name="id_accion" />
+    </Key>
+    <Property Name="id_accion" Type="int" Nullable="false" />
+    <Property Name="codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fontAwesome" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="isVisible" Type="tinyint" Nullable="false" />
+    <Property Name="order_position" Type="int" Nullable="false" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Actividades_Calendario">
+    <Key>
+      <PropertyRef Name="id_actividad_calendario" />
+    </Key>
+    <Property Name="id_actividad_calendario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_lineas_produccion" Type="int" Nullable="false" />
+    <Property Name="actividad" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="paso" Type="int" Nullable="false" />
+    <Property Name="area" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Auxiliares">
+    <Key>
+      <PropertyRef Name="id_auxiliar" />
+    </Key>
+    <Property Name="id_auxiliar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="auxiliar" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="tbc_lineas_produccion" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Clientes">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_razon" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="id_tipo_persona" Type="int" Nullable="false" />
+    <Property Name="direccion_fiscal" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="id_regimen" Type="int" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="date" />
+    <Property Name="id_sector" Type="int" />
+    <Property Name="fecha_servicio" Type="date" />
+    <Property Name="ingresos_mayores" Type="bit" />
+    <Property Name="publico_general" Type="bit" />
+    <Property Name="estado_cuenta" Type="bit" />
+    <Property Name="tiene_trabajadores" Type="bit" />
+    <Property Name="actividad_principal" Type="varchar" MaxLength="1000" />
+    <Property Name="observaciones" Type="varchar" MaxLength="5000" />
+    <Property Name="fecha_caducidad_fiel" Type="date" />
+    <Property Name="es_asesoria" Type="bit" />
+    <Property Name="aplica_coi" Type="bit" />
+    <Property Name="edo_financiero" Type="bit" />
+    <Property Name="fecha_cita" Type="date" />
+    <Property Name="fecha_fiel_representante" Type="date" />
+    <Property Name="es_nomina" Type="bit" />
+    <Property Name="registro_patronal" Type="bit" />
+    <Property Name="patronal" Type="nvarchar" MaxLength="50" />
+    <Property Name="inicio_razon" Type="datetime" />
+    <Property Name="clave_CIEC" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_MenuEntities.dbo.tbc_Configuracion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="tbc_Configuracion">
+    <Key>
+      <PropertyRef Name="id_configuracion" />
+      <PropertyRef Name="recargo_decimal" />
+      <PropertyRef Name="recargo" />
+      <PropertyRef Name="aplicar_fecha_pago" />
+    </Key>
+    <Property Name="id_configuracion" Type="int" Nullable="false" />
+    <Property Name="recargo_decimal" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="recargo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="aplicar_fecha_pago" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Contactos_Cliente">
+    <Key>
+      <PropertyRef Name="id_contacto_cliente" />
+    </Key>
+    <Property Name="id_contacto_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="tipo_contacto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre_completo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Estatus">
+    <Key>
+      <PropertyRef Name="id_estatus" />
+    </Key>
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="descripcion_estatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Factor_INPC">
+    <Key>
+      <PropertyRef Name="id_factor_inpc" />
+    </Key>
+    <Property Name="id_factor_inpc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="factor" Type="decimal" Precision="18" Scale="10" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Factor_Recargo">
+    <Key>
+      <PropertyRef Name="id_factor_recargo" />
+    </Key>
+    <Property Name="id_factor_recargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="factor" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Forma_Pago">
+    <Key>
+      <PropertyRef Name="id_forma_pago" />
+    </Key>
+    <Property Name="id_forma_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clave" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Formatos">
+    <Key>
+      <PropertyRef Name="id_formato" />
+    </Key>
+    <Property Name="id_formato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_archivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="url_archivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="area" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Grupo_Empresarial">
+    <Key>
+      <PropertyRef Name="id_grupo_empresarial" />
+    </Key>
+    <Property Name="id_grupo_empresarial" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lineas_Produccion">
+    <Key>
+      <PropertyRef Name="tbc_lineas_produccion" />
+    </Key>
+    <Property Name="tbc_lineas_produccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="linea" Type="varchar" MaxLength="100" />
+    <Property Name="supervisor" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_Entregables">
+    <Key>
+      <PropertyRef Name="id_lista_entregable" />
+    </Key>
+    <Property Name="id_lista_entregable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="entregable" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="id_regimen" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_Entregables_Nomina">
+    <Key>
+      <PropertyRef Name="id_lista_entregable_nomina" />
+    </Key>
+    <Property Name="id_lista_entregable_nomina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="entregable" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="id_tipo_nomina_entregable" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_Repositorio">
+    <Key>
+      <PropertyRef Name="id_lista_repositorio" />
+    </Key>
+    <Property Name="id_lista_repositorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_repositorio" Type="int" Nullable="false" />
+    <Property Name="id_regimen" Type="int" Nullable="false" />
+    <Property Name="repositorio" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_tramites">
+    <Key>
+      <PropertyRef Name="id_lista_tramite" />
+    </Key>
+    <Property Name="id_lista_tramite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tramite" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="id_tipo_tramite" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Menus">
+    <Key>
+      <PropertyRef Name="id_menu" />
+    </Key>
+    <Property Name="id_menu" Type="int" Nullable="false" />
+    <Property Name="id_menuPadre" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="isRaiz" Type="bit" Nullable="false" />
+    <Property Name="isVisible" Type="bit" Nullable="false" />
+    <Property Name="pathDescription" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Otros_Servicios">
+    <Key>
+      <PropertyRef Name="id_otro_servicio" />
+    </Key>
+    <Property Name="id_otro_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="servicio" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Permisos_Servidor">
+    <Key>
+      <PropertyRef Name="id_permiso_servidor" />
+    </Key>
+    <Property Name="id_permiso_servidor" Type="int" Nullable="false" />
+    <Property Name="descripcion_permiso" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Regimenes">
+    <Key>
+      <PropertyRef Name="id_regimen" />
+    </Key>
+    <Property Name="id_regimen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="regimen" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_RIF_Sectores">
+    <Key>
+      <PropertyRef Name="id_sector_tasa_iva" />
+    </Key>
+    <Property Name="id_sector_tasa_iva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="actividad" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="porcentaje_decimal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="porcentaje" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_RIF_Tasa_Descuento">
+    <Key>
+      <PropertyRef Name="id_tasa_descuento" />
+    </Key>
+    <Property Name="id_tasa_descuento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="porcentaje_decimal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="porcentaje" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_RIF_Tasa_ISR">
+    <Key>
+      <PropertyRef Name="id_tasa_isr" />
+    </Key>
+    <Property Name="id_tasa_isr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="limite_inferior" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="limite_superior" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="cuota_fija" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="porcentaje_decimal" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="porcentaje" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Roles">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Seguimiento_Cliente">
+    <Key>
+      <PropertyRef Name="id_seguimiento_cliente" />
+    </Key>
+    <Property Name="id_seguimiento_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="motivo" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="respuesta" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Supervisores">
+    <Key>
+      <PropertyRef Name="id_supervisor" />
+    </Key>
+    <Property Name="id_supervisor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supervisor" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="tbc_lineas_produccion" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipo_Comprobante">
+    <Key>
+      <PropertyRef Name="id_tipo_comprobante" />
+    </Key>
+    <Property Name="id_tipo_comprobante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sigla" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipo_Persona">
+    <Key>
+      <PropertyRef Name="id_tipo_persona" />
+    </Key>
+    <Property Name="id_tipo_persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_persona" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipos_Nomina_Entregables">
+    <Key>
+      <PropertyRef Name="id_tipo_nomina_entregable" />
+    </Key>
+    <Property Name="id_tipo_nomina_entregable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_nomina_entregable" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipos_Repositorio">
+    <Key>
+      <PropertyRef Name="id_tipo_repositorio" />
+    </Key>
+    <Property Name="id_tipo_repositorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_repositorio" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipos_Tramite">
+    <Key>
+      <PropertyRef Name="id_tipo_tramite" />
+    </Key>
+    <Property Name="id_tipo_tramite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_tramite" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Uso_CFDI">
+    <Key>
+      <PropertyRef Name="id_uso_cfdi" />
+    </Key>
+    <Property Name="id_uso_cfdi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sigla" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="factor" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbc_Usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="id_rol" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido_paterno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido_materno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contrasenia" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ultimo_movimiento" Type="datetime" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono_movil" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="datetime" Nullable="false" />
+    <Property Name="correo_electronico" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Vistas">
+    <Key>
+      <PropertyRef Name="id_vista" />
+    </Key>
+    <Property Name="id_vista" Type="int" Nullable="false" />
+    <Property Name="id_menu" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="controller" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="action" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Actividades_Cliente">
+    <Key>
+      <PropertyRef Name="id_actividad_cliente" />
+    </Key>
+    <Property Name="id_actividad_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="porcentaje" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="actividad" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Activo_Fijo">
+    <Key>
+      <PropertyRef Name="id_activo_fijo" />
+    </Key>
+    <Property Name="id_activo_fijo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_adquisicion" Type="datetime" Nullable="false" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="id_uso_cfdi" Type="int" Nullable="false" />
+    <Property Name="limite" Type="bit" Nullable="false" />
+    <Property Name="fecha_termino" Type="datetime" Nullable="false" />
+    <Property Name="monto_mensual" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="porcentaje_mensual" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="concepto" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="fecha_aplicacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Avance_Calendario">
+    <Key>
+      <PropertyRef Name="id_avance_calendario" />
+    </Key>
+    <Property Name="id_avance_calendario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_actividad_calendario" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="fecha_finalizo" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Calendario_Produccion">
+    <Key>
+      <PropertyRef Name="id_calendario_produccion" />
+    </Key>
+    <Property Name="id_calendario_produccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_actividad_calendario" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+    <Property Name="fecha_final" Type="datetime" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="avance" Type="int" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="fecha_finalizado" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbd_Cambio_Domicilio">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_cambio" Type="datetime" Nullable="false" />
+    <Property Name="calle" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="codigo_postal" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="num_ext" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="num_int" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="entre_calle" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="y_calle" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="colonia" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="localidad" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="entidad_federativa" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="tipo_inmueble" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="tipo_calle" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="caracteristicas_domicilio" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="referencias_adicionales" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="codigo_fiscal" Type="varchar" MaxLength="150" />
+    <Property Name="url_comprobante" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="url_acuse_movimiento" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbd_Certificado_Digital">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_tipo_persona" Type="int" Nullable="false" />
+    <Property Name="url_tarjeta_patronal" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="usuario_imss" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="funcion_empresa" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="url_identificacion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="url_comprobante" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="url_certificado" Type="varchar" MaxLength="500" />
+    <Property Name="url_termino" Type="varchar" MaxLength="500" />
+    <Property Name="url_llave" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbd_Conceptos_Factura">
+    <Key>
+      <PropertyRef Name="id_concepto_xml" />
+    </Key>
+    <Property Name="id_concepto_xml" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cantidad" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="claveprodserv" Type="varchar" MaxLength="200" />
+    <Property Name="claveunidad" Type="varchar" MaxLength="150" />
+    <Property Name="descripcion" Type="varchar(max)" />
+    <Property Name="descuento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="importe" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="unidad" Type="varchar" MaxLength="150" />
+    <Property Name="valorunitario" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="id_xml" Type="int" Nullable="false" />
+    <Property Name="UUID" Type="varchar" MaxLength="100" />
+    <Property Name="impuesto_trasladado" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbd_Constancia_Sem_Cotizadas">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="curp" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nss" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="url_documento" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbd_Depositos">
+    <Key>
+      <PropertyRef Name="id_deposito" />
+    </Key>
+    <Property Name="id_deposito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="int" />
+  </EntityType>
+  <EntityType Name="tbd_Depreciaciones">
+    <Key>
+      <PropertyRef Name="id_depreciacion" />
+    </Key>
+    <Property Name="id_depreciacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="saldo_inicial" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="id_uso_CFDI" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Descargas_XML">
+    <Key>
+      <PropertyRef Name="id_descarga_xml" />
+    </Key>
+    <Property Name="id_descarga_xml" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="num_xml" Type="int" Nullable="false" />
+    <Property Name="zip" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_procesado" Type="datetime" Nullable="false" />
+    <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+    <Property Name="fecha_final" Type="datetime" Nullable="false" />
+    <Property Name="xml_procesados" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Entregables_Nomina_RFC">
+    <Key>
+      <PropertyRef Name="id_entregable_nomina_RFC" />
+    </Key>
+    <Property Name="id_entregable_nomina_RFC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="id_lista_entregable_nomina" Type="int" Nullable="false" />
+    <Property Name="url_archivo" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="fecha_carga" Type="datetime" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="nombre_archivo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="observacion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="periodicidad" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Entregables_RFC">
+    <Key>
+      <PropertyRef Name="id_entregable_rfc" />
+    </Key>
+    <Property Name="id_entregable_rfc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="id_lista_entregable" Type="int" Nullable="false" />
+    <Property Name="url_archivo" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="fecha_carga" Type="datetime" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="nombre_archivo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Error_Lectura_XML">
+    <Key>
+      <PropertyRef Name="id_error_lectura_xml" />
+    </Key>
+    <Property Name="id_error_lectura_xml" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="zip" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="xml" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="mensaje" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Estados_Cuenta">
+    <Key>
+      <PropertyRef Name="id_estado_cuenta" />
+    </Key>
+    <Property Name="id_estado_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="estado_cuenta" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="fecha_carga" Type="datetime" Nullable="false" />
+    <Property Name="nombre_archivo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="url_archivo" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Estatus_Cliente">
+    <Key>
+      <PropertyRef Name="id_estatus_cliente" />
+    </Key>
+    <Property Name="id_estatus_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="estatus" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fecha_baja" Type="datetime" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="observaciones" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Estatus_XML">
+    <Key>
+      <PropertyRef Name="id_estatus_xml" />
+    </Key>
+    <Property Name="id_estatus_xml" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_xml" Type="int" Nullable="false" />
+    <Property Name="estatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Facturas">
+    <Key>
+      <PropertyRef Name="id_xml" />
+    </Key>
+    <Property Name="id_xml" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UUID" Type="varchar" MaxLength="100" />
+    <Property Name="RFCEmisor" Type="varchar" MaxLength="15" />
+    <Property Name="RFCReceptor" Type="varchar" MaxLength="15" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="subtotal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="impuesto_trasladado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="impuesto_retenido" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="forma_pago" Type="int" />
+    <Property Name="metodo_pago" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_timbrado" Type="datetime" />
+    <Property Name="moneda" Type="varchar" MaxLength="10" />
+    <Property Name="nombre_emisor" Type="varchar" MaxLength="250" />
+    <Property Name="nombre_receptor" Type="varchar" MaxLength="250" />
+    <Property Name="url_xml" Type="varchar" MaxLength="500" />
+    <Property Name="version" Type="varchar" MaxLength="50" />
+    <Property Name="tipo" Type="varchar" MaxLength="50" />
+    <Property Name="folio" Type="varchar" MaxLength="200" />
+    <Property Name="usoCFDI" Type="varchar" MaxLength="50" />
+    <Property Name="tipo_comprobante" Type="varchar" MaxLength="20" />
+    <Property Name="descuento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="fecha_pago" Type="datetime" />
+    <Property Name="estatus" Type="varchar" MaxLength="50" />
+    <Property Name="ieps" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_iva" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_isr" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_ieps" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_local" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="traslado_local" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="cfdi_relacionados" Type="varchar(max)" />
+    <Property Name="tipo_relacion_cfdi" Type="varchar" MaxLength="200" />
+    <Property Name="conceptos" Type="varchar(max)" />
+    <Property Name="tipo_cambio" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="total_original" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="serie" Type="varchar" MaxLength="100" />
+    <Property Name="isr_nomina" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="subsidio_nomina" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="divisa" Type="int" />
+    <Property Name="fecha_pago_p" Type="datetime" />
+    <Property Name="forma_pago_p" Type="varchar" MaxLength="50" />
+    <Property Name="moneda_p" Type="varchar" MaxLength="10" />
+    <Property Name="registropatronal" Type="varchar" MaxLength="100" />
+    <Property Name="tiponomina" Type="varchar" MaxLength="10" />
+    <Property Name="fechapago" Type="datetime" />
+    <Property Name="fechainicialpago" Type="datetime" />
+    <Property Name="fechafinalpago" Type="datetime" />
+    <Property Name="numdiaspagados" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="totalpercepciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totaldeducciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrospagos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="curp" Type="varchar" MaxLength="20" />
+    <Property Name="numseguridadsocial" Type="varchar" MaxLength="50" />
+    <Property Name="fechainiciorellaboral" Type="datetime" />
+    <Property Name="numempleado" Type="varchar" MaxLength="50" />
+    <Property Name="departamento" Type="varchar" MaxLength="100" />
+    <Property Name="puesto" Type="varchar" MaxLength="100" />
+    <Property Name="periodicidadpago" Type="varchar" MaxLength="50" />
+    <Property Name="salariobasecotapor" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="salariodiariointegrado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalsueldos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalgravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalexento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrasdeducciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalimpuestosretenidos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalseparacionindemnizacionper" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totaljubilacionpensionretiroper" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="estatus_aplicacion" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_validacion" Type="datetime" />
+    <Property Name="EFOS" Type="bit" />
+    <Property Name="sueldosGravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="sueldosExento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="aguinaldoGravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="aguinaldoExento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="primaDominicalGravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="primaDominicalExento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="primaVacacionalGravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="primaVacacionalExento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="primaAntiguedadGravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="primaAntiguedadExento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="indemnizacionGravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="indemnizacionExento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="subsidioCausado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="subsidioPagado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="_seguroSocial" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="_isrDeduccion" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="_aportaciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="_infonavit" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ish" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbd_Ficha_Tecnica">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="matriz" Type="nvarchar" MaxLength="1000" />
+    <Property Name="sucursales" Type="nvarchar" MaxLength="1000" />
+    <Property Name="representante" Type="nvarchar" MaxLength="1000" />
+    <Property Name="objeto_social" Type="nvarchar" MaxLength="1000" />
+    <Property Name="capital_inicial" Type="nvarchar" MaxLength="1000" />
+    <Property Name="recomendacion" Type="nvarchar" MaxLength="1000" />
+    <Property Name="humano" Type="nvarchar" MaxLength="1000" />
+    <Property Name="inmobiliario" Type="nvarchar" MaxLength="1000" />
+    <Property Name="equipo" Type="nvarchar" MaxLength="1000" />
+    <Property Name="costos" Type="nvarchar" MaxLength="1000" />
+    <Property Name="grupo" Type="nvarchar" MaxLength="1000" />
+    <Property Name="canales" Type="nvarchar" MaxLength="1000" />
+    <Property Name="alianzas" Type="nvarchar" MaxLength="1000" />
+    <Property Name="observaciones" Type="nvarchar" MaxLength="1000" />
+    <Property Name="prestamos" Type="nvarchar" MaxLength="1000" />
+    <Property Name="politicas" Type="nvarchar" MaxLength="1000" />
+    <Property Name="contratos" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="tbd_Formulario">
+    <Key>
+      <PropertyRef Name="id_formulario" />
+    </Key>
+    <Property Name="id_formulario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="mensaje" Type="varchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Historial_Movimientos">
+    <Key>
+      <PropertyRef Name="id_historial_movimiento" />
+    </Key>
+    <Property Name="id_historial_movimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="movimiento" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_movimiento" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Localizacion_NSS">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="curp" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="url_documento" Type="varchar" MaxLength="500" />
+    <Property Name="url_comprobante_localizacion" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbd_Nomina_Factura">
+    <Key>
+      <PropertyRef Name="id_nomina_xml" />
+    </Key>
+    <Property Name="id_nomina_xml" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clave" Type="varchar" MaxLength="150" />
+    <Property Name="concepto" Type="varchar(max)" />
+    <Property Name="importeexento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="importegravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="tipopercepcion" Type="varchar" MaxLength="150" />
+    <Property Name="UUID" Type="varchar" MaxLength="100" />
+    <Property Name="id_xml" Type="int" Nullable="false" />
+    <Property Name="registropatronal" Type="varchar" MaxLength="100" />
+    <Property Name="tiponomina" Type="varchar" MaxLength="10" />
+    <Property Name="fechapago" Type="datetime" />
+    <Property Name="fechainicialpago" Type="datetime" />
+    <Property Name="fechafinalpago" Type="datetime" />
+    <Property Name="numdiaspagados" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="totalpercepciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totaldeducciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrospagos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="curp" Type="varchar" MaxLength="20" />
+    <Property Name="numseguridadsocial" Type="varchar" MaxLength="50" />
+    <Property Name="fechainiciorellaboral" Type="datetime" />
+    <Property Name="numempleado" Type="varchar" MaxLength="50" />
+    <Property Name="departamento" Type="varchar" MaxLength="100" />
+    <Property Name="puesto" Type="varchar" MaxLength="100" />
+    <Property Name="periodicidadpago" Type="varchar" MaxLength="50" />
+    <Property Name="salariobasecotapor" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="salariodiariointegrado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalsueldos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalgravado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalexento" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrasdeducciones" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalimpuestosretenidos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totalseparacionindemnizacionper" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="totaljubilacionpensionretiroper" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbd_Notificaciones_Cliente">
+    <Key>
+      <PropertyRef Name="id_notificacion" />
+    </Key>
+    <Property Name="id_notificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="autoridad_emisora" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="acto_administrativo" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="fecha_recepcion" Type="datetime" Nullable="false" />
+    <Property Name="fecha_notificacion" Type="datetime" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="url_aviso_not" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="url_acuse_not" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="url_acto_not" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="es_anual" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Otros_Gastos">
+    <Key>
+      <PropertyRef Name="id_otros_gastos" />
+    </Key>
+    <Property Name="id_otros_gastos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="int" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_MenuEntities.dbo.tbd_Otros_Servicios_RFC' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="tbd_Otros_Servicios_RFC">
+    <Key>
+      <PropertyRef Name="id_otro_servicio_rfc" />
+      <PropertyRef Name="id_otro_servicio" />
+      <PropertyRef Name="periodo" />
+      <PropertyRef Name="mes" />
+      <PropertyRef Name="fecha_carga" />
+      <PropertyRef Name="url_archivo" />
+      <PropertyRef Name="id_usuario_creo" />
+      <PropertyRef Name="id_cliente" />
+      <PropertyRef Name="nombre_archivo" />
+      <PropertyRef Name="descripcion" />
+    </Key>
+    <Property Name="id_otro_servicio_rfc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_otro_servicio" Type="int" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="fecha_carga" Type="datetime" Nullable="false" />
+    <Property Name="url_archivo" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="nombre_archivo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Repositorio">
+    <Key>
+      <PropertyRef Name="id_repositorio" />
+    </Key>
+    <Property Name="id_repositorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_archivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="int" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="url_archivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="id_lista_repositorio" Type="int" Nullable="false" />
+    <Property Name="fecha_vigencia" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbd_Repositorio_Nomina">
+    <Key>
+      <PropertyRef Name="id_repositorio_nomina" />
+    </Key>
+    <Property Name="id_repositorio_nomina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_archivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="int" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="url_archivo" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_RIF_ISR_Pagos">
+    <Key>
+      <PropertyRef Name="id_RIF_isr_pago" />
+    </Key>
+    <Property Name="id_RIF_isr_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="isr" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="recargo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="impuesto_actualizado" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="total_pagar" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bimestre" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="fecha_recalculo" Type="datetime" Nullable="false" />
+    <Property Name="monto_pago" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="diferencia" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="importe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="fecha_pago" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_RIF_Pagos">
+    <Key>
+      <PropertyRef Name="id_RIF_pago" />
+    </Key>
+    <Property Name="id_RIF_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iva" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="recargo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="impuesto_actualizado" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="total_pagar" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bimestre" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="fecha_recalculo" Type="datetime" Nullable="false" />
+    <Property Name="fecha_pago" Type="datetime" Nullable="false" />
+    <Property Name="monto_pago" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="diferencia" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="importe" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Servicios_Cliente">
+    <Key>
+      <PropertyRef Name="id_servicio_cliente" />
+    </Key>
+    <Property Name="id_servicio_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="servicio" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="tbc_lineas_produccion" Type="int" />
+    <Property Name="encargado" Type="varchar" MaxLength="120" />
+    <Property Name="inicio_servicio" Type="datetime" />
+    <Property Name="id_grupo_empresarial" Type="int" />
+  </EntityType>
+  <EntityType Name="tbd_Tramites">
+    <Key>
+      <PropertyRef Name="id_tramite" />
+    </Key>
+    <Property Name="id_tramite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_lista_tramite" Type="int" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="fecha_solicitud" Type="datetime" Nullable="false" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="fecha_finalizado" Type="datetime" />
+    <Property Name="id_solicitud" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_XMLError">
+    <Key>
+      <PropertyRef Name="id_xml_error" />
+    </Key>
+    <Property Name="id_xml_error" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_xml" Type="int" Nullable="false" />
+    <Property Name="uuid" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fecha_timbrado" Type="datetime" Nullable="false" />
+    <Property Name="url_xml" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="tipo" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Agente_Cliente">
+    <Key>
+      <PropertyRef Name="id_agente_cliente" />
+    </Key>
+    <Property Name="id_agente_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Cliente_Usuario">
+    <Key>
+      <PropertyRef Name="id_cliente_usuario" />
+    </Key>
+    <Property Name="id_cliente_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Rol_Vista">
+    <Key>
+      <PropertyRef Name="id_rol_vista" />
+    </Key>
+    <Property Name="id_rol_vista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_rol" Type="int" Nullable="false" />
+    <Property Name="id_vista" Type="int" Nullable="false" />
+    <Property Name="id_permiso_servidor" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Rol_Vista_Accion">
+    <Key>
+      <PropertyRef Name="id_rol_vista_accion" />
+    </Key>
+    <Property Name="id_rol_vista_accion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_rol_vista" Type="int" Nullable="false" />
+    <Property Name="id_accion" Type="int" Nullable="false" />
+    <Property Name="id_permiso_servidor" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="vwRandom">
+          <Property Name="Rnd" Type="float" />
+        </EntityType>-->
+  <Association Name="FK_tbc_Roles_tbc_Estatus">
+    <End Role="tbc_Estatus" Type="Self.tbc_Estatus" Multiplicity="1" />
+    <End Role="tbc_Roles" Type="Self.tbc_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Estatus">
+        <PropertyRef Name="id_estatus" />
+      </Principal>
+      <Dependent Role="tbc_Roles">
+        <PropertyRef Name="id_estatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Usuarios_tbc_Estatus">
+    <End Role="tbc_Estatus" Type="Self.tbc_Estatus" Multiplicity="1" />
+    <End Role="tbc_Usuarios" Type="Self.tbc_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Estatus">
+        <PropertyRef Name="id_estatus" />
+      </Principal>
+      <Dependent Role="tbc_Usuarios">
+        <PropertyRef Name="id_estatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Usuarios_tbc_Rol">
+    <End Role="tbc_Roles" Type="Self.tbc_Roles" Multiplicity="1" />
+    <End Role="tbc_Usuarios" Type="Self.tbc_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="tbc_Usuarios">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Vistas_tbc_Estatus">
+    <End Role="tbc_Estatus" Type="Self.tbc_Estatus" Multiplicity="1" />
+    <End Role="tbc_Vistas" Type="Self.tbc_Vistas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Estatus">
+        <PropertyRef Name="id_estatus" />
+      </Principal>
+      <Dependent Role="tbc_Vistas">
+        <PropertyRef Name="id_estatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Vistas_tbc_Menu">
+    <End Role="tbc_Menus" Type="Self.tbc_Menus" Multiplicity="1" />
+    <End Role="tbc_Vistas" Type="Self.tbc_Vistas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Menus">
+        <PropertyRef Name="id_menu" />
+      </Principal>
+      <Dependent Role="tbc_Vistas">
+        <PropertyRef Name="id_menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbd_Ficha_Tecnica_tbc_Clientes">
+    <End Role="tbc_Clientes" Type="Self.tbc_Clientes" Multiplicity="1" />
+    <End Role="tbd_Ficha_Tecnica" Type="Self.tbd_Ficha_Tecnica" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Clientes">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="tbd_Ficha_Tecnica">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial">
+    <End Role="tbc_Grupo_Empresarial" Type="Self.tbc_Grupo_Empresarial" Multiplicity="0..1" />
+    <End Role="tbd_Servicios_Cliente" Type="Self.tbd_Servicios_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Grupo_Empresarial">
+        <PropertyRef Name="id_grupo_empresarial" />
+      </Principal>
+      <Dependent Role="tbd_Servicios_Cliente">
+        <PropertyRef Name="id_grupo_empresarial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_Accion_tbc_Acciones">
+    <End Role="tbc_Acciones" Type="Self.tbc_Acciones" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista_Accion" Type="Self.tbr_Rol_Vista_Accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Acciones">
+        <PropertyRef Name="id_accion" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista_Accion">
+        <PropertyRef Name="id_accion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor">
+    <End Role="tbc_Permisos_Servidor" Type="Self.tbc_Permisos_Servidor" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista_Accion" Type="Self.tbr_Rol_Vista_Accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Permisos_Servidor">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista_Accion">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista">
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista_Accion" Type="Self.tbr_Rol_Vista_Accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_rol_vista" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista_Accion">
+        <PropertyRef Name="id_rol_vista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_tbc_Permisos_Servidor">
+    <End Role="tbc_Permisos_Servidor" Type="Self.tbc_Permisos_Servidor" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Permisos_Servidor">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_tbc_Rol">
+    <End Role="tbc_Roles" Type="Self.tbc_Roles" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_tbc_Vistas">
+    <End Role="tbc_Vistas" Type="Self.tbc_Vistas" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Vistas">
+        <PropertyRef Name="id_vista" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_vista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Administrador_ADD_Accion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_ADD_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_ADD_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_ADD_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_ADD_Vista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_DEL_Accion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_DEL_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_DEL_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_DEL_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_DEL_Vista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_ListaAcciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_ListaMenus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_ListaRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_ListaUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_ListaVistas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_RlVista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_SEL_RlVistaAccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_UPD_Accion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_UPD_Menu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_UPD_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_UPD_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Administrador_UPD_Vista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Actividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_ActividadCalendario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_ActividadProduccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_ActivoFijo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Contactos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Deposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_DocumentoNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_DocumentoTramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Entregables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_EstadoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_EstadoCuentaC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Estatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_FechaCalendarioActividades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Formato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Notificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_OtroGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_OtrosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Pago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Pago_ISR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Prospecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Repositorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_RepositorioC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_RepositorioNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_RepositorioNomina2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Seguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_ServicioAdicional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_ADD_Tramite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Actividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Contactos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Entregables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_EstadoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Estatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_FechaCalendarioActividades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Formato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Notificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_OtrosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Repositorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_RepositorioNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_Seguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_DEL_ServicioAdicional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_GET_ClienteRIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_Bimestres_RIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_CalendarioActividades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_CalendarioActividadesLP1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_CanceladosEmitidosCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_CanceladosRecibidosCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ComplementosCobroCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ComplementosPagoCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_DocuemntosCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_DocuemntosNominasCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EdoCuentaCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EgresosCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EliminarActivoFijo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EliminarDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EliminarOtroGasto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EliminarPago_RIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EliminarPago_RIF_ISR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_EntregablesCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_FichaTecnica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_GetXMLCancelados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_IngresosCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_InicioCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaActividades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaActividadesCalendario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaActividadesProduccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaActivoFijo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaClientesCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaClientesLinea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaContactos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaDeposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaDocumentosDigitales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaDocumentosNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaEntregables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaEstadosCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaEstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaFormatos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaNotificacionesCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaOtrosGastos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaOtrosServicios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaPagos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaPagos_ISR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaProspectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaProveedoresCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaRepositorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaRepositorioNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaSeguimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaServiciosAdicionales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaTramites" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaTramitesCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ListaTramitesIMSS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_NominasCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_NotasCreditoCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_NotasCreditoGastoCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_Recalcular_RIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_Recalcular_RIF_ISR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesArrendamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesAsesoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesCOI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesEDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesHonorarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesPFAE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesPM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesRIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteEntregablesSueldos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteExpedienteFiscalArrendamiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteExpedienteFiscalHonorarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteExpedienteFiscalPFAE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteExpedienteFiscalPM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteExpedienteFiscalRIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteExpedienteFiscalSueldos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReporteGeneralAnual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_ReportePropuestasEconomicas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_SueldosCRM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLDepreciaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLDPersonales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLEgresos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLEmitidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLIngresos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLNoDeducible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLNominas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLRecibidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLSueldos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLTrasladoEmitidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLTrasladoRecibidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLZip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLZipCRMGastos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SEL_XMLZipCRMIngresos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SET_EstatusSAT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SET_EstatusSATWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SET_EstatusXML" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_SET_FechaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_CalendarioActividades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_Cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_ClienteRIF" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_FichaTecnica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_Prospecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_Repositorio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_RepositorioNomina" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Catalogo_UPD_ServicioAdicional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GenerarAlfRandom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="size" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetCatalogoJson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="id_isuario" Type="int" Mode="In" />
+    <Parameter Name="catalogo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Historial_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+    <Parameter Name="mensaje" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Inicio_SEL_Menus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Inicio_SEL_ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReportesGenerales_SEL_EstadoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Utils_SEL_Catalogos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Utils_SEL_Permisos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Utils_SEL_ValidarAccesoVista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="idUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ValidarAccesoVistaAccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="id_usuario" Type="int" Mode="In" />
+    <Parameter Name="id_RV" Type="int" Mode="In" />
+    <Parameter Name="id_RVA" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ValidarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="id_isuario" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DB_MenuEntitiesModelStoreContainer">
+    <EntitySet Name="tbc_Acciones" EntityType="Self.tbc_Acciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Actividades_Calendario" EntityType="Self.tbc_Actividades_Calendario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Auxiliares" EntityType="Self.tbc_Auxiliares" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Clientes" EntityType="Self.tbc_Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Contactos_Cliente" EntityType="Self.tbc_Contactos_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Estatus" EntityType="Self.tbc_Estatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Factor_INPC" EntityType="Self.tbc_Factor_INPC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Factor_Recargo" EntityType="Self.tbc_Factor_Recargo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Forma_Pago" EntityType="Self.tbc_Forma_Pago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Formatos" EntityType="Self.tbc_Formatos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Grupo_Empresarial" EntityType="Self.tbc_Grupo_Empresarial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Lineas_Produccion" EntityType="Self.tbc_Lineas_Produccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Lista_Entregables" EntityType="Self.tbc_Lista_Entregables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Lista_Entregables_Nomina" EntityType="Self.tbc_Lista_Entregables_Nomina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Lista_Repositorio" EntityType="Self.tbc_Lista_Repositorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Lista_tramites" EntityType="Self.tbc_Lista_tramites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Menus" EntityType="Self.tbc_Menus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Otros_Servicios" EntityType="Self.tbc_Otros_Servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Permisos_Servidor" EntityType="Self.tbc_Permisos_Servidor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Regimenes" EntityType="Self.tbc_Regimenes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_RIF_Sectores" EntityType="Self.tbc_RIF_Sectores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_RIF_Tasa_Descuento" EntityType="Self.tbc_RIF_Tasa_Descuento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_RIF_Tasa_ISR" EntityType="Self.tbc_RIF_Tasa_ISR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Roles" EntityType="Self.tbc_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Seguimiento_Cliente" EntityType="Self.tbc_Seguimiento_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Supervisores" EntityType="Self.tbc_Supervisores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Tipo_Comprobante" EntityType="Self.tbc_Tipo_Comprobante" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Tipo_Persona" EntityType="Self.tbc_Tipo_Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Tipos_Nomina_Entregables" EntityType="Self.tbc_Tipos_Nomina_Entregables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Tipos_Repositorio" EntityType="Self.tbc_Tipos_Repositorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Tipos_Tramite" EntityType="Self.tbc_Tipos_Tramite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Uso_CFDI" EntityType="Self.tbc_Uso_CFDI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Usuarios" EntityType="Self.tbc_Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Vistas" EntityType="Self.tbc_Vistas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Actividades_Cliente" EntityType="Self.tbd_Actividades_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Activo_Fijo" EntityType="Self.tbd_Activo_Fijo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Avance_Calendario" EntityType="Self.tbd_Avance_Calendario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Calendario_Produccion" EntityType="Self.tbd_Calendario_Produccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Cambio_Domicilio" EntityType="Self.tbd_Cambio_Domicilio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Certificado_Digital" EntityType="Self.tbd_Certificado_Digital" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Conceptos_Factura" EntityType="Self.tbd_Conceptos_Factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Constancia_Sem_Cotizadas" EntityType="Self.tbd_Constancia_Sem_Cotizadas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Depositos" EntityType="Self.tbd_Depositos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Depreciaciones" EntityType="Self.tbd_Depreciaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Descargas_XML" EntityType="Self.tbd_Descargas_XML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Entregables_Nomina_RFC" EntityType="Self.tbd_Entregables_Nomina_RFC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Entregables_RFC" EntityType="Self.tbd_Entregables_RFC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Error_Lectura_XML" EntityType="Self.tbd_Error_Lectura_XML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Estados_Cuenta" EntityType="Self.tbd_Estados_Cuenta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Estatus_Cliente" EntityType="Self.tbd_Estatus_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Estatus_XML" EntityType="Self.tbd_Estatus_XML" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Facturas" EntityType="Self.tbd_Facturas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Ficha_Tecnica" EntityType="Self.tbd_Ficha_Tecnica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Formulario" EntityType="Self.tbd_Formulario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Historial_Movimientos" EntityType="Self.tbd_Historial_Movimientos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Localizacion_NSS" EntityType="Self.tbd_Localizacion_NSS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Nomina_Factura" EntityType="Self.tbd_Nomina_Factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Notificaciones_Cliente" EntityType="Self.tbd_Notificaciones_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Otros_Gastos" EntityType="Self.tbd_Otros_Gastos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Repositorio" EntityType="Self.tbd_Repositorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Repositorio_Nomina" EntityType="Self.tbd_Repositorio_Nomina" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_RIF_ISR_Pagos" EntityType="Self.tbd_RIF_ISR_Pagos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_RIF_Pagos" EntityType="Self.tbd_RIF_Pagos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Servicios_Cliente" EntityType="Self.tbd_Servicios_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Tramites" EntityType="Self.tbd_Tramites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_XMLError" EntityType="Self.tbd_XMLError" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbr_Agente_Cliente" EntityType="Self.tbr_Agente_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbr_Cliente_Usuario" EntityType="Self.tbr_Cliente_Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbr_Rol_Vista" EntityType="Self.tbr_Rol_Vista" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbr_Rol_Vista_Accion" EntityType="Self.tbr_Rol_Vista_Accion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Configuracion" EntityType="Self.tbc_Configuracion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbc_Configuracion].[id_configuracion] AS [id_configuracion], 
+    [tbc_Configuracion].[recargo_decimal] AS [recargo_decimal], 
+    [tbc_Configuracion].[recargo] AS [recargo], 
+    [tbc_Configuracion].[aplicar_fecha_pago] AS [aplicar_fecha_pago]
+    FROM [dbo].[tbc_Configuracion] AS [tbc_Configuracion]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbd_Otros_Servicios_RFC" EntityType="Self.tbd_Otros_Servicios_RFC" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbd_Otros_Servicios_RFC].[id_otro_servicio_rfc] AS [id_otro_servicio_rfc], 
+    [tbd_Otros_Servicios_RFC].[id_otro_servicio] AS [id_otro_servicio], 
+    [tbd_Otros_Servicios_RFC].[periodo] AS [periodo], 
+    [tbd_Otros_Servicios_RFC].[mes] AS [mes], 
+    [tbd_Otros_Servicios_RFC].[fecha_carga] AS [fecha_carga], 
+    [tbd_Otros_Servicios_RFC].[url_archivo] AS [url_archivo], 
+    [tbd_Otros_Servicios_RFC].[id_usuario_creo] AS [id_usuario_creo], 
+    [tbd_Otros_Servicios_RFC].[id_cliente] AS [id_cliente], 
+    [tbd_Otros_Servicios_RFC].[nombre_archivo] AS [nombre_archivo], 
+    [tbd_Otros_Servicios_RFC].[descripcion] AS [descripcion]
+    FROM [dbo].[tbd_Otros_Servicios_RFC] AS [tbd_Otros_Servicios_RFC]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbc_Roles_tbc_Estatus" Association="Self.FK_tbc_Roles_tbc_Estatus">
+      <End Role="tbc_Estatus" EntitySet="tbc_Estatus" />
+      <End Role="tbc_Roles" EntitySet="tbc_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Usuarios_tbc_Estatus" Association="Self.FK_tbc_Usuarios_tbc_Estatus">
+      <End Role="tbc_Estatus" EntitySet="tbc_Estatus" />
+      <End Role="tbc_Usuarios" EntitySet="tbc_Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Usuarios_tbc_Rol" Association="Self.FK_tbc_Usuarios_tbc_Rol">
+      <End Role="tbc_Roles" EntitySet="tbc_Roles" />
+      <End Role="tbc_Usuarios" EntitySet="tbc_Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Vistas_tbc_Estatus" Association="Self.FK_tbc_Vistas_tbc_Estatus">
+      <End Role="tbc_Estatus" EntitySet="tbc_Estatus" />
+      <End Role="tbc_Vistas" EntitySet="tbc_Vistas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Vistas_tbc_Menu" Association="Self.FK_tbc_Vistas_tbc_Menu">
+      <End Role="tbc_Menus" EntitySet="tbc_Menus" />
+      <End Role="tbc_Vistas" EntitySet="tbc_Vistas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbd_Ficha_Tecnica_tbc_Clientes" Association="Self.FK_tbd_Ficha_Tecnica_tbc_Clientes">
+      <End Role="tbc_Clientes" EntitySet="tbc_Clientes" />
+      <End Role="tbd_Ficha_Tecnica" EntitySet="tbd_Ficha_Tecnica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial" Association="Self.FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial">
+      <End Role="tbc_Grupo_Empresarial" EntitySet="tbc_Grupo_Empresarial" />
+      <End Role="tbd_Servicios_Cliente" EntitySet="tbd_Servicios_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_Accion_tbc_Acciones" Association="Self.FK_tbr_Rol_Vista_Accion_tbc_Acciones">
+      <End Role="tbc_Acciones" EntitySet="tbc_Acciones" />
+      <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor" Association="Self.FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor">
+      <End Role="tbc_Permisos_Servidor" EntitySet="tbc_Permisos_Servidor" />
+      <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista" Association="Self.FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista">
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+      <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_tbc_Permisos_Servidor" Association="Self.FK_tbr_Rol_Vista_tbc_Permisos_Servidor">
+      <End Role="tbc_Permisos_Servidor" EntitySet="tbc_Permisos_Servidor" />
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_tbc_Rol" Association="Self.FK_tbr_Rol_Vista_tbc_Rol">
+      <End Role="tbc_Roles" EntitySet="tbc_Roles" />
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_tbc_Vistas" Association="Self.FK_tbr_Rol_Vista_tbc_Vistas">
+      <End Role="tbc_Vistas" EntitySet="tbc_Vistas" />
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

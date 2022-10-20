@@ -1,0 +1,513 @@
+﻿
+@{
+    ViewBag.Title = "MisTramites";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Mis Tramites</h2>
+
+<script>
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetListaTramites = '@Url.Action("GetListaTramites", "Cliente")';
+    var url_Catalogos_AddTramite = '@Url.Action("AddTramite", "Cliente")';
+</script>
+<script src="~/Content/Js/Personal/CRM/TramitesModal.js"></script>
+<script src="~/Content/Js/Personal/CRM/Tramites.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var $formPrincipal = $("#frmPrincipal");
+        var $formPrincipal2 = $("#frmPrincipal2");
+        var $formPrincipal3 = $("#frmPrincipal3");
+        var $formPrincipal4 = $("#frmPrincipal4");
+
+        var principalForm = {
+            rules: {
+                fr_calle: "required",
+                fr_codigo_postal: "required",
+                fr_num_ext: "required",
+                fr_entre_calle: "required",
+                fr_y_calle: "required",
+                fr_colonia: "required",
+                fr_localidad: "required",
+                fr_entidad_federativa: "required",
+                fr_tipo_inmueble: "required",
+                fr_tipo_calle: "required",
+                fr_caracteristicas_domicilio: "required",
+                fr_codigo_fiscal: "required",
+                fr_url_comprobante: "required"
+            },
+            messages: {
+
+                fr_calle: "debe especificar la calle",
+                fr_codigo_postal: "debe especificar el código postal",
+                fr_num_ext: "debe especificar un número exterior",
+                fr_entre_calle: "debe especificar entre que calles",
+                fr_y_calle: "debe especificar entre que calles",
+                fr_colonia: "debe especificar la colonia",
+                fr_localidad: "debe especificar la localidad",
+                fr_entidad_federativa: "debe especificar la entidad federativa",
+                fr_tipo_inmueble: "debe especificar el tipo de inmueble",
+                fr_tipo_calle: "debe especificar el tipo de calle",
+                fr_caracteristicas_domicilio: "debe especificar caracteristicas del domicilio",
+                fr_codigo_fiscal: "debe especificar el codigo fiscal",
+                fr_url_comprobante: "debe cargar un comprobante de domicilio"
+            }
+        }
+
+        $formPrincipal.validate(principalForm);
+
+        var principalForm2 = {
+            rules: {
+                fr_tipo_persona: "required",
+                fr_url_tarjeta_patronal: "required",
+                fr_usuario_imss: "required",
+                fr_telefono: "required",
+                fr_correo: "required",
+                fr_funcion_empresa: "required",
+                fr_url_identificacion: "required",
+                fr_url_comprobante_2: "required",
+
+            },
+            messages: {
+
+                fr_tipo_persona: "debe especificar el tipo de persona",
+                fr_url_tarjeta_patronal: "debe cargar la tarjeta patronal",
+                fr_usuario_imss: "debe especificar un usuario IMSS",
+                fr_telefono: "debe especificar un teléfono",
+                fr_correo: "debe especificar un correo electrónico",
+                fr_funcion_empresa: "debe especificar la función de la empresa",
+                fr_url_identificacion: "debe cargar una identificación",
+                fr_url_comprobante_2: "debe cargar un comprobante",
+
+            }
+        }
+
+        $formPrincipal2.validate(principalForm2);
+
+        var principalForm3 = {
+            rules: {
+                fr_curp: "required",
+                fr_nss: "required",
+                fr_correo_2: "required"               
+
+            },
+            messages: {
+                fr_curp: "debe especificar una CURP",
+                fr_nss: "debe especificar un número de seguro social",
+                fr_correo_2: "debe especificar un correo electrónico"              
+
+            }
+        }
+
+        $formPrincipal3.validate(principalForm3);
+
+        var principalForm4 = {
+            rules: {
+                fr_curp_2: "required",
+                fr_correo_3: "required"
+
+            },
+            messages: {
+                fr_curp_2: "debe especificar una CURP",
+                fr_correo_3: "debe especificar un correo electrónico"
+
+            }
+        }
+
+        $formPrincipal4.validate(principalForm4);
+
+        cambioTipo();
+    });
+
+    function ocultarVistas() {
+        $("#form-domicilio").hide();
+        $("#form-certificado").hide();
+        $("#form-semanas").hide();
+        $("#form-localizacion").hide();
+    }
+
+    function cambioTipo() {
+        var tipo = $("#id_tipo_tramite").val();
+        if (tipo == "1") {
+            $("#id_lista_tramite").html('<option value="1">Cambio de Domicilio Fiscal</option>');
+        }
+        else if (tipo == "2") {
+            $("#id_lista_tramite").html('<option value="2">Solicitud de Certificado Digital</option><option value="3">Solicitud de Constancia de Semanas Cotizadas</option><option value="4">Localización de Número de Seguro Social</option>');
+        }
+
+        cambiotramite();
+    }
+
+    
+    function cambiotramite() {
+        ocultarVistas();        
+        var tipo = $("#id_lista_tramite").val();       
+        if (tipo == "1") {           
+            
+            $("#form-domicilio").show();
+        }
+        else if (tipo == "2") {
+           
+            $("#form-certificado").show();
+        }
+        else if (tipo == "3") {
+
+            $("#form-semanas").show();
+        }
+        else if (tipo == "4") {
+
+            $("#form-localizacion").show();
+        }
+    }
+</script>
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+<div class="jumbotron simple">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Trámite IMSS</th>
+                <th scope="col">Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Solicitud de certificado digital del IMSS</th>
+                <td style="width:25%;">$ 500.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Solicitud de constancia de semanas cotizadas</th>
+                <td>$ 500.00</td>
+            </tr>
+            <tr>
+                <th scope="row">Localización de NSS</th>
+                <td>$ 500.00</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <hr class="my-4">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Trámite SAT</th>
+                <th scope="col">Costo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Solicitud de cambio de domicilio</th>
+                <td style="width:25%;">$ 500.00</td>
+            </tr>
+        </tbody>
+
+    </table>
+    
+</div>
+<br />
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <table class="cell-border table-striped " id="tbl_tramites" style="width:100%" data-title-datatable="Tramites">
+                <thead>
+                    <tr>
+                        <td>Trámite</td>
+                        <td>Tipo</td>
+                        <td>Fecha Solicitud</td>
+                        <td>Estatus</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="mdlTramites">
+    <h3><span id="titleModal">Solicitud de</span> Trámite</h3>
+
+
+
+
+    <div>
+
+
+        <form>
+
+            <div class="form-row">
+                <div class="col-md-5">
+                    <label>Tipo trámite:</label>
+                    <div class="input-group mb-3">
+                        <select id="id_tipo_tramite" class="form-control" onchange="cambioTipo();">
+                            <option value="1">SAT</option>
+                            <option value="2">IMSS</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <label>Tramite:</label>
+                    <select id="id_lista_tramite" class="form-control" onchange="cambiotramite();">
+                    </select>
+                </div>
+
+            </div>
+        </form>
+
+
+        <form action="/" method="post" id="frmPrincipal">
+
+            <div class="form-row" id="form-domicilio">
+
+                <div class="col-md-4">
+                    <label>Calle:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_calle" id="fr_calle" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Código postal:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_codigo_postal" id="fr_codigo_postal" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label>Núm Ext:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_num_ext" id="fr_num_ext" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label>Núm Int:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_num_int" id="fr_num_int" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Entre calle:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_entre_calle" id="fr_entre_calle" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>y calle:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_y_calle" id="fr_y_calle" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Colonia:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_colonia" id="fr_colonia" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Localidad:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_localidad" id="fr_localidad" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Entidad Federativa:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_entidad_federativa" id="fr_entidad_federativa" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Tipo inmueble:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_tipo_inmueble" id="fr_tipo_inmueble" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Tipo calle:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_tipo_calle" id="fr_tipo_calle" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Caracteristicas del domicilio:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_caracteristicas_domicilio" id="fr_caracteristicas_domicilio" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Referencias adicionales:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_referencias_adicionales" id="fr_referencias_adicionales" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Municipio:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_codigo_fiscal" id="fr_codigo_fiscal" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Comprobante de domicilio:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_url_comprobante" id="fr_url_comprobante" />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </form>
+        <form action="/" method="post" id="frmPrincipal2">
+            <div class="form-row" id="form-certificado">
+                <div class="col-md-4">
+                    <label>Tipo de contribuyente:</label>
+                    <div class="input-group mb-3">
+                        <select class="form-control" style="width:100%;" name="fr_id_tipo_persona" id="fr_id_tipo_persona">
+                            <option value="1">FÍSICA</option>
+                            <option value="2">MORAL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Tarjeta patronal:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_url_tarjeta_patronal" id="fr_url_tarjeta_patronal" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Usuario IMSS:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_usuario_imss" id="fr_usuario_imss" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Teléfono:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_telefono" id="fr_telefono" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Correo Electrónico:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_correo" id="fr_correo" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Función de la empresa:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_funcion_empresa" id="fr_funcion_empresa" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Identificación oficial:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_url_identificacion" id="fr_url_identificacion" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Comprobante de domicilio:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_url_comprobante_2" id="fr_url_comprobante_2" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form action="/" method="post" id="frmPrincipal3">
+            <div class="form-row" id="form-semanas">
+
+                <div class="col-md-4">
+                    <label>CURP:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_curp" id="fr_curp" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>NSS:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_nss" id="fr_nss" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Correo Electrónico:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_correo_2" id="fr_correo_2" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form action="/" method="post" id="frmPrincipal4">
+            <div class="form-row" id="form-localizacion">
+
+                <div class="col-md-4">
+                    <label>CURP:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_curp_2" id="fr_curp_2" />
+                    </div>
+                </div>               
+
+                <div class="col-md-4">
+                    <label>Correo Electrónico:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" name="fr_correo_3" id="fr_correo_3" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-group form col-md-12 d-flex justify-content-around">
+        <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+            <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+        </button>
+        <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+            <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+        </button>
+    </div>
+
+
+</div>

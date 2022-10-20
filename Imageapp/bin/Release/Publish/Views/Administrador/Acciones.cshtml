@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Acciones";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Acciones</h2>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Acciones/Acciones.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Acciones/AccionesModal.js"></script>
+
+<script>
+    var id_RV = '@ViewBag.id_RV'
+
+    var url_Administrador_GetAcciones = '@Url.Action("GetAcciones", "Administrador")';
+    var url_Administrador_GetPermisos = '@Url.Action("GetPermisos", "Administrador")';
+
+    var url_Administrador_AddAccion = '@Url.Action("AddAccion", "Administrador")';
+    var url_Administrador_UpdateAccion = '@Url.Action("UpdateAccion", "Administrador")';
+    var url_Administrador_DeleteAccion = '@Url.Action("DeleteAccion", "Administrador")';
+</script>
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_codigo">Código</label>
+                <input type="text" class="form-control" id="fl_codigo" placeholder="Buscar por código" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Estatus</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbActivo" name="fl_RdbEstatus" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbActivo">Activo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbInactivo" name="fl_RdbEstatus" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbInactivo">Inactivo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbTodos" name="fl_RdbEstatus" value="0" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbTodos">Todos</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblActions" class="cell-border" style="width:100%;">
+        <thead>
+            <tr>
+                <td>Id Permiso</td>
+                <td>Código</td>
+                <td>Nombre</td>
+                <td>Ícono</td>
+                <td>Visible</td>
+                <td>Visible</td>
+                <td>Posición</td>
+                <td>Estatus</td>
+                <td>Estatus</td>
+                <td>Fecha creación</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlActions">
+    <h3><span id="titleModal">Agregar</span> Permiso</h3>
+
+    <form action="/" method="post" id="frmPrincipal">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fr_codigo">Código</label>
+                <input type="text" class="form-control text-uppercase" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_codigo" name="fr_codigo" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fr_nombre">Nombre</label>
+                <input type="text" class="form-control" onkeypress="return validarLetras(event);" id="fr_nombre" name="fr_nombre" autocomplete="off">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fr_fontAwesome">Ícono</label>
+                <input type="text" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_fontAwesome" name="fr_fontAwesome" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fr_order">Posición</label>
+                <input type="text" class="form-control text-uppercase" onkeypress="return validarNumeros(event);" id="fr_order" name="fr_order" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fr_visible">Visible</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="fr_visible" name="fr_visible">
+                    <label class="custom-control-label" for="fr_visible"></label>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fr_id_estatus">Activo</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="fr_id_estatus" name="fr_id_estatus">
+                    <label class="custom-control-label" for="fr_id_estatus"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,1273 @@
+﻿
+@{
+    ViewBag.Title = "Hoja de Trabajo";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Hoja de Trabajo</h2>
+
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+    var id_cliente = '@ViewBag.id_cliente'
+    var url_Catalogos_GetClienteRIF = '@Url.Action("GetClienteRIF", "Catalogos")';
+    var url_Catalogos_SaveClienteRIF = '@Url.Action("SaveClienteRIF", "Catalogos")';
+
+    var url_Catalogos_UpdRepositorio = '@Url.Action("UpdRepositorio", "Catalogos")';
+    var url_Catalogos_AddRepositorio = '@Url.Action("AddRepositorio", "Catalogos")';
+    var url_Catalogos_GetRepositorio = '@Url.Action("GetRepositorio", "Catalogos")';
+    var url_Catalogos_EliminarRepositorio = '@Url.Action("EliminarRepositorio", "Catalogos")';
+
+    var url_Catalogos_GetXMLEmitidos = '@Url.Action("GetXMLEmitidos", "Catalogos")';
+    var url_Catalogos_GetXMLRecibidos = '@Url.Action("GetXMLRecibidos", "Catalogos")';
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+    var url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Catalogos")';
+
+    var url_Catalogo_SetFechaPago = '@Url.Action("SetFechaPago", "Catalogos")';
+    var url_Catalogo_SetEstatusXML = '@Url.Action("SetEstatusXML", "Catalogos")';
+    var url_Catalogo_ValidaSAT = '@Url.Action("ValidaSAT", "Catalogos")';
+
+    var url_Catalogos_GetDepositos = '@Url.Action("GetDeposito", "Catalogos")';
+    var url_Catalogos_AddDeposito = '@Url.Action("AddDeposito", "Catalogos")';
+    var url_Catalogos_UpdDeposito = '@Url.Action("UpdDeposito", "Catalogos")';
+    var url_Catalogos_EliminarDeposito = '@Url.Action("EliminarDeposito", "Catalogos")';
+
+
+    var url_Catalogos_GetBimestresRIF = '@Url.Action("GetBimestresRIF", "Catalogos")';
+
+    var url_Catalogos_GetXMLIngresos = '@Url.Action("GetXMLIngresos", "Catalogos")';
+    var url_Catalogos_GetXMLEgresos = '@Url.Action("GetXMLEgresos", "Catalogos")';
+
+    var url_Catalogos_GetXMLDPersonales = '@Url.Action("GetXMLDPersonales", "Catalogos")';
+    var url_Catalogos_GetXMLNominas = '@Url.Action("GetXMLNominas", "Catalogos")';
+    var url_Catalogos_GetXMLSueldos = '@Url.Action("GetXMLSueldos", "Catalogos")';
+    var url_Catalogos_GetXMLDepreciaciones = '@Url.Action("GetXMLDepreciaciones", "Catalogos")';
+    var url_Catalogos_GetXMLNoDeducible = '@Url.Action("GetXMLNoDeducible", "Catalogos")';
+
+    var url_Catalogos_GetPagos = '@Url.Action("GetPagos", "Catalogos")';
+    var url_Catalogos_AddPagos = '@Url.Action("AddPagos", "Catalogos")';
+    var url_Catalogos_UpdPagos = '@Url.Action("UpdPagos", "Catalogos")';
+
+
+     var url_Catalogos_GetPagosISR = '@Url.Action("GetPagosISR", "Catalogos")';
+    var url_Catalogos_AddPagosISR = '@Url.Action("AddPagosISR", "Catalogos")';
+    var url_Catalogos_UpdPagosISR = '@Url.Action("UpdPagosISR", "Catalogos")';
+
+
+
+    var url_Catalogos_Recalcular = '@Url.Action("RecalcularRIF", "Catalogos")';
+    var url_Catalogos_RecalcularISR = '@Url.Action("RecalcularRIFISR", "Catalogos")';
+    var url_Catalogos_EliminarPago = '@Url.Action("EliminarPago", "Catalogos")';
+    var url_Catalogos_EliminarPagoISR = '@Url.Action("EliminarPagoISR", "Catalogos")';
+
+
+    var url_Catalogos_GetActivoFijo = '@Url.Action("GetActivoFijo", "Catalogos")';
+    var url_Catalogos_EliminarActivoFijo = '@Url.Action("EliminarActivoFijo", "Catalogos")';
+    var url_Catalogos_AddActivoFijo = '@Url.Action("AddActivoFijo", "Catalogos")';
+
+
+    var url_Catalogos_GetOtrosGastos = '@Url.Action("GetOtrosGastos", "Catalogos")';
+    var url_Catalogos_AddOtroGasto = '@Url.Action("AddOtroGasto", "Catalogos")';
+    var url_Catalogos_EliminarOtroGasto = '@Url.Action("EliminarOtroGasto", "Catalogos")';
+
+    //! Entregables
+
+    var url_Entregable_Excel = '@Url.Action("EntregablesRIF", "Catalogos")';
+
+</script>
+
+<script src="~/Content/Js/Externo/moment.min.js"></script>
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteRIF.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteRepositorio.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/FechaPagoModal.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ValidarSAT.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteDepositos.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClientePagos.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClientePagosISR.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteActivoFijo.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteOtrosGastos.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/EstatusXMLModal.js"></script>
+
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+@*! Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>RFC</label>
+                <input autocomplete="off" class="form-control" id="fl_rfc" name="fl_rfc" readonly type="text" value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Nombre / Razón Social</label>
+                <input autocomplete="off" class="form-control" id="fl_nombre_razon" name="fl_nombre_razon" disabled type="text" value="@ViewBag.nombre_razon">
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_inicial">Fecha inicio</label>
+                <input autocomplete="off" class="form-control datepicker" id="fl_fecha_inicial" name="fl_fecha_inicial" type="text" value="">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_final">Fecha final</label>
+                <input autocomplete="off" class="form-control datepicker" id="fl_fecha_final" name="fl_fecha_final" type="text" value="">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_periodo_filtro">Ejercicio Fiscal</label>
+                <select autocomplete="off" class="form-control" id="fl_periodo_filtro" name="fl_periodo_filtro">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <a href="#" onclick="objClsClienteRIF.GenerarEntregableRIF()" class="btn btn-style btn-ok" >
+                    <i class="fa fa-file-excel-o"></i>&nbsp;&nbsp;Descargar Entregables&nbsp;&nbsp;
+                </a>
+                
+
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="reload nav-link active" id="pills-ficha-tab" data-toggle="pill" href="#pills-ficha" role="tab" aria-controls="pills-ficha" aria-selected="true">Ficha Técnica</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-emitidos-tab" data-toggle="pill" href="#pills-emitidos" role="tab" aria-controls="pills-emitidos" aria-selected="false">XML Emitidos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-recibidos-tab" data-toggle="pill" href="#pills-recibidos" role="tab" aria-controls="pills-recibidos" aria-selected="false">XML Recibidos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-ingresos-tab" data-toggle="pill" href="#pills-ingresos" role="tab" aria-controls="pills-ingresos" aria-selected="false">Ingresos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-gastos-tab" data-toggle="pill" href="#pills-gastos" role="tab" aria-controls="pills-gastos" aria-selected="false">Gastos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-nominas-tab" data-toggle="pill" href="#pills-nominas" role="tab" aria-controls="pills-nominas" aria-selected="false">Nóminas</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-sueldossalarios-tab" data-toggle="pill" href="#pills-sueldossalarios" role="tab" aria-controls="pills-sueldossalarios" aria-selected="false">Sueldos y Salarios</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-dpersonales-tab" data-toggle="pill" href="#pills-dpersonales" role="tab" aria-controls="pills-dpersonales" aria-selected="false">Ded. Personales</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-depreciaciones-tab" data-toggle="pill" href="#pills-depreciaciones" role="tab" aria-controls="pills-depreciaciones" aria-selected="false">Depreciaciones</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-nodeducibles-tab" data-toggle="pill" href="#pills-nodeducibles" role="tab" aria-controls="pills-nodeducibles" aria-selected="false">No Deducibles</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-bimestres-tab" data-toggle="pill" href="#pills-bimestres" role="tab" aria-controls="pills-bimestres" aria-selected="false">Bimestres</a>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-ficha" role="tabpanel" aria-labelledby="pills-ficha-tab">
+
+            <br />
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="fl_fecha_inicial_RIF">Fecha de ingreso</label>
+                    <input autocomplete="off" class="form-control datepicker" id="fl_fecha_inicial_RIF" name="fl_fecha_inicial_RIF" type="text" value="">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="fl_fecha_inicial_servicio">Fecha de inicio de servicio</label>
+                    <input autocomplete="off" class="form-control datepicker" id="fl_fecha_inicial_servicio" name="fl_fecha_inicial_servicio" type="text" value="">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fl_ddlSector">Actividad de reducción</label>
+                    <select id="fl_ddlSector" class="form-control"></select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="fl_actividad_principal">Actividad principal</label>
+                    <input autocomplete="off" class="form-control" id="fl_actividad_principal" name="fl_actividad_principal" type="text" value="">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label>¿Tiene trabajadores?</label>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="fl_tiene_trabajadores" name="fl_tiene_trabajadores">
+                        <label class="custom-control-label" for="fl_tiene_trabajadores"></label>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label>Estado de cuenta</label>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="fl_estado_cuenta" name="fl_estado_cuenta">
+                        <label class="custom-control-label" for="fl_estado_cuenta"></label>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Ingresos mayores a $300,000.00 MXN</label>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="fl_ingresos_mayores" name="fl_ingresos_mayores">
+                        <label class="custom-control-label" for="fl_ingresos_mayores"></label>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="fl_observaciones">Observaciones</label>
+                    <textarea autocomplete="off" class="form-control" id="fl_observaciones" name="fl_observaciones" rows="4"></textarea>
+                </div>
+
+            </div>
+
+            <br />
+            <br />
+
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnAceptaFrm">
+                    <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Guardar</span>&nbsp;&nbsp;
+                </button>
+            </div>
+
+
+        </div>
+        <div class="tab-pane fade" id="pills-emitidos" role="tabpanel" aria-labelledby="pills-emitidos-tab">
+            <br />
+            <div class="form">
+                <button type="button" class="btn btn-style btn-second" id="btnSelectAllEmitidos">
+                    <i class="fa fa-check-square-o"></i>&nbsp;&nbsp;Seleccionar todos&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-danger" id="btnQuitarAllEmitidos">
+                    <i class="fa fa-square-o"></i>&nbsp;&nbsp;Quitar todos&nbsp;&nbsp;
+                </button>
+            </div>
+            <br />
+            <table id="tblXMLEmitidos" class="cell-border table-striped" data-title-datatable="XML Emitidos">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-recibidos" role="tabpanel" aria-labelledby="pills-recibidos-tab">
+            <br />
+            <div class="form">
+                <button type="button" class="btn btn-style btn-second" id="btnSelectAllRecibidos">
+                    <i class="fa fa-check-square-o"></i>&nbsp;&nbsp;Seleccionar todos&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-danger" id="btnQuitarAllRecibidos">
+                    <i class="fa fa-square-o"></i>&nbsp;&nbsp;Quitar todos&nbsp;&nbsp;
+                </button>
+            </div>
+            <br />
+            <table id="tblXMLRecibidos" class="cell-border table-striped" data-title-datatable="XML Recibidos">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-ingresos" role="tabpanel" aria-labelledby="pills-ingresos-tab">
+            <br />
+            <table id="tblXMLIngresos" class="cell-border table-striped" data-title-datatable="Ingresos">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                @*<tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
+                            <th></th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>*@
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-gastos" role="tabpanel" aria-labelledby="pills-gastos-tab">
+            <br />
+
+            <table id="tblXMLGastos" class="cell-border table-striped" data-title-datatable="Egresos">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                @*<tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
+                            <th></th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>*@
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-nominas" role="tabpanel" aria-labelledby="pills-nominas-tab">
+            <br />
+
+            <table id="tblXMLNominas" class="cell-border table-striped" data-title-datatable="Nominas">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-sueldossalarios" role="tabpanel" aria-labelledby="pills-sueldossalarios-tab">
+            <br />
+
+            <table id="tblXMLSueldos" class="cell-border table-striped" data-title-datatable="Sueldos y Salarios">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-dpersonales" role="tabpanel" aria-labelledby="pills-dpersonales-tab">
+            <br />
+
+            <table id="tblXMLDPersonales" class="cell-border table-striped" data-title-datatable="Deducciones Personales">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-depreciaciones" role="tabpanel" aria-labelledby="pills-depreciaciones-tab">
+            <br />
+
+            <table id="tblXMLDepreciaciones" class="cell-border table-striped" data-title-datatable="Depreciaciones">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <br />
+            <br />
+            <h3>Depreciación por Categoría</h3>
+            <hr />
+
+            <table id="tblXMLDepreciacionesCategoria" class="cell-border table-striped" data-title-datatable="Depreciacion Categoria">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Sigla</td>
+                        <td>Descripción</td>
+                        <td>Fecha adquisición</td>
+                        <td>Fecha baja</td>
+                        <td>MOI</td>
+                        <td>Depr. acumulada</td>
+                        <td>Saldo por reducir</td>
+                        <td>Reducción mensual</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+        <div class="tab-pane fade" id="pills-nodeducibles" role="tabpanel" aria-labelledby="pills-nodeducibles-tab">
+            <br />
+            <table id="tblXMLNoDeducibles" class="cell-border table-striped" data-title-datatable="No Deducibles">
+                <thead>
+                    <tr>
+                        <td>Acción</td>
+                        <td>id_xml</td>
+                        <td>Estatus</td>
+                        <td>UUID</td>
+                        <td>RFC emisor</td>
+                        <td>Nombre emisor</td>
+                        <td>RFC receptor</td>
+                        <td>Nombre receptor</td>
+                        <td>Fecha</td>
+                        <td>Fecha timbrado</td>
+                        <td>Forma de pago</td>
+                        <td>Metodo de pago</td>
+                        <td>Fecha de pago</td>
+                        <td>Version</td>
+                        <td>Tipo</td>
+                        <td>Folio</td>
+                        <td>Uso CFDI</td>
+                        <td>Tipo de comprobante</td>
+                        <td>Subtotal</td>
+                        <td>Impuesto trasladado</td>
+                        <td>Impuesto retenido</td>
+                        <td>Descuento</td>
+                        <td>Total</td>
+                        <td>Moneda</td>
+                        <td>url_xml</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                @*<tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
+                            <th></th>
+                            <th class="text-right"></th>
+                            <th class="text-right"></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>*@
+            </table>
+        </div>
+
+        <div id="pills-bimestres" class="tab-pane fade" role="tabpanel" aria-labelledby="pills-bimestres-tab">
+            <br />
+            <h3>Totales</h3>
+            <hr />
+            <table id="tblTotales" class="cell-border table-striped" data-title-datatable="Bimestres Totales">
+                <thead>
+                    <tr>
+                        <td>indice</td>
+                        <td>Bimestre</td>
+                        <td>Fecha inicio</td>
+                        <td>Fecha final</td>
+                        <td>Total depositos</td>
+                        <td>Total cobrado</td>
+                        <td>Diferencia</td>
+                        <td>Subtotal público en general</td>
+                        <td>Subtotal cliente en específico</td>
+                        <td>Otros gastos</td>
+                        <td>Activo fijo</td>
+                        <td>subtotal egresos</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <br />
+            <br />
+            <h3>Impuesto del Valor Agregado</h3>
+            <hr />
+            <table id="tblIVAs" class="cell-border table-striped" data-title-datatable="Bimestres IVA">
+                <thead>
+                    <tr>
+                        <td>indice</td>
+                        <td>Bimestre</td>
+                        <td>Subtotal público en general</td>
+                        <td>Subtotal cliente en específico</td>
+                        <td>IVA público en general</td>
+                        <td>Factor sector</td>
+                        <td>Sector actividad</td>
+                        <td>IVA cliente en específico</td>
+                        <td>IVA causado</td>
+                        <td>IVA % acreditable</td>
+                        <td>IVA Total</td>
+                        <td>IVA acreditable aplicable</td>
+                        <td>IVA original</td>
+                        <td>IVA a pagar</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <br />
+            <br />
+            <h3>Impuesto Sobre la Renta</h3>
+            <hr />
+            <table id="tblISRs" class="cell-border table-striped" data-title-datatable="Bimestres ISR">
+                <thead>
+                    <tr>
+                        <td>indice</td>
+                        <td>Bimestre</td>
+                        <td>Ingreso total</td>
+                        <td>Deducciones nómina</td>
+                        <td>Deducciones</td>
+                        <td>Base pago provisional</td>
+                        <td>Limite inferior</td>
+                        <td>Excedente</td>
+                        <td>Factor ISR</td>
+                        <td>% ISR</td>
+                        <td>Impuesto marginal</td>
+                        <td>Cuota fija</td>
+                        <td>ISR</td>
+                        <td>Antiguedad</td>
+                        <td>% Reducción</td>
+                        <td>ISR original</td>
+                        <td>ISR a pagar</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+
+@*! Modal para crear, descargar, eliminar Repositorio *@
+<div class="modal" id="mdlRepositorio">
+    <h3>Agregar Repositorio</h3>
+    <form id="frmRepositorio">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+
+            <div class="col-md-5">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivo" id="fr_urlArchivo" dirname="fr_urlArchivo" />
+                </div>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="fr_descripcion">Descripción del archivo</label>
+                <textarea type="text" class="form-control text-uppercase" rows="3" id="fr_descripcion" name="fr_descripcion" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblRepositorio" class="cell-border table-striped" data-title-datatable="Repositorio de Archivos">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Descripcion</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id repositorio</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRepo">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarRepo">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlRepo">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para actualizar estatus XML *@
+<div class="modal " id="mdlEstatusXML" style="width:500px;">
+    <h3>Cambiar Estatus XML</h3>
+    <form id="frmEstatusXML">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-8">
+                <label>Seleccione un estatus</label>
+                <select class="form-control" required autocomplete="off" id="fl_estatus_xml" name="fl_estatus_xml">
+                    <option value="NORMAL">NORMAL</option>
+                    <option value="APLICA">APLICA</option>
+                    <option value="NO APLICA">NO APLICA</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlEstatusXML">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Cambiar Estatus</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlEstatusXML">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para actualizar fecha de pago *@
+<div class="modal " id="mdlFechaPago" style="width:500px;">
+    <h3>Cambiar Fecha de Pago</h3>
+    <form id="frmFechaPago">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-8">
+                <label>Seleccione fecha</label>
+                <input type="text" class="form-control datepicker" required autocomplete="off" id="fl_fecha_pago" name="fl_fecha_pago">
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlFecha">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Cambiar Fecha</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlFecha">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Depositos *@
+<div class="modal" id="mdlDeposito">
+    <h3>Agregar Deposito</h3>
+    <form id="frmDeposito">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Año</label>
+                <select class="form-control" id="fr_periodo_deposito" name="fr_periodo_deposito">
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes</label>
+                <select class="form-control" id="fr_mes_deposito" name="fr_mes_deposito">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Monto</label>
+                <input class="form-control" type="number" step="0.01" id="fr_monto_deposito" name="fr_monto_deposito" />
+
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Depositos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblDeposito" class="cell-border table-striped" data-title-datatable="Depositos">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Año</td>
+                        <td>Mes</td>
+                        <td>Monto</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id cliente</td>
+                        <td>Id deposito</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlDepo">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarDepo">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlDepo">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Pagos *@
+<div class="modal" id="mdlPagos">
+    <h3>Agregar Pago de Impuetos IVA</h3>
+    <form id="frmPagos">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Fecha de Pago</label>
+                <input class="form-control datepicker" type="text" id="fr_fecha_pago_sat" name="fr_fecha_pago_sat" />
+
+            </div>
+            <div class="form-group col-md-3">
+                <label>Bimestre</label>
+                <select class="form-control" id="fr_bimestre_pago_sat" name="fr_bimestre_pago_sat">
+                    <option value="1">ENE-FEB</option>
+                    <option value="2">MAR-ABR</option>
+                    <option value="3">MAY-JUN</option>
+                    <option value="4">JUL-AGO</option>
+                    <option value="5">SEP-OCT</option>
+                    <option value="6">NOV-DIC</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año</label>
+                <select class="form-control" id="fr_periodo_bimestre_pago_sat" name="fr_periodo_bimestre_pago_sat">
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Monto</label>
+                <input class="form-control" type="number" step="0.01" id="fr_monto_pago_sat" name="fr_monto_pago_sat" />
+
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Pagos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblPagos" class="cell-border table-striped" data-title-datatable="Pagos IVA">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Año</td>
+                        <td>Bimestre</td>
+
+                        <td>Fecha pago</td>
+
+                        <td>IVA</td>
+
+                        <td>Importe</td>
+                        <td>Recargos</td>
+                        <td>Imp. actualizado</td>
+                        <td>Total a pagar</td>
+                        <td>Monto pago</td>
+                        <td>Diferencia</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario creo</td>
+                        <td>Fecha creación</td>
+                        <td>Id cliente</td>
+                        <td>Id pago</td>
+                        <td>Id bimestre</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlPago">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarPago">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlPago">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Pagos ISR*@
+<div class="modal" id="mdlPagosISR">
+    <h3>Agregar Pago de Impuetos ISR</h3>
+    <form id="frmPagosISR">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Fecha de Pago</label>
+                <input class="form-control datepicker" type="text" id="fr_fecha_pago_sat_isr" name="fr_fecha_pago_sat_isr" />
+
+            </div>
+            <div class="form-group col-md-3">
+                <label>Bimestre</label>
+                <select class="form-control" id="fr_bimestre_pago_sat_isr" name="fr_bimestre_pago_sat_isr">
+                    <option value="1">ENE-FEB</option>
+                    <option value="2">MAR-ABR</option>
+                    <option value="3">MAY-JUN</option>
+                    <option value="4">JUL-AGO</option>
+                    <option value="5">SEP-OCT</option>
+                    <option value="6">NOV-DIC</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año</label>
+                <select class="form-control" id="fr_periodo_bimestre_pago_sat_isr" name="fr_periodo_bimestre_pago_sat_isr">
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Monto</label>
+                <input class="form-control" type="number" step="0.01" id="fr_monto_pago_sat_isr" name="fr_monto_pago_sat_isr" />
+
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Pagos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblPagosISR" class="cell-border table-striped" data-title-datatable="Pagos ISR">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Año</td>
+                        <td>Bimestre</td>
+
+                        <td>Fecha pago</td>
+
+                        <td>ISR</td>
+
+                        <td>Importe</td>
+                        <td>Recargos</td>
+                        <td>Imp. actualizado</td>
+                        <td>Total a pagar</td>
+                        <td>Monto pago</td>
+                        <td>Diferencia</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario creo</td>
+                        <td>Fecha creación</td>
+                        <td>Id cliente</td>
+                        <td>Id pago</td>
+                        <td>Id bimestre</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlPagoISR">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarPagoISR">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlPagoISR">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Activo Fijo *@
+<div class="modal" id="mdlActivoFijo">
+    <h3>Agregar Activo Fijo</h3>
+    <form id="frmActivoFijo">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>Fecha de adquisición</label>
+                <input class="form-control datepicker" id="fr_fecha_activo_fijo" name="fr_fecha_activo_fijo" />
+            </div>
+            <div class="form-group col-md-4">
+                <label>Concepto</label>
+                <textarea class="form-control text-uppercase" id="fr_concepto_activo_fijo" name="fr_concepto_activo_fijo" rows="3"></textarea>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Clasificación</label>
+                <select class="form-control" id="fr_clasificacion_activo_fijo" name="fr_clasificacion_activo_fijo">
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label>Monto</label>
+                <input class="form-control" type="number" step="0.01" id="fr_monto_activo_fijo" name="fr_monto_activo_fijo" />
+
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>Fecha de aplicación</label>
+                <input class="form-control datepicker" id="fr_fecha_aplicacion_activo_fijo" name="fr_fecha_aplicacion_activo_fijo" />
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Activo Fijo*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblActivoFijo" class="cell-border table-striped" data-title-datatable="Activo Fijo">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Fecha adquisición</td>
+                        <td>Fecha aplicación</td>
+                        <td>Concepto</td>
+                        <td>Monto mensual</td>
+                        <td>Fecha termino</td>
+                        <td>Id clasificacion</td>
+                        <td>Clasificación</td>
+                        <td>Monto</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id cliente</td>
+                        <td>Id activo fijo</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlActivo">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarActivo">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlActivo">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Otros Gastos *@
+<div class="modal" id="mdlOtrosGastos">
+    <h3>Agregar Otro Gasto</h3>
+    <form id="frmOtrosGastos">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>Año</label>
+                <select class="form-control" id="fr_periodo_gasto" name="fr_periodo_gasto">
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes</label>
+                <select class="form-control" id="fr_mes_gasto" name="fr_mes_gasto">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Monto</label>
+                <input class="form-control" type="number" step="0.01" id="fr_monto_gasto" name="fr_monto_gasto" />
+
+            </div>
+            <div class="form-group col-md-3">
+                <label>Descripción</label>
+                <textarea class="form-control" id="fr_descripcion_gasto" name="fr_descripcion_gasto"></textarea>
+            </div>
+        </div>
+        <br />
+        @* Seccion para el datatable Otros Gastos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblOtrosGastos" class="cell-border table-striped" data-title-datatable="Otros Gastos">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Año</td>
+                        <td>Mes</td>
+                        <td>Monto</td>
+                        <td>Descripción</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id cliente</td>
+                        <td>Id otro gasto</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlGasto">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarGasto">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlGasto">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>

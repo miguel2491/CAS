@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "ExpedienteFiscalSueldos";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script>
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetReporteExpedienteFiscalSueldos = '@Url.Action("GetReportePropuestasEconomicas", "ReportesExpediente")';
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "ReportesExpediente")';
+</script>
+<script src="~/Content/Js/Personal/Reportes/Expedientes/ReportePropuestaEconomica.js?vs_1.0"></script>
+<h2>Reporte Propuestas Económicas</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+            <table class="cell-border table-striped " id="tblReporte" data-title-datatable="ReportePropuestasEconomicas">
+                <thead>
+                    <tr>
+                        <td>RFC</td>
+                        <td>Razón Social</td>
+                        <td>Linea</td>
+                        <td>Encargado</td>
+                        <td>Actualización de Contabilidad</td>
+                        <td>Análisis de Pensión</td>
+                        <td>Asesoria Fiscal</td>
+                        <td>Defensa Fiscal</td>
+                        <td>Devolución IVA</td>
+                        <td>Elaboración de Contabilidad</td>
+                        <td>Elaboración de Nóminas</td>
+                        <td>Estategia Fiscal</td>
+                        <td>Gestión Trámites</td>
+                        <td>Otros</td>
+                        <td>Propuesta General</td>
+                        <td>Reclutamiento y Selección de Personal</td>
+                        <td>Renta Domicilio Fiscal </td>
+                        <td>Servicio de Auditoria</td>
+                        <td>Servicio de Registro REPSE</td>
+                        <td>Servicio de SIROC</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

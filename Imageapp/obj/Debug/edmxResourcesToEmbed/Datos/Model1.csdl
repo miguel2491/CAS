@@ -1,0 +1,2161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_MenuEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbc_Acciones">
+    <Key>
+      <PropertyRef Name="id_accion" />
+    </Key>
+    <Property Name="id_accion" Type="Int32" Nullable="false" />
+    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fontAwesome" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="isVisible" Type="Byte" Nullable="false" />
+    <Property Name="order_position" Type="Int32" Nullable="false" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tbr_Rol_Vista_Accion" Relationship="Self.FK_tbr_Rol_Vista_Accion_tbc_Acciones" FromRole="tbc_Acciones" ToRole="tbr_Rol_Vista_Accion" />
+  </EntityType>
+  <EntityType Name="tbc_Actividades_Calendario">
+    <Key>
+      <PropertyRef Name="id_actividad_calendario" />
+    </Key>
+    <Property Name="id_actividad_calendario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_lineas_produccion" Type="Int32" Nullable="false" />
+    <Property Name="actividad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="paso" Type="Int32" Nullable="false" />
+    <Property Name="area" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Auxiliares">
+    <Key>
+      <PropertyRef Name="id_auxiliar" />
+    </Key>
+    <Property Name="id_auxiliar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="auxiliar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbc_lineas_produccion" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbc_Clientes">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_razon" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="id_tipo_persona" Type="Int32" Nullable="false" />
+    <Property Name="direccion_fiscal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rfc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_regimen" Type="Int32" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
+    <Property Name="id_sector" Type="Int32" />
+    <Property Name="fecha_servicio" Type="DateTime" Precision="0" />
+    <Property Name="ingresos_mayores" Type="Boolean" />
+    <Property Name="publico_general" Type="Boolean" />
+    <Property Name="estado_cuenta" Type="Boolean" />
+    <Property Name="tiene_trabajadores" Type="Boolean" />
+    <Property Name="actividad_principal" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="observaciones" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_caducidad_fiel" Type="DateTime" Precision="0" />
+    <Property Name="es_asesoria" Type="Boolean" />
+    <Property Name="aplica_coi" Type="Boolean" />
+    <Property Name="edo_financiero" Type="Boolean" />
+    <Property Name="fecha_cita" Type="DateTime" Precision="0" />
+    <Property Name="fecha_fiel_representante" Type="DateTime" Precision="0" />
+    <Property Name="es_nomina" Type="Boolean" />
+    <Property Name="registro_patronal" Type="Boolean" />
+    <Property Name="patronal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="inicio_razon" Type="DateTime" Precision="3" />
+    <Property Name="clave_CIEC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbd_Ficha_Tecnica" Relationship="Self.FK_tbd_Ficha_Tecnica_tbc_Clientes" FromRole="tbc_Clientes" ToRole="tbd_Ficha_Tecnica" />
+  </EntityType>
+  <EntityType Name="tbc_Contactos_Cliente">
+    <Key>
+      <PropertyRef Name="id_contacto_cliente" />
+    </Key>
+    <Property Name="id_contacto_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="tipo_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre_completo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Estatus">
+    <Key>
+      <PropertyRef Name="id_estatus" />
+    </Key>
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="descripcion_estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbc_Roles" Relationship="Self.FK_tbc_Roles_tbc_Estatus" FromRole="tbc_Estatus" ToRole="tbc_Roles" />
+    <NavigationProperty Name="tbc_Usuarios" Relationship="Self.FK_tbc_Usuarios_tbc_Estatus" FromRole="tbc_Estatus" ToRole="tbc_Usuarios" />
+    <NavigationProperty Name="tbc_Vistas" Relationship="Self.FK_tbc_Vistas_tbc_Estatus" FromRole="tbc_Estatus" ToRole="tbc_Vistas" />
+  </EntityType>
+  <EntityType Name="tbc_Factor_INPC">
+    <Key>
+      <PropertyRef Name="id_factor_inpc" />
+    </Key>
+    <Property Name="id_factor_inpc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="factor" Type="Decimal" Precision="18" Scale="10" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Factor_Recargo">
+    <Key>
+      <PropertyRef Name="id_factor_recargo" />
+    </Key>
+    <Property Name="id_factor_recargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="factor" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Forma_Pago">
+    <Key>
+      <PropertyRef Name="id_forma_pago" />
+    </Key>
+    <Property Name="id_forma_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Formatos">
+    <Key>
+      <PropertyRef Name="id_formato" />
+    </Key>
+    <Property Name="id_formato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="area" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Grupo_Empresarial">
+    <Key>
+      <PropertyRef Name="id_grupo_empresarial" />
+    </Key>
+    <Property Name="id_grupo_empresarial" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbd_Servicios_Cliente" Relationship="Self.FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial" FromRole="tbc_Grupo_Empresarial" ToRole="tbd_Servicios_Cliente" />
+  </EntityType>
+  <EntityType Name="tbc_Lineas_Produccion">
+    <Key>
+      <PropertyRef Name="tbc_lineas_produccion1" />
+    </Key>
+    <Property Name="tbc_lineas_produccion1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="linea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="supervisor" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_Entregables">
+    <Key>
+      <PropertyRef Name="id_lista_entregable" />
+    </Key>
+    <Property Name="id_lista_entregable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entregable" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_regimen" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_Entregables_Nomina">
+    <Key>
+      <PropertyRef Name="id_lista_entregable_nomina" />
+    </Key>
+    <Property Name="id_lista_entregable_nomina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entregable" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_tipo_nomina_entregable" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_Repositorio">
+    <Key>
+      <PropertyRef Name="id_lista_repositorio" />
+    </Key>
+    <Property Name="id_lista_repositorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_repositorio" Type="Int32" Nullable="false" />
+    <Property Name="id_regimen" Type="Int32" Nullable="false" />
+    <Property Name="repositorio" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Lista_tramites">
+    <Key>
+      <PropertyRef Name="id_lista_tramite" />
+    </Key>
+    <Property Name="id_lista_tramite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tramite" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_tipo_tramite" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Menus">
+    <Key>
+      <PropertyRef Name="id_menu" />
+    </Key>
+    <Property Name="id_menu" Type="Int32" Nullable="false" />
+    <Property Name="id_menuPadre" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="isRaiz" Type="Boolean" Nullable="false" />
+    <Property Name="isVisible" Type="Boolean" Nullable="false" />
+    <Property Name="pathDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbc_Vistas" Relationship="Self.FK_tbc_Vistas_tbc_Menu" FromRole="tbc_Menus" ToRole="tbc_Vistas" />
+  </EntityType>
+  <EntityType Name="tbc_Otros_Servicios">
+    <Key>
+      <PropertyRef Name="id_otro_servicio" />
+    </Key>
+    <Property Name="id_otro_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="servicio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Permisos_Servidor">
+    <Key>
+      <PropertyRef Name="id_permiso_servidor" />
+    </Key>
+    <Property Name="id_permiso_servidor" Type="Int32" Nullable="false" />
+    <Property Name="descripcion_permiso" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tbr_Rol_Vista_Accion" Relationship="Self.FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor" FromRole="tbc_Permisos_Servidor" ToRole="tbr_Rol_Vista_Accion" />
+    <NavigationProperty Name="tbr_Rol_Vista" Relationship="Self.FK_tbr_Rol_Vista_tbc_Permisos_Servidor" FromRole="tbc_Permisos_Servidor" ToRole="tbr_Rol_Vista" />
+  </EntityType>
+  <EntityType Name="tbc_Regimenes">
+    <Key>
+      <PropertyRef Name="id_regimen" />
+    </Key>
+    <Property Name="id_regimen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="regimen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_RIF_Sectores">
+    <Key>
+      <PropertyRef Name="id_sector_tasa_iva" />
+    </Key>
+    <Property Name="id_sector_tasa_iva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="actividad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="porcentaje_decimal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="porcentaje" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_RIF_Tasa_Descuento">
+    <Key>
+      <PropertyRef Name="id_tasa_descuento" />
+    </Key>
+    <Property Name="id_tasa_descuento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="porcentaje_decimal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="porcentaje" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_RIF_Tasa_ISR">
+    <Key>
+      <PropertyRef Name="id_tasa_isr" />
+    </Key>
+    <Property Name="id_tasa_isr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="limite_inferior" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="limite_superior" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="cuota_fija" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="porcentaje_decimal" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="porcentaje" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Roles">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tbc_Estatus" Relationship="Self.FK_tbc_Roles_tbc_Estatus" FromRole="tbc_Roles" ToRole="tbc_Estatus" />
+    <NavigationProperty Name="tbc_Usuarios" Relationship="Self.FK_tbc_Usuarios_tbc_Rol" FromRole="tbc_Roles" ToRole="tbc_Usuarios" />
+    <NavigationProperty Name="tbr_Rol_Vista" Relationship="Self.FK_tbr_Rol_Vista_tbc_Rol" FromRole="tbc_Roles" ToRole="tbr_Rol_Vista" />
+  </EntityType>
+  <EntityType Name="tbc_Seguimiento_Cliente">
+    <Key>
+      <PropertyRef Name="id_seguimiento_cliente" />
+    </Key>
+    <Property Name="id_seguimiento_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="motivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="respuesta" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Supervisores">
+    <Key>
+      <PropertyRef Name="id_supervisor" />
+    </Key>
+    <Property Name="id_supervisor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="supervisor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tbc_lineas_produccion" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbc_Tipo_Comprobante">
+    <Key>
+      <PropertyRef Name="id_tipo_comprobante" />
+    </Key>
+    <Property Name="id_tipo_comprobante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sigla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipo_Persona">
+    <Key>
+      <PropertyRef Name="id_tipo_persona" />
+    </Key>
+    <Property Name="id_tipo_persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_persona" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipos_Nomina_Entregables">
+    <Key>
+      <PropertyRef Name="id_tipo_nomina_entregable" />
+    </Key>
+    <Property Name="id_tipo_nomina_entregable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_nomina_entregable" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipos_Repositorio">
+    <Key>
+      <PropertyRef Name="id_tipo_repositorio" />
+    </Key>
+    <Property Name="id_tipo_repositorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_repositorio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Tipos_Tramite">
+    <Key>
+      <PropertyRef Name="id_tipo_tramite" />
+    </Key>
+    <Property Name="id_tipo_tramite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo_tramite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbc_Uso_CFDI">
+    <Key>
+      <PropertyRef Name="id_uso_cfdi" />
+    </Key>
+    <Property Name="id_uso_cfdi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sigla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="factor" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbc_Usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ultimo_movimiento" Type="DateTime" Precision="3" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono_movil" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="correo_electronico" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbc_Estatus" Relationship="Self.FK_tbc_Usuarios_tbc_Estatus" FromRole="tbc_Usuarios" ToRole="tbc_Estatus" />
+    <NavigationProperty Name="tbc_Roles" Relationship="Self.FK_tbc_Usuarios_tbc_Rol" FromRole="tbc_Usuarios" ToRole="tbc_Roles" />
+  </EntityType>
+  <EntityType Name="tbc_Vistas">
+    <Key>
+      <PropertyRef Name="id_vista" />
+    </Key>
+    <Property Name="id_vista" Type="Int32" Nullable="false" />
+    <Property Name="id_menu" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tbc_Estatus" Relationship="Self.FK_tbc_Vistas_tbc_Estatus" FromRole="tbc_Vistas" ToRole="tbc_Estatus" />
+    <NavigationProperty Name="tbc_Menus" Relationship="Self.FK_tbc_Vistas_tbc_Menu" FromRole="tbc_Vistas" ToRole="tbc_Menus" />
+    <NavigationProperty Name="tbr_Rol_Vista" Relationship="Self.FK_tbr_Rol_Vista_tbc_Vistas" FromRole="tbc_Vistas" ToRole="tbr_Rol_Vista" />
+  </EntityType>
+  <EntityType Name="tbd_Actividades_Cliente">
+    <Key>
+      <PropertyRef Name="id_actividad_cliente" />
+    </Key>
+    <Property Name="id_actividad_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="porcentaje" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="actividad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Activo_Fijo">
+    <Key>
+      <PropertyRef Name="id_activo_fijo" />
+    </Key>
+    <Property Name="id_activo_fijo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_adquisicion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="id_uso_cfdi" Type="Int32" Nullable="false" />
+    <Property Name="limite" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_termino" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="monto_mensual" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="porcentaje_mensual" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="concepto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_aplicacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Avance_Calendario">
+    <Key>
+      <PropertyRef Name="id_avance_calendario" />
+    </Key>
+    <Property Name="id_avance_calendario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_actividad_calendario" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_finalizo" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Calendario_Produccion">
+    <Key>
+      <PropertyRef Name="id_calendario_produccion" />
+    </Key>
+    <Property Name="id_calendario_produccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_actividad_calendario" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="avance" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_finalizado" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Cambio_Domicilio">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_cambio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codigo_postal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num_ext" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num_int" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="entre_calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="y_calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="colonia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="localidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="entidad_federativa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo_inmueble" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo_calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="caracteristicas_domicilio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="referencias_adicionales" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="codigo_fiscal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="url_comprobante" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_acuse_movimiento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbd_Certificado_Digital">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_persona" Type="Int32" Nullable="false" />
+    <Property Name="url_tarjeta_patronal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rfc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usuario_imss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="funcion_empresa" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_identificacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_comprobante" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_certificado" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="url_termino" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="url_llave" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbd_Conceptos_Factura">
+    <Key>
+      <PropertyRef Name="id_concepto_xml" />
+    </Key>
+    <Property Name="id_concepto_xml" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="claveprodserv" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="claveunidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importe" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="unidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="valorunitario" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="id_xml" Type="Int32" Nullable="false" />
+    <Property Name="UUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="impuesto_trasladado" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbd_Constancia_Sem_Cotizadas">
+    <Key>
+      <PropertyRef Name="id_solicitud" />
+    </Key>
+    <Property Name="id_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_documento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbd_Depositos">
+    <Key>
+      <PropertyRef Name="id_deposito" />
+    </Key>
+    <Property Name="id_deposito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbd_Depreciaciones">
+    <Key>
+      <PropertyRef Name="id_depreciacion" />
+    </Key>
+    <Property Name="id_depreciacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="saldo_inicial" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="id_uso_CFDI" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Descargas_XML">
+    <Key>
+      <PropertyRef Name="id_descarga_xml" />
+    </Key>
+    <Property Name="id_descarga_xml" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rfc" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num_xml" Type="Int32" Nullable="false" />
+    <Property Name="zip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_procesado" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xml_procesados" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Entregables_Nomina_RFC">
+    <Key>
+      <PropertyRef Name="id_entregable_nomina_RFC" />
+    </Key>
+    <Property Name="id_entregable_nomina_RFC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="id_lista_entregable_nomina" Type="Int32" Nullable="false" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_carga" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="periodicidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Entregables_RFC">
+    <Key>
+      <PropertyRef Name="id_entregable_rfc" />
+    </Key>
+    <Property Name="id_entregable_rfc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="id_lista_entregable" Type="Int32" Nullable="false" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_carga" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Error_Lectura_XML">
+    <Key>
+      <PropertyRef Name="id_error_lectura_xml" />
+    </Key>
+    <Property Name="id_error_lectura_xml" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="zip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xml" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mensaje" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Estados_Cuenta">
+    <Key>
+      <PropertyRef Name="id_estado_cuenta" />
+    </Key>
+    <Property Name="id_estado_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="estado_cuenta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_carga" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Estatus_Cliente">
+    <Key>
+      <PropertyRef Name="id_estatus_cliente" />
+    </Key>
+    <Property Name="id_estatus_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="estatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_baja" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Estatus_XML">
+    <Key>
+      <PropertyRef Name="id_estatus_xml" />
+    </Key>
+    <Property Name="id_estatus_xml" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_xml" Type="Int32" Nullable="false" />
+    <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Facturas">
+    <Key>
+      <PropertyRef Name="id_xml" />
+    </Key>
+    <Property Name="id_xml" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RFCEmisor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="RFCReceptor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="subtotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="impuesto_trasladado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="impuesto_retenido" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="forma_pago" Type="Int32" />
+    <Property Name="metodo_pago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_timbrado" Type="DateTime" Precision="3" />
+    <Property Name="moneda" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_emisor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_receptor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="url_xml" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="version" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="folio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="usoCFDI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_comprobante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="fecha_pago" Type="DateTime" Precision="3" />
+    <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ieps" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_iva" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_isr" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_ieps" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="retencion_local" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="traslado_local" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="cfdi_relacionados" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_relacion_cfdi" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="conceptos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_cambio" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="total_original" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="serie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="isr_nomina" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="subsidio_nomina" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="divisa" Type="Int32" />
+    <Property Name="fecha_pago_p" Type="DateTime" Precision="3" />
+    <Property Name="forma_pago_p" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="moneda_p" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="registropatronal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tiponomina" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="fechapago" Type="DateTime" Precision="3" />
+    <Property Name="fechainicialpago" Type="DateTime" Precision="3" />
+    <Property Name="fechafinalpago" Type="DateTime" Precision="3" />
+    <Property Name="numdiaspagados" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="totalpercepciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totaldeducciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrospagos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="curp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="numseguridadsocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechainiciorellaboral" Type="DateTime" Precision="3" />
+    <Property Name="numempleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="puesto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="periodicidadpago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="salariobasecotapor" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="salariodiariointegrado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalsueldos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalgravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalexento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrasdeducciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalimpuestosretenidos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalseparacionindemnizacionper" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totaljubilacionpensionretiroper" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="estatus_aplicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_validacion" Type="DateTime" Precision="3" />
+    <Property Name="EFOS" Type="Boolean" />
+    <Property Name="sueldosGravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="sueldosExento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="aguinaldoGravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="aguinaldoExento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="primaDominicalGravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="primaDominicalExento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="primaVacacionalGravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="primaVacacionalExento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="primaAntiguedadGravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="primaAntiguedadExento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="indemnizacionGravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="indemnizacionExento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="subsidioCausado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="subsidioPagado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="C_seguroSocial" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="C_isrDeduccion" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="C_aportaciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="C_infonavit" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ish" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbd_Ficha_Tecnica">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="matriz" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="sucursales" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="representante" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="objeto_social" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="capital_inicial" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="recomendacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="humano" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="inmobiliario" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="equipo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="costos" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="grupo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="canales" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="alianzas" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="observaciones" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="prestamos" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="politicas" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="contratos" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbc_Clientes" Relationship="Self.FK_tbd_Ficha_Tecnica_tbc_Clientes" FromRole="tbd_Ficha_Tecnica" ToRole="tbc_Clientes" />
+  </EntityType>
+  <EntityType Name="tbd_Formulario">
+    <Key>
+      <PropertyRef Name="id_formulario" />
+    </Key>
+    <Property Name="id_formulario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Historial_Movimientos">
+    <Key>
+      <PropertyRef Name="id_historial_movimiento" />
+    </Key>
+    <Property Name="id_historial_movimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="movimiento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_movimiento" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Localizacion_NSS">
+    <Key>
+      <PropertyRef Name="id_documento" />
+    </Key>
+    <Property Name="id_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_documento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="url_comprobante_localizacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbd_Nomina_Factura">
+    <Key>
+      <PropertyRef Name="id_nomina_xml" />
+    </Key>
+    <Property Name="id_nomina_xml" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="concepto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="importeexento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importegravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="tipopercepcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="UUID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_xml" Type="Int32" Nullable="false" />
+    <Property Name="registropatronal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tiponomina" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="fechapago" Type="DateTime" Precision="3" />
+    <Property Name="fechainicialpago" Type="DateTime" Precision="3" />
+    <Property Name="fechafinalpago" Type="DateTime" Precision="3" />
+    <Property Name="numdiaspagados" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="totalpercepciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totaldeducciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrospagos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="curp" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="numseguridadsocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechainiciorellaboral" Type="DateTime" Precision="3" />
+    <Property Name="numempleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="puesto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="periodicidadpago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="salariobasecotapor" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="salariodiariointegrado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalsueldos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalgravado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalexento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalotrasdeducciones" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalimpuestosretenidos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totalseparacionindemnizacionper" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="totaljubilacionpensionretiroper" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="tbd_Notificaciones_Cliente">
+    <Key>
+      <PropertyRef Name="id_notificacion" />
+    </Key>
+    <Property Name="id_notificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="autoridad_emisora" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acto_administrativo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_recepcion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_notificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="url_aviso_not" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_acuse_not" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url_acto_not" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="es_anual" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Otros_Gastos">
+    <Key>
+      <PropertyRef Name="id_otros_gastos" />
+    </Key>
+    <Property Name="id_otros_gastos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="monto" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="Int32" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Repositorio">
+    <Key>
+      <PropertyRef Name="id_repositorio" />
+    </Key>
+    <Property Name="id_repositorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="Int32" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_lista_repositorio" Type="Int32" Nullable="false" />
+    <Property Name="fecha_vigencia" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_Repositorio_Nomina">
+    <Key>
+      <PropertyRef Name="id_repositorio_nomina" />
+    </Key>
+    <Property Name="id_repositorio_nomina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_elimino" Type="Int32" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_RIF_ISR_Pagos">
+    <Key>
+      <PropertyRef Name="id_RIF_isr_pago" />
+    </Key>
+    <Property Name="id_RIF_isr_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="isr" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="recargo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="impuesto_actualizado" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="total_pagar" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bimestre" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_recalculo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="monto_pago" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="diferencia" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="importe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="fecha_pago" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbd_RIF_Pagos">
+    <Key>
+      <PropertyRef Name="id_RIF_pago" />
+    </Key>
+    <Property Name="id_RIF_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iva" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="recargo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="impuesto_actualizado" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="total_pagar" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="bimestre" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_recalculo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_pago" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="monto_pago" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="diferencia" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="importe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Servicios_Cliente">
+    <Key>
+      <PropertyRef Name="id_servicio_cliente" />
+    </Key>
+    <Property Name="id_servicio_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="servicio" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tbc_lineas_produccion" Type="Int32" />
+    <Property Name="encargado" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="inicio_servicio" Type="DateTime" Precision="3" />
+    <Property Name="id_grupo_empresarial" Type="Int32" />
+    <NavigationProperty Name="tbc_Grupo_Empresarial" Relationship="Self.FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial" FromRole="tbd_Servicios_Cliente" ToRole="tbc_Grupo_Empresarial" />
+  </EntityType>
+  <EntityType Name="tbd_Tramites">
+    <Key>
+      <PropertyRef Name="id_tramite" />
+    </Key>
+    <Property Name="id_tramite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_lista_tramite" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="fecha_finalizado" Type="DateTime" Precision="3" />
+    <Property Name="id_solicitud" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_XMLError">
+    <Key>
+      <PropertyRef Name="id_xml_error" />
+    </Key>
+    <Property Name="id_xml_error" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_xml" Type="Int32" Nullable="false" />
+    <Property Name="uuid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_timbrado" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="url_xml" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="rfc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Agente_Cliente">
+    <Key>
+      <PropertyRef Name="id_agente_cliente" />
+    </Key>
+    <Property Name="id_agente_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbr_Cliente_Usuario">
+    <Key>
+      <PropertyRef Name="id_cliente_usuario" />
+    </Key>
+    <Property Name="id_cliente_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Rol_Vista">
+    <Key>
+      <PropertyRef Name="id_rol_vista" />
+    </Key>
+    <Property Name="id_rol_vista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="id_vista" Type="Int32" Nullable="false" />
+    <Property Name="id_permiso_servidor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbc_Permisos_Servidor" Relationship="Self.FK_tbr_Rol_Vista_tbc_Permisos_Servidor" FromRole="tbr_Rol_Vista" ToRole="tbc_Permisos_Servidor" />
+    <NavigationProperty Name="tbc_Roles" Relationship="Self.FK_tbr_Rol_Vista_tbc_Rol" FromRole="tbr_Rol_Vista" ToRole="tbc_Roles" />
+    <NavigationProperty Name="tbc_Vistas" Relationship="Self.FK_tbr_Rol_Vista_tbc_Vistas" FromRole="tbr_Rol_Vista" ToRole="tbc_Vistas" />
+    <NavigationProperty Name="tbr_Rol_Vista_Accion" Relationship="Self.FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista" FromRole="tbr_Rol_Vista" ToRole="tbr_Rol_Vista_Accion" />
+  </EntityType>
+  <EntityType Name="tbr_Rol_Vista_Accion">
+    <Key>
+      <PropertyRef Name="id_rol_vista_accion" />
+    </Key>
+    <Property Name="id_rol_vista_accion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_rol_vista" Type="Int32" Nullable="false" />
+    <Property Name="id_accion" Type="Int32" Nullable="false" />
+    <Property Name="id_permiso_servidor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbc_Acciones" Relationship="Self.FK_tbr_Rol_Vista_Accion_tbc_Acciones" FromRole="tbr_Rol_Vista_Accion" ToRole="tbc_Acciones" />
+    <NavigationProperty Name="tbc_Permisos_Servidor" Relationship="Self.FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor" FromRole="tbr_Rol_Vista_Accion" ToRole="tbc_Permisos_Servidor" />
+    <NavigationProperty Name="tbr_Rol_Vista" Relationship="Self.FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista" FromRole="tbr_Rol_Vista_Accion" ToRole="tbr_Rol_Vista" />
+  </EntityType>
+  <EntityType Name="tbc_Configuracion">
+    <Key>
+      <PropertyRef Name="id_configuracion" />
+      <PropertyRef Name="recargo_decimal" />
+      <PropertyRef Name="recargo" />
+      <PropertyRef Name="aplicar_fecha_pago" />
+    </Key>
+    <Property Name="id_configuracion" Type="Int32" Nullable="false" />
+    <Property Name="recargo_decimal" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="recargo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="aplicar_fecha_pago" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Otros_Servicios_RFC">
+    <Key>
+      <PropertyRef Name="id_otro_servicio_rfc" />
+      <PropertyRef Name="id_otro_servicio" />
+      <PropertyRef Name="periodo" />
+      <PropertyRef Name="mes" />
+      <PropertyRef Name="fecha_carga" />
+      <PropertyRef Name="url_archivo" />
+      <PropertyRef Name="id_usuario_creo" />
+      <PropertyRef Name="id_cliente" />
+      <PropertyRef Name="nombre_archivo" />
+      <PropertyRef Name="descripcion" />
+    </Key>
+    <Property Name="id_otro_servicio_rfc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_otro_servicio" Type="Int32" Nullable="false" />
+    <Property Name="periodo" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="fecha_carga" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="url_archivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_usuario_creo" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="nombre_archivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbr_Rol_Vista_Accion_tbc_Acciones">
+    <End Role="tbc_Acciones" Type="Self.tbc_Acciones" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista_Accion" Type="Self.tbr_Rol_Vista_Accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Acciones">
+        <PropertyRef Name="id_accion" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista_Accion">
+        <PropertyRef Name="id_accion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbd_Ficha_Tecnica_tbc_Clientes">
+    <End Role="tbc_Clientes" Type="Self.tbc_Clientes" Multiplicity="1" />
+    <End Role="tbd_Ficha_Tecnica" Type="Self.tbd_Ficha_Tecnica" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Clientes">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="tbd_Ficha_Tecnica">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Roles_tbc_Estatus">
+    <End Role="tbc_Estatus" Type="Self.tbc_Estatus" Multiplicity="1" />
+    <End Role="tbc_Roles" Type="Self.tbc_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Estatus">
+        <PropertyRef Name="id_estatus" />
+      </Principal>
+      <Dependent Role="tbc_Roles">
+        <PropertyRef Name="id_estatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Usuarios_tbc_Estatus">
+    <End Role="tbc_Estatus" Type="Self.tbc_Estatus" Multiplicity="1" />
+    <End Role="tbc_Usuarios" Type="Self.tbc_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Estatus">
+        <PropertyRef Name="id_estatus" />
+      </Principal>
+      <Dependent Role="tbc_Usuarios">
+        <PropertyRef Name="id_estatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Vistas_tbc_Estatus">
+    <End Role="tbc_Estatus" Type="Self.tbc_Estatus" Multiplicity="1" />
+    <End Role="tbc_Vistas" Type="Self.tbc_Vistas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Estatus">
+        <PropertyRef Name="id_estatus" />
+      </Principal>
+      <Dependent Role="tbc_Vistas">
+        <PropertyRef Name="id_estatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial">
+    <End Role="tbc_Grupo_Empresarial" Type="Self.tbc_Grupo_Empresarial" Multiplicity="0..1" />
+    <End Role="tbd_Servicios_Cliente" Type="Self.tbd_Servicios_Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Grupo_Empresarial">
+        <PropertyRef Name="id_grupo_empresarial" />
+      </Principal>
+      <Dependent Role="tbd_Servicios_Cliente">
+        <PropertyRef Name="id_grupo_empresarial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Vistas_tbc_Menu">
+    <End Role="tbc_Menus" Type="Self.tbc_Menus" Multiplicity="1" />
+    <End Role="tbc_Vistas" Type="Self.tbc_Vistas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Menus">
+        <PropertyRef Name="id_menu" />
+      </Principal>
+      <Dependent Role="tbc_Vistas">
+        <PropertyRef Name="id_menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor">
+    <End Role="tbc_Permisos_Servidor" Type="Self.tbc_Permisos_Servidor" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista_Accion" Type="Self.tbr_Rol_Vista_Accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Permisos_Servidor">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista_Accion">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_tbc_Permisos_Servidor">
+    <End Role="tbc_Permisos_Servidor" Type="Self.tbc_Permisos_Servidor" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Permisos_Servidor">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_permiso_servidor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbc_Usuarios_tbc_Rol">
+    <End Role="tbc_Roles" Type="Self.tbc_Roles" Multiplicity="1" />
+    <End Role="tbc_Usuarios" Type="Self.tbc_Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="tbc_Usuarios">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_tbc_Rol">
+    <End Role="tbc_Roles" Type="Self.tbc_Roles" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_tbc_Vistas">
+    <End Role="tbc_Vistas" Type="Self.tbc_Vistas" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbc_Vistas">
+        <PropertyRef Name="id_vista" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_vista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista">
+    <End Role="tbr_Rol_Vista" Type="Self.tbr_Rol_Vista" Multiplicity="1" />
+    <End Role="tbr_Rol_Vista_Accion" Type="Self.tbr_Rol_Vista_Accion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbr_Rol_Vista">
+        <PropertyRef Name="id_rol_vista" />
+      </Principal>
+      <Dependent Role="tbr_Rol_Vista_Accion">
+        <PropertyRef Name="id_rol_vista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_MenuEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbc_Acciones" EntityType="Self.tbc_Acciones" />
+    <EntitySet Name="tbc_Actividades_Calendario" EntityType="Self.tbc_Actividades_Calendario" />
+    <EntitySet Name="tbc_Auxiliares" EntityType="Self.tbc_Auxiliares" />
+    <EntitySet Name="tbc_Clientes" EntityType="Self.tbc_Clientes" />
+    <EntitySet Name="tbc_Contactos_Cliente" EntityType="Self.tbc_Contactos_Cliente" />
+    <EntitySet Name="tbc_Estatus" EntityType="Self.tbc_Estatus" />
+    <EntitySet Name="tbc_Factor_INPC" EntityType="Self.tbc_Factor_INPC" />
+    <EntitySet Name="tbc_Factor_Recargo" EntityType="Self.tbc_Factor_Recargo" />
+    <EntitySet Name="tbc_Forma_Pago" EntityType="Self.tbc_Forma_Pago" />
+    <EntitySet Name="tbc_Formatos" EntityType="Self.tbc_Formatos" />
+    <EntitySet Name="tbc_Grupo_Empresarial" EntityType="Self.tbc_Grupo_Empresarial" />
+    <EntitySet Name="tbc_Lineas_Produccion" EntityType="Self.tbc_Lineas_Produccion" />
+    <EntitySet Name="tbc_Lista_Entregables" EntityType="Self.tbc_Lista_Entregables" />
+    <EntitySet Name="tbc_Lista_Entregables_Nomina" EntityType="Self.tbc_Lista_Entregables_Nomina" />
+    <EntitySet Name="tbc_Lista_Repositorio" EntityType="Self.tbc_Lista_Repositorio" />
+    <EntitySet Name="tbc_Lista_tramites" EntityType="Self.tbc_Lista_tramites" />
+    <EntitySet Name="tbc_Menus" EntityType="Self.tbc_Menus" />
+    <EntitySet Name="tbc_Otros_Servicios" EntityType="Self.tbc_Otros_Servicios" />
+    <EntitySet Name="tbc_Permisos_Servidor" EntityType="Self.tbc_Permisos_Servidor" />
+    <EntitySet Name="tbc_Regimenes" EntityType="Self.tbc_Regimenes" />
+    <EntitySet Name="tbc_RIF_Sectores" EntityType="Self.tbc_RIF_Sectores" />
+    <EntitySet Name="tbc_RIF_Tasa_Descuento" EntityType="Self.tbc_RIF_Tasa_Descuento" />
+    <EntitySet Name="tbc_RIF_Tasa_ISR" EntityType="Self.tbc_RIF_Tasa_ISR" />
+    <EntitySet Name="tbc_Roles" EntityType="Self.tbc_Roles" />
+    <EntitySet Name="tbc_Seguimiento_Cliente" EntityType="Self.tbc_Seguimiento_Cliente" />
+    <EntitySet Name="tbc_Supervisores" EntityType="Self.tbc_Supervisores" />
+    <EntitySet Name="tbc_Tipo_Comprobante" EntityType="Self.tbc_Tipo_Comprobante" />
+    <EntitySet Name="tbc_Tipo_Persona" EntityType="Self.tbc_Tipo_Persona" />
+    <EntitySet Name="tbc_Tipos_Nomina_Entregables" EntityType="Self.tbc_Tipos_Nomina_Entregables" />
+    <EntitySet Name="tbc_Tipos_Repositorio" EntityType="Self.tbc_Tipos_Repositorio" />
+    <EntitySet Name="tbc_Tipos_Tramite" EntityType="Self.tbc_Tipos_Tramite" />
+    <EntitySet Name="tbc_Uso_CFDI" EntityType="Self.tbc_Uso_CFDI" />
+    <EntitySet Name="tbc_Usuarios" EntityType="Self.tbc_Usuarios" />
+    <EntitySet Name="tbc_Vistas" EntityType="Self.tbc_Vistas" />
+    <EntitySet Name="tbd_Actividades_Cliente" EntityType="Self.tbd_Actividades_Cliente" />
+    <EntitySet Name="tbd_Activo_Fijo" EntityType="Self.tbd_Activo_Fijo" />
+    <EntitySet Name="tbd_Avance_Calendario" EntityType="Self.tbd_Avance_Calendario" />
+    <EntitySet Name="tbd_Calendario_Produccion" EntityType="Self.tbd_Calendario_Produccion" />
+    <EntitySet Name="tbd_Cambio_Domicilio" EntityType="Self.tbd_Cambio_Domicilio" />
+    <EntitySet Name="tbd_Certificado_Digital" EntityType="Self.tbd_Certificado_Digital" />
+    <EntitySet Name="tbd_Conceptos_Factura" EntityType="Self.tbd_Conceptos_Factura" />
+    <EntitySet Name="tbd_Constancia_Sem_Cotizadas" EntityType="Self.tbd_Constancia_Sem_Cotizadas" />
+    <EntitySet Name="tbd_Depositos" EntityType="Self.tbd_Depositos" />
+    <EntitySet Name="tbd_Depreciaciones" EntityType="Self.tbd_Depreciaciones" />
+    <EntitySet Name="tbd_Descargas_XML" EntityType="Self.tbd_Descargas_XML" />
+    <EntitySet Name="tbd_Entregables_Nomina_RFC" EntityType="Self.tbd_Entregables_Nomina_RFC" />
+    <EntitySet Name="tbd_Entregables_RFC" EntityType="Self.tbd_Entregables_RFC" />
+    <EntitySet Name="tbd_Error_Lectura_XML" EntityType="Self.tbd_Error_Lectura_XML" />
+    <EntitySet Name="tbd_Estados_Cuenta" EntityType="Self.tbd_Estados_Cuenta" />
+    <EntitySet Name="tbd_Estatus_Cliente" EntityType="Self.tbd_Estatus_Cliente" />
+    <EntitySet Name="tbd_Estatus_XML" EntityType="Self.tbd_Estatus_XML" />
+    <EntitySet Name="tbd_Facturas" EntityType="Self.tbd_Facturas" />
+    <EntitySet Name="tbd_Ficha_Tecnica" EntityType="Self.tbd_Ficha_Tecnica" />
+    <EntitySet Name="tbd_Formulario" EntityType="Self.tbd_Formulario" />
+    <EntitySet Name="tbd_Historial_Movimientos" EntityType="Self.tbd_Historial_Movimientos" />
+    <EntitySet Name="tbd_Localizacion_NSS" EntityType="Self.tbd_Localizacion_NSS" />
+    <EntitySet Name="tbd_Nomina_Factura" EntityType="Self.tbd_Nomina_Factura" />
+    <EntitySet Name="tbd_Notificaciones_Cliente" EntityType="Self.tbd_Notificaciones_Cliente" />
+    <EntitySet Name="tbd_Otros_Gastos" EntityType="Self.tbd_Otros_Gastos" />
+    <EntitySet Name="tbd_Repositorio" EntityType="Self.tbd_Repositorio" />
+    <EntitySet Name="tbd_Repositorio_Nomina" EntityType="Self.tbd_Repositorio_Nomina" />
+    <EntitySet Name="tbd_RIF_ISR_Pagos" EntityType="Self.tbd_RIF_ISR_Pagos" />
+    <EntitySet Name="tbd_RIF_Pagos" EntityType="Self.tbd_RIF_Pagos" />
+    <EntitySet Name="tbd_Servicios_Cliente" EntityType="Self.tbd_Servicios_Cliente" />
+    <EntitySet Name="tbd_Tramites" EntityType="Self.tbd_Tramites" />
+    <EntitySet Name="tbd_XMLError" EntityType="Self.tbd_XMLError" />
+    <EntitySet Name="tbr_Agente_Cliente" EntityType="Self.tbr_Agente_Cliente" />
+    <EntitySet Name="tbr_Cliente_Usuario" EntityType="Self.tbr_Cliente_Usuario" />
+    <EntitySet Name="tbr_Rol_Vista" EntityType="Self.tbr_Rol_Vista" />
+    <EntitySet Name="tbr_Rol_Vista_Accion" EntityType="Self.tbr_Rol_Vista_Accion" />
+    <EntitySet Name="tbc_Configuracion" EntityType="Self.tbc_Configuracion" />
+    <EntitySet Name="tbd_Otros_Servicios_RFC" EntityType="Self.tbd_Otros_Servicios_RFC" />
+    <AssociationSet Name="FK_tbr_Rol_Vista_Accion_tbc_Acciones" Association="Self.FK_tbr_Rol_Vista_Accion_tbc_Acciones">
+      <End Role="tbc_Acciones" EntitySet="tbc_Acciones" />
+      <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbd_Ficha_Tecnica_tbc_Clientes" Association="Self.FK_tbd_Ficha_Tecnica_tbc_Clientes">
+      <End Role="tbc_Clientes" EntitySet="tbc_Clientes" />
+      <End Role="tbd_Ficha_Tecnica" EntitySet="tbd_Ficha_Tecnica" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Roles_tbc_Estatus" Association="Self.FK_tbc_Roles_tbc_Estatus">
+      <End Role="tbc_Estatus" EntitySet="tbc_Estatus" />
+      <End Role="tbc_Roles" EntitySet="tbc_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Usuarios_tbc_Estatus" Association="Self.FK_tbc_Usuarios_tbc_Estatus">
+      <End Role="tbc_Estatus" EntitySet="tbc_Estatus" />
+      <End Role="tbc_Usuarios" EntitySet="tbc_Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Vistas_tbc_Estatus" Association="Self.FK_tbc_Vistas_tbc_Estatus">
+      <End Role="tbc_Estatus" EntitySet="tbc_Estatus" />
+      <End Role="tbc_Vistas" EntitySet="tbc_Vistas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial" Association="Self.FK_tbd_Servicios_Cliente_tbc_Grupo_Empresarial">
+      <End Role="tbc_Grupo_Empresarial" EntitySet="tbc_Grupo_Empresarial" />
+      <End Role="tbd_Servicios_Cliente" EntitySet="tbd_Servicios_Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Vistas_tbc_Menu" Association="Self.FK_tbc_Vistas_tbc_Menu">
+      <End Role="tbc_Menus" EntitySet="tbc_Menus" />
+      <End Role="tbc_Vistas" EntitySet="tbc_Vistas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor" Association="Self.FK_tbr_Rol_Vista_Accion_tbc_Permisos_Servidor">
+      <End Role="tbc_Permisos_Servidor" EntitySet="tbc_Permisos_Servidor" />
+      <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_tbc_Permisos_Servidor" Association="Self.FK_tbr_Rol_Vista_tbc_Permisos_Servidor">
+      <End Role="tbc_Permisos_Servidor" EntitySet="tbc_Permisos_Servidor" />
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbc_Usuarios_tbc_Rol" Association="Self.FK_tbc_Usuarios_tbc_Rol">
+      <End Role="tbc_Roles" EntitySet="tbc_Roles" />
+      <End Role="tbc_Usuarios" EntitySet="tbc_Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_tbc_Rol" Association="Self.FK_tbr_Rol_Vista_tbc_Rol">
+      <End Role="tbc_Roles" EntitySet="tbc_Roles" />
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_tbc_Vistas" Association="Self.FK_tbr_Rol_Vista_tbc_Vistas">
+      <End Role="tbc_Vistas" EntitySet="tbc_Vistas" />
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista" Association="Self.FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista">
+      <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
+      <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
+    </AssociationSet>
+    <FunctionImport Name="Administrador_ADD_Accion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_ADD_Menu" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_ADD_Rol" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_ADD_Usuario" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_ADD_Vista" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_DEL_Accion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_DEL_Menu" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_DEL_Rol" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_DEL_Usuario" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_DEL_Vista" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_ListaAcciones" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_ListaMenus" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_ListaRoles" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_ListaUsuarios" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_ListaVistas" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_RlVista" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_SEL_RlVistaAccion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_UPD_Accion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_UPD_Menu" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_UPD_Rol" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_UPD_Usuario" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Administrador_UPD_Vista" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Actividad" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_ActividadCalendario" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_ActividadProduccion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_ActivoFijo" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Cliente" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Contactos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Deposito" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_DocumentoNotificacion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_DocumentoTramite" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Entregables" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_EstadoCuenta" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_EstadoCuentaC" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Estatus" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_FechaCalendarioActividades" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Formato" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Notificacion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_OtroGasto" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_OtrosServicios" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Pago" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Pago_ISR">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Prospecto" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Repositorio" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_RepositorioC" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_RepositorioNomina" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_RepositorioNomina2" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Seguimiento" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_ServicioAdicional" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_ADD_Tramite">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Actividad" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Cliente" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Contactos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Entregables" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_EstadoCuenta" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Estatus" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_FechaCalendarioActividades" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Formato" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Notificacion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_OtrosServicios" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Repositorio" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_RepositorioNomina" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_Seguimiento" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_DEL_ServicioAdicional" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_GET_ClienteRIF" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_Bimestres_RIF">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_CalendarioActividades" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_CalendarioActividadesLP1" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_CanceladosEmitidosCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_CanceladosRecibidosCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_Cliente" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ComplementosCobroCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ComplementosPagoCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_DocuemntosCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_DocuemntosNominasCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EdoCuentaCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EgresosCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EliminarActivoFijo" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EliminarDeposito" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EliminarOtroGasto" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EliminarPago_RIF" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EliminarPago_RIF_ISR" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_EntregablesCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_FichaTecnica" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_GetXMLCancelados" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_IngresosCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_InicioCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaActividades" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaActividadesCalendario" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaActividadesProduccion" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaActivoFijo" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaClientes" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaClientesCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaClientesLinea" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaContactos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaDeposito" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaDocumentosDigitales" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaDocumentosNomina" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaEntregables" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaEstadosCuenta" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaEstatus" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaFormatos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaNotificaciones" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaNotificacionesCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaOtrosGastos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaOtrosServicios" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaPagos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaPagos_ISR" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaProspectos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaProveedoresCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaRepositorio" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaRepositorioNomina" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaSeguimiento" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaServiciosAdicionales" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaTramites" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaTramitesCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ListaTramitesIMSS" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_NominasCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_NotasCreditoCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_NotasCreditoGastoCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_Recalcular_RIF">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_Recalcular_RIF_ISR">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesArrendamiento" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesAsesoria" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesCOI" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesEDO" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesHonorarios" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesNomina" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesPFAE" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesPM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesRIF" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteEntregablesSueldos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteExpedienteFiscalArrendamiento" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteExpedienteFiscalHonorarios" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteExpedienteFiscalPFAE" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteExpedienteFiscalPM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteExpedienteFiscalRIF" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteExpedienteFiscalSueldos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteGeneral" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReporteGeneralAnual" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_ReportePropuestasEconomicas" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_SueldosCRM" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLDepreciaciones" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLDPersonales" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLEgresos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLEmitidos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLIngresos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLNoDeducible" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLNominas" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLRecibidos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLSueldos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLTrasladoEmitidos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLTrasladoRecibidos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLZip" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLZipCRMGastos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SEL_XMLZipCRMIngresos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SET_EstatusSAT" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SET_EstatusSATWS" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SET_EstatusXML" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_SET_FechaPago" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_CalendarioActividades" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_Cliente" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_ClienteRIF" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_FichaTecnica" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_Prospecto" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_Repositorio" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_RepositorioNomina" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Catalogo_UPD_ServicioAdicional" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Historial_ADD">
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="mensaje" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Inicio_SEL_Menus" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Inicio_SEL_ValidarUsuario" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ReportesGenerales_SEL_EstadoCuenta" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Utils_SEL_Catalogos">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Utils_SEL_Permisos" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Utils_SEL_ValidarAccesoVista" ReturnType="Collection(String)">
+      <Parameter Name="jsonJS" Mode="In" Type="String" />
+      <Parameter Name="jsonProperties" Mode="In" Type="String" />
+      <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

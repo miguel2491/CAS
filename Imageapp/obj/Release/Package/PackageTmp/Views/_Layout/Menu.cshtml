@@ -1,0 +1,59 @@
+﻿<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+        <div class="text-right">
+            <i id="show-sidebar-media" class="fa fa-bars active"></i>
+        </div>
+        <div class="sidebar-brand">
+            <img src="~/Imagenes/LOGOS.png" class="logo_blanco1" />
+        </div>
+        @*<div class="sidebar-header row" style="margin-left:0px; margin-right:0px;">
+            <div class="user-pic col-4">
+                <img class="img-responsive img-rounded" src="~/Imagenes/user.jpg" alt="User picture" style="width:100%; height:auto;">
+            </div>
+            <div class="user-info col-8" style="padding-left:0px !important;">
+                <span class="user-name" id="rfc-cliente"></span>
+                <span class="user-role" id="razon-cliente"></span>
+                <hr />
+                <span class="user-status">
+                    <span id="user-name"></span>
+                </span>
+                <span class="user-status">
+                    <span id="user-role"></span>
+                </span>
+            </div>
+        </div>*@
+        <div class="row" style="color:white; margin-left:0px; margin-right:0px; margin-top:10px; margin-bottom:10px;">
+            <div class="col-4">
+                <img class="img-rounded" src="~/Imagenes/user.jpg" alt="User picture" style="width:100%;" />
+            </div>
+            <div class="col-8" style="padding-left:0px;">
+                <span class="user-name" id="rfc-cliente"></span><br />
+                <span class="user-role text-muted" id="razon-cliente"></span> <br />
+                <span class="user-status">
+                    <span id="user-name"></span>
+                </span>
+                <span class="user-status">
+                    <span id="user-role"></span>
+                </span>
+            </div>
+            <div class="col-12">
+                <span class="user-status">
+                    <span id="fecha_prueba"></span>
+                </span>
+            </div>
+        </div>
+        <div class="sidebar-menu" id="content_menus">
+        </div>
+        <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+        <a href="#">
+            @*<i class="fa fa-cog"></i>*@
+        </a>
+        <a href="@Url.Action("Logout", "Inicio")">
+            <i class="fa fa-power-off"></i>
+        </a>
+    </div>
+</nav>
+<!-- sidebar-wrapper  -->

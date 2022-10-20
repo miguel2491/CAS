@@ -1,0 +1,1969 @@
+﻿
+@{
+    ViewBag.Title = "ConsultaRFC";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Consulta RFC</h2>
+
+<script>
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var id_cliente = '@ViewBag.id_cliente';
+    var id_regimen = '@ViewBag.id_regimen';
+    var es_asesoria = '@ViewBag.es_asesoria';
+    var aplica_coi = '@ViewBag.aplica_coi';
+    var url_Catalogos_GetClienteRIF = '@Url.Action("GetClienteRIF", "Catalogos")';
+    var url_Catalogos_GetClienteCaducidad = '@Url.Action("GetCliente", "Consultas")';
+
+    var url_Catalogos_UpdRepositorio = '@Url.Action("UpdRepositorio", "Catalogos")';
+    var url_Catalogos_AddRepositorio = '@Url.Action("AddRepositorio", "Catalogos")';
+    var url_Catalogos_GetRepositorio = '@Url.Action("GetRepositorio", "Catalogos")';
+    var url_Catalogos_EliminarRepositorio = '@Url.Action("EliminarRepositorio", "Catalogos")';
+    var url_Catalogos_GetDocumentosDigitales = '@Url.Action("GetDocumentosDigitales", "Catalogos")';
+
+    var url_Catalogos_UpdRepositorioNomina = '@Url.Action("UpdRepositorioNomina", "Catalogos")';
+    var url_Catalogos_AddRepositorioNomina = '@Url.Action("AddRepositorioNomina", "Catalogos")';
+    var url_Catalogos_AddRepositorioNomina2 = '@Url.Action("AddRepositorioNomina2", "Catalogos")';
+    var url_Catalogos_GetRepositorioNomina = '@Url.Action("GetRepositorioNomina", "Catalogos")';
+    var url_Catalogos_EliminarRepositorioNomina = '@Url.Action("EliminarRepositorioNomina", "Catalogos")';
+    var url_Catalogos_GetDocumentosNomina = '@Url.Action("GetDocumentosNomina", "Catalogos")';
+
+
+    var url_Catalogos_AddEntregable = '@Url.Action("AddEntregables", "Catalogos")';
+    var url_Catalogos_GetEntregable = '@Url.Action("GetEntregables", "Catalogos")';
+    var url_Catalogos_EliminarEntregable = '@Url.Action("EliminarEntregables", "Catalogos")';
+
+
+
+    var url_Catalogos_AddOtrosServicios = '@Url.Action("AddOtrosServicios", "Catalogos")';
+    var url_Catalogos_GetOtrosServicios = '@Url.Action("GetOtrosServicios", "Catalogos")';
+    var url_Catalogos_EliminarOtrosServicios = '@Url.Action("EliminarOtrosServicios", "Catalogos")';
+
+    var url_Catalogos_AddEstadoCuenta = '@Url.Action("AddEstadoCuenta", "Catalogos")';
+    var url_Catalogos_GetEstadoCuenta = '@Url.Action("GetEstadosCuenta", "Catalogos")';
+    var url_Catalogos_EliminarEstadoCuenta = '@Url.Action("EliminarEstadoCuenta", "Catalogos")';
+
+
+
+    var url_Catalogos_AddNotificacion = '@Url.Action("AddNotificacion", "Catalogos")';
+    var url_Catalogos_AddDocumentoNotificacion = '@Url.Action("AddDocumentoNotificacion", "Catalogos")';
+    var url_Catalogos_GetNotificaciones = '@Url.Action("GetNotificaciones", "Catalogos")';
+    var url_Catalogos_EliminarNotificacion = '@Url.Action("EliminarNotificacion", "Catalogos")';
+
+
+
+
+    var url_Catalogos_GetXMLEmitidos = '@Url.Action("GetXMLEmitidos", "Catalogos")';
+    var url_Catalogos_GetXMLRecibidos = '@Url.Action("GetXMLRecibidos", "Catalogos")';
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+    var url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Catalogos")';
+
+    var url_Cliente_GetInicio = '@Url.Action("GetInicio", "Cliente")';
+
+
+
+    var url_Catalogo_ValidaSAT = '@Url.Action("ValidaSAT", "Catalogos")';
+
+    var url_Catalogo_Descargar = '@Url.Action("DownloadZipFile", "Consultas")';
+
+    var url_Regresar_RFC = '@Url.Action("ListaClientes", "Consultas")';
+    var url_Descarga = '@Url.Action("getDescarga","Cliente")';
+
+
+    var $id, $tipo;
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+
+<script src="~/Content/Js/Externo/moment.min.js"></script>
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/Consultas/ConsultaRFC.js?vs_1.4"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ValidarSAT.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteRepositorio.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteRepositorioNominas.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteEntregables.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteOtrosServicios.js"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteEstadoCuenta.js?vs_1.4"></script>
+<script src="~/Content/Js/Personal/ClienteRIF/ClienteNotificaciones.js"></script>
+<script src="~/Content/Js/Personal/CRM/Reportes.js"></script>
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+@*! Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>RFC</label>
+                <input autocomplete="off" class="form-control" id="fl_rfc" name="fl_rfc" readonly type="text" value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Nombre / Razón Social</label>
+                <input autocomplete="off" class="form-control" disabled type="text" value="@ViewBag.nombre_razon">
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_inicial">Fecha inicio</label>
+                <input autocomplete="off" class="form-control datepicker" id="fl_fecha_inicial" name="fl_fecha_inicial" type="text" value="">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_final">Fecha final</label>
+                <input autocomplete="off" class="form-control datepicker" id="fl_fecha_final" name="fl_fecha_final" type="text" value="">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <a class="btn btn-style btn-ok" id="btnDescargarXML">
+                    <i class="fa fa-download"></i>&nbsp;&nbsp;Descargar XML&nbsp;&nbsp;
+                </a>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+    <hr />
+    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+
+        <li class="nav-item">
+            <a class="reload nav-link active" id="pills-emitidos-tab" data-toggle="pill" href="#pills-emitidos" role="tab" aria-controls="pills-emitidos" aria-selected="false">XML Emitidos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-recibidos-tab" data-toggle="pill" href="#pills-recibidos" role="tab" aria-controls="pills-recibidos" aria-selected="false">XML Recibidos</a>
+        </li>
+
+
+
+        @*ZONA TIPO CFDI*@
+
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-ingresos-tab" data-toggle="pill" href="#pills-ingresos" role="tab" aria-controls="pills-ingresos" aria-selected="false">Ingresos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-ingresos-sueldos-tab" data-toggle="pill" href="#pills-ingresos-sueldos" role="tab" aria-controls="pills-ingresos-sueldos" aria-selected="false">Ingresos por Sueldos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-complemento-cobro-tab" data-toggle="pill" href="#pills-complemento-cobro" role="tab" aria-controls="pills-complemento-cobro" aria-selected="false">Complementos de Cobro</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-ingreso-notas-tab" data-toggle="pill" href="#pills-ingreso-notas" role="tab" aria-controls="pills-ingreso-notas" aria-selected="false">Notas de Crédito Emitidas</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-ingreso-canceladas-tab" data-toggle="pill" href="#pills-ingreso-canceladas" role="tab" aria-controls="pills-ingreso-canceladas" aria-selected="false">Ingresos Cancelados</a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-gastos-tab" data-toggle="pill" href="#pills-gastos" role="tab" aria-controls="pills-gastos" aria-selected="false">Gastos</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-gastos-sueldos-tab" data-toggle="pill" href="#pills-gastos-sueldos" role="tab" aria-controls="pills-gastos-sueldos" aria-selected="false">Nóminas</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-complemento-pago-tab" data-toggle="pill" href="#pills-complemento-pago" role="tab" aria-controls="pills-complemento-pago" aria-selected="false">Complementos de Pago</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-gastos-notas-tab" data-toggle="pill" href="#pills-gastos-notas" role="tab" aria-controls="pills-gastos-notas" aria-selected="false">Notas de Crédito Recibidas</a>
+        </li>
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-gastos-canceladas-tab" data-toggle="pill" href="#pills-gastos-canceladas" role="tab" aria-controls="pills-gastos-canceladas" aria-selected="false">Gastos Cancelados</a>
+        </li>
+
+
+
+        @*---------------*@
+
+
+
+
+
+        <li class="nav-item">
+            <a class="reload nav-link" id="pills-reporte-tab" data-toggle="pill" href="#pills-reporte" role="tab" aria-controls="pills-reporte" aria-selected="false">Reporte</a>
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-emitidos" role="tabpanel" aria-labelledby="pills-emitidos-tab">
+            <br />
+            <div class="form">
+                <button type="button" class="btn btn-style btn-second" id="btnSelectAllEmitidos">
+                    <i class="fa fa-check-square-o"></i>&nbsp;&nbsp;Seleccionar todos&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-danger" id="btnQuitarAllEmitidos">
+                    <i class="fa fa-square-o"></i>&nbsp;&nbsp;Quitar todos&nbsp;&nbsp;
+                </button>
+            </div>
+            <br />
+            <table id="tblXMLEmitidos" class="cell-border table-striped" data-title-datatable="XML Emitidos @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-recibidos" role="tabpanel" aria-labelledby="pills-recibidos-tab">
+            <br />
+            <div class="form">
+                <button type="button" class="btn btn-style btn-second" id="btnSelectAllRecibidos">
+                    <i class="fa fa-check-square-o"></i>&nbsp;&nbsp;Seleccionar todos&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-danger" id="btnQuitarAllRecibidos">
+                    <i class="fa fa-square-o"></i>&nbsp;&nbsp;Quitar todos&nbsp;&nbsp;
+                </button>
+            </div>
+            <br />
+            <table id="tblXMLRecibidos" class="cell-border table-striped" data-title-datatable="XML Recibidos @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-ingresos" role="tabpanel" aria-labelledby="pills-ingresos-tab">
+            <br />
+
+            <table id="tbl-ingresos" class="cell-border table-striped" data-title-datatable="Ingresos @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-ingresos-sueldos" role="tabpanel" aria-labelledby="pills-ingresos-sueldos-tab">
+            <br />
+
+            <table id="tbl-ingresos-sueldos" class="cell-border table-striped" data-title-datatable="Ingresos por Sueldos @ViewBag.rfc">
+
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-complemento-cobro" role="tabpanel" aria-labelledby="pills-complemento-cobro-tab">
+            <br />
+
+            <table id="tbl-complemento-cobro" class="cell-border table-striped" data-title-datatable="Complementos de Cobro @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-ingreso-notas" role="tabpanel" aria-labelledby="pills-ingreso-notas-tab">
+            <br />
+
+            <table id="tbl-ingreso-notas" class="cell-border table-striped" data-title-datatable="Notas de Crédito @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-ingreso-canceladas" role="tabpanel" aria-labelledby="pills-ingreso-canceladas-tab">
+            <br />
+
+            <table id="tbl-ingreso-canceladas" class="cell-border table-striped" data-title-datatable="Ingresos Cancelados @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+
+        <div class="tab-pane fade" id="pills-gastos" role="tabpanel" aria-labelledby="pills-gastos-tab">
+            <br />
+            <table id="tbl-gastos" class="cell-border table-striped" data-title-datatable="Gastos @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-gastos-sueldos" role="tabpanel" aria-labelledby="pills-gastos-sueldos-tab">
+            <br />
+            <table id="tbl-gastos-sueldos" class="cell-border table-striped" data-title-datatable="Nómina @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-complemento-pago" role="tabpanel" aria-labelledby="pills-complemento-pago-tab">
+            <br />
+            <table id="tbl-complemento-pago" class="cell-border table-striped" data-title-datatable="Complementos de Pago @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-gastos-notas" role="tabpanel" aria-labelledby="pills-gastos-notas-tab">
+            <br />
+            <table id="tbl-gastos-notas" class="cell-border table-striped" data-title-datatable="Notas de Crédito @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-gastos-canceladas" role="tabpanel" aria-labelledby="pills-gastos-canceladas-tab">
+            <br />
+            <table id="tbl-gastos-canceladas" class="cell-border table-striped" data-title-datatable="Gastos Cancelados @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane fade" id="pills-reporte" role="tabpanel" aria-labelledby="pills-reporte-tab">
+
+            <h5>Comportamiento Histórico</h5>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Periodo Fiscal</label>
+                    <select class="form-control" id="select_periodo_grafica">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+                </div>
+            </div>
+
+            <br />
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-primary active" onclick="objClsCliente.refreshReporte();">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Ingresos
+                </label>
+                <label class="btn btn-outline-primary" onclick="objClsCliente.refreshReporte();">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Gastos
+                </label>
+            </div>
+            <br /><br /><br />
+
+            <div class="row">
+                <div class="col-md-8">
+                    <canvas id="myChart" height="100vh"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span id="nameTotal">Ingreso Total</span><br />
+                            <span class="text-muted">incluye IVA</span>
+                            <h5 id="spanTotal"></h5>
+                            <br />
+                            <span id="nameSubtotal">Ingreso Subtotal</span><br />
+                            <span class="text-muted">sin IVA</span>
+                            <h5 id="spanSubtotal"></h5>
+                            <br />
+                        </div>
+                        <div class="col-md-6">
+                            <span id="nameTotalN">Sueldos y Salarios</span><br />
+                            <span id="leyendaDespues" class="text-muted">después de Impuestos</span>
+                            <h5 id="spanTotalN"></h5>
+                            <br />
+                            <span id="nameSubtotalN">Subtotal Sueldos y Salarios</span><br />
+                            <span id="leyendaAntes" class="text-muted">antes de Impuestos</span>
+                            <h5 id="spanSubtotalN"></h5>
+                            <br />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <br />
+            <hr />
+
+            <h5>Reporte de Ingresos y Gastos</h5>
+            <br />
+            @* Seccion para el datatable Reporte*@
+
+            <table id="tblReporte" class="cell-border table-striped" data-title-datatable="Reporte de Ingresos y Gastos @ViewBag.rfc">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Mes</td>
+                        <td>Subtotal Ingreso</td>
+                        <td>Subtotal Sueldos y Salarios</td>
+                        <td>Fac Emitidas</td>
+                        <td>Fac Emitidas Canceladas</td>
+                        <td>Subtotal Gastos</td>
+                        <td>Subtotal Nóminas</td>
+                        <td>Fac Recibidas</td>
+                        <td>Fac Recibidas Canceladas</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@*! Modal para crear, descargar, eliminar Repositorio *@
+<div class="modal" id="mdlRepositorio">
+    <h3>Documentos Digitales</h3>
+    <form id="frmRepositorio">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+
+            <div class="col-md-5">
+                <label for="fr_tipo_repositorio">Categoría</label>
+                <select class="form-control" id="fr_tipo_repositorio" name="fr_tipo_repositorio">
+                    <option value="1">Expediente Fiscal</option>
+                    <option value="2">Archivos Digitales</option>
+                    <option value="3">Propuesta Económica</option>
+                    <option value="4">Otros</option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="fr_repositorio">Documento</label>
+                <select class="form-control" id="fr_repositorio" name="fr_repositorio"></select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>Vigencia</label>
+                <input type="text" class="form-control datepicker" autocomplete="off" name="fr_fecha_vigencia" id="fr_fecha_vigencia" />
+            </div>
+
+            <div class="col-md-5">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivo" id="fr_urlArchivo" dirname="fr_urlArchivo" />
+                </div>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="fr_descripcion">Descripción del archivo</label>
+                <textarea type="text" class="form-control text-uppercase" rows="3" id="fr_descripcion" name="fr_descripcion" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRepo">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarRepo">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlRepo">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblRepositorio" class="cell-border table-striped" data-title-datatable="Repositorio de Archivos">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Documento</td>
+                        <td>Categoría</td>
+                        <td>Fecha vigencia</td>
+                        <td>Descripción</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id repositorio</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Repositorio Nominas *@
+<div class="modal" id="mdlRepositorioNomina">
+    <h3>Recibos de Nóminas</h3>
+    <form id="frmRepositorioNomina">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesEntregableNomina" name="fr_mesEntregableNomina">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoEntregableNomina" name="fr_periodoEntregableNomina">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+                <label for="fr_tipo_nomina">Categoría</label>
+                <select class="form-control" id="fr_tipo_nomina" name="fr_tipo_nomina">
+                    <option value="1">Maquila de nómina</option>
+                    <option value="2">Impuestos</option>
+                    <option value="3">IDSE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_entregable_nomina">Entregable</label>
+                <select class="form-control" id="fr_entregable_nomina"></select>
+            </div>
+            <div class="col-md-3">
+                <label for="fr_periodicidad_nomina">Periodicidad</label>
+                <select class="form-control" id="fr_periodicidad_nomina" name="fr_periodicidad_nomina">
+                    <option value="Semanal">Semanal</option>
+                    <option value="Catorcenal">Catorcenal</option>
+                    <option value="Quincenal">Quincenal</option>
+                    <option value="Mensual">Mensual</option>
+                    <option value="Bimestral">Bimestral</option>
+                    <option value="Anual">Anual</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-5">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoNomina" id="fr_urlArchivoNomina" dirname="fr_urlArchivoNomina" />
+                </div>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="fr_descripcion">Observaciones</label>
+                <textarea type="text" class="form-control text-uppercase" rows="3" id="fr_descripcionNomina" name="fr_descripcionNomina" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblRepositorioNomina" class="cell-border table-striped" data-title-datatable="Repositorio de Nominas">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Categoria</td>
+                        <td>Entregable</td>
+                        <td>Periodo</td>
+                        <td>Periodicidad</td>
+                        <td>Observaciones</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id entregable nomina</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRepoNomina">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarRepoNomina">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRepoNomina2">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarRepoNomina2">Agregar Entregable</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlRepoNomina">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Entregables *@
+<div class="modal" id="mdlEntregable">
+    <h3>Lista de Entregables</h3>
+    <form id="frmEntregable">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesEntregable" name="fr_mesEntregable">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoEntregable" name="fr_periodoEntregable">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+
+                </div>
+            </div>
+
+            @*<div class="form-group col-md-4">
+                    <label>Cargar archivo:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable" id="fr_urlArchivoEntregable" dirname="fr_urlArchivoEntregable" />
+                    </div>
+                </div>*@
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_entregable">Entregable</label>
+                <select class="form-control" id="fr_entregable"></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable" id="fr_urlArchivoEntregable" dirname="fr_urlArchivoEntregable" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_descripcionEntregable">Descripción</label>
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable" name="fr_descripcionEntregable" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable2"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable2" id="fr_urlArchivoEntregable2" dirname="fr_urlArchivoEntregable2" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable2" name="fr_descripcionEntregable2" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable3"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable3" id="fr_urlArchivoEntregable3" dirname="fr_urlArchivoEntregable3" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable3" name="fr_descripcionEntregable3" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable4"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable4" id="fr_urlArchivoEntregable4" dirname="fr_urlArchivoEntregable4" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable4" name="fr_descripcionEntregable4" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable5"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable5" id="fr_urlArchivoEntregable5" dirname="fr_urlArchivoEntregable5" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable5" name="fr_descripcionEntregable5" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlEntregable">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarEntregable">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlEntregable">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblEntregable" class="cell-border table-striped" data-title-datatable="Entregables">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Entregable</td>
+                        <td>Descripcion</td>
+                        <td>Periodo</td>
+                        <td>Régimen</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Carga</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id entregable rfc</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+
+@*! Modal para crear, descargar, eliminar Entregables *@
+<div class="modal" id="mdlEntregable">
+    <h3>Lista de Entregables</h3>
+    <form id="frmEntregable">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesEntregable" name="fr_mesEntregable">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoEntregable" name="fr_periodoEntregable">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                    </select>
+                </div>
+            </div>
+
+            @*<div class="form-group col-md-4">
+                    <label>Cargar archivo:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable" id="fr_urlArchivoEntregable" dirname="fr_urlArchivoEntregable" />
+                    </div>
+                </div>*@
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_entregable">Entregable</label>
+                <select class="form-control" id="fr_entregable"></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable" id="fr_urlArchivoEntregable" dirname="fr_urlArchivoEntregable" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_descripcionEntregable">Descripción</label>
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable" name="fr_descripcionEntregable" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable2"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable2" id="fr_urlArchivoEntregable2" dirname="fr_urlArchivoEntregable2" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable2" name="fr_descripcionEntregable2" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable3"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable3" id="fr_urlArchivoEntregable3" dirname="fr_urlArchivoEntregable3" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable3" name="fr_descripcionEntregable3" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable4"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable4" id="fr_urlArchivoEntregable4" dirname="fr_urlArchivoEntregable4" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable4" name="fr_descripcionEntregable4" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+
+                <select class="form-control" id="fr_entregable5"></select>
+            </div>
+            <div class="form-group col-md-3">
+
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable5" id="fr_urlArchivoEntregable5" dirname="fr_urlArchivoEntregable5" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEntregable5" name="fr_descripcionEntregable5" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlEntregable">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarEntregable">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlEntregable">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblEntregable" class="cell-border table-striped" data-title-datatable="Entregables">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Entregable</td>
+                        <td>Descripcion</td>
+                        <td>Periodo</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Carga</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id entregable rfc</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+@*! Modal para crear, descargar, eliminar Otros Servicios *@
+<div class="modal" id="mdlOtrosServicios">
+    <h3>Lista de Otros Servicios</h3>
+    <form id="frmOtrosServicios">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesOtrosServicios" name="fr_mesOtrosServicios">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoOtrosServicios" name="fr_periodoOtrosServicios">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+
+                </div>
+            </div>
+
+            @*<div class="form-group col-md-4">
+                    <label>Cargar archivo:</label>
+                    <div class="input-group mb-3">
+                        <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEntregable" id="fr_urlArchivoEntregable" dirname="fr_urlArchivoEntregable" />
+                    </div>
+                </div>*@
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_OtrosServicios">Otro Servicio</label>
+                <select class="form-control" id="fr_OtrosServicios">
+                    <option value="1">Actualización de Contabilidad</option>
+                    <option value="2">Asesoria Fiscal</option>
+                    <option value="3">Defensa Fiscal</option>
+                    <option value="4">Estrategia Fiscal</option>
+                    <option value="5">Análisis de Pensión</option>
+                    <option value="6">Servicio de SIROC</option>
+                    <option value="7">Devolución IVA</option>
+                    <option value="8">Renta Domicilio Fiscal </option>
+                    <option value="9">Gestión Trámites</option>
+                    <option value="10">Reclutamiento y Selección de Personal </option>
+                    <option value="11">Servicio de Auditoria</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoOtrosServicios" id="fr_urlArchivoOtrosServicios" dirname="fr_urlArchivoOtrosServicios" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_descripcionOtrosServicios">Descripción</label>
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionOtrosServicios" name="fr_descripcionOtrosServicios" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlOtrosServicios">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarOtrosServicios">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlOtrosServicios">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblOtrosServicios" class="cell-border table-striped" data-title-datatable="Otros Servicios">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Otro Servicio</td>
+                        <td>Descripcion</td>
+                        <td>Periodo</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Carga</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id otro servicio rfc</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+@*! Modal para crear, descargar, eliminar Estados de Cuenta *@
+<div class="modal" id="mdlEstadoCuenta">
+    <h3>Lista de Estados de Cuenta</h3>
+    <form id="frmEstadoCuenta">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesEstadoCuenta" name="fr_mesEstadoCuenta">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoEstadoCuenta" name="fr_periodoEstadoCuenta">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="fr_estado_cuenta">Plantilla Conciliación Bancaria Interna</label>
+                <a href="/castelan/Documentos/Plantillas/Control_de_Bancos.xlsx" download="Conciliación bancaría" class="btn btn-success btn-sm"><i class="fa fa-download pr-2"></i>Descargar</a>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_estado_cuenta">Estado de Cuenta</label>
+                <select class="form-control" id="fr_estado_cuenta" name="fr_estado_cuenta">
+                    <option value="a) Consulta de movimientos del mes PDF">a) Consulta de movimientos del mes PDF</option>
+                    <option value="b) Consulta de movimientos del mes Excel">b) Consulta de movimientos del mes Excel</option>
+                    <option value="c) Estado de cuenta del mes vencido PDF">c) Estado de cuenta del mes vencido PDF</option>
+                    <option value="d) Estado de cuenta del mes vencido  Excel">d) Estado de cuenta del mes vencido  Excel</option>
+                    <option value="e) Conciliación bancaría">e) Conciliación bancaría interna</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivoEstadoCuenta" id="fr_urlArchivoEstadoCuenta" dirname="fr_urlArchivoEstadoCuenta" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_descripcionEstadoCuenta">Descripción</label>
+                <textarea type="text" class="form-control text-uppercase" rows="2" id="fr_descripcionEstadoCuenta" name="fr_descripcionEstadoCuenta" autocomplete="off"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlEstadoCuenta">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarEstadoCuenta">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlEstadoCuenta">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblEstadoCuenta" class="cell-border table-striped" data-title-datatable="EstadosCuenta">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Estado de Cuenta</td>
+                        <td>Descripcion</td>
+                        <td>Periodo</td>
+                        <td>Id usuario creo</td>
+                        <td>Usuario Creo</td>
+                        <td>Fecha Carga</td>
+                        <td>Id cliente</td>
+                        <td>URL Archivo</td>
+                        <td>Nombre Archivo</td>
+                        <td>Id estado cuenta</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+
+
+@*! Modal para crear, descargar, eliminar Notificaciones *@
+<div class="modal" id="mdlNotificaciones">
+    <h3>Lista de Requerimientos de la Autoridad</h3>
+    <form id="frmNotificaciones">
+        
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_estado_cuenta">Autoridad Emisora</label>
+                <select class="form-control" id="fr_autoridad_emisora" name="fr_autoridad_emisora">
+                    <option value="SAT">SAT</option>
+                    <option value="IMSS">IMSS</option>
+                    <option value="INFONAVIT">INFONAVIT</option>
+                    <option value="FINANZAS">FINANZAS</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Acto Administrativo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" type="text" name="fr_acto_administrativo" id="fr_acto_administrativo" />
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Fecha Recepción</label>
+                <input type="text" class="form-control datepicker" rows="2" id="fr_fecha_recepcion" name="fr_fecha_recepcion" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="fr_activo">Es anual</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="fr_es_anual" name="fr_es_anual">
+                    <label class="custom-control-label" for="fr_es_anual"></label>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Fecha Notificación</label>
+                <input type="text" class="form-control datepicker" id="fr_fecha_notificacion" name="fr_fecha_notificacion" autocomplete="off" />
+            </div>
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesNotificacion" name="fr_mesNotificacion">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoNotificacion" name="fr_periodoNotificacion">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlNotificaciones">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarNotificaciones">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlNotificaciones">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+        <br />
+        @* Seccion para el datatable Repositorio*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblNotificaciones" class="cell-border table-striped" data-title-datatable="Notificaciones">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Tipo</td>
+                        <td>Autoridad Emisora</td>
+                        <td>Acto Administrativo</td>
+                        <td>Periodo</td>
+                        <td>Fecha recepción</td>
+                        <td>Fecha notificación</td>
+                        <td>Cargas</td>
+                        <td>Notificación</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
+<div class="modal " id="mdlCargar" style="width:500px;">
+
+    <h3>Cargar Documento</h3>
+    <br />
+    <div class="form-row">
+        <div class=" col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <h3 id="txtCarga"></h3> <br />
+            <input type="file" class="form-control" required autocomplete="off" id="fl_archivo_notificacion" name="fl_archivo_notificacion">
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <br /> <br />
+    <div class="form-group col-md-12 d-flex justify-content-around">
+        <button type="button" class="btn btn-style btn-ok" id="btnSubirMdlCargar">
+            <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Subir Documento</span>&nbsp;&nbsp;
+        </button>
+        <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlCargar">
+            <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+        </button>
+    </div>
+
+</div>

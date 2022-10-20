@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "ConfiguracionActividades";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Configuración de Actividades</h2>
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    var url_Catalogos_GetActividadesProduccion = '@Url.Action("GetActividadesProduccion", "CalendarioActividades")';
+    var url_Catalogos_GetActividadesCalendario = '@Url.Action("GetActividadesCalendario", "CalendarioActividades")';
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "CalendarioActividades")';
+
+    var url_Catalogos_SetActividadesProduccion = '@Url.Action("SetActividadesProduccion", "CalendarioActividades")';
+
+    var url_Catalogos_AddActividadesProduccion = '@Url.Action("AddActividadesProduccion", "CalendarioActividades")';
+
+
+
+
+</script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+<script src="~/Content/Js/Personal/Calendario/ActividadesProduccion.js"></script>
+<script src="~/Content/Js/Personal/Calendario/ActividadesProduccionModal.js"></script>
+
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal">
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="fl_mes">Mes</label>
+                <select class="form-control" id="fl_mes" name="fl_mes">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_periodo">Año</label>
+                <select class="form-control" id="fl_periodo" name="fl_periodo">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_periodo">Año</label>
+                <select class="form-control" id="fl_linea" name="fl_linea">
+                    <option value="1">Linea de Produccion 1</option>
+                    <option value="2">Linea de Produccion 2</option>
+                    <option value="3">Linea de Produccion 3</option>
+                    <option value="4">Linea de Produccion 4</option>
+                    <option value="5">Linea de Produccion 5</option>
+                    <option value="6">Linea de Produccion 6</option>
+                    <option value="7">Nóminas</option>
+                    <option value="8">Devoluciones de IVA</option>
+
+                </select>
+            </div>
+        </div>
+        <br />
+        <div class="form-row">
+
+
+            <div class="form-group col-md-4">
+                <label>&nbsp;</label> <br />
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblActividades" class="cell-border table-striped" data-title-datatable="Actividades Calendario">
+        <thead>
+            <tr>
+                <td>Acciones</td>
+                <td>Linea de Producción</td>
+                <td>Actividad</td>
+                <td>Área</td>
+                <td>Periodo</td>
+                <td>Fecha de Inicio</td>
+                <td>Fecha de Término</td>
+                <td>Avance</td>
+                <td>id</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlClientes">
+    <h3><span id="titleModal">Agregar</span> Actividad</h3>
+
+    <ul class="nav nav-tabs" id="tabModal" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="form-tab" href="#formTab" aria-controls="formTab" role="tab" data-toggle="tab" aria-selected="true">Formulario</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="modalTabContent">
+        <div class="tab-pane fade show active" id="formTab" aria-labelledby="form-tab" role="tabpanel">
+            <form action="/" method="post" id="frmPrincipal">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="fr_linea">Linea de Producción:</label>
+                        <select class="form-control" rows="3" id="fr_linea" name="fr_linea" autocomplete="off">
+                            <option value="1">Linea de Producción 1</option>
+                            <option value="2">Linea de Producción 2</option>
+                            <option value="3">Linea de Producción 3</option>
+                            <option value="4">Linea de Producción 4</option>
+                            <option value="5">Linea de Producción 5</option>
+                            <option value="6">Linea de Producción 6</option>
+                            <option value="7">Nóminas</option>
+                            <option value="8">Devolución de IVA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <label>Actividad:</label>
+                        <div class="input-group mb-3">
+                            <select class="form-control" rows="3" id="fr_id_actividad_calendario" name="fr_id_actividad_calendario" autocomplete="off">
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <label>Mes:</label>
+                        <div class="input-group mb-3">
+                            <select class="form-control" id="fr_mes" name="fr_mes">
+                                <option value="1">ENERO</option>
+                                <option value="2">FEBRERO</option>
+                                <option value="3">MARZO</option>
+                                <option value="4">ABRIL</option>
+                                <option value="5">MAYO</option>
+                                <option value="6">JUNIO</option>
+                                <option value="7">JULIO</option>
+                                <option value="8">AGOSTO</option>
+                                <option value="9">SEPTIEMBRE</option>
+                                <option value="10">OCTUBRE</option>
+                                <option value="11">NOVIEMBRE</option>
+                                <option value="12">DICIEMBRE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label>Año:</label>
+                        <div class="input-group mb-3">
+                            <select class="form-control" id="fr_periodo" name="fr_periodo">
+                                <option value="2021">2021</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <label for="fr_fecha_inicio">Fecha de Inicio:</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_inicio" name="fr_fecha_inicio" autocomplete="off" />
+                    </div>
+                    <div class="col-md-5">
+                        <label for="fr_fecha_termino">Fecha de Término:</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_termino" name="fr_fecha_termino" autocomplete="off" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-group form col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+    </div>
+</div>
+
+@*! Modal para actualizar fecha de pago *@
+<div class="modal " id="mdlActualizarAvance" style="width:500px;">
+    <h3>Actualizar Avance</h3>
+    <form id="frmFechaPago">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <input type="hidden" name="fl_id_actividad" id="fl_id_actividad" />
+            </div>
+            <div class="form-group col-md-8">
+                <label>Nuevo Avance</label>
+                <input type="number" step="1" max="100" min="0" class="form-control" required autocomplete="off" id="fl_avance" name="fl_avance">
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlAvance">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Actualizar Avance</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlAvance">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>

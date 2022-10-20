@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "CFDI Cancelados";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>CFDI Cancelados</h2>
+
+<script>
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Consulta_GetXMLCancelados = '@Url.Action("GetXMLCancelados", "Consultas")';
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+    var url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Catalogos")';
+</script>
+
+<script src="~/Content/Js/Externo/moment.min.js"></script>
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/Consultas/XMLCancelados.js"></script>
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal">        
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_inicial">Fecha inicio</label>
+                <input autocomplete="off" class="form-control datepicker" id="fl_fecha_inicial" name="fl_fecha_inicial" type="text" value="">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_final">Fecha final</label>
+                <input autocomplete="off" class="form-control datepicker" id="fl_fecha_final" name="fl_fecha_final" type="text" value="">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="fl_fecha_final">&nbsp;</label><br />
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+            </div>
+
+        </div>        
+    </form>
+</div>
+
+<br />
+
+<div class="section">
+    <br />
+    <table id="tblXMLEmitidos" class="cell-border table-striped" data-title-datatable="XML Cancelados">
+        <thead>
+            <tr>
+                <td>Acción</td>
+                <td>Descarga</td>
+                <td>id_xml</td>
+                <td>Tipo</td>
+                <td>Fecha</td>
+                <td>Fecha timbrado</td>
+                <td>Serie</td>
+                <td>Folio</td>
+                <td>UUID</td>
+                <td>RFC receptor</td>
+                <td>Nombre receptor</td>
+                <td>Subtotal</td>
+                <td>Descuento</td>
+                <td>Impuesto IVA</td>
+                <td>Retención IVA</td>
+                <td>Retención ISR</td>
+                <td>Total</td>
+                <td>Forma de pago</td>
+                <td>Conceptos</td>
+
+                <td>UUID Relacionado</td>
+                <td>Monto</td>
+
+                <td>Estatus</td>
+                <td>RFC emisor</td>
+                <td>Nombre emisor</td>
+                <td>Metodo de pago</td>
+                <td>Fecha de pago</td>
+                <td>Version</td>
+                <td>Uso CFDI</td>
+                <td>Tipo de comprobante</td>
+                <td>Impuesto retenido</td>
+
+                <td>IEPS</td>
+                <td>Retención IEPS</td>
+                <td>Total Traslados local</td>
+                <td>Total Retenciones local</td>
+                <td>CFDI relacionados</td>
+                <td>Tipo relación</td>
+                <td>Total original</td>
+                <td>Tipo de cambio</td>
+                <td>Moneda</td>
+                <td>url_xml</td>
+
+                <td>ISR nomina</td>
+                <td>Subsidio</td>
+                <td>XML</td>
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+

@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "Gastos";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Gastos</h2>
+
+<script>
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetGastos = '@Url.Action("GetEgresos", "Cliente")';
+    var url_Cliente_GetNominas = '@Url.Action("GetNominas", "Cliente")';
+
+    var url_Cliente_GetPagos = '@Url.Action("GetComplementoPago", "Cliente")';
+    var url_Cliente_GetEgresos = '@Url.Action("GetNotaCreditoGasto", "Cliente")';
+
+    var url_Cliente_GetCanceladosRecibidos = '@Url.Action("GetCanceladosRecibidos", "Cliente")';
+
+     var url_Catalogo_Descargar = '@Url.Action("DownloadZipFileGastos", "Cliente")';
+    var url_Descarga = '@Url.Action("getDescarga","Cliente")';
+</script>
+<script src="~/Content/Js/Personal/CRM/Gastos.js"></script>
+
+@*! Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal">
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="fl_mes">Mes</label>
+                <select class="form-control" id="fl_mes" name="fl_mes">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fl_periodo">Año</label>
+                <select class="form-control" id="fl_periodo" name="fl_periodo">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label>&nbsp;</label> <br />
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+
+                <a class="btn btn-style btn-ok" id="btnDescargarXML">
+                    <i class="fa fa-download"></i>&nbsp;&nbsp;Descargar XML&nbsp;&nbsp;
+                </a>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+
+                <li class="nav-item">
+                    <a class="reload nav-link active" id="pills-gastos-tab" data-toggle="pill" href="#pills-gastos" role="tab" aria-controls="pills-gastos" aria-selected="false">Gastos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="reload nav-link" id="pills-nominas-tab" data-toggle="pill" href="#pills-nominas" role="tab" aria-controls="pills-nominas" aria-selected="false">Nóminas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="reload nav-link" id="pills-pagos-tab" data-toggle="pill" href="#pills-pagos" role="tab" aria-controls="pills-pagos" aria-selected="false">Complementos de Pago</a>
+                </li>
+                <li class="nav-item">
+                    <a class="reload nav-link" id="pills-egresos-tab" data-toggle="pill" href="#pills-egresos" role="tab" aria-controls="pills-egresos" aria-selected="false">Notas de Crédito</a>
+                </li>
+                <li class="nav-item">
+                    <a class="reload nav-link" id="pills-cancelados-tab" data-toggle="pill" href="#pills-cancelados" role="tab" aria-controls="pills-cancelados" aria-selected="false">Canceladas</a>
+                </li>
+            </ul>
+            <br />
+
+            <div class="tab-content" id="pills-tabContent">
+
+                <div class="tab-pane fade show active" id="pills-gastos" role="tabpanel" aria-labelledby="pills-gastos-tab">
+                    <table class="cell-border table-striped " id="tbl_Gastos" style="width:100%" data-title-datatable="Gastos">
+                        <thead>
+                            <tr>
+                                <td>Razón Social</td>
+                                <td>Folio</td>
+                                <td>Fecha</td>
+                                <td>Subtotal</td>
+                                <td>Total</td>
+                                <td>Descarga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="pills-nominas" role="tabpanel" aria-labelledby="pills-nominas-tab">
+                    <table class="cell-border table-striped " id="tbl_Nominas" style="width:100%" data-title-datatable="Nominas">
+                        <thead>
+                            <tr>
+                                <td>Razón Social</td>
+                                <td>Folio</td>
+                                <td>Fecha</td>
+                                <td>Subtotal</td>
+                                <td>Total</td>
+                                <td>Descarga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="pills-pagos" role="tabpanel" aria-labelledby="pills-pagos-tab">
+                    <table class="cell-border table-striped " id="tbl_Pagos" style="width:100%" data-title-datatable="Complementos de Pago">
+                        <thead>
+                            <tr>
+                                <td>Razón Social</td>
+                                <td>Folio</td>
+                                <td>Fecha</td>
+                                <td>Subtotal</td>
+                                <td>Total</td>
+                                <td>Descarga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="pills-egresos" role="tabpanel" aria-labelledby="pills-egresos-tab">
+                    <table class="cell-border table-striped " id="tbl_Egresos" style="width:100%" data-title-datatable="Notas de Crédito">
+                        <thead>
+                            <tr>
+                                <td>Razón Social</td>
+                                <td>Folio</td>
+                                <td>Fecha</td>
+                                <td>Subtotal</td>
+                                <td>Total</td>
+                                <td>Descarga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade" id="pills-cancelados" role="tabpanel" aria-labelledby="pills-cancelados-tab">
+                    <table class="cell-border table-striped " id="tbl_Canceladas" style="width:100%" data-title-datatable="Canceladas">
+                        <thead>
+                            <tr>
+                                <td>Razón Social</td>
+                                <td>Folio</td>
+                                <td>Fecha</td>
+                                <td>Subtotal</td>
+                                <td>Total</td>
+                                <td>Descarga</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "EntregablesPM";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script>
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetReporteEntregablesPM = '@Url.Action("GetReporteEntregablesPM", "ReportesEntregables")';
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "ReportesEntregables")';
+</script>
+<script src="~/Content/Js/Personal/Reportes/Entregables/ReporteEntregablesPM.js"></script>
+<h2>Reporte de Entregables de PM</h2>
+
+@*! Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal">
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                <label for="fl_mes">Mes</label>
+                <select class="form-control" id="fl_mes" name="fl_mes">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fl_periodo">Año</label>
+                <select class="form-control" id="fl_periodo" name="fl_periodo">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fl_linea">Linea</label>
+                <select class="form-control" id="fl_linea" name="fl_linea">
+                    <option value="Linea de Producción 1 A">Linea de Producción 1 A</option>
+                    <option value="Linea de Producción 1 B">Linea de Producción 1 B</option>
+                    <option value="Linea de Producción 2">Linea de Producción 2</option>
+                    <option value="Linea de Producción 3">Linea de Producción 3</option>
+                    <option value="Linea de Producción 4">Linea de Producción 4</option>
+                    <option value="Linea de Producción 5">Linea de Producción 5</option>
+                    <option value="Linea de Producción 6">Linea de Producción 6</option>
+                    <option value="Nóminas">Nóminas</option>
+                    <option value="Devolución de IVA">Devolución de IVA</option>
+                    <option value="Sin Definir">Sin Definir</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>&nbsp;</label> <br />
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <table class="cell-border table-striped " id="tblReporte" data-title-datatable="ReporteEntregablesPM">
+                <thead>
+                    <tr>
+                        <td>RFC</td>
+                        <td>Razón Social</td>
+                        <td>Linea</td>
+                        <td>Encargado</td>
+                        <td>Periodo</td>
+                        <td>01 DETERMINACION DE IMPUESTOS</td>
+                        <td>02 POLIZAS DE DIARIO</td>
+                        <td>03 POLIZAS DE EGRESO</td>
+                        <td>04 POLIZAS CHEQUE</td>
+                        <td>05 POLIZAS DE INGRESO</td>
+                        <td>06 CONCILIACIÓN BANCARIA</td>
+                        <td>07 DEPRECIACIÓN</td>
+                        <td>08 ACUSE BALANZA ELECTRÓNICA (INTERNO)</td>
+                        <td>08 ACUSE BALANZA ELECTRÓNICA (CLIENTE)</td>
+                        <td>09 BALANCE GENERAL</td>
+                        <td>10 ESTADO DE RESULTADOS</td>
+                        <td>11 BALANZA DE COMPROBACIÓN</td>
+                        <td>12 DECLARACIÓN IMPUESTOS FEDERALES</td>
+                        <td>13 DIOT (INTERNO)</td>
+                        <td>13 DIOT (CLIENTE)</td>
+                        <td>14 NOMINA</td>
+                        <td>15 IMPUESTOS DE NOMINA</td>
+                        <td>RECOMENDACIONES</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>

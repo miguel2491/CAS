@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "ListaTramites";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Lista de Tramites SAT</h2>
+
+
+<script>
+
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Tramites")';
+    var url_Cliente_GetListaTramites = '@Url.Action("GetListaTramites", "Tramites")';
+    var url_Catalogos_AddDocumentoTramite = '@Url.Action("AddDocumentoTramite", "Tramites")';
+
+</script>
+
+<script src="~/Content/Js/Externo/Docx/jszip.js"></script>
+<script src="~/Content/Js/Externo/Docx/jszip-utils.min.js"></script>
+<script src="~/Content/Js/Externo/Docx/docxtemplater-latest.js"></script>
+<script src="~/Content/Js/Externo/Docx/FileSaver.js"></script>
+<script src="~/Content/Js/Externo/Docx/Convert.js"></script>
+
+
+
+<script src="~/Content/Js/Personal/Catalogos/Tramites.js"></script>
+
+
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <table class="cell-border table-striped " id="tbl_tramites" data-title-datatable="Tramites">
+                <thead>
+                    <tr>
+                        <td>RFC</td>
+                        <td>Trámite</td>
+                        <td>Fecha Solicitud</td>
+                        <td>Estatus</td>
+                        <td>Plantillas</td>
+                        <td>Documentos</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal " id="mdlCargar" style="width:500px;">
+
+    <h3>Cargar Documento</h3>
+    <br />
+    <div class="form-row">
+        <div class=" col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <label id="txtCarga"></label> <br />
+            <input type="file" class="form-control" required autocomplete="off" id="fl_archivo" name="fl_archivo">
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <br /> <br />
+    <div class="form-group col-md-12 d-flex justify-content-around">
+        <button type="button" class="btn btn-style btn-ok" id="btnSubirMdlCargar">
+            <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Subir Documento</span>&nbsp;&nbsp;
+        </button>
+        <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlCargar">
+            <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+        </button>
+    </div>
+
+</div>

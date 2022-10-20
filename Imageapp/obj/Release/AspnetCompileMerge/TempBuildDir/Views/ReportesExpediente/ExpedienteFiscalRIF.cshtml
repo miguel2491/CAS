@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "ExpedienteFiscal";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script>
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetReporteExpedienteFiscalRIF = '@Url.Action("GetReporteExpedienteFiscalRIF", "ReportesExpediente")';
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "ReportesExpediente")';
+</script>
+<script src="~/Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalRIF.js"></script>
+<h2>Reporte Expediente Digital RIF</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <table class="cell-border table-striped " id="tblReporte" data-title-datatable="ReporteExpedienteDigitalRIF">
+                <thead>
+                    <tr>
+                        <td>RFC</td>
+                        <td>Razón Social</td>
+                        <td>Linea</td>
+                        <td>Encargado</td>
+                        <td>INE</td>
+                        <td>Acta de Nacimiento</td>
+                        <td>CURP</td>
+                        <td>Acuse Inscripción en el SAT</td>
+                        <td>Cédula Fiscal</td>
+                        <td>Solicitud de Certificado de e.firma</td>
+                        <td>Acuse de actualización de obligaciones</td>
+                        <td>Inscripción en Finanzas (Físico)</td>
+                        <td>Alta en el IMSS (Físico)</td>
+                        <td>Tarjeta Patronal IMSS Vigente (Físico)</td>
+
+                        <td>Acuse Firma Electrónica SAT vigente con contraseñas</td>
+                        <td>Acuse Firma Digital IMSS vigente con contraseña</td>
+                        <td>Acuse Sellos Digitales con contraseña</td>
+                        <td>Acuse Firma Digital Finanzas vigente con contraseña </td>
+                    </tr>
+                </thead>
+                <tbody></tbody>               
+            </table>
+
+        </div>
+    </div>
+</div>
+

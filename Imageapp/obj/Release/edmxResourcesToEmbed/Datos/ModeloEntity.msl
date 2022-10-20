@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_MenuModelStoreContainer" CdmEntityContainer="DB_MenuEntities">
+    <EntitySetMapping Name="tbd_Formulario">
+      <EntityTypeMapping TypeName="DB_MenuModel.tbd_Formulario">
+        <MappingFragment StoreEntitySet="tbd_Formulario">
+          <ScalarProperty Name="id_formulario" ColumnName="id_formulario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Clientes">
+      <EntityTypeMapping TypeName="DB_MenuModel.tbc_Clientes">
+        <MappingFragment StoreEntitySet="tbc_Clientes">
+          <ScalarProperty Name="inicio_razon" ColumnName="inicio_razon" />
+          <ScalarProperty Name="patronal" ColumnName="patronal" />
+          <ScalarProperty Name="registro_patronal" ColumnName="registro_patronal" />
+          <ScalarProperty Name="es_nomina" ColumnName="es_nomina" />
+          <ScalarProperty Name="fecha_fiel_representante" ColumnName="fecha_fiel_representante" />
+          <ScalarProperty Name="fecha_cita" ColumnName="fecha_cita" />
+          <ScalarProperty Name="edo_financiero" ColumnName="edo_financiero" />
+          <ScalarProperty Name="aplica_coi" ColumnName="aplica_coi" />
+          <ScalarProperty Name="es_asesoria" ColumnName="es_asesoria" />
+          <ScalarProperty Name="fecha_caducidad_fiel" ColumnName="fecha_caducidad_fiel" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="actividad_principal" ColumnName="actividad_principal" />
+          <ScalarProperty Name="tiene_trabajadores" ColumnName="tiene_trabajadores" />
+          <ScalarProperty Name="estado_cuenta" ColumnName="estado_cuenta" />
+          <ScalarProperty Name="publico_general" ColumnName="publico_general" />
+          <ScalarProperty Name="ingresos_mayores" ColumnName="ingresos_mayores" />
+          <ScalarProperty Name="fecha_servicio" ColumnName="fecha_servicio" />
+          <ScalarProperty Name="id_sector" ColumnName="id_sector" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="direccion_fiscal" ColumnName="direccion_fiscal" />
+          <ScalarProperty Name="id_tipo_persona" ColumnName="id_tipo_persona" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="nombre_razon" ColumnName="nombre_razon" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Usuarios">
+      <EntityTypeMapping TypeName="DB_MenuModel.tbc_Usuarios">
+        <MappingFragment StoreEntitySet="tbc_Usuarios">
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="telefono_movil" ColumnName="telefono_movil" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="ultimo_movimiento" ColumnName="ultimo_movimiento" />
+          <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+          <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbr_Cliente_Usuario">
+      <EntityTypeMapping TypeName="DB_MenuModel.tbr_Cliente_Usuario">
+        <MappingFragment StoreEntitySet="tbr_Cliente_Usuario">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_cliente_usuario" ColumnName="id_cliente_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

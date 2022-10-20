@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Documentos";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Documentos</h2>
+
+<script>
+    var id_regimen = @ViewBag.id_regimen;
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetDocumentos = '@Url.Action("GetDocumentos", "Cliente")';
+    var url_Catalogos_GetDocumentosDigitales = '@Url.Action("GetDocumentosDigitales", "Catalogos")';
+    var url_Catalogos_AddRepositorio = '@Url.Action("AddRepositorio", "Cliente")';
+</script>
+<script src="~/Content/Js/Personal/CRM/Documentos.js"></script>
+
+
+<div class="section" style="">
+
+    <br />
+    <form id="frmRepositorio">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="fr_tipo_repositorio">Categoría</label>
+                <select class="form-control" id="fr_tipo_repositorio" name="fr_tipo_repositorio">
+                    <option value="1">Expediente Fiscal</option>
+                    <option value="2">Archivos Digitales</option>
+                    <option value="3">Propuesta Económica</option>
+                    <option value="4">Otros</option>
+                </select>
+            </div>
+
+            <div class="col-md-8">
+               
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <br />
+                <label for="fr_repositorio">Cargar Archivo del Expediente Fiscal</label>
+               
+            </div>
+            <div class="form-group col-md-4">
+                <label for="fr_repositorio">Documento</label>
+                <select class="form-control" id="fr_repositorio" name="fr_repositorio"></select>
+            </div>
+            <div class="col-md-4">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivo" id="fr_urlArchivo" dirname="fr_urlArchivo" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRepo">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarRepo">Agregar</span>&nbsp;&nbsp;
+            </button>
+            
+        </div>
+    </form>
+</div>
+
+
+
+@* Seccion para el datatable Repositorio*@
+<div class="section" id="sectionDataTable">
+    <table id="tblRepositorio" class="cell-border table-striped" style="width:100%;" data-title-datatable="Repositorio de Archivos">
+        <thead>
+            <tr>
+                <td>Acciones</td>
+                <td>Documento</td>
+                <td>Categoría</td>
+                <td>Fecha vigencia</td>
+                <td>Descripción</td>
+                <td>Id usuario creo</td>
+                <td>Usuario Creo</td>
+                <td>Fecha Creación</td>
+                <td>Id cliente</td>
+                <td>URL Archivo</td>
+                <td>Nombre Archivo</td>
+                <td>Id repositorio</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

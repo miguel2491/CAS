@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "Menus";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Menus/Menus.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Menus/MenusModal.js"></script>
+
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    var url_Administrador_GetMenus = '@Url.Action("GetMenus", "Administrador")';
+    var url_Administrador_GetCatalogos = '@Url.Action("GetCatalogos", "Administrador")';
+    var url_Administrador_GetPermisos = '@Url.Action("GetPermisos", "Administrador")';
+
+    var url_Administrador_AddMenu = '@Url.Action("AddMenu", "Administrador")';
+    var url_Administrador_UpdateMenu = '@Url.Action("UpdateMenu", "Administrador")';
+    var url_Administrador_DeleteMenu = '@Url.Action("DeleteMenu", "Administrador")';
+</script>
+
+<h2>Menus</h2>
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 9999 !important;
+        font-size: 0.9rem !important;
+    }
+</style>
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_adminCtMenu">Pertenece al menú</label>
+                <input type="text" id="fl_adminCtMenu" name="fl_adminCtMenu" class="form-control">
+                <input type="hidden" id="fl_id_menu" name="fl_id_menu">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Visible</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbIsVis" name="fl_RdbIsVisible" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbIsVis">Sí</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbNotVis" name="fl_RdbIsVisible" value="0" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbNotVis">No</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbAllVis" name="fl_RdbIsVisible" value="2" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbAllVis">Todos</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Raíz</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbRaiz" name="fl_RdbIsRaiz" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbRaiz">Sí</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbNotRaiz" name="fl_RdbIsRaiz" value="0" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbNotRaiz">No</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbAllRaiz" name="fl_RdbIsRaiz" value="2" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbAllRaiz">Todos</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblMenus" class="cell-border" style="width:100%">
+        <thead>
+            <tr>
+                <td>Id Menú</td>
+                <td>Id menu padre</td>
+                <td>Ruta menú padre</td>
+                <td>Ruta menú</td>
+                <td>Nombre</td>
+                <td>Descripción</td>
+                <td>Raíz</td>
+                <td>Raíz</td>
+                <td>Visible</td>
+                <td>Visible</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlMenus">
+    <h3><span id="titleModal">Agregar</span> Menú</h3>
+
+    <form action="/" method="post" id="frmPrincipal">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fr_adminCtMenu">Pertenece al menu</label>
+                <input type="text" id="fr_adminCtMenu" name="fr_adminCtMenu" class="form-control" autocomplete="off">
+                <input type="hidden" id="fr_id_menu" name="fr_id_menu">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fr_nombre">Nombre</label>
+                <input type="text" class="form-control" onkeypress="return validarLetras(event);" id="fr_nombre" name="fr_nombre" autocomplete="off">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fr_pathDescription">Ruta del menú</label>
+                <input type="text" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_pathDescription" name="fr_pathDescription" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fr_descripcion">Descripción</label>
+                <input type="text" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_descripcion" name="fr_descripcion" autocomplete="off">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fr_isRaiz">Raíz</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="fr_isRaiz" name="fr_isRaiz">
+                    <label class="custom-control-label" for="fr_isRaiz"></label>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fr_isVisible">Visible</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="fr_isVisible" name="fr_isVisible">
+                    <label class="custom-control-label" for="fr_isVisible"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,557 @@
+﻿
+@{
+    ViewBag.Title = "Pensiones";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<style>
+    .calculadora h5{
+        text-align: center;
+    }
+
+    .seccion_calc{
+        border: 1px solid #d3cccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .jumbotron.simple{
+        padding: 15px 50px;
+    }
+</style>
+
+@*<h2>Pensiones de Vejez y Cesantia en Edad Avanzada Ley '73</h2>*@
+
+<script>
+    var salario = 0;
+    $(document).ready(function () {
+        //salario = 123.22;
+        //$("#salario").val(salario);
+
+        let html = '';
+        for (let i = 60; i <= 90; i++) {
+            html += '<option value="' + i + '">' + i + '</option>';
+        }
+        $("#edad").html(html);
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#padres").on("change", () => {
+            if ($("#padres").val() == 0) {
+
+                $("#esposa").prop("disabled", false);
+                $("#hijos").prop("disabled", false);
+
+            } else {
+                $("#esposa").val(0);
+                $("#hijos").val(0);
+                $("#esposa").prop("disabled", true);
+                $("#hijos").prop("disabled", true);
+            }
+        });
+
+        $("#esposa").on("change", () => {
+            if ($("#esposa").val() > 0 || $("#hijos").val() > 0) {
+
+                $("#padres").val(0);
+                $("#padres").prop("disabled", true);
+
+            } else {
+
+                $("#padres").prop("disabled", false);
+
+            }
+        })
+
+        $("#hijos").on("change", () => {
+            if ($("#esposa").val() > 0 || $("#hijos").val() > 0) {
+
+                $("#padres").val(0);
+                $("#padres").prop("disabled", true);
+
+            } else {
+
+                $("#padres").prop("disabled", false);
+
+            }
+        })
+
+        $("#semanas").on("change", () => {
+            if ($("#semanas").val() < 500) {
+                $("#semanas").val(0)
+                return jsSimpleAlert("Alerta", "El numero de semanas cotizadas debe ser igual o mayor a 500", "orange");
+            }
+        })
+    });
+    
+    function calcular() {
+        const tabla =
+            [
+                { inferior: 0, superior: 1.01, cuantia: 0.8, incremento: 0.563 },
+                { inferior: 1.01, superior: 1.26, cuantia: 0.7711, incremento: 0.814 },
+                { inferior: 1.26, superior: 1.51, cuantia: 0.5818, incremento: 1.178 },
+                { inferior: 1.51, superior: 1.76, cuantia: 0.4923, incremento: 1.43 },
+                { inferior: 1.76, superior: 2.01, cuantia: 0.4267, incremento: 1.615 },
+                { inferior: 2.01, superior: 2.26, cuantia: 0.3765, incremento: 1.756 },
+                { inferior: 2.26, superior: 2.51, cuantia: 0.3368, incremento: 1.868 },
+                { inferior: 2.51, superior: 2.76, cuantia: 0.3048, incremento: 1.958 },
+                { inferior: 2.76, superior: 3.01, cuantia: 0.2783, incremento: 2.033 },
+                { inferior: 3.01, superior: 3.26, cuantia: 0.256, incremento: 2.096 },
+                { inferior: 3.26, superior: 3.51, cuantia: 0.237, incremento: 2.149 },
+                { inferior: 3.51, superior: 3.76, cuantia: 0.2207, incremento: 2.195 },
+                { inferior: 3.76, superior: 4.01, cuantia: 0.2065, incremento: 2.235 },
+                { inferior: 4.01, superior: 4.26, cuantia: 0.1939, incremento: 2.271 },
+                { inferior: 4.26, superior: 4.51, cuantia: 0.1829, incremento: 2.302 },
+                { inferior: 4.51, superior: 4.76, cuantia: 0.173, incremento: 2.33 },
+                { inferior: 4.76, superior: 5.01, cuantia: 0.1641, incremento: 2.355 },
+                { inferior: 5.01, superior: 5.26, cuantia: 0.1561, incremento: 2.377 },
+                { inferior: 5.26, superior: 5.51, cuantia: 0.1488, incremento: 2.398 },
+                { inferior: 5.51, superior: 5.76, cuantia: 0.1422, incremento: 2.416 },
+                { inferior: 5.76, superior: 6, cuantia: 0.1362, incremento: 2.433 },
+                { inferior: 6, superior: 1000, cuantia: 0.13, incremento: 2.45 }
+            ];
+
+        const salario = {
+            2021: 141.7,
+            2020: 123.22,
+            2019: 102.68,
+            2018: 88.36,
+            2017: 80.04,
+            2016: 73.04,
+            2015: 70.10,
+            2014: 67.29,
+            2013: 64.76,
+            2012: 62.33,
+            2011: 59.82,
+            2010: 57.46,
+            2009: 54.80,
+            2008: 52.59,
+            2007: 50.57,
+            2006: 48.67,
+            2005: 46.80,
+            2004: 45.24,
+            2003: 43.65,
+            2002: 42.15,
+            2001: 40.35,
+            2000: 37.90,
+            1999: 34.45,
+            1998: 30.20,
+            1997: 26.45
+        }
+
+        let salario_promedio1 = $("#salario_promedio1").val() == "" ? salario["2021"] : $("#salario_promedio1").val();
+        let salario_promedio2 = $("#salario_promedio2").val() == "" ? salario["2020"] : $("#salario_promedio2").val();
+        let salario_promedio3 = $("#salario_promedio3").val() == "" ? salario["2019"] : $("#salario_promedio3").val();
+        let salario_promedio4 = $("#salario_promedio4").val() == "" ? salario["2018"] : $("#salario_promedio4").val();
+        let salario_promedio5 = $("#salario_promedio5").val() == "" ? salario["2017"] : $("#salario_promedio5").val();
+        let salario_minimo_diario = $("#salario").val();
+        let semanas_cotizadas = $("#semanas").val();
+        let esposa = $("#esposa").val();
+        let hijos = $("#hijos").val();
+        let padres = $("#padres").val();
+        let edad = $("#edad").val();
+        
+        let mensaje = '';
+
+        if (semanas_cotizadas == "") mensaje += '-Número de semanas cotizadas<br/>';
+        if (salario_minimo_diario == "") mensaje += '-Salario minimo (diario)<br/>';
+        if (semanas_cotizadas < 500) mensaje += '-El numero de semanas cotizadas debe ser igual o mayor a 500<br/>';
+
+        if (mensaje != "")
+            return jsSimpleAlert("Alerta", "Ingresa los siguientes campos: <br/>" + mensaje, "orange");
+
+        const salario_promedio_cotizacion = (parseFloat(salario_promedio1) + parseFloat(salario_promedio2) + parseFloat(salario_promedio3) + parseFloat(salario_promedio4) + parseFloat(salario_promedio5)) / 5;
+        $("#salario_promedio").val(parseFloat(salario_promedio_cotizacion).toFixed(2));
+        const valor1 = salario_promedio_cotizacion / parseFloat(salario_minimo_diario);
+        console.log(valor1);
+        
+
+        var valor_cuantia = 0;
+        var valor_incremento = 0;
+        for (var i = 0; i < tabla.length; i++) {
+            var item = tabla[i];
+            if (valor1 >= item.inferior && valor1 < item.superior) {
+                valor_cuantia = item.cuantia;
+                valor_incremento = item.incremento;
+            }
+        }
+
+        console.log("valor_cuantia " + valor_cuantia);
+        console.log("valor_incremento " + valor_incremento);
+
+        let cuantia_basica = ((salario_promedio_cotizacion * valor_cuantia * 365) / 12);
+        console.log("cuantia_basica "+cuantia_basica);
+        console.log("salario_promedio_cotizacion " + salario_promedio_cotizacion);
+        let decimal_incremento = Math.ceil((parseInt(semanas_cotizadas) - 500) / 52);
+        console.log(decimal_incremento );
+        let incremento_anual = (((salario_promedio_cotizacion * valor_incremento * decimal_incremento * 365) / 12) / 100);
+        console.log(incremento_anual);
+        let cuantia_mensual = (cuantia_basica + incremento_anual);
+
+        let fam_ayuda = 0;
+
+        if (esposa == 0 && hijos == 0 && padres == 0) {
+            fam_ayuda = 0;
+        }
+        else if (esposa > 0) {
+            fam_ayuda = (cuantia_mensual * 0.15) + (cuantia_mensual * 0.10 * hijos);
+        }
+        else if (hijos > 0) {
+            fam_ayuda = cuantia_mensual * 0.10 * hijos;
+        }
+        //else if (esposa != 0 || hijos != 0) {
+        //    fam_ayuda = 0;
+        //}
+        else if (padres == 1 || padres == 2) {
+            fam_ayuda = cuantia_mensual * 0.10;
+        }
+        else {
+            fam_ayuda = 0
+        }
+
+        let suma_antes_aumento = cuantia_basica + incremento_anual + fam_ayuda;
+        console.log("suma_antes_aumento " + suma_antes_aumento);
+        let pension_mas_asig = (suma_antes_aumento + (suma_antes_aumento * 0.11));
+        console.log("pension_mas_asig " + pension_mas_asig);
+        let total_pension = 0;
+
+        if (edad == 60) {
+            total_pension = pension_mas_asig * .75;
+        }
+        else if (edad == 61) {
+            total_pension = pension_mas_asig * .80;
+        }
+        else if (edad == 62) {
+            total_pension = pension_mas_asig * .85;
+        }
+        else if (edad == 63) {
+            total_pension = pension_mas_asig * .90;
+        }
+        else if (edad == 64) {
+            total_pension = pension_mas_asig * .95;
+        }
+        else if (edad > 64) {
+            total_pension = pension_mas_asig;
+        }
+        
+        $("#total_pension").val(formatCurrency(total_pension));
+    }
+
+    function formatCurrency(cantidad) {
+        const options2 = { style: 'currency', currency: 'USD' };
+        const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
+        var valor = numberFormat2.format(cantidad);
+
+        return valor.substring(1);
+    }
+
+    const limpiar = () => {
+        $("#edad").val(60);
+        $("#semanas").val(0);
+        $("#esposa").val(0);
+        $("#hijos").val(0);
+        $("#padres").val(0);
+        $("#salario").val(141.70);
+
+        $("#salario_promedio1").val('');
+        $("#salario_promedio2").val('');
+        $("#salario_promedio3").val('');
+        $("#salario_promedio4").val('');
+        $("#salario_promedio5").val('');
+        
+        $("#esposa").prop("disabled", false);
+        $("#hijos").prop("disabled", false);
+        $("#padres").prop("disabled", false);
+
+        $("#total_pension").val(0);
+        $("#salario_promedio").val('');
+    }
+
+</script>
+
+<div class="jumbotron simple">
+    <h1 class="display-6">Simulador de Pensiones de Vejez y Cesantia en Edad Avanzada Ley '73</h1>
+    <p class="lead">Ingresa los datos necesarios y da clic en CALCULAR.</p>
+    <hr class="my-4">
+    <p>Acontinuación se muestran los porcentajes correspondientes a la edad.</p>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Porcentaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>60 años</td>
+                <td>75%</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>61 años</td>
+                <td>80%</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>62 años</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>63 años</td>
+                <td>90%</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>64 años</td>
+                <td>95%</td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>65 años o más</td>
+                <td>100%</td>
+            </tr>
+        </tbody>
+
+    </table>
+    @*<button class="btn btn-primary btn-lg">Conocer mas...  <i class="fa fa-question"></i></button>*@
+    <a href="#about" rel="modal:open" class="btn btn-primary btn-lg">Conocer más... </a>
+</div>
+
+<div class="section">
+
+    <div class="form-row calculadora">
+        <div class="col-md-6">
+            <div class="seccion_calc">
+                <h5 class="mb-4">DATOS DEL CLIENTE</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Edad del pensionado: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="edad" data-toggle="tooltip" data-placement="top" title="Edad del pensionado 60 años o más"></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Número de semanas cotizadas: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="number" id="semanas" onkeypress="return validarNumeros(event);" data-toggle="tooltip" data-placement="top" title="Total de semanas cotizadas"/>
+                    </div>
+                </div>
+            </div>
+            <div class="seccion_calc">
+                <h5 class="mb-4">FAMILIARES Y AYUDA</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Esposa o Esposo: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="esposa" data-toggle="tooltip" data-placement="top" title="Indique si tiene esposa o esposo">
+                            <option value="0" selected>No</option>
+                            <option value="1">Si</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Hijos (número): </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="number" id="hijos" data-toggle="tooltip" onkeypress="return validarNumeros(event);" value="0" data-placement="top" title="Indique el número de hijo(s)"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Padres (1 o 2)</label><br />
+                        <label>* Solo a falta de viuda y huerfanos</label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="padres" data-toggle="tooltip" data-placement="top" title="Solo en caso de falta de viuda o huerfanos">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="seccion_calc">
+                <h5 class="mb-4">
+                    SALARIO BASE DE COTIZACIÓN PROMEDIO DIARIO POR AÑO
+                    <i class="fa fa-question" data-toggle="tooltip" data-placement="bottom" title="Colocar el Salario base de cotización diario registrado de tus últimas 250 semanas"></i>
+                </h5>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>AÑO: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio1" disabled value="2021" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio1" data-toggle="tooltip" data-placement="top" title="Salario promedio del año 2021, si no cuenta con el dato, se asignara el salario base de ($141.7)" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>AÑO: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio2" disabled value="2020" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio2" data-toggle="tooltip" data-placement="top" title="Salario promedio del año 2020, si no cuenta con el dato, se asignara el salario base de ($123.22)" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>AÑO: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio3" disabled value="2019" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio3" data-toggle="tooltip" data-placement="top" title="Salario promedio del año 2019, si no cuenta con el dato, se asignara el salario base de ($102.68)" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>AÑO: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio4" disabled value="2018" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio4" data-toggle="tooltip" data-placement="top" title="Salario promedio del año 2018, si no cuenta con el dato, se asignara el salario base de (88.36)" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>AÑO: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio5" disabled value="2017" />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio5" data-toggle="tooltip" data-placement="top" title="Salario promedio del año 2017, si no cuenta con el dato, se asignara el salario base de (80.04)" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        
+                    </div>
+                    <div class="form-group col-md-3">
+                        
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio de los ultimos 5 años: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number"id="salario_promedio" disabled value="" data-toggle="tooltip" data-placement="top" title="Salario promedio de los ultimos 5 años." />
+                    </div>
+                </div>
+            </div>
+            <div class="seccion_calc">
+                <h5 class="mb-4">DATOS GENERALES</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Salario Mínimo (diario): </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        @*<input class="form-control" id="salario" data-toggle="tooltip" data-placement="top" title="Salario mímino (diario)"/>*@
+                        <select class="form-control" id="salario" name="salario">
+                            <option value="213.39" >$ 213.39</option>
+                            <option value="141.70" selected>$ 141.70</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row pt-3">
+        <div class="form-group col-md-3 text-right">
+
+
+        </div>
+        <div class="form-group col-md-3 text-right">
+            <label>PENSION FINAL</label>
+
+        </div>
+
+        <div class="form-group col-md-3 text-center">
+            <input class="form-control" id="total_pension" readonly />
+
+        </div>
+        <div class="form-group col-md-3 text-center">
+
+
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 text-center">
+            <button class="btn btn-primary" onclick="calcular();">CALCULAR</button>
+
+        </div>
+        <div class="form-group col-md-6 text-center">
+            <button class="btn btn-secondary" onclick="limpiar();">LIMPIAR</button>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="about" class="modal">
+    <div class="jumbotron mb-0">
+        <h1 class="display-4">¡Conoce más acerca del simulador!</h1>
+        <p class="lead">Estás utilizando un simulador para conocer el importe aproximado de tu pensión, con base en los datos que proporciones.</p>
+        <hr class="my-4">
+        <p>
+            Para el ejercicio de simulación necesitas:
+            <ul>
+                <li>Año en el que iniciaste tu cotización a la Ley del Seguro Social.</li>
+                <li>Años cumplidos.</li>
+                <li>Semanas cotizadas bajo la Ley del Seguro Social.</li>
+                <li>El promedio de tus salarios base de cotización de los últimos cinco años.</li>
+            </ul>
+            Además de:
+            <ul>
+                <li>Tener 60 años cumplidos a la fecha de solicitud de pensión.</li>
+                <li>Estar dado de baja en el régimen obligatorio del Seguro Social, es decir, no tener trabajo remunerado.</li>
+                <li>Estar dentro del periodo de la conservación de derechos.</li>
+                <li>Tener al menos 500 semanas cotizadas.</li>
+                <li>Tener cotizaciones antes del 1 de julio de 1997, para poder elegir la aplicación de la Ley del Seguro Social vigente hasta el 30 de junio de 1997.</li>
+            </ul>
+        </p>
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-outline-danger" rel="modal:close">Cerrar</a>
+        </div>
+    </div>
+</div>

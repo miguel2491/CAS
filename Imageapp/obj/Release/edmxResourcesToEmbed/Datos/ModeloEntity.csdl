@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_MenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbd_Formulario">
+    <Key>
+      <PropertyRef Name="id_formulario" />
+    </Key>
+    <Property Name="id_formulario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="DB_MenuEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbd_Formulario" EntityType="Self.tbd_Formulario" />
+    <EntitySet Name="tbc_Clientes" EntityType="DB_MenuModel.tbc_Clientes" />
+    <EntitySet Name="tbc_Usuarios" EntityType="DB_MenuModel.tbc_Usuarios" />
+    <EntitySet Name="tbr_Cliente_Usuario" EntityType="DB_MenuModel.tbr_Cliente_Usuario" />
+  </EntityContainer>
+  <EntityType Name="tbc_Clientes">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_razon" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="id_tipo_persona" Type="Int32" Nullable="false" />
+    <Property Name="direccion_fiscal" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="rfc" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="id_regimen" Type="Int32" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
+    <Property Name="id_sector" Type="Int32" />
+    <Property Name="fecha_servicio" Type="DateTime" Precision="0" />
+    <Property Name="ingresos_mayores" Type="Boolean" />
+    <Property Name="publico_general" Type="Boolean" />
+    <Property Name="estado_cuenta" Type="Boolean" />
+    <Property Name="tiene_trabajadores" Type="Boolean" />
+    <Property Name="actividad_principal" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="observaciones" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_caducidad_fiel" Type="DateTime" Precision="0" />
+    <Property Name="es_asesoria" Type="Boolean" />
+    <Property Name="aplica_coi" Type="Boolean" />
+    <Property Name="edo_financiero" Type="Boolean" />
+    <Property Name="fecha_cita" Type="DateTime" Precision="0" />
+    <Property Name="fecha_fiel_representante" Type="DateTime" Precision="0" />
+    <Property Name="es_nomina" Type="Boolean" />
+    <Property Name="registro_patronal" Type="Boolean" />
+    <Property Name="patronal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="inicio_razon" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbc_Usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="id_rol" Type="Int32" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido_paterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido_materno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contrasenia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ultimo_movimiento" Type="DateTime" Precision="3" />
+    <Property Name="id_estatus" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="telefono" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_movil" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="correo_electronico" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbr_Cliente_Usuario">
+    <Key>
+      <PropertyRef Name="id_cliente_usuario" />
+    </Key>
+    <Property Name="id_cliente_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

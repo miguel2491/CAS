@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Usuarios</h2>
+
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    var url_Administrador_GetUsuarios = '@Url.Action("GetUsuarios", "Administrador")';
+    var url_Administrador_GetCatalogos = '@Url.Action("GetCatalogos", "Administrador")';
+    
+    var url_Administrador_GetPermisos = '@Url.Action("GetPermisos", "Administrador")';
+
+    var url_Administrador_AddUsuario = '@Url.Action("AddUsuario", "Administrador")';
+    var url_Administrador_UpdateUsuario = '@Url.Action("UpdateUsuario", "Administrador")';
+    var url_Administrador_DeleteUsuario = '@Url.Action("DeleteUsuario", "Administrador")';
+
+</script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/Administrador/Usuarios/Usuarios.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Usuarios/UsuariosModal.js"></script>
+
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fl_usuario">Usuario</label>
+                <input type="text" class="form-control" id="fl_usuario" placeholder="Buscar por usuario" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_ddlRol">Rol</label>
+                <select id="fl_ddlRol" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Estatus</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbActivo" name="fl_RdbEstatus" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbActivo">Activo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbInactivo" name="fl_RdbEstatus" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbInactivo">Inactivo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbTodos" name="fl_RdbEstatus" value="0" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbTodos">Todos</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchWFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblUsuarios" class="cell-border" >
+        <thead>
+            <tr>
+                <td>Id Usuario</td>
+                <td>Id Rol</td>
+                <td>Rol</td>
+                <td>Nombre</td>
+                <td>Apellido paterno</td>
+                <td>Apellido materno</td>
+                <td>Usuario</td>
+                <td>Contrasenia</td>
+                <td>Estatus</td>
+                <td>Estatus</td>
+                <td>Fecha creación</td>
+                <td>Fecha de nacimiento</td>
+                <td>Correo electrónico</td>
+                <td>Teléfono</td>
+                <td>Teléfono movil</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlUsuarios">
+    <h3><span id="titleModal">Agregar</span> Usuario</h3>
+
+    <ul class="nav nav-tabs" id="tabModal" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="form-tab" href="#formTab" aria-controls="formTab" role="tab" data-toggle="tab" aria-selected="true">Formulario</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="modalTabContent">
+        <div class="tab-pane fade show active" id="formTab" aria-labelledby="form-tab" role="tabpanel">
+            <form action="/" method="post" id="frmPrincipal">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_nombre">Nombre</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_nombre" name="fr_nombre" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_apellido_paterno">Apellido paterno</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_apellido_paterno" name="fr_apellido_paterno" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_apellido_materno">Apellido materno</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_apellido_materno" name="fr_apellido_materno" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_rol">Rol</label>
+                        <select class="form-control" id="fr_rol" name="fr_rol"></select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_usuario">Usuario</label>
+                        <input type="text" class="form-control text-lowercase" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_usuario" name="fr_usuario" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_fecha_nacimiento">Fecha de Nacimiento</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_nacimiento" name="fr_fecha_nacimiento" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_telefono">Teléfono</label>
+                        <input type="text" onkeypress="return validarNumeros(event);" maxlength="10" class="form-control text-uppercase" id="fr_telefono" name="fr_telefono" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_telefono_movil">Teléfono Móvil</label>
+                        <input type="text" onkeypress="return validarNumeros(event);" maxlength="10"  class="form-control text-uppercase" id="fr_telefono_movil" name="fr_telefono_movil" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_correo_electronico">Correo Electrónico</label>
+                        <input type="email" class="form-control text-uppercase" id="fr_correo_electronico" name="fr_correo_electronico" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_contrasenia">Contraseña</label>
+                        <input type="password" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_contrasenia" name="fr_contrasenia">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_contrasenia2">Confirmar contraseña</label>
+                        <input type="password" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_contrasenia2" name="fr_contrasenia2">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_activo">Activo</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fr_id_estatus" name="fr_id_estatus">
+                            <label class="custom-control-label" for="fr_id_estatus"></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-group form col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+    </div>
+</div>
+

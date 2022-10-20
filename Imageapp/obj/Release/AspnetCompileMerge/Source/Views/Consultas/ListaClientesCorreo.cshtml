@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "ListaClientes";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Lista de Clientes</h2>
+
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    var url_Catalogos_GetClientes = '@Url.Action("GetClientes", "Consultas")';
+    var url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Consultas")';
+
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Consultas")';
+       
+
+    var url_Catalogo_SendCorreo = '@Url.Action("SendCorreo", "Catalogos")';
+</script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/Consultas/ClientesEdo.js"></script>
+<script src="~/Content/Js/Personal/Consultas/EnvioCorreoModal.js"></script>
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre / Razón Social</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre / razón social" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fl_rfc">RFC</label>
+                <input type="text" class="form-control" id="fl_rfc" placeholder="Buscar por rfc" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_ddlRegimen">Tipo Persona</label>
+                <select id="fl_ddlRegimen" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Estatus</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbActivo" name="fl_RdbEstatus" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbActivo">Activo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbInactivo" name="fl_RdbEstatus" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbInactivo">Inactivo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbTodos" name="fl_RdbEstatus" value="0" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbTodos">Todos</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchWFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblClientes" class="cell-border table-striped" data-title-datatable="Lista de Clientes">
+        <thead>
+            <tr>
+                <td>Acciones</td>
+                <td>Id cliente</td>
+                <td>Línea</td>
+                <td>Rfc</td>
+                <td>Nombre / Razón Social</td>
+                <td>Id Tipo persona</td>
+                <td>Tipo persona</td>
+                <td>Estatus</td>
+                <td>Estatus</td>
+                <td>Fecha creación</td>
+                <td>Correo electrónico</td>
+                <td>Teléfono</td>
+                <td>Teléfono movil</td>
+                <td>Dirección fiscal</td>
+                <td>Id usuario</td>
+                <td>Nombre</td>
+                <td>Apellido paterno</td>
+                <td>Apellido materno</td>
+                <td>Régimen</td>
+                <td>Id régimen</td>
+                <td>Actividad Económica</td>
+                <td>Caducidad FIEL</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@*! Modal para actualizar fecha de pago *@
+<div class="modal " id="mdlFechaPago" style="width:500px;">
+    <h3>Enviar Solicitud de Edo de Cta</h3>
+    <form id="frmFechaPago">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-8">
+                <label>Seleccione fecha</label>
+
+                <select class="form-control" id="fl_mes" name="fl_mes">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+                <br />
+                <select class="form-control" id="fl_periodo" name="fl_periodo">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+
+                </select>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlFecha">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span>Enviar Correo(s)</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlFecha">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>

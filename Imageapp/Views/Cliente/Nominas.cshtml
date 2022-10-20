@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "Nominas";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Nóminas</h2>
+
+<script>
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetDocumentos = '@Url.Action("GetDocumentosNominas", "Cliente")';
+    var url_Catalogos_GetDocumentosNomina = '@Url.Action("GetDocumentosNomina", "Catalogos")';
+    var url_Catalogos_AddRepositorioNomina = '@Url.Action("AddRepositorioNomina", "Catalogos")';
+    
+</script>
+<script src="~/Content/Js/Personal/CRM/DocumentosNomina.js"></script>
+
+
+<div class="section" style="">
+
+    <br />
+    <form id="frmRepositorioNomina">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly value="@ViewBag.rfc">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_mesEntregableNomina" name="fr_mesEntregableNomina">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fr_periodoEntregableNomina" name="fr_periodoEntregableNomina">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+                <label for="fr_tipo_nomina">Categoría</label>
+                <select class="form-control" id="fr_tipo_nomina" name="fr_tipo_nomina">
+                    <option value="1">Maquila de nómina</option>
+                    <option value="2">Impuestos</option>
+                    <option value="3">IDSE</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="fr_entregable_nomina">Entregable</label>
+                <select class="form-control" id="fr_entregable_nomina"></select>
+            </div>
+            <div class="col-md-3">
+                <label for="fr_periodicidad_nomina">Periodicidad</label>
+                <select class="form-control" id="fr_periodicidad_nomina" name="fr_periodicidad_nomina">
+                    <option value="Semanal">Semanal</option>
+                    <option value="Quincenal">Quincenal</option>
+                    <option value="Mensual">Mensual</option>
+                    <option value="Bimestral">Bimestral</option>
+                    <option value="Anual">Anual</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-5">
+                <label>Cargar archivo:</label>
+                <div class="input-group mb-3"> 
+                    <input class="form-control" style="width:100%;" type="file" required name="fr_urlArchivoNomina" id="fr_urlArchivoNomina" dirname="fr_urlArchivoNomina" />
+                </div>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="fr_descripcion">Observaciones</label>
+                <textarea type="text" class="form-control text-uppercase" rows="3" id="fr_descripcionNomina" name="fr_descripcionNomina" autocomplete="off"></textarea>
+            </div>
+        </div>
+        <br />
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRepo">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarRepo">Agregar</span>&nbsp;&nbsp;
+            </button>
+           
+        </div>
+    </form>
+</div>
+
+@*<div class="section" style="display:none;">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Mes:</label>
+            <div class="input-group mb-3">
+                <select class="form-control" id="fr_mesEntregable" name="fr_mesEntregable">
+                    <option value="1">ENERO</option>
+                    <option value="2">FEBRERO</option>
+                    <option value="3">MARZO</option>
+                    <option value="4">ABRIL</option>
+                    <option value="5">MAYO</option>
+                    <option value="6">JUNIO</option>
+                    <option value="7">JULIO</option>
+                    <option value="8">AGOSTO</option>
+                    <option value="9">SEPTIEMBRE</option>
+                    <option value="10">OCTUBRE</option>
+                    <option value="11">NOVIEMBRE</option>
+                    <option value="12">DICIEMBRE</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Año:</label>
+            <div class="input-group mb-3">
+                <select class="form-control" id="fr_periodoEntregable" name="fr_periodoEntregable">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+@* Seccion para el datatable Repositorio*@
+<div class="section" id="sectionDataTable">
+    <table id="tblRepositorio" class="cell-border table-striped" style="width:100%;" data-title-datatable="Nominas">
+        <thead>
+            <tr>
+                <td>Acciones</td>
+                <td>Categoria</td>
+                <td>Entregable</td>
+                <td>Periodo</td>
+                <td>Periodicidad</td>
+                <td>Observaciones</td>
+                <td>Id usuario creo</td>
+                <td>Usuario Creo</td>
+                <td>Fecha Creación</td>
+                <td>Id cliente</td>
+                <td>URL Archivo</td>
+                <td>Nombre Archivo</td>
+                <td>Id entregable nomina</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

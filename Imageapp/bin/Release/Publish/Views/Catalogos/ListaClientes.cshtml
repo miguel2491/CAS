@@ -1,0 +1,859 @@
+﻿
+@{
+    ViewBag.Title = "Lista de Clientes";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Lista de Clientes</h2>
+
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    var url_Catalogos_GetClientes = '@Url.Action("GetClientes", "Catalogos")';
+    var url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Catalogos")';
+
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+
+    var url_Catalogos_AddCliente = '@Url.Action("AddCliente", "Catalogos")';
+    var url_Catalogos_UpdateCliente = '@Url.Action("UpdateCliente", "Catalogos")';
+    var url_Catalogos_DeleteCliente = '@Url.Action("DeleteCliente", "Catalogos")';
+
+
+    var url_Catalogos_GetActividades = '@Url.Action("GetActividades", "Catalogos")';
+    var url_Catalogos_EliminarActividad = '@Url.Action("DeleteActividad", "Catalogos")';
+    var url_Catalogos_AddActividad = '@Url.Action("AddActividad", "Catalogos")';
+
+    var url_Catalogos_GetEstatus = '@Url.Action("GetEstatus", "Catalogos")';
+    var url_Catalogos_EliminarEstatus = '@Url.Action("DeleteEstatus", "Catalogos")';
+    var url_Catalogos_AddEstatus = '@Url.Action("AddEstatus", "Catalogos")';
+
+    var url_Catalogos_GetServicios = '@Url.Action("GetServiciosAdicionales", "Catalogos")';
+    var url_Catalogos_EliminarServicio = '@Url.Action("DeleteServicioAdicional", "Catalogos")';
+    var url_Catalogos_AddServicio = '@Url.Action("AddServicioAdicional", "Catalogos")';
+
+    var url_Catalogos_GetContactos = '@Url.Action("GetContactos", "Catalogos")';
+    var url_Catalogos_EliminarContactos = '@Url.Action("DeleteContactos", "Catalogos")';
+    var url_Catalogos_AddContactos = '@Url.Action("AddContactos", "Catalogos")';
+
+    var url_Catalogos_GetFichaTecnica = '@Url.Action("GetDatosClienteTecnica", "Catalogos")';
+    var url_Catalogos_UpdFichaTecnica = '@Url.Action("UpdateClienteTecnica", "Catalogos")';
+    var url_Catalogos_UploadFichaTecnica = '@Url.Action("UploadFichaTecnica", "Catalogos")';
+    var url_Catalogos_UpdateServicioAdicional = '@Url.Action("UpdateServicioAdicional", "Catalogos")';
+</script>
+
+@*<script src="~/Content/Js/Externo/html2pdf.bundle.min.js"></script>*@
+<script src="~/Content/Js/Externo/moment.min.js"></script>
+
+<script src="~/Content/Js/Externo/Docx/jszip.js"></script>
+<script src="~/Content/Js/Externo/Docx/jszip-utils.min.js"></script>
+<script src="~/Content/Js/Externo/Docx/docxtemplater-latest.js"></script>
+<script src="~/Content/Js/Externo/Docx/FileSaver.js"></script>
+<script src="~/Content/Js/Externo/Docx/Convert.js"></script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/Clientes.js?vs_1.0"></script>
+<script src="~/Content/Js/Personal/Catalogos/ClientesModal.js?vs_1.1"></script>
+<script src="~/Content/Js/Personal/Catalogos/ActividadesModal.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/EstatusModal.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/ServiciosAdicionalesModal.js?vs_1.1"></script>
+<script src="~/Content/Js/Personal/Catalogos/ContactosModal.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/ClienteServicioFecha.js?vs_1.1"></script>
+<script src="~/Content/Js/Personal/Catalogos/ClientesFichaTecnica.js?vs_1.1"></script>
+
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+
+    #htmlFichaTecnica h3 {
+        background-color: transparent;
+        text-align: center;
+        color: #000000;
+        padding: 10px 0px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    #htmlFichaTecnica h5 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    #htmlFichaTecnica > div > div > div {
+        padding: 0px 10px;
+        border: 1px solid #808080;
+    }
+
+    #htmlFichaTecnica textarea {
+        font-size: 20px;
+    }
+
+    #frmFichaTecnica {
+        padding: 0px;
+    }
+
+        #frmFichaTecnica .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+            color: white;
+            background-color: var(--btn-ok);
+            border-color: none;
+        }
+
+        #frmFichaTecnica .nav-tabs .nav-link {
+            border: 1px solid #e0dcdc;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+            margin-left: 5px;
+        }
+
+    #mdlFechaServicio{
+        width: 300px
+    }
+</style>
+
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre / Razón Social</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre / razón social" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fl_rfc">RFC</label>
+                <input type="text" class="form-control" id="fl_rfc" placeholder="Buscar por rfc" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_ddlRegimen">Tipo Persona</label>
+                <select id="fl_ddlRegimen" class="form-control"></select>
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Estatus</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbActivo" name="fl_RdbEstatus" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbActivo">Activo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbInactivo" name="fl_RdbEstatus" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbInactivo">Inactivo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbTodos" name="fl_RdbEstatus" value="0" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbTodos">Todos</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchWFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblClientes" class="cell-border table-striped" data-title-datatable="Lista de Clientes">
+        <thead>
+            <tr>
+                <td>Id cliente</td>
+                <td>Línea</td>
+                <td>Rfc</td>
+                <td>Nombre / Razón Social</td>
+                <td>Id Tipo persona</td>
+                <td>Tipo persona</td>
+                <td>Estatus</td>
+                <td>Estatus</td>
+                <td>Fecha creación</td>
+                <td>Correo electrónico</td>
+                <td>Teléfono</td>
+                <td>Teléfono movil</td>
+                <td>Dirección fiscal</td>
+                <td>Id usuario</td>
+                <td>Nombre</td>
+                <td>Apellido paterno</td>
+                <td>Apellido materno</td>
+                <td>Régimen</td>
+                <td>Id régimen</td>
+                <td>Actividad Económica</td>
+                <td>Es asesoria</td>
+                <td>Aplica COI</td>
+                <td>Vigencia FIEL</td>
+                <td>Contraseña</td>
+                <td>Edo Financiero</td>
+                <td>Es Nomina</td>
+                <td>Registro Patronal</td>
+                <td>Registro Patronal</td>
+                <td>Inicio razón</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlClientes">
+    <h3><span id="titleModal">Agregar</span> Cliente</h3>
+
+    <ul class="nav nav-tabs" id="tabModal" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="form-tab" href="#formTab" aria-controls="formTab" role="tab" data-toggle="tab" aria-selected="true">Formulario</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="modalTabContent">
+        <div class="tab-pane fade show active" id="formTab" aria-labelledby="form-tab" role="tabpanel">
+            <form action="/" method="post" id="frmPrincipal">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_nombre">Nombre</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_nombre" name="fr_nombre" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_apellido_paterno">Apellido paterno</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_apellido_paterno" name="fr_apellido_paterno" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_apellido_materno">Apellido materno</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_apellido_materno" name="fr_apellido_materno" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_fecha_nacimiento">Fecha de Nacimiento</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_nacimiento" name="fr_fecha_nacimiento" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_telefono">Teléfono</label>
+                        <input type="text" onkeypress="return validarNumeros(event);" maxlength="10" class="form-control text-uppercase" id="fr_telefono" name="fr_telefono" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_telefono_movil">Teléfono Móvil</label>
+                        <input type="text" onkeypress="return validarNumeros(event);" maxlength="10" class="form-control text-uppercase" id="fr_telefono_movil" name="fr_telefono_movil" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_correo_electronico">Correo Electrónico</label>
+                        <input type="email" class="form-control text-uppercase" id="fr_correo_electronico" name="fr_correo_electronico" autocomplete="off">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="fr_rfc">RFC</label>
+                        <input type="text" maxlength="13" class="form-control text-uppercase" id="fr_rfc" name="fr_rfc" autocomplete="off">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="fr_id_tipo_persona">Tipo Persona</label>
+                        <select class="form-control" id="fr_id_tipo_persona" name="fr_id_tipo_persona"></select>
+                    </div>
+
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="fr_nombre_razon">Nombre / Razón Social</label>
+                        <input type="text" class="form-control text-uppercase" id="fr_nombre_razon" name="fr_nombre_razon" autocomplete="off" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_id_regimen">Régimen</label>
+                        <select class="form-control" id="fr_id_regimen" name="fr_id_regimen"></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="fr_patronal">Registro Patronal</label>
+                        <input type="text" class="form-control text-uppercase" id="fr_patronal" name="fr_patronal" autocomplete="off">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="fr_inicio_razon">Fecha inicio razón social</label>
+                        <input type="text" class="form-control datepicker" id="fr_inicio_razon" name="fr_inicio_razon" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="fr_inicio_razon">Fecha final prueba DEMO</label>
+                        <input type="text" class="form-control datepicker" id="fr_inicio_prueba" name="fr_inicio_prueba" autocomplete="off">
+                    </div>
+                </div>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label>Registro Patronal</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fl_registro_patronal" name="fl_registro_patronal">
+                            <label class="custom-control-label" for="fl_registro_patronal"></label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-3">
+                        <label>Edo Financiero</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fl_edo_financiero" name="fl_edo_financiero">
+                            <label class="custom-control-label" for="fl_edo_financiero"></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label>¿Es Asesoría?</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fl_es_asesoria" name="fl_es_asesoria">
+                            <label class="custom-control-label" for="fl_es_asesoria"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>¿Utiliza COI?</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fl_aplica_coi" name="fl_aplica_coi">
+                            <label class="custom-control-label" for="fl_aplica_coi"></label>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="form-row">
+
+
+                    <div class="form-group col-md-3">
+                        <label>Es Nómina</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fl_es_nomina" name="fl_es_nomina">
+                            <label class="custom-control-label" for="fl_es_nomina"></label>
+                        </div>
+                    </div>
+
+
+                </div>
+                <hr />
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="fr_direccion_fiscal">Dirección Fiscal</label>
+                        <textarea class="form-control text-uppercase" id="fr_direccion_fiscal" name="fr_direccion_fiscal" autocomplete="off" rows="3"></textarea>
+                    </div>
+                    
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="fr_fecha_vigencia">Clave CIEC</label>
+                        <input type="text" class="form-control" id="fr_clave_ciec" name="fr_clave_ciec" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="fr_fecha_vigencia">Fecha de Vigencia FIEL</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_vigencia" name="fr_fecha_vigencia" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="fr_fecha_cita">Fecha de Cita FIEL</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_cita" name="fr_fecha_cita" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="fr_fecha_representante">Fecha Vigencia FIEL Representante</label>
+                        <input type="text" class="form-control datepicker" id="fr_fecha_representante" name="fr_fecha_representante" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="fr_activo">Activo</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fr_id_estatus" name="fr_id_estatus">
+                            <label class="custom-control-label" for="fr_id_estatus"></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4 d-none">
+                        <label for="fr_contrasenia">Contraseña</label>
+                        <input type="password" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_contrasenia" name="fr_contrasenia">
+                    </div>
+                    <div class="form-group col-md-4 d-none">
+                        <label for="fr_contrasenia2">Confirmar contraseña</label>
+                        <input type="password" class="form-control" onkeypress="return validarAlfanumericosEspeciales(event);" id="fr_contrasenia2" name="fr_contrasenia2">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-group form col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal" id="mdlActividades">
+    <h3>Agregar Actividad</h3>
+    <form id="frmActividades">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_actividad">
+            </div>
+            <div class="form-group col-md-7">
+                <label>Actividad</label>
+                <input class="form-control" id="fr_actividad" name="fr_actividad" />
+            </div>
+            <div class="form-group col-md-3">
+                <label>Porcentaje %</label>
+                <input class="form-control" type="number" id="fr_porcentaje" name="fr_porcentaje" />
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Depositos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblActividades" class="cell-border table-striped" data-title-datatable="Actividades">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Actividad</td>
+                        <td>Porcentaje</td>
+                        <td>Fecha Creación</td>
+                        <td>Id actividad</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlActividad">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarActividad">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlActividad">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<div class="modal" id="mdlEstatus">
+    <h3>Agregar Estatus Cliente</h3>
+    <form id="frmEstatus">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_estatus">
+            </div>
+            <div class="form-group col-md-4">
+                <label>Estatus</label>
+                <select class="form-control" id="fr_estatus_cliente" name="fr_estatus_cliente">
+
+                    <optgroup label="Administración">
+                        <option value="Prospecto">Prospecto</option>
+                        <option value="Activo">Activar cliente</option>
+                        <option value="Activo">Reactivar cliente</option>
+                    </optgroup>
+
+                    <optgroup label="Suspensión">
+                        <option value="Suspensión de servicio">Suspensión de servicio</option>
+                        <option value="Suspensión de operaciones">Suspensión de operaciones</option>
+                        <option value="Cierre de empresa">Cierre de empresa</option>
+                        <option value="Término de relación con Castelán">Término de relación con Castelán</option>
+                    </optgroup>
+
+                    <optgroup label="El cliente no firmo por">
+                        
+                    </optgroup>
+                    
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Fecha</label>
+                <input class="form-control datepicker" id="fr_fecha_estatus_cliente" name="fr_fecha_estatus_cliente" />
+            </div>
+            <div class="form-group col-md-3">
+                <label>Observación</label>
+                <textarea class="form-control" id="fr_observacion_cliente" name="fr_observacion_cliente"></textarea>
+            </div>
+        </div>
+        <br />
+        @* Seccion para el datatable Estatus*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblEstatus" class="cell-border table-striped" data-title-datatable="Estatus">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Estatus</td>
+                        <td>Fecha</td>
+                        <td>Observación</td>
+                        <td>Id actividad</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlEstatus">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarEstatus">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlEstatus">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<form id="frmSolicitud" action="@Url.Action("ImpuestosCliente","Catalogos")" method="post" class="d-none">
+    <input type="hidden" id="frs_id_cliente" name="frs_id_cliente" value="">
+    <input type="hidden" id="frs_id_regimen" name="frs_id_regimen" value="">
+    <input type="hidden" id="frs_rfc" name="frs_rfc" value="">
+    <input type="hidden" id="frs_nombre_razon" name="frs_nombre_razon" value="">
+</form>
+
+<div class="modal" id="mdlServicios">
+    <h3>Agregar Servicio Adicional</h3>
+    <form id="frmServicios">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_servicio">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Servicio Adicional</label>
+                <select class="form-control" id="fr_servicio" name="fr_servicio">
+                    <option value="Elaboración de Contabilidad">Elaboración de Contabilidad</option>
+                    <option value="Actualización de Contabilidad">Actualización de Contabilidad</option>
+                    <option value="Presentacion de Declaracion en Ceros">Presentación de Declaración en Ceros</option>
+                    <option value="Asesoria Fiscal">Asesoria Fiscal</option>
+                    <option value="Defensa Fiscal">Defensa Fiscal</option>
+                    <option value="Estrategia Fiscal">Estrategia Fiscal</option>
+                    <option value="Elaboración de Nóminas">Elaboración de Nóminas</option>
+                    <option value="Análisis de Pensión">Análisis de Pensión</option>
+                    <option value="Servicio de SIROC">Servicio de SIROC</option>
+                    <option value="Devolución IVA">Devolución IVA</option>
+                    <option value="Renta Domicilio Fiscal">Renta Domicilio Fiscal</option>
+                    <option value="Gestión Trámites">Gestión Trámites</option>
+                    <option value="Reclutamiento y Selección de Personal">Reclutamiento y Selección de Personal</option>
+                    <option value="Servicio de Auditoria">Servicio de Auditoria</option>
+                    <option value="Presentación de la Declaración Anual de Sueldos y Salarios">Presentación de la Declaración Anual de Sueldos y Salarios</option>
+                    <option value="Regularización de 32 D">Regularización de 32 D</option>
+					 <option value="Servicio de Registro REPSE">Servicio de Registro REPSE</option>
+                    <option value="Otros">Otros</option>
+
+
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Encargado</label>
+                <input class="form-control" id="fr_encargado" name="fr_encargado" />
+            </div>
+            <div class="form-group col-md-4">
+                <label>Área</label>
+                <select class="form-control" id="fr_id_linea" name="fr_id_linea">
+                    <option value="1">Linea de Producción 1</option>
+                    <option value="2">Linea de Producción 2</option>
+                    <option value="3">Linea de Producción 3</option>
+                    <option value="4">Linea de Producción 4</option>
+                    <option value="5">Linea de Producción 5</option>
+                    <option value="6">Linea de Producción 6</option>
+                    <option value="7">Nóminas</option>
+                    <option value="8">Devolución de IVA</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="fr_inicio_servicio">Fecha inicio servicio: </label>
+                <input type="text" class="form-control datepicker" id="fr_inicio_servicio" name="fr_inicio_servicio" autocomplete="off">
+            </div>
+            <div class="form-group col-md-3">
+                <label>Grupo empresarial</label>
+                <select class="form-control" id="fr_grupo_empresarial" name="fr_grupo_empresarial"></select>
+            </div>
+        </div>
+        <br />
+        @* Seccion para el datatable Depositos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblServicios" class="cell-border table-striped" data-title-datatable="Servicios">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Servicio Adicional</td>
+                        <td>Encargado</td>
+                        <td>Área</td>
+                        <td>Inicio Servicio</td>
+                        <td>Grupo Empresarial</td>
+                        <td>Grupo Empresarial</td>
+                        <td>Fecha Creación</td>
+                        <td>Id servicio</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlServicio">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarServicio">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlServicio">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="modal" id="mdlContactos">
+    <h3>Agregar Contactos</h3>
+    <form id="frmContactos">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_contacto">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Nombre Completo</label>
+                <input class="form-control" id="fr_nombre_completo_contacto" name="fr_nombre_completo_contacto" />
+            </div>
+            <div class="form-group col-md-4">
+                <label>Tipo</label>
+                <input class="form-control" id="fr_tipo_contacto" name="fr_tipo_contacto" />
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-6">
+                <label>Correo</label>
+                <input class="form-control" id="fr_correo_contacto" name="fr_correo_contacto" />
+            </div>
+            <div class="form-group col-md-4">
+                <label>Teléfono</label>
+                <input class="form-control" id="fr_telefono_contacto" name="fr_telefono_contacto" />
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Depositos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblContactos" class="cell-border table-striped" data-title-datatable="Contactos">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Nombre completo</td>
+                        <td>Tipo contacto</td>
+                        <td>Teléfono</td>
+                        <td>Correo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id contacto</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlContactos">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarContactos">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlContactos">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="modal" id="mdlFichaTecnica">
+    <h3>Ficha Técnica</h3>
+    <form id="frmFichaTecnica">
+        <div class="px-5 py-2">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Instrucciones! </h4>
+                <p>Para generar la ficha técnica es necesario que revises los campos de cada uno de los apartados [Generales, Representante / Recursos, etc]</p>
+                <hr>
+                <p class="mb-0">Una vez confirmados los datos dar click en Guardar, a lo cual se guardara la información para su posterioridad.</p>
+                <p class="mb-0">Para generar la Ficha Técnica dar click en Generar Plantilla.</p>
+            </div>
+        </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-home" aria-selected="true">Generales</a>
+                <a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-profile" aria-selected="false">Recursos</a>
+                <a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-contact" aria-selected="false">Estructura</a>
+                <a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-contact" aria-selected="false">Otros</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active p-4" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Fecha inicio razón social</span>
+                        <input disabled class="form-control" id="fr_ficha_razon" name="fr_ficha_razon" autocomplete="off" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Registro patronal</span>
+                        <input disabled class="form-control" id="fr_ficha_patronal" name="fr_ficha_patronal" autocomplete="off" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Representante legal</span>
+                        <input disabled class="form-control" id="fr_ficha_representante" name="fr_ficha_representante" autocomplete="off" rows="5" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Matriz</span>
+                        <textarea class="form-control" id="fr_ficha_domicilio" name="fr_ficha_domicilio" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Sucursales</span>
+                        <textarea class="form-control" id="fr_ficha_sucursales" name="fr_ficha_sucursales" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Actividad Principal</span>
+                        <textarea disabled class="form-control" id="fr_ficha_actividad" name="fr_ficha_actividad" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Servicios</span>
+                        <textarea disabled class="form-control" id="fr_ficha_servicios" name="fr_ficha_servicios" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Proveedores</span>
+                        <textarea disabled class="form-control" id="fr_ficha_proveedores" name="fr_ficha_proveedores" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Clientes</span>
+                        <textarea disabled class="form-control" id="fr_ficha_clientes" name="fr_ficha_clientes" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade p-4" id="nav-2" role="tabpanel" aria-labelledby="nav-1-tab">
+                <div class="form-row">
+
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Objetivo social</span>
+                        <textarea class="form-control" id="fr_ficha_objetivo" name="fr_ficha_objetivo" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Capital inicial</span>
+                        <textarea class="form-control" id="fr_ficha_capital" name="fr_ficha_capital" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Recurso humano</span>
+                        <textarea class="form-control" id="fr_ficha_humano" name="fr_ficha_humano" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Recurso inmobiliario</span>
+                        <textarea class="form-control" id="fr_ficha_inmobiliario" name="fr_ficha_inmobiliario" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Recurso equipo</span>
+                        <textarea class="form-control" id="fr_ficha_equipo" name="fr_ficha_equipo" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade p-4" id="nav-3" role="tabpanel" aria-labelledby="nav-1-tab">
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Estructura de costos</span>
+                        <textarea class="form-control" id="fr_ficha_costos" name="fr_ficha_costos" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Canales de distribución</span>
+                        <textarea class="form-control" id="fr_ficha_canales" name="fr_ficha_canales" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Grupo empresarial</span>
+                        <textarea disabled class="form-control" id="fr_ficha_grupo" name="fr_ficha_grupo" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Recomendación cliente</span>
+                        <textarea class="form-control" id="fr_ficha_recomendacion" name="fr_ficha_recomendacion" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Alianzas estrategicas</span>
+                        <textarea class="form-control" id="fr_ficha_alianzas" name="fr_ficha_alianzas" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade p-4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Observaciones</span>
+                        <textarea class="form-control" id="fr_ficha_observaciones" name="fr_ficha_observaciones" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Prestamos</span>
+                        <textarea class="form-control" id="fr_ficha_prestamos" name="fr_ficha_prestamos" autocomplete="off" rows="5"></textarea>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Políticas contables</span>
+                        <textarea class="form-control" id="fr_ficha_politicas" name="fr_ficha_politicas" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <span class="badge badge-info">Contratos</span>
+                        <textarea class="form-control" id="fr_ficha_contratos" name="fr_ficha_contratos" autocomplete="off" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12 d-flex justify-content-around pb-3">
+            <button type="button" class="btn btn-style btn-ok px-3" id="btnAceptarMdlFichaTecnica">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarEstatus">Guardar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-success" id="btnGenerarMdlFichaTecnica">
+                <i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp;&nbsp;Ficha Técnica&nbsp;&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger" id="btnCloseMdlFichaTecnica">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar ventana&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="modal" id="mdlFechaServicio">
+    <h3>Modificar fecha</h3>
+    <form id="frmFechaServicio">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="fr_inicio_servicio_up">Fecha inicio servicio: </label>
+                <input type="text" class="form-control datepicker" id="fr_inicio_servicio_up" name="fr_inicio_servicio_up" autocomplete="off">
+            </div>
+            <div class="form-group col-md-12">
+                <label>Grupo empresarial</label>
+                <select class="form-control" id="fr_grupo_empresarial_up" name="fr_grupo_empresarial_up">
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlFechaServicio">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="">Actualizar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlFechaServicio">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
+</div>

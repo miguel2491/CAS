@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "FormatosPlantillas";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Formatos y Plantillas</h2>
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    var url_Catalogos_GetFormatos = '@Url.Action("GetFormatos", "Catalogos")';
+    
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+
+    var url_Catalogos_AddFormato = '@Url.Action("AddFormato", "Catalogos")';
+    var url_Catalogos_DeleteFormato = '@Url.Action("EliminarFormato", "Catalogos")';
+
+
+   
+</script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/Catalogos/Formatos.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/FormatosModal.js"></script>
+
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblFormatos" class="cell-border table-striped" data-title-datatable="Lista de Formatos y Plantillas">
+        <thead>
+            <tr>
+                <td>Acciones</td>
+                <td>Nombre archivo</td> 
+                <td>Nombre</td>
+                <td>Función</td> @*Funcion*@
+                <td>Área</td>
+
+                <td>Fecha creación</td>
+                <td>Url</td>
+                <td>Id formato</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlClientes">
+    <h3><span id="titleModal">Agregar</span> Formato</h3>
+
+    <ul class="nav nav-tabs" id="tabModal" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="form-tab" href="#formTab" aria-controls="formTab" role="tab" data-toggle="tab" aria-selected="true">Formulario</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="modalTabContent">
+        <div class="tab-pane fade show active" id="formTab" aria-labelledby="form-tab" role="tabpanel">
+            <form action="/" method="post" id="frmPrincipal">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <label>Nombre archivo:</label>
+                        <div class="input-group mb-3">
+                            <input class="form-control" style="width:100%;" name="fr_nombre" id="fr_nombre" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="fr_area">Área</label>
+                        <select class="form-control" rows="3" id="fr_area" name="fr_area" autocomplete="off">
+                            <option value="1">Linea de Producción 1</option>
+                            <option value="2">Linea de Producción 2</option>
+                            <option value="3">Linea de Producción 3</option>
+                            <option value="4">Linea de Producción 4</option>
+                            <option value="5">Linea de Producción 5</option>
+                            <option value="6">Linea de Producción 6</option>
+                            <option value="7">Nóminas</option>
+                            <option value="8">Devolución de IVA</option>
+                            <option value="9">General</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+
+                    </div>
+                    <div class="col-md-5">
+                        <label>Cargar archivo:</label>
+                        <div class="input-group mb-3">
+                            <input class="form-control" style="width:100%;" type="file" name="fr_urlArchivo" id="fr_urlArchivo" dirname="fr_urlArchivo" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="fr_descripcion">Función del archivo</label>
+                        <textarea type="text" class="form-control text-uppercase" rows="3" id="fr_descripcion" name="fr_descripcion" autocomplete="off"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-group form col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+
+    </div>
+</div>

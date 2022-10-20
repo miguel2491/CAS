@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/Css/Externo/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/bootstrap-toggle.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/fixedColumns.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/jquery-confirm.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/jquery.modal.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Personal/Inicio/Menu.css" rel="stylesheet" />
+    <link href="~/Content/Css/Personal/Utils.css" rel="stylesheet" />
+
+    @* URLS *@
+    <script>
+        var url_Inicio_GetUsuario = '@Url.Action("GetUsuario", "Inicio")';
+        var url_Inicio_GetMenus = '@Url.Action("GetMenus", "Inicio")';
+        var tempSplitUrl = url_Inicio_GetUsuario.split('/');
+        var rootPath = "";
+
+        //! VERIFICAR SI LA RUTA CONTIENE UNA SUBRAMA PARA EL ACCESO A LOS CONTROLERS (IIS POSITION PATH)
+        if (tempSplitUrl.length > 3)
+            rootPath = "/" + tempSplitUrl[1];
+
+    </script>
+
+    <script src="~/Content/Js/Externo/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/Js/Externo/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Content/Js/Externo/bootstrap.min.js"></script>
+    <script src="~/Content/Js/Externo/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Js/Externo/bootstrap-toggle.js"></script>
+    <script src="~/Content/Js/Externo/datatables.min.js"></script>
+    @*<script src="~/Content/Js/Externo/dataTables.select.js"></script>*@
+    <script src="~/Content/Js/Externo/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/Js/Externo/fixedColumns.bootstrap4.min.js"></script>
+    <script src="~/Content/Js/Externo/jszip.js"></script>
+    <script src="~/Content/Js/Externo/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/Js/Externo/jquery-confirm.min.js"></script>
+    <script src="~/Content/Js/Externo/jquery.modal.min.js"></script>
+    <script src="~/Content/Js/Externo/jquery.validate.min.js"></script>
+    <script src="~/Content/Js/Externo/additional-methods.min.js"></script>
+    <script src="~/Content/Js/Externo/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Content/Js/Personal/Utils/Utils.js?vs_1.1"></script>
+    <script src="~/Content/Js/Personal/Inicio/Menu.js"></script>
+    <script src="~/Content/Js/Externo/decimal.js"></script>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Master</title>
+
+</head>
+<body>
+    <!-- page-wrapper -->
+    <div class="page-wrapper chiller-theme toggled">
+        <!-- menu -->
+        @Html.Partial("~/Views/_Layout/Menu.cshtml")
+        <!-- menu -->
+        <!-- page-content -->
+        <main class="page-content">
+
+            <div class="contenedor">
+                <div id="menuActions">
+                    <div id="actionSidebar">
+                        <div id="close-sidebar">
+                            <i id="show-sidebar" class="fa fa-bars active"></i>
+                        </div>
+                    </div>
+                    <div id="actionView"></div>
+                </div>
+                <div class="rendeBody">
+                    @RenderBody()
+                </div>
+            </div>
+
+            <div class="modal" id="mdlColumns">
+                <h3>Mostrar columnas</h3>
+                <div id="contentColumns">
+
+                </div>
+                <div class="form-group col-md-12 d-flex justify-content-around btns">
+                    <button type="button" class="btn btn-sm btn-style btn-ok" id="btnModalColsAceptar">
+                        <i class="fa fa-check"></i>&nbsp;&nbsp;Aceptar&nbsp;&nbsp;
+                    </button>
+                    <button type="button" class="btn btn-sm btn-style btn-danger" id="btnModalColsCerrar">
+                        <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+                    </button>
+                    <button type="button" class="btn btn-sm btn-style btn-info" id="btnModalColsRefresh">
+                        <i class="fa fa-refresh"></i>&nbsp;&nbsp;Reiniciar&nbsp;&nbsp;
+                    </button>
+                </div>
+            </div>
+        </main>
+        <!-- page-content -->
+
+    </div>
+    <!-- page-wrapper -->
+</body>
+</html>

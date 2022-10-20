@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ExpedienteFiscalSueldos";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script>
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetReporteExpedienteFiscalSueldos = '@Url.Action("GetReporteExpedienteFiscalSueldos", "ReportesExpediente")';
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "ReportesExpediente")';
+</script>
+<script src="~/Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalSueldos.js?vs_1.0"></script>
+<h2>Reporte Expediente Digital Sueldos</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <table class="cell-border table-striped " id="tblReporte" data-title-datatable="ReporteExpedienteDigitalSueldos">
+                <thead>
+                    <tr>
+                        <td>RFC</td>
+                        <td>Razón Social</td>
+                        <td>Linea</td>
+                        <td>Encargado</td>
+                        <td>INE</td>
+                        <td>Acta de nacimiento</td>
+                        <td>CURP</td>
+                        <td>Acuse de inscripción en el SAT</td>
+                        <td>Constancia de situación fiscal</td>
+                        <td>Solicitud de certificado de e.Firma</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+

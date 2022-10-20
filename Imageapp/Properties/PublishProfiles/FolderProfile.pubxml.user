@@ -1,0 +1,1729 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Proyectos\Cas\Imageapp\bin\Release\Publish</_PublishTargetUrl>
+    <History>True|2022-05-09T18:19:48.4770765Z;True|2022-04-11T13:20:00.4345097-05:00;True|2022-04-11T13:10:02.5265225-05:00;True|2021-11-09T13:17:27.6580845-06:00;True|2021-10-12T11:35:36.5118134-05:00;True|2021-10-11T14:29:22.5386715-05:00;True|2021-06-21T18:15:26.8100717-05:00;True|2021-06-21T18:06:50.9629727-05:00;True|2021-06-21T17:44:13.5704161-05:00;True|2021-06-17T12:45:30.8155040-05:00;True|2021-06-16T17:42:20.0626665-05:00;True|2021-06-16T16:02:53.7643232-05:00;True|2021-06-15T18:24:10.7466305-05:00;True|2021-06-15T00:01:51.4472963-05:00;True|2021-06-14T23:48:04.5179412-05:00;True|2021-06-14T23:30:48.0726395-05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>05/25/2022 10:04:35</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>05/25/2022 10:04:35</publishTime>
+    </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>02/21/2020 16:24:54</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>10/23/2017 13:15:18</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>10/23/2017 13:15:20</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>05/30/2018 20:27:38</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Helpers.resources.dll">
+      <publishTime>02/01/2018 12:21:06</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Mvc.resources.dll">
+      <publishTime>02/01/2018 12:16:42</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Razor.resources.dll">
+      <publishTime>02/01/2018 12:17:04</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Webpages.Deployment.resources.dll">
+      <publishTime>02/01/2018 12:21:06</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Webpages.Razor.resources.dll">
+      <publishTime>02/01/2018 12:21:06</publishTime>
+    </File>
+    <File Include="bin/es/System.Web.Webpages.resources.dll">
+      <publishTime>02/01/2018 12:21:06</publishTime>
+    </File>
+    <File Include="bin/Excel.dll">
+      <publishTime>05/07/2014 09:57:36</publishTime>
+    </File>
+    <File Include="bin/Excel.pdb">
+      <publishTime>05/07/2014 09:57:36</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>08/09/2019 08:40:22</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.pdb">
+      <publishTime>08/09/2019 08:40:22</publishTime>
+    </File>
+    <File Include="bin/Imageapp.dll">
+      <publishTime>05/25/2022 10:04:21</publishTime>
+    </File>
+    <File Include="bin/Imageapp.pdb">
+      <publishTime>05/25/2022 10:04:21</publishTime>
+    </File>
+    <File Include="bin/itextsharp.dll">
+      <publishTime>08/27/2020 11:20:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/25/2012 11:48:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>08/03/2014 20:33:56</publishTime>
+    </File>
+    <File Include="bin/QRCoder.dll">
+      <publishTime>04/08/2020 04:59:20</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>05/24/2018 13:38:22</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/28/2015 06:02:42</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>02/01/2018 14:20:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/28/2015 06:02:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/28/2015 06:03:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>02/01/2018 14:16:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>02/01/2018 14:16:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>02/01/2018 14:20:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>02/01/2018 14:20:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>02/01/2018 14:20:56</publishTime>
+    </File>
+    <File Include="Connected Services/wsSATValidacionCFDI/Imageapp.wsSATValidacionCFDI.Acuse.datasource">
+      <publishTime>12/18/2020 14:15:30</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/bootstrap-toggle.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/bootstrap.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/buttons.bootstrap4.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/dataTables.bootstrap4.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/datatables.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/fixedColumns.bootstrap4.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/font-awesome.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/jquery-confirm.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/jquery-ui-timepicker-addon.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/jquery.modal.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_444444_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_555555_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_777620_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_777777_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_cc0000_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/images/ui-icons_ffffff_256x240.png">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Externo/themes/base/jquery-ui.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/fonts/fontawesome-webfont.eot">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/fonts/fontawesome-webfont.svg">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/fonts/fontawesome-webfont.ttf">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/fonts/fontawesome-webfont.woff">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/fonts/fontawesome-webfont.woff2">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/fonts/FontAwesome.otf">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Inicio/Login.css">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Inicio/Menu.css">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Inicio/MenuEmpresarial.css">
+      <publishTime>08/24/2021 16:06:45</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Solicitudes/CitasCalendario.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Utils.css">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Visor/Visor.css">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Css/Personal/Visor/VisorMovil.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/additional-methods.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/bootstrap-toggle.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/bootstrap.bundle.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/bootstrap.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/buttons.bootstrap4.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/about.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/charLS-FixedMemory-browser.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstone.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstoneDemo.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstoneMath.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstoneTools.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstoneWADOImageLoader.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstoneWADOImageLoaderCodecs.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/cornerstoneWADOImageLoaderWebWorker.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/dialogPolyfill.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/dicomParser.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/disableAllTools.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/displayThumbnail.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/forEachViewport.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/hammer.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/imageViewer.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/initializeWebWorkers.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/jpeg.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/jpegLossless.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/loadStudy.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/loadTemplate.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/openJPEG-FixedMemory.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/pako.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/setupButtons.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/setupViewport.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/setupViewportOverlays.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Cornerstone/uids.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/cornerstoneMath.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/disableAllTools.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/hammerjs%402.0.8.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/loadStudy.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/setupButtons.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/setupViewport.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/CornerstoneMovil/setupViewportOverlays.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/dataTables.bootstrap4.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/datatables.min.js">
+      <publishTime>12/17/2020 17:52:48</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/dataTables.select.js">
+      <publishTime>08/25/2020 11:56:48</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/decimal.js">
+      <publishTime>08/25/2020 14:53:40</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Docx/Convert.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Docx/docxtemplater-latest.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Docx/FileSaver.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Docx/jszip-utils.min.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/Docx/jszip.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/jquery.tinymce.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/langs/readme.md">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/license.txt">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/advlist/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/advlist/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/anchor/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/anchor/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/autolink/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/autolink/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/autoresize/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/autoresize/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/autosave/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/autosave/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/bbcode/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/bbcode/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/charmap/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/charmap/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/code/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/code/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/codesample/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/codesample/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/colorpicker/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/colorpicker/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/contextmenu/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/contextmenu/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/directionality/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/directionality/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/emoticons/js/emojis.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/emoticons/js/emojis.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/emoticons/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/emoticons/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/fullpage/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/fullpage/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/fullscreen/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/fullscreen/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/help/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/help/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/hr/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/hr/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/image/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/image/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/imagetools/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/imagetools/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/importcss/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/importcss/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/insertdatetime/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/insertdatetime/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/legacyoutput/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/legacyoutput/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/link/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/link/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/lists/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/lists/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/media/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/media/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/nonbreaking/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/nonbreaking/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/noneditable/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/noneditable/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/pagebreak/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/pagebreak/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/paste/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/paste/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/preview/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/preview/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/print/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/print/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/quickbars/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/quickbars/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/save/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/save/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/searchreplace/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/searchreplace/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/spellchecker/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/spellchecker/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/tabfocus/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/tabfocus/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/table/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/table/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/template/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/template/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/textcolor/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/textcolor/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/textpattern/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/textpattern/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/toc/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/toc/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/visualblocks/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/visualblocks/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/visualchars/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/visualchars/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/wordcount/plugin.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/plugins/wordcount/plugin.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/dark/content.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/dark/content.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/dark/content.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/default/content.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/default/content.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/default/content.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/document/content.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/document/content.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/document/content.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/writer/content.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/writer/content.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/content/writer/content.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.inline.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.inline.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.inline.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.mobile.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.mobile.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/content.mobile.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/fonts/tinymce-mobile.woff">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/skin.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/skin.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/skin.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/skin.mobile.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/skin.mobile.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide-dark/skin.mobile.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.inline.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.inline.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.inline.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.mobile.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.mobile.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/content.mobile.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/fonts/tinymce-mobile.woff">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/skin.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/skin.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/skin.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/skin.mobile.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/skin.mobile.min.css">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/skins/ui/oxide/skin.mobile.min.css.map">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/themes/mobile/theme.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/themes/mobile/theme.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/themes/silver/theme.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/themes/silver/theme.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/tinymce.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/EditorTexto/tinymce.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/fixedColumns.bootstrap4.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/html2pdf.bundle.min.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery-3.3.1.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery-confirm.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery-ui-1.12.1.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery-ui-timepicker-addon.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery.modal.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery.validate.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jquery2-1-4.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jszip-utils.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/jszip.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/moment.min.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Externo/popper.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Acciones/Acciones.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Acciones/AccionesModal.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Configuracion/Configuracion.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Configuracion/ConfiguracionModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/EquipoMedico/EquipoMedico.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/EquipoMedico/EquipoMedicoModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Estudios/Estudios.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Estudios/EstudiosModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Hospitales/Hospitales.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Hospitales/HospitalesModal.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InsumoCuracion/InsumoCuracion.js">
+      <publishTime>08/10/2020 14:32:52</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InsumoCuracion/InsumoCuracionModal.js">
+      <publishTime>08/10/2020 14:32:52</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InsumoCuracion/InsumoCuracionModalPrecio.js">
+      <publishTime>08/10/2020 14:32:52</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InsumoMedicamentos/InsumoMedicamentos.js">
+      <publishTime>08/10/2020 14:32:52</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InsumoMedicamentos/InsumoMedicamentosModal.js">
+      <publishTime>08/10/2020 14:32:52</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InsumoMedicamentos/InsumoMedicamentosModalPrecios.js">
+      <publishTime>08/10/2020 14:32:52</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/InterfazIntegracion/InterfazIntegracion.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Medicos/Medicos.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Medicos/MedicosModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Menus/Menus.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Menus/MenusModal.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Movimientos/Movimientos.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Movimientos/movimientosModal.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Pacientes/Pacientes.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Pacientes/PacientesModal.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Pacientes/PacientesRepositorio.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Roles/RlAcciones.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Roles/Roles.js">
+      <publishTime>08/11/2020 14:43:08</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Roles/RolesModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Usuarios/Usuarios.js">
+      <publishTime>08/17/2020 16:46:00</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Usuarios/UsuariosModal.js">
+      <publishTime>08/18/2020 13:48:44</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Vistas/Vistas.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Administrador/Vistas/VistasModal.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Calendario/ActividadesCalendario.js">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Calendario/ActividadesCalendarioModal.js">
+      <publishTime>05/17/2021 12:48:54</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Calendario/ActividadesProduccion.js">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Calendario/ActividadesProduccionModal.js">
+      <publishTime>05/17/2021 14:14:36</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Calendario/CalendarioActividades.js">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Calendario/CalendarioLP1.js">
+      <publishTime>02/09/2021 14:49:09</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ActividadesModal.js">
+      <publishTime>04/30/2021 09:58:05</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Areas/Areas.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Areas/AreasModal.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ClienteLinea.js">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Clientes.js">
+      <publishTime>01/21/2022 14:44:30</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ClientesContra.js">
+      <publishTime>05/04/2021 16:59:16</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ClienteServicioFecha.js">
+      <publishTime>07/08/2021 18:15:33</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ClientesFichaTecnica.js">
+      <publishTime>09/29/2021 11:29:41</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ClientesModal.js">
+      <publishTime>04/25/2022 12:12:07</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ContactosModal.js">
+      <publishTime>04/30/2021 09:57:47</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/EstatusModal.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Formatos.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/FormatosModal.js">
+      <publishTime>08/27/2021 17:55:38</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Servicios/Servicios.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Servicios/ServiciosModal.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/ServiciosAdicionalesModal.js">
+      <publishTime>01/21/2022 14:45:05</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Catalogos/Tramites.js">
+      <publishTime>10/07/2021 13:11:04</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteActivoFijo.js">
+      <publishTime>02/26/2021 11:57:17</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteDepositos.js">
+      <publishTime>08/27/2020 14:05:04</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteEntregables.js">
+      <publishTime>05/17/2021 11:04:44</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteEstadoCuenta.js">
+      <publishTime>09/03/2021 15:31:23</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteNotificaciones.js">
+      <publishTime>05/09/2022 13:27:47</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteOtrosGastos.js">
+      <publishTime>02/26/2021 11:18:54</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteOtrosServicios.js">
+      <publishTime>05/17/2021 11:31:09</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClientePagos.js">
+      <publishTime>08/27/2020 14:05:18</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClientePagosISR.js">
+      <publishTime>09/01/2020 11:14:56</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteRepositorio.js">
+      <publishTime>04/30/2021 09:54:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteRepositorioNominas.js">
+      <publishTime>05/24/2021 14:01:17</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ClienteRIF.js">
+      <publishTime>03/17/2021 11:37:07</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/EstatusXMLModal.js">
+      <publishTime>03/03/2021 11:07:58</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/FechaPagoModal.js">
+      <publishTime>08/28/2020 12:46:46</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/ClienteRIF/ValidarSAT.js">
+      <publishTime>12/03/2020 14:18:27</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/Clientes.js">
+      <publishTime>04/11/2022 13:04:19</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/ClientesEdo.js">
+      <publishTime>04/11/2022 13:04:57</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/ClientesFIEL.js">
+      <publishTime>05/04/2021 16:28:06</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/ConsultaRFC.js">
+      <publishTime>05/20/2022 12:22:07</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/EnvioCorreoModal.js">
+      <publishTime>04/11/2022 13:22:36</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/MisClientesModal.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/MisProveedores.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Consultas/XMLCancelados.js">
+      <publishTime>12/23/2020 18:00:54</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Clientes.js">
+      <publishTime>08/27/2021 17:55:38</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Documentos.js">
+      <publishTime>06/16/2021 17:40:31</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/DocumentosNomina.js">
+      <publishTime>02/01/2022 17:06:03</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/EdoCuenta.js">
+      <publishTime>09/03/2021 15:31:23</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Entregables.js">
+      <publishTime>06/17/2021 10:09:14</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Gastos.js">
+      <publishTime>10/11/2021 14:40:15</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Ingresos.js">
+      <publishTime>10/11/2021 14:05:47</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Inicio.js">
+      <publishTime>04/08/2022 13:13:59</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/InicioERP.js">
+      <publishTime>08/20/2021 17:38:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Notificaciones.js">
+      <publishTime>05/10/2022 11:18:36</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Proveedores.js">
+      <publishTime>08/27/2021 17:55:38</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Reportes.js">
+      <publishTime>08/30/2021 11:05:48</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/Tramites.js">
+      <publishTime>10/19/2021 13:47:05</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/CRM/TramitesModal.js">
+      <publishTime>09/29/2021 23:05:59</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Inicio/Login.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Inicio/Menu.js">
+      <publishTime>10/12/2021 11:34:37</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Dashboard/Chart.min.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Dashboard/Dashboard.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/EntregablesCliente/ClienteEntregables.js">
+      <publishTime>08/23/2021 13:42:45</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/EntregablesCliente/ListaClientes.js">
+      <publishTime>08/23/2021 13:37:45</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesArrendamiento.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesAsesoria.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesCOI.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesEDO.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesHonorarios.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesNominas.js">
+      <publishTime>06/22/2021 18:33:22</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesPFAE.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesPM.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesRIF.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Entregables/ReporteEntregablesSueldos.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalArrendamiento.js">
+      <publishTime>03/10/2022 10:33:56</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalHonorarios.js">
+      <publishTime>03/10/2022 10:34:06</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalPFAE.js">
+      <publishTime>03/10/2022 10:34:15</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalPM.js">
+      <publishTime>03/10/2022 10:34:25</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalRIF.js">
+      <publishTime>03/10/2022 10:34:38</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReporteExpedienteFiscalSueldos.js">
+      <publishTime>03/10/2022 10:34:48</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Expedientes/ReportePropuestaEconomica.js">
+      <publishTime>04/20/2022 17:52:46</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Generales/EstadoCuenta/EstadosCuenta.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Generales/ReporteConcentradoAnual.js">
+      <publishTime>10/27/2021 17:06:26</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Generales/ReporteConcentradoMensual.js">
+      <publishTime>10/27/2021 17:06:50</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/GeneralEstudios/Estudios.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Reportes/Recaudacion/Recaudacion.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Asignacion/Asignacion.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Asignacion/AsignacionModalAsignacion.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Citas/Citas.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Citas/CitasCalendario.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Citas/CitasModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/CitaUrgente/CitaUrgente.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/CitaUrgente/CitaUrgentePaciente.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Radiologo/Radiologo.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Radiologo/RadiologoImagenes.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/Radiologo/RadiologoIntepretaciones.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/SolicitudConsultaGeneral/SolicitudConsultaGeneral.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/SolicitudEstudios/SolicitudEstudios.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/SolicitudEstudios/SolicitudEstudiosModal.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/SolicitudEstudios/SolicitudEstudiosModalAsignacion.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Solicitudes/SolicitudEstudios/SolicitudEstudiosModalCostos.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Utils/ClsColumns.js">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Utils/Utils.js">
+      <publishTime>04/11/2022 13:28:30</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/Convert.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/Visor.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/VisorHelper.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/VisorImagenes.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/VisorIntepretacion.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/VisorMovil.js">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/VisorMovilHelper.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Content/Js/Personal/Visor/VisorTblInterpretaciones.js">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Datos/ModeloEntity.edmx.diagram">
+      <publishTime>04/08/2022 17:05:46</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/1101edc0-ad31-4411-afcc-2e7b0827a775.pdf">
+      <publishTime>05/17/2021 15:13:34</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/13350802-3b67-4e32-8f55-7f83ea892b0f.pdf">
+      <publishTime>05/17/2021 15:15:11</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/399547a5-5544-40cd-85de-277765afaa44.pdf">
+      <publishTime>05/17/2021 15:16:39</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/5049c9b9-f2c5-4012-9351-52f531d92a59.pdf">
+      <publishTime>05/17/2021 15:09:48</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/545a3507-53e1-4c50-8f19-a9620dd2a7c6.pdf">
+      <publishTime>05/17/2021 15:08:09</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/5a8a2676-bf2a-4ccd-94ac-7dc7781ca77a.pdf">
+      <publishTime>05/17/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/7648e0d7-be54-4695-9767-c6f03332803b.pdf">
+      <publishTime>05/17/2021 15:19:33</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/a1c07825-e662-4f76-88f4-2a694fb51040.pdf">
+      <publishTime>05/17/2021 15:12:13</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/cbb6e655-f1f3-4f61-8357-f4e94af916bd.pdf">
+      <publishTime>05/17/2021 15:12:06</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/2/dbc165fa-e7b1-417a-98a5-489bc39e1cf0.pdf">
+      <publishTime>05/17/2021 15:14:20</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/2a73bd91-6d15-40fb-bc58-440f4ab3d3df.pdf">
+      <publishTime>05/24/2021 14:24:35</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/6f74d000-982a-4c04-b131-603ab5489a44.pdf">
+      <publishTime>05/24/2021 14:24:44</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/707795c8-5246-4605-b725-89ab11e94c39.pdf">
+      <publishTime>05/24/2021 14:19:40</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/a375bd02-966f-4572-9bb3-62897ee702d7.pdf">
+      <publishTime>05/24/2021 14:24:22</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/b3af1705-2314-4920-b2e5-ca9e984ff02c.pdf">
+      <publishTime>05/24/2021 14:22:19</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/b4b776f2-0140-471d-99d7-2748d017668f.pdf">
+      <publishTime>06/16/2021 17:00:48</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/b5c91083-863d-46ff-80d0-318134e4670e.pdf">
+      <publishTime>05/24/2021 14:24:39</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/bb6b6610-124f-40f0-8f84-41f94ec1a5f6.pdf">
+      <publishTime>05/24/2021 14:22:24</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/ce04661f-a83c-4f62-a84b-0e85c68c833d.pdf">
+      <publishTime>06/16/2021 17:00:21</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/dda85e00-636a-4b6b-9653-8f83f6fd50c0.pdf">
+      <publishTime>06/16/2021 17:08:31</publishTime>
+    </File>
+    <File Include="Documentos/EstadoCuenta/MEAX871031JG8/e68b02cf-87c6-48f7-83f4-774e622e19ac.pdf">
+      <publishTime>05/24/2021 14:24:46</publishTime>
+    </File>
+    <File Include="Documentos/FichaTecnica/OTROS.docx">
+      <publishTime>09/29/2021 11:20:34</publishTime>
+    </File>
+    <File Include="Documentos/FichaTecnica/PM.docx">
+      <publishTime>09/29/2021 11:20:34</publishTime>
+    </File>
+    <File Include="Documentos/FichaTecnica/RIF.docx">
+      <publishTime>09/29/2021 11:20:34</publishTime>
+    </File>
+    <File Include="Documentos/Plantillas/AVISO_DE_PRIVACIDAD_LUCA_PACIOLI.pdf">
+      <publishTime>08/20/2021 17:38:37</publishTime>
+    </File>
+    <File Include="Documentos/Plantillas/Control_de_Bancos.xlsx">
+      <publishTime>09/03/2021 15:31:23</publishTime>
+    </File>
+    <File Include="Documentos/Plantillas/FichaTecnica.docx">
+      <publishTime>07/08/2021 18:15:34</publishTime>
+    </File>
+    <File Include="Documentos/Tramites/1.docx">
+      <publishTime>10/07/2021 13:20:46</publishTime>
+    </File>
+    <File Include="Imagenes/Blog/AR.jpg">
+      <publishTime>08/20/2021 17:38:38</publishTime>
+    </File>
+    <File Include="Imagenes/Blog/DP.jpg">
+      <publishTime>08/20/2021 17:38:21</publishTime>
+    </File>
+    <File Include="Imagenes/Blog/PM.JPG">
+      <publishTime>08/20/2021 17:38:38</publishTime>
+    </File>
+    <File Include="Imagenes/Blog/RF.jpg">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Imagenes/Blog/SS.jpg">
+      <publishTime>08/20/2021 17:38:38</publishTime>
+    </File>
+    <File Include="Imagenes/cons.png">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Imagenes/fondo.png">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Imagenes/logo.jpg">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Imagenes/logo.png">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Imagenes/logo3.png">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Imagenes/logo3_1.png">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Imagenes/LOGOin.png">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Imagenes/LOGOLP.png">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Imagenes/LOGOS.png">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Imagenes/pie.jpg">
+      <publishTime>03/17/2021 13:12:07</publishTime>
+    </File>
+    <File Include="Imagenes/textura.png">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Imagenes/user.jpg">
+      <publishTime>10/26/2020 17:00:29</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>05/25/2022 10:04:24</publishTime>
+    </File>
+    <File Include="Views/Administrador/Acciones.cshtml">
+      <publishTime>08/12/2020 14:40:38</publishTime>
+    </File>
+    <File Include="Views/Administrador/InicioForo.cshtml">
+      <publishTime>08/20/2021 17:38:39</publishTime>
+    </File>
+    <File Include="Views/Administrador/Menus.cshtml">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Views/Administrador/Roles.cshtml">
+      <publishTime>08/10/2020 11:54:20</publishTime>
+    </File>
+    <File Include="Views/Administrador/Usuarios.cshtml">
+      <publishTime>08/17/2020 17:05:58</publishTime>
+    </File>
+    <File Include="Views/Administrador/Vistas.cshtml">
+      <publishTime>08/12/2020 14:40:12</publishTime>
+    </File>
+    <File Include="Views/CalendarioActividades/CalendarioActividades.cshtml">
+      <publishTime>12/31/2021 11:56:11</publishTime>
+    </File>
+    <File Include="Views/CalendarioActividades/CatalogoActividades.cshtml">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Views/CalendarioActividades/ConfiguracionActividades.cshtml">
+      <publishTime>12/31/2021 11:56:11</publishTime>
+    </File>
+    <File Include="Views/CalendarioActividades/LineaProduccion1.cshtml">
+      <publishTime>12/31/2021 11:56:44</publishTime>
+    </File>
+    <File Include="Views/Catalogos/Areas.cshtml">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Views/Catalogos/CierreAnual.cshtml">
+      <publishTime>11/09/2021 18:09:45</publishTime>
+    </File>
+    <File Include="Views/Catalogos/ClienteArrendamiento.cshtml">
+      <publishTime>09/01/2020 16:06:38</publishTime>
+    </File>
+    <File Include="Views/Catalogos/ClienteRIF.cshtml">
+      <publishTime>12/31/2021 11:57:24</publishTime>
+    </File>
+    <File Include="Views/Catalogos/FormatosPlantillas.cshtml">
+      <publishTime>04/08/2022 11:20:12</publishTime>
+    </File>
+    <File Include="Views/Catalogos/ListaClientes.cshtml">
+      <publishTime>04/25/2022 12:19:40</publishTime>
+    </File>
+    <File Include="Views/Catalogos/ListaClientesLinea.cshtml">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Views/Catalogos/ListaContraseñas.cshtml">
+      <publishTime>04/08/2021 21:51:05</publishTime>
+    </File>
+    <File Include="Views/Catalogos/RegimenesCliente.cshtml">
+      <publishTime>08/23/2020 18:10:08</publishTime>
+    </File>
+    <File Include="Views/Catalogos/Servicios.cshtml">
+      <publishTime>08/20/2021 17:38:22</publishTime>
+    </File>
+    <File Include="Views/Cliente/Documentos.cshtml">
+      <publishTime>06/16/2021 17:41:13</publishTime>
+    </File>
+    <File Include="Views/Cliente/EdoCuenta.cshtml">
+      <publishTime>12/31/2021 11:48:09</publishTime>
+    </File>
+    <File Include="Views/Cliente/Entregables.cshtml">
+      <publishTime>12/31/2021 11:48:03</publishTime>
+    </File>
+    <File Include="Views/Cliente/Gastos.cshtml">
+      <publishTime>12/31/2021 11:48:28</publishTime>
+    </File>
+    <File Include="Views/Cliente/Ingresos.cshtml">
+      <publishTime>12/31/2021 11:48:28</publishTime>
+    </File>
+    <File Include="Views/Cliente/Inicio.cshtml">
+      <publishTime>03/10/2022 11:10:37</publishTime>
+    </File>
+    <File Include="Views/Cliente/ListaClientes.cshtml">
+      <publishTime>12/31/2021 11:48:44</publishTime>
+    </File>
+    <File Include="Views/Cliente/ListaProveedores.cshtml">
+      <publishTime>12/31/2021 11:48:44</publishTime>
+    </File>
+    <File Include="Views/Cliente/MisTramites.cshtml">
+      <publishTime>10/19/2021 13:38:25</publishTime>
+    </File>
+    <File Include="Views/Cliente/Nominas.cshtml">
+      <publishTime>02/01/2022 16:37:49</publishTime>
+    </File>
+    <File Include="Views/Cliente/Notificaciones.cshtml">
+      <publishTime>05/09/2022 13:50:00</publishTime>
+    </File>
+    <File Include="Views/Cliente/Reportes.cshtml">
+      <publishTime>12/31/2021 11:49:10</publishTime>
+    </File>
+    <File Include="Views/Consultas/Afiliate.cshtml">
+      <publishTime>09/30/2020 11:38:46</publishTime>
+    </File>
+    <File Include="Views/Consultas/ConsultaRFC.cshtml">
+      <publishTime>05/09/2022 13:49:36</publishTime>
+    </File>
+    <File Include="Views/Consultas/ListaClientes.cshtml">
+      <publishTime>04/11/2022 13:03:21</publishTime>
+    </File>
+    <File Include="Views/Consultas/ListaClientesCorreo.cshtml">
+      <publishTime>04/11/2022 12:59:04</publishTime>
+    </File>
+    <File Include="Views/Consultas/ReporeFiel.cshtml">
+      <publishTime>03/19/2021 16:50:42</publishTime>
+    </File>
+    <File Include="Views/Consultas/ReporteFiel.cshtml">
+      <publishTime>03/24/2021 14:42:32</publishTime>
+    </File>
+    <File Include="Views/Consultas/XMLCancelados.cshtml">
+      <publishTime>12/23/2020 13:01:02</publishTime>
+    </File>
+    <File Include="Views/Inicio/Inicio.cshtml">
+      <publishTime>05/25/2022 10:02:34</publishTime>
+    </File>
+    <File Include="Views/Inicio/Login.cshtml">
+      <publishTime>08/30/2021 11:05:49</publishTime>
+    </File>
+    <File Include="Views/Marketing/FormularioContacto.cshtml">
+      <publishTime>02/24/2022 12:37:56</publishTime>
+    </File>
+    <File Include="Views/Nominas/ListaClientes.cshtml">
+      <publishTime>08/20/2021 17:38:39</publishTime>
+    </File>
+    <File Include="Views/Nominas/ReporteNominas.cshtml">
+      <publishTime>12/31/2021 11:53:17</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesArrendamiento.cshtml">
+      <publishTime>05/09/2022 13:17:15</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesAsesoria.cshtml">
+      <publishTime>05/09/2022 13:17:24</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesClientes.cshtml">
+      <publishTime>08/23/2021 15:31:05</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesCOI.cshtml">
+      <publishTime>05/09/2022 13:17:33</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesEDO.cshtml">
+      <publishTime>05/09/2022 13:17:40</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesHonorarios.cshtml">
+      <publishTime>05/09/2022 13:17:48</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesPFAE.cshtml">
+      <publishTime>05/09/2022 13:17:55</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesPM.cshtml">
+      <publishTime>05/09/2022 13:18:02</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesRIF.cshtml">
+      <publishTime>05/09/2022 13:18:09</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/EntregablesSueldos.cshtml">
+      <publishTime>05/09/2022 13:18:15</publishTime>
+    </File>
+    <File Include="Views/ReportesEntregables/FolletoEntregables.cshtml">
+      <publishTime>08/23/2021 15:31:50</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/ExpedienteFiscalArrendamiento.cshtml">
+      <publishTime>03/10/2022 10:26:38</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/ExpedienteFiscalHonorarios.cshtml">
+      <publishTime>03/10/2022 10:26:45</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/ExpedienteFiscalPFAE.cshtml">
+      <publishTime>03/10/2022 10:26:51</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/ExpedienteFiscalPM.cshtml">
+      <publishTime>03/10/2022 10:26:57</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/ExpedienteFiscalRIF.cshtml">
+      <publishTime>03/10/2022 10:27:03</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/ExpedienteFiscalSueldos.cshtml">
+      <publishTime>03/10/2022 10:27:09</publishTime>
+    </File>
+    <File Include="Views/ReportesExpediente/PropuestasEconomicas.cshtml">
+      <publishTime>04/20/2022 13:10:51</publishTime>
+    </File>
+    <File Include="Views/ReportesGenerales/ConcentradoAnual.cshtml">
+      <publishTime>12/31/2021 11:53:46</publishTime>
+    </File>
+    <File Include="Views/ReportesGenerales/ConcentradoMensual.cshtml">
+      <publishTime>12/31/2021 11:54:15</publishTime>
+    </File>
+    <File Include="Views/ReportesGenerales/EstadosCuenta.cshtml">
+      <publishTime>12/31/2021 11:54:20</publishTime>
+    </File>
+    <File Include="Views/Simuladores/Modalidad40.cshtml">
+      <publishTime>10/26/2021 17:27:26</publishTime>
+    </File>
+    <File Include="Views/Simuladores/Pensiones.cshtml">
+      <publishTime>09/03/2021 16:12:38</publishTime>
+    </File>
+    <File Include="Views/Tramites/ListaTramites.cshtml">
+      <publishTime>10/07/2021 13:22:18</publishTime>
+    </File>
+    <File Include="Views/Tramites/TramitesIMSS.cshtml">
+      <publishTime>10/07/2021 10:24:14</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>08/10/2020 11:50:24</publishTime>
+    </File>
+    <File Include="Views/_Layout/Master.cshtml">
+      <publishTime>09/03/2021 15:31:23</publishTime>
+    </File>
+    <File Include="Views/_Layout/Menu.cshtml">
+      <publishTime>10/12/2021 11:24:17</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/20/2022 17:55:05</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+<h2>Reportes</h2>
+
+<script>
+
+    var id_regimen = "@ViewBag.id_regimen";
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetInicio = '@Url.Action("GetInicio", "Cliente")';
+</script>
+<script src="~/Content/Js/Personal/CRM/Reportes.js"></script>
+
+<div class="section">
+    <h5>Comportamiento Histórico</h5>
+    <br />
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Periodo Fiscal</label>
+            <select class="form-control" id="select_periodo_grafica">
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+            </select>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-outline-primary active" onclick="objClsCliente.refreshReporte();">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked > Ingresos
+        </label>
+        <label class="btn btn-outline-primary" onclick="objClsCliente.refreshReporte();">
+            <input type="radio" name="options" id="option2" autocomplete="off" > Gastos
+        </label>        
+    </div>
+    <br /><br /><br />
+
+    <div class="row">
+        <div class="col-md-8">
+            <canvas id="myChart" height="100vh"></canvas>
+        </div>
+        <div class="col-md-4">            
+            <div class="row">
+                <div class="col-md-6">
+                    <span id="nameTotal">Ingreso Total</span><br />
+                    <span class="text-muted">incluye IVA</span>
+                    <h5 id="spanTotal"></h5>
+                    <br />
+                    <span id="nameSubtotal">Ingreso Subtotal</span><br />
+                    <span class="text-muted">sin IVA</span>
+                    <h5 id="spanSubtotal"></h5>
+                    <br />
+                </div>
+                <div class="col-md-6">
+                    <span id="nameTotalN">Sueldos y Salarios</span><br />
+                    <span id="leyendaDespues" class="text-muted">después de Impuestos</span>
+                    <h5 id="spanTotalN"></h5>
+                    <br />
+                    <span id="nameSubtotalN">Subtotal Sueldos y Salarios</span><br />
+                    <span id="leyendaAntes" class="text-muted">antes de Impuestos</span>
+                    <h5 id="spanSubtotalN"></h5>
+                    <br />
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<div class="section">
+
+    <h5>Reporte de Ingresos y Gastos</h5>
+    <br />
+    @* Seccion para el datatable Reporte*@
+    
+       <table id="tblReporte" class="cell-border table-striped" data-title-datatable="Reporte de Ingresos y Gastos">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>Mes</td>
+                    <td>Subtotal Ingreso</td>
+                    <td>Subtotal Sueldos y Salarios</td>
+                    <td>Fac Emitidas</td>
+                    <td>Fac Emitidas Canceladas</td>
+                    <td>Subtotal Gastos</td>
+                    <td>Subtotal Nóminas</td>
+                    <td>Fac Recibidas</td>
+                    <td>Fac Recibidas Canceladas</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    
+
+
+</div>

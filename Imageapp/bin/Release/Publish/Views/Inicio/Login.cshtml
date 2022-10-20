@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/Css/Externo/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Externo/jquery-confirm.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/Personal/Inicio/Login.css?v1.01" rel="stylesheet" />
+
+    <script src="~/Content/Js/Externo/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/Js/Externo/bootstrap.min.js"></script>
+    <script src="~/Content/Js/Externo/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Js/Externo/jquery-confirm.min.js"></script>
+    <script src="~/Content/Js/Personal/Inicio/Login.js"></script>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Inicio de sesión</title>
+
+    @if (ViewBag.msnError != null)
+    {
+        <script>
+
+        var error = '@ViewBag.msnError';
+        var errorComplete = '@ViewBag.msnErrorComplete';
+
+        if (error != "") {
+            jsSimpleAlert("Error", error, "red");
+            console.log(errorComplete);
+        }
+
+        </script>
+    }
+</head>
+<body>
+    <div class="content">
+        <div class="logo">
+            <img src="~/Imagenes/LOGOS.png" class="img-logo" />
+        </div>
+        <div class="formLogin">
+            <form action="@Url.Action("Login","Inicio")" method="POST">
+                @Html.AntiForgeryToken()
+                <h3>Inicio de sesión</h3>
+                <div class="form-group">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i>&nbsp;</span>
+                        </div>
+                        <input class="form-control" type="text" id="usuario" name="p_Inicio.usuario" placeholder="Nombre de usuario" data-eye autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-sm">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-unlock"></i></span>
+                        </div>
+                        <input class="form-control" type="password" id="password" name="p_Inicio.password" placeholder="Contraseña" data-eye autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Ingresar</button>
+                </div>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            </form>
+        </div>
+    </div>
+</body>
+</html>

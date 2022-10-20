@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Imageapp.Datos.tbd_Formulario>
+@{
+    ViewBag.Title = "FormularioContacto";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Formulario de Contacto</h2>
+
+<div class="section frmFilter" id="frmFilter">
+    <form action="@Url.Action("FormularioContacto","Marketing")" method="post">
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="txtBuscarFechaInicio">Fecha Inicial</label>
+                <input type="date" class="form-control" id="txtBuscarFechaInicio" name="txtBuscarFechaInicio" placeholder="Fecha Inicial" value="@DateTime.Now.ToString("yyyy-MM-dd")" autocomplete="off" />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="txtBuscarFechaFinal">Fecha Final</label>
+                <input type="date" class="form-control" id="txtBuscarFechaFinal" name="txtBuscarFechaFinal" placeholder="Fecha Final" value="@DateTime.Now.ToString("yyyy-MM-dd")" autocomplete="off" />
+
+
+            </div>
+            <div class="form-group col-md-4">
+                <label>&nbsp;</label> <br />
+                <button type="submit" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+
+            <table class="cell-border table-striped " id="tbl_Mensajes" style="width:100%" data-title-datatable="Reporte-Formulario">
+                <thead>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Correo</td>
+                        <td>Mensaje</td>
+                        <td>Fecha Solicitud</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.nombre</td>
+                            <td>@item.correo</td>
+                            <td>@item.mensaje</td>
+                            <td>@item.fecha.ToString("yyyy/MM/dd HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        var tblPrincipal = new clsDataTable();
+
+        //! Definir objeto estructura del datatable
+        let paramsDataTable = {            
+            idTable: "#tbl_Mensajes",
+            order: [3, 'asc']
+        }
+
+        initDataTable(paramsDataTable); //! Inicializar datatable
+        tblPrincipal.setTable($("#tbl_Mensajes").DataTable()); //! Inicializar clase datatable
+
+
+        $("#close-sidebar").on('click', async function (a) {
+            await sleep(200);
+            tblPrincipal.getTable().columns.adjust().draw(false);
+
+        });
+
+        $(".reload").on('click', async function (a) {
+            await sleep(200);
+            tblPrincipal.getTable().columns.adjust().draw(false);
+
+        });
+    });
+
+    
+
+</script>

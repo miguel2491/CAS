@@ -1,0 +1,877 @@
+﻿
+@{
+    ViewBag.Title = "Modalidad40";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+
+<script src="~/Content/Js/Personal/Utils/Utils.js"></script>
+
+
+<style>
+    .calculadora h5 {
+        text-align: center;
+    }
+
+    .seccion_calc {
+        border: 1px solid #d3cccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .jumbotron.simple {
+        padding: 15px 50px;
+    }
+</style>
+
+@*<h2>Pensiones de Vejez y Cesantia en Edad Avanzada Ley '73</h2>*@
+
+<script>
+    var $salario_minimo = 141.7;
+    var $factor_incremento = 1.11;
+
+    var $inversion_mensual = (30 * .10075);
+
+    var salario_promedio = [];
+    var $sal0;
+    var $sal1;
+    var $sal2;
+    var $sal3;
+    var $sal4;
+    var $monto_inversion;
+    var $periodos_inversion;
+    var $periodo_inicio;
+
+    var $semanas_cotizada;
+
+    const tabla =
+        [
+            { inferior: 0, superior: 1.01, cuantia: 0.8, incremento: 0.563 },
+            { inferior: 1.01, superior: 1.26, cuantia: 0.7711, incremento: 0.814 },
+            { inferior: 1.26, superior: 1.51, cuantia: 0.5818, incremento: 1.178 },
+            { inferior: 1.51, superior: 1.76, cuantia: 0.4923, incremento: 1.43 },
+            { inferior: 1.76, superior: 2.01, cuantia: 0.4267, incremento: 1.615 },
+            { inferior: 2.01, superior: 2.26, cuantia: 0.3765, incremento: 1.756 },
+            { inferior: 2.26, superior: 2.51, cuantia: 0.3368, incremento: 1.868 },
+            { inferior: 2.51, superior: 2.76, cuantia: 0.3048, incremento: 1.958 },
+            { inferior: 2.76, superior: 3.01, cuantia: 0.2783, incremento: 2.033 },
+            { inferior: 3.01, superior: 3.26, cuantia: 0.256, incremento: 2.096 },
+            { inferior: 3.26, superior: 3.51, cuantia: 0.237, incremento: 2.149 },
+            { inferior: 3.51, superior: 3.76, cuantia: 0.2207, incremento: 2.195 },
+            { inferior: 3.76, superior: 4.01, cuantia: 0.2065, incremento: 2.235 },
+            { inferior: 4.01, superior: 4.26, cuantia: 0.1939, incremento: 2.271 },
+            { inferior: 4.26, superior: 4.51, cuantia: 0.1829, incremento: 2.302 },
+            { inferior: 4.51, superior: 4.76, cuantia: 0.173, incremento: 2.33 },
+            { inferior: 4.76, superior: 5.01, cuantia: 0.1641, incremento: 2.355 },
+            { inferior: 5.01, superior: 5.26, cuantia: 0.1561, incremento: 2.377 },
+            { inferior: 5.26, superior: 5.51, cuantia: 0.1488, incremento: 2.398 },
+            { inferior: 5.51, superior: 5.76, cuantia: 0.1422, incremento: 2.416 },
+            { inferior: 5.76, superior: 6, cuantia: 0.1362, incremento: 2.433 },
+            { inferior: 6, superior: 1000, cuantia: 0.13, incremento: 2.45 }
+        ];
+
+
+    function calculoPromedioSalario() {
+
+
+
+        salario_promedio = [];
+        var msg = "";
+        var resumen = "";
+        var sal1 = ($sal1.val() == "" || $sal1.val() == null) ? 0 : Number($sal1.val());
+        var sal2 = ($sal2.val() == "" || $sal2.val() == null) ? 0 : Number($sal2.val());
+        var sal3 = ($sal3.val() == "" || $sal3.val() == null) ? 0 : Number($sal3.val());
+        var sal4 = ($sal4.val() == "" || $sal4.val() == null) ? 0 : Number($sal4.val());
+        var monto_inversion = ($monto_inversion.val() == "" || $monto_inversion.val() == null) ? 0 : Number($monto_inversion.val());
+        var periodos = ($periodo_inicio.val() == "" || $periodo_inicio.val() == null) ? 0 : Number($periodo_inicio.val());
+
+        var periodo_inicio = ($periodos_inversion.val() == "" || $periodos_inversion.val() == null) ? 0 : Number($periodos_inversion.val());
+
+        var semanas_cotizadas = ($semanas_cotizada.val() == "" || $semanas_cotizada.val() == null) ? 0 : Number($semanas_cotizada.val());
+
+        for (var i = 0; i < periodo_inicio; i++) {
+            if (i == 0) {
+                salario_promedio.push({
+                    edad: periodos,
+                    promedio: (sal1 + sal2 + sal3 + sal4 + monto_inversion) / 5,
+                    salario_veces: ((sal1 + sal2 + sal3 + sal4 + monto_inversion) / 5) / $salario_minimo,
+                    mensualidad: $inversion_mensual * monto_inversion
+                });
+            }
+            else if (i == 1) {
+                salario_promedio.push({
+                    edad: periodos,
+                    promedio: (sal2 + sal3 + sal4 + monto_inversion + monto_inversion) / 5,
+                    salario_veces: ((sal2 + sal3 + sal4 + monto_inversion + monto_inversion) / 5) / $salario_minimo,
+                    mensualidad: $inversion_mensual * monto_inversion
+                });
+            }
+            else if (i == 2) {
+                salario_promedio.push({
+                    edad: periodos,
+                    promedio: (sal3 + sal4 + monto_inversion + monto_inversion + monto_inversion) / 5,
+                    salario_veces: ((sal3 + sal4 + monto_inversion + monto_inversion + monto_inversion) / 5) / $salario_minimo,
+                    mensualidad: $inversion_mensual * monto_inversion
+                });
+            }
+            else if (i == 3) {
+                salario_promedio.push({
+                    edad: periodos,
+                    promedio: (sal4 + monto_inversion + monto_inversion + monto_inversion + monto_inversion) / 5,
+                    salario_veces: ((sal4 + monto_inversion + monto_inversion + monto_inversion + monto_inversion) / 5) / $salario_minimo,
+                    mensualidad: $inversion_mensual * monto_inversion
+                });
+            }
+            else {
+                salario_promedio.push({
+                    edad: periodos,
+                    promedio: monto_inversion,
+                    salario_veces: monto_inversion / $salario_minimo,
+                    mensualidad: $inversion_mensual * monto_inversion
+
+                });
+            }
+            periodos++;
+        }
+
+
+        for (var j = 0; j < salario_promedio.length; j++) {
+
+            var valor_cuantia = 0;
+            var valor_incremento = 0;
+            for (var i = 0; i < tabla.length; i++) {
+                var item = tabla[i];
+                if (salario_promedio[j].salario_veces >= item.inferior && salario_promedio[j].salario_veces < item.superior) {
+                    valor_cuantia = item.cuantia;
+                    valor_incremento = item.incremento;
+                }
+            }
+
+            salario_promedio[j].cuantia_porcentaje = valor_cuantia;
+            salario_promedio[j].incremento_porcentaje = valor_incremento;
+            salario_promedio[j].cuantia_basica = valor_cuantia * salario_promedio[j].promedio;
+            salario_promedio[j].incremento_anual = Math.round((semanas_cotizadas - 500) / 52); // redondear entero;
+            salario_promedio[j].incremento_anual_valor = ((salario_promedio[j].incremento_anual * valor_incremento) / 100) * salario_promedio[j].promedio;
+
+            salario_promedio[j].monto_diario = salario_promedio[j].cuantia_basica + salario_promedio[j].incremento_anual_valor;
+
+            salario_promedio[j].monto_mensual = salario_promedio[j].monto_diario * 30.5;
+
+            salario_promedio[j].monto_mensual_actualizado = salario_promedio[j].monto_mensual * $factor_incremento;
+
+
+
+            semanas_cotizadas += 52;
+
+
+
+
+
+
+            var pension_final = (salario_promedio[j].edad > 59 ?
+                (salario_promedio[j].edad == 60 ? (salario_promedio[j].monto_mensual_actualizado * .75) :
+                    (salario_promedio[j].edad == 61 ? ((salario_promedio[j].monto_mensual_actualizado * .80)) :
+                        (salario_promedio[j].edad == 62 ? ((salario_promedio[j].monto_mensual_actualizado * .85)) :
+                            (salario_promedio[j].edad == 63 ? ((salario_promedio[j].monto_mensual_actualizado * .90)) :
+                                (salario_promedio[j].edad == 64 ? ((salario_promedio[j].monto_mensual_actualizado * .95)) :
+                                    (salario_promedio[j].edad > 64 ? ((salario_promedio[j].monto_mensual_actualizado)) :
+                                        0)))))) : 0);
+
+            var esposa = Number($("#esposa").val()) == 0 ? 0 : (.15 * pension_final);
+            var hijos = Number($("#hijos").val()) == 0 ? 0 : (Number($("#hijos").val()) * .10 * pension_final);
+            var padres = Number($("#padres").val()) == 0 ? 0 : (Number($("#padres").val()) * .10 * pension_final);
+
+
+            resumen += '<tr>';
+            resumen += '            <td>' + (j + 1) + '</td>';
+            resumen += '            <td>' + salario_promedio[j].edad + '</td>';
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ?
+                (salario_promedio[j].edad == 60 ? "75%" :
+                    (salario_promedio[j].edad == 61 ? "80%" :
+                        (salario_promedio[j].edad == 62 ? "85%" :
+                            (salario_promedio[j].edad == 63 ? "90%" :
+                                (salario_promedio[j].edad == 64 ? "95%" :
+                                    (salario_promedio[j].edad > 64 ? "100%" :
+                                        ""))))))
+
+                : "") + '</td>';
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ? "$ "+pension_final.toFixed(2): "") + '</td>';
+
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ? "$ " +esposa.toFixed(2) : "") + '</td>';
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ? "$ " +hijos.toFixed(2) : "") + '</td>';
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ? "$ " +padres.toFixed(2) : "") + '</td>';
+
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ? "$ " +(esposa + hijos + padres + pension_final).toFixed(2) : "") + '</td>';
+            resumen += '            <td>$ ' + salario_promedio[j].mensualidad.toFixed(2) + '</td>';
+            resumen += '            <td>$ ' + ((salario_promedio[j].mensualidad * 12) * (j + 1)).toFixed(2) + '</td>';
+            resumen += '            <td>' + (salario_promedio[j].edad > 59 ? (((salario_promedio[j].mensualidad) * (j + 1)) / ((esposa + hijos + padres + pension_final) == 0 ? 1 : (esposa + hijos + padres + pension_final))).toFixed(2) : "") + '</td>';
+            resumen += '        </tr>';
+
+
+
+            msg += '<div class="col-md-4">';
+            msg += '            <div class="card">';
+            msg += '                <h5 class="card-header">Edad ' + salario_promedio[j].edad + '</h5>';
+            msg += '                <div class="card-body">';
+            msg += '                    <p class="card-text">Detalle de analisis</p>';
+            msg += '                    <table class="table">   ';
+            msg += '                        <tbody>';
+            msg += '                            <tr>';
+            msg += '                                <th>Salario promedio</th>';
+            msg += '                                <td>$ ' + salario_promedio[j].promedio.toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Salario veces</th>';
+            msg += '                                <td>' + salario_promedio[j].salario_veces.toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Cuantia básica procentaje</th>';
+            msg += '                                <td>' + (salario_promedio[j].cuantia_porcentaje * 100) + ' %</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Cuantia básica</th>';
+            msg += '                                <td>' + (salario_promedio[j].cuantia_basica).toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Incremento anual porcentaje</th>';
+            msg += '                                <td>' + (salario_promedio[j].incremento_porcentaje) + ' %</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Incremento anual</th>';
+            msg += '                                <td>' + (salario_promedio[j].incremento_anual).toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Incremento anual valor</th>';
+            msg += '                                <td>' + (salario_promedio[j].incremento_anual_valor).toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Monto diaro</th>';
+            msg += '                                <td>$' + (salario_promedio[j].monto_diario).toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Monto mensual</th>';
+            msg += '                                <td>$' + (salario_promedio[j].monto_mensual).toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                            <tr>';
+            msg += '                                <th>Monto actualizado mensual</th>';
+            msg += '                                <td>$' + (salario_promedio[j].monto_mensual_actualizado).toFixed(2) + '</td>';
+            msg += '                            </tr>';
+            msg += '                        </tbody>';
+            msg += '                    </table>';
+            msg += '                </div>';
+            msg += '            </div> <br />';
+            msg += '        </div>';
+
+
+        }
+
+
+        $("#tablaPeriodos").html(msg);
+
+
+        //! Resumen pensión
+
+
+
+        $("#resumenPension").html(resumen);
+
+
+        try {
+            $("#tablaCalculo").DataTable('destroy');
+            //var tablaCalculo = new clsDataTable();
+            //! Definir objeto estructura del datatable
+            let paramsDataTable2 = {
+                
+                idTable: "#tablaCalculo"
+            }
+
+            initDataTable(paramsDataTable2); //! Inicializar datatable
+            tablaCalculo.setTable($("#tablaCalculo").DataTable()); //! Inicializar clase datatable
+
+
+        } catch (e) {
+            var tablaCalculo = new clsDataTable();
+            //! Definir objeto estructura del datatable
+            let paramsDataTable2 = {
+
+                idTable: "#tablaCalculo"
+            }
+
+            initDataTable(paramsDataTable2); //! Inicializar datatable
+            tablaCalculo.setTable($("#tablaCalculo").DataTable()); //! Inicializar clase datatable
+        }
+
+
+
+
+
+    }
+
+
+
+    var periodo = new Date().getFullYear();
+    var periodo_analisis = periodo;
+    $(document).ready(function () {
+        //salario = 123.22;
+        //$("#salario").val(salario);
+        $sal0 = $("#salario_promedio0");
+
+        $sal1 = $("#salario_promedio1");
+        $sal2 = $("#salario_promedio2");
+        $sal3 = $("#salario_promedio3");
+        $sal4 = $("#salario_promedio4");
+        $monto_inversion = $("#monto_inversion");
+        $periodos_inversion = $("#periodos_inversion");
+        $periodo_inicio = $("#edad_analisis");
+        $semanas_cotizada = $("#semanas_analisis");
+
+
+        let html = '';
+        for (let i = 51; i <= 90; i++) {
+            html += '<option value="' + i + '">' + i + '</option>';
+        }
+        $("#edad").html(html);
+        $("#edad_analisis").html(html);
+        var edad = Number($("#edad_analisis").val());
+
+        $("#anio0").val(edad - 5);
+
+        $("#anio1").val(edad - 4);
+        $("#anio2").val(edad - 3);
+        $("#anio3").val(edad - 2);
+        $("#anio4").val(edad - 1);
+
+        $("#edad_analisis").on('change', function () {
+            var edad = Number($("#edad_analisis").val());
+            $("#anio0").val(edad - 5);
+            $("#anio1").val(edad - 4);
+            $("#anio2").val(edad - 3);
+            $("#anio3").val(edad - 2);
+            $("#anio4").val(edad - 1);
+
+            var edad_evaluar = ($("#edad_analisis").val() - $("#edad").val()) * 52;
+
+            $("#semanas_analisis").val(Number($("#semanas").val()) + edad_evaluar);
+            periodo_analisis = periodo + $("#edad_analisis").val() - $("#edad").val();
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#padres").on("change", () => {
+            if ($("#padres").val() == 0) {
+
+                $("#esposa").prop("disabled", false);
+                $("#hijos").prop("disabled", false);
+
+            } else {
+                $("#esposa").val(0);
+                $("#hijos").val(0);
+                $("#esposa").prop("disabled", true);
+                $("#hijos").prop("disabled", true);
+            }
+        });
+
+        $("#esposa").on("change", () => {
+            if ($("#esposa").val() > 0 || $("#hijos").val() > 0) {
+
+                $("#padres").val(0);
+                $("#padres").prop("disabled", true);
+
+            } else {
+
+                $("#padres").prop("disabled", false);
+
+            }
+        })
+
+        $("#hijos").on("change", () => {
+            if ($("#esposa").val() > 0 || $("#hijos").val() > 0) {
+
+                $("#padres").val(0);
+                $("#padres").prop("disabled", true);
+
+            } else {
+
+                $("#padres").prop("disabled", false);
+
+            }
+        })
+
+        $("#semanas").on("change", () => {
+            if ($("#semanas").val() < 500) {
+                $("#semanas").val(0)
+                return jsSimpleAlert("Alerta", "El numero de semanas cotizadas debe ser igual o mayor a 500", "orange");
+            }
+        })
+    });
+
+    function calcular() {
+
+
+        calculoPromedioSalario();
+
+
+
+        //const salario = {
+        //    2021: 141.7,
+        //    2020: 123.22,
+        //    2019: 102.68,
+        //    2018: 88.36,
+        //    2017: 80.04,
+        //    2016: 73.04,
+        //    2015: 70.10,
+        //    2014: 67.29,
+        //    2013: 64.76,
+        //    2012: 62.33,
+        //    2011: 59.82,
+        //    2010: 57.46,
+        //    2009: 54.80,
+        //    2008: 52.59,
+        //    2007: 50.57,
+        //    2006: 48.67,
+        //    2005: 46.80,
+        //    2004: 45.24,
+        //    2003: 43.65,
+        //    2002: 42.15,
+        //    2001: 40.35,
+        //    2000: 37.90,
+        //    1999: 34.45,
+        //    1998: 30.20,
+        //    1997: 26.45
+        //}
+
+        //let salario_promedio1 = $("#salario_promedio1").val() == "" ? salario["2021"] : $("#salario_promedio1").val();
+        //let salario_promedio2 = $("#salario_promedio2").val() == "" ? salario["2020"] : $("#salario_promedio2").val();
+        //let salario_promedio3 = $("#salario_promedio3").val() == "" ? salario["2019"] : $("#salario_promedio3").val();
+        //let salario_promedio4 = $("#salario_promedio4").val() == "" ? salario["2018"] : $("#salario_promedio4").val();
+        //let salario_promedio5 = $("#salario_promedio5").val() == "" ? salario["2017"] : $("#salario_promedio5").val();
+        //let salario_minimo_diario = $("#salario").val();
+        //let semanas_cotizadas = $("#semanas").val();
+        //let esposa = $("#esposa").val();
+        //let hijos = $("#hijos").val();
+        //let padres = $("#padres").val();
+        //let edad = $("#edad").val();
+
+        //let mensaje = '';
+
+        //if (semanas_cotizadas == "") mensaje += '-Número de semanas cotizadas<br/>';
+        //if (salario_minimo_diario == "") mensaje += '-Salario minimo (diario)<br/>';
+        //if (semanas_cotizadas < 500) mensaje += '-El numero de semanas cotizadas debe ser igual o mayor a 500<br/>';
+
+        //if (mensaje != "")
+        //    return jsSimpleAlert("Alerta", "Ingresa los siguientes campos: <br/>" + mensaje, "orange");
+
+        //const salario_promedio_cotizacion = (parseFloat(salario_promedio1) + parseFloat(salario_promedio2) + parseFloat(salario_promedio3) + parseFloat(salario_promedio4) + parseFloat(salario_promedio5)) / 5;
+        //$("#salario_promedio").val(parseFloat(salario_promedio_cotizacion).toFixed(2));
+        //const valor1 = salario_promedio_cotizacion / parseFloat(salario_minimo_diario);
+        //console.log(valor1);
+
+
+        //var valor_cuantia = 0;
+        //var valor_incremento = 0;
+        //for (var i = 0; i < tabla.length; i++) {
+        //    var item = tabla[i];
+        //    if (valor1 >= item.inferior && valor1 < item.superior) {
+        //        valor_cuantia = item.cuantia;
+        //        valor_incremento = item.incremento;
+        //    }
+        //}
+
+        //console.log("valor_cuantia " + valor_cuantia);
+        //console.log("valor_incremento " + valor_incremento);
+
+        //let cuantia_basica = ((salario_promedio_cotizacion * valor_cuantia * 365) / 12);
+        //console.log("cuantia_basica " + cuantia_basica);
+        //console.log("salario_promedio_cotizacion " + salario_promedio_cotizacion);
+        //let decimal_incremento = Math.ceil((parseInt(semanas_cotizadas) - 500) / 52);
+        //console.log(decimal_incremento);
+        //let incremento_anual = (((salario_promedio_cotizacion * valor_incremento * decimal_incremento * 365) / 12) / 100);
+        //console.log(incremento_anual);
+        //let cuantia_mensual = (cuantia_basica + incremento_anual);
+
+        //let fam_ayuda = 0;
+
+        //if (esposa == 0 && hijos == 0 && padres == 0) {
+        //    fam_ayuda = 0;
+        //}
+        //else if (esposa > 0) {
+        //    fam_ayuda = (cuantia_mensual * 0.15) + (cuantia_mensual * 0.10 * hijos);
+        //}
+        //else if (hijos > 0) {
+        //    fam_ayuda = cuantia_mensual * 0.10 * hijos;
+        //}
+        ////else if (esposa != 0 || hijos != 0) {
+        ////    fam_ayuda = 0;
+        ////}
+        //else if (padres == 1 || padres == 2) {
+        //    fam_ayuda = cuantia_mensual * 0.10;
+        //}
+        //else {
+        //    fam_ayuda = 0
+        //}
+
+        //let suma_antes_aumento = cuantia_basica + incremento_anual + fam_ayuda;
+        //console.log("suma_antes_aumento " + suma_antes_aumento);
+        //let pension_mas_asig = (suma_antes_aumento + (suma_antes_aumento * 0.11));
+        //console.log("pension_mas_asig " + pension_mas_asig);
+        //let total_pension = 0;
+
+
+
+        //if (edad == 60) {
+        //    total_pension = pension_mas_asig * .75;
+        //}
+        //else if (edad == 61) {
+        //    total_pension = pension_mas_asig * .80;
+        //}
+        //else if (edad == 62) {
+        //    total_pension = pension_mas_asig * .85;
+        //}
+        //else if (edad == 63) {
+        //    total_pension = pension_mas_asig * .90;
+        //}
+        //else if (edad == 64) {
+        //    total_pension = pension_mas_asig * .95;
+        //}
+        //else if (edad > 64) {
+        //    total_pension = pension_mas_asig;
+        //}
+
+        //$("#total_pension").val(formatCurrency(total_pension));
+    }
+
+    function formatCurrency(cantidad) {
+        const options2 = { style: 'currency', currency: 'USD' };
+        const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
+        var valor = numberFormat2.format(cantidad);
+
+        return valor.substring(1);
+    }
+
+    const limpiar = () => {
+        $("#edad").val(51);
+        $("#semanas").val(0);
+        $("#esposa").val(0);
+        $("#hijos").val(0);
+        $("#padres").val(0);
+        $("#salario").val(141.70);
+
+        $("#salario_promedio1").val('');
+        $("#salario_promedio2").val('');
+        $("#salario_promedio3").val('');
+        $("#salario_promedio4").val('');
+        $("#salario_promedio5").val('');
+
+        $("#esposa").prop("disabled", false);
+        $("#hijos").prop("disabled", false);
+        $("#padres").prop("disabled", false);
+
+        $("#total_pension").val(0);
+        $("#salario_promedio").val('');
+    }
+
+    function cambioSemanasCotizadas() {
+        var edad_evaluar = ($("#edad_analisis").val() - $("#edad").val()) * 52;
+
+        $("#semanas_analisis").val(Number($("#semanas").val()) + edad_evaluar);
+        periodo_analisis = periodo + $("#edad_analisis").val() - $("#edad").val();
+    }
+</script>
+
+<div class="jumbotron simple">
+    <h1 class="display-6">Simulador de Pensiones Modalidad 40</h1>
+    <p class="lead">Ingresa los datos necesarios y da clic en CALCULAR.</p>
+    <hr class="my-4">
+
+
+</div>
+
+<div class="section">
+
+    <div class="form-row calculadora">
+        <div class="col-md-5">
+            <div class="seccion_calc">
+                <h5 class="mb-4">DATOS DEL CLIENTE</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Edad del pensionado: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="edad" data-toggle="tooltip" data-placement="top" title="Edad del pensionado 60 años o más"></select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Número de semanas cotizadas: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="number" id="semanas" onchange="cambioSemanasCotizadas();" onkeypress="return validarNumeros(event);" data-toggle="tooltip" data-placement="top" title="Total de semanas cotizadas" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>inicio del analisis: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="form-control" id="edad_analisis" data-toggle="tooltip" data-placement="top" title="Edad del inicio del analisis del pensionado"></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Número de semanas cotizadas analisis: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="number" id="semanas_analisis" />
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Años de inversión: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="number" id="periodos_inversion" onkeypress="return validarNumeros(event);" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Monto de inversión: </label>
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="number" id="monto_inversion" step="0.01" max="2240.5" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-7">
+            <div class="seccion_calc">
+                <h5 class="mb-4">
+                    SALARIO BASE DE COTIZACIÓN PROMEDIO DIARIO POR AÑO
+                    <i class="fa fa-question" data-toggle="tooltip" data-placement="bottom" title="Colocar el Salario base de cotización diario registrado de tus últimas 250 semanas"></i>
+                </h5>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>EDAD: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio0" disabled />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio0" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>EDAD: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio1" disabled />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio1" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>EDAD: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio2" disabled />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio2" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>EDAD: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio3" disabled />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio3" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>EDAD: </label>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <input class="form-control" type="number" id="anio4" disabled />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Salario Promedio: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" min="0" id="salario_promedio4" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Salario Promedio General: </label>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" id="salario_promedio" disabled value="" data-toggle="tooltip" data-placement="top" title="Salario promedio de los ultimos 5 años." />
+                    </div>
+                </div>
+            </div>
+            <!--<div class="seccion_calc">
+                <h5 class="mb-4">DATOS GENERALES</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Salario Mínimo (diario): </label>
+
+                    </div>
+                    <div class="form-group col-md-6">-->
+            @*<input class="form-control" id="salario" data-toggle="tooltip" data-placement="top" title="Salario mímino (diario)"/>*@
+            <!--<select class="form-control" id="salario" name="salario">
+                            <option value="213.39">$ 213.39</option>
+                            <option value="141.70" selected>$ 141.70</option>
+                        </select>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+
+
+    <div>
+        <div class="col-md-12 seccion_calc">
+            <h5 class="mb-4">FAMILIARES Y AYUDA</h5>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Esposa o Esposo: </label>
+
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="form-control" id="esposa" data-toggle="tooltip" data-placement="top" title="Indique si tiene esposa o esposo">
+                        <option value="0" selected>No</option>
+                        <option value="1">Si</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Hijos (número): </label>
+
+                </div>
+                <div class="form-group col-md-6">
+                    <input class="form-control" type="number" id="hijos" data-toggle="tooltip" onkeypress="return validarNumeros(event);" value="0" data-placement="top" title="Indique el número de hijo(s)" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Padres (1 o 2)</label><br />
+                    <label>* Solo a falta de viuda y huerfanos</label>
+
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="form-control" id="padres" data-toggle="tooltip" data-placement="top" title="Solo en caso de falta de viuda o huerfanos">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-12 seccion_calc">
+            <table id="tablaCalculo" class="table">
+                <thead>
+                    <tr>
+                        <th>Año de inversión</th>
+                        <th>Edad</th>
+                        <th>% Pensión</th>
+                        <th>Pensión mensual</th>
+
+                        <th>Esposa (15%)</th>
+                        <th>Hijos (10%)</th>
+                        <th>Padres (10%)</th>
+
+                        <th>Total Pensión</th>
+                        <th>Inversión mensual</th>
+                        <th>Inversión anual</th>
+                        <th>Años de recuperación</th>
+                    </tr>
+                </thead>
+                <tbody id="resumenPension">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <div class="row" id="tablaPeriodos">
+
+    </div>
+
+
+    @*<div class="form-row pt-3">
+        <div class="form-group col-md-3 text-right">
+
+
+        </div>
+        <div class="form-group col-md-3 text-right">
+            <label>PENSION FINAL</label>
+
+        </div>
+
+        <div class="form-group col-md-3 text-center">
+            <input class="form-control" id="total_pension" readonly />
+
+        </div>
+        <div class="form-group col-md-3 text-center">
+
+
+        </div>
+
+    </div>*@
+    <div class="form-row">
+        <div class="form-group col-md-6 text-center">
+            <button class="btn btn-primary" onclick="calcular();">CALCULAR</button>
+
+        </div>
+        <div class="form-group col-md-6 text-center">
+            <button class="btn btn-secondary" onclick="limpiar();">LIMPIAR</button>
+
+        </div>
+    </div>
+
+</div>
+

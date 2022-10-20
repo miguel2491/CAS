@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+<h2>Inicio</h2>
+
+<script>
+
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetInicio = '@Url.Action("GetInicio", "Cliente")';
+
+
+</script>
+<script src="~/Content/Js/Personal/CRM/Inicio.js"></script>
+
+
+<div class="section">
+    <h5>Ingresos y Gastos Mensuales</h5>
+    <br />
+    <canvas id="myChart" height="100vh"></canvas>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="section">
+            <h5>Ingresos Recientes</h5>
+            <br />
+            <table class="cell-border table-striped" id="tbl_Ingresos" style="width:100%">
+                <thead>
+                    <tr>
+                        <td>Razón Social</td>
+                        <td>Fecha</td>
+                        <td>Subtotal</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <hr />
+            <div style="width:100%; text-align:right;">
+                <a href="@Url.Action("Ingresos","Cliente")">Ver Todos</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="section">
+            <h5>Gastos Recientes</h5>
+            <br />
+            <table class="cell-border table-striped" id="tbl_Gastos" style="width:100%">
+                <thead>
+                    <tr>
+                        <td>Razón Social</td>
+                        <td>Fecha</td>
+                        <td>Subtotal</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <hr />
+            <div style="width:100%; text-align:right;">
+                <a href="@Url.Action("Gastos","Cliente")">Ver Todos</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="section">
+            <h5>Mejor Cliente</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 id="txtRFCMC" style="color:#00126b">RFC CLIENTE</h5>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-muted" id="txtFacturasMC"></h6>
+                </div>
+            </div>
+
+            <h6 id="txtRazonMC">RAZON</h6>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+
+                    <h4 style="color:#00126b" id="txtSubtotalMC">$0.00</h4>
+                    <span>Subtotal</span>
+                </div>
+                <div class="col-md-6">
+
+                    <h4 style="color:#00126b" id="txtTotalMC">$0.00</h4>
+                    <span>Total</span>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 text-right">
+
+                    <h4 style="color:#00126b" id="txtTotalClientes">0</h4>
+                    <span>Total de Clientes</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="section">
+            <h5>Mayor Proveedor</h5>
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 id="txtRFCMP" style="color:#00126b">RFC PROVEEDOR</h5>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="text-muted" id="txtFacturasMP"></h6>
+                </div>
+            </div>
+
+            <h6 id="txtRazonMP">RAZON</h6>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+
+                    <h4 style="color:#00126b" id="txtSubtotalMP">$0.00</h4>
+                    <span>Subtotal</span>
+                </div>
+                <div class="col-md-6">
+
+                    <h4 style="color:#00126b" id="txtTotalMP">$0.00</h4>
+                    <span>Total</span>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 text-right">
+
+                    <h4 style="color:#00126b" id="txtTotalProveedores">0</h4>
+                    <span>Total de Proveedores</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

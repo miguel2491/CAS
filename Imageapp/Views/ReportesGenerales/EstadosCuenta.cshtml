@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "EstadosCuenta";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script>
+    let id_RV = '@ViewBag.id_RV' //! ID de la vista
+
+    let url_Catalogos_GetEstadosCuenta = '@Url.Action("GetReporteEstadosCuenta", "ReportesGenerales")';
+    let url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+    let url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Catalogos")';
+
+</script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+<script src="~/Content/Js/Personal/Reportes/Generales/EstadoCuenta/EstadosCuenta.js?vs_1.0"></script>
+
+<h2>Estados de Cuenta</h2>
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label>Mes:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fl_mesEntregable" name="fl_mesEntregable">
+                        <option value="1">ENERO</option>
+                        <option value="2">FEBRERO</option>
+                        <option value="3">MARZO</option>
+                        <option value="4">ABRIL</option>
+                        <option value="5">MAYO</option>
+                        <option value="6">JUNIO</option>
+                        <option value="7">JULIO</option>
+                        <option value="8">AGOSTO</option>
+                        <option value="9">SEPTIEMBRE</option>
+                        <option value="10">OCTUBRE</option>
+                        <option value="11">NOVIEMBRE</option>
+                        <option value="12">DICIEMBRE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Año:</label>
+                <div class="input-group mb-3">
+                    <select class="form-control" id="fl_anioEntregable" name="fl_anioEntregable">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fl_estado_cuenta">Estado de Cuenta</label>
+                <select class="form-control" id="fl_estado_cuenta" name="fl_estado_cuenta">
+                    <option value="">-TODOS-</option>
+                    <option value="NULL">Sin estados / Sin movimientos</option>
+                    <option value="NOTNULL">Al menos 1 o más cargados</option>
+                    <option value="a) Consulta de movimientos del mes PDF">a) Consulta de movimientos del mes PDF</option>
+                    <option value="b) Consulta de movimientos del mes Excel">b) Consulta de movimientos del mes Excel</option>
+                    <option value="c) Estado de cuenta del mes vencido PDF">c) Estado de cuenta del mes vencido PDF</option>
+                    <option value="d) Estado de cuenta del mes vencido  Excel">d) Estado de cuenta del mes vencido  Excel</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre / Razón Social</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre / razón social" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Estatus</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbActivo" name="fl_RdbEstatus" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbActivo">Activo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbInactivo" name="fl_RdbEstatus" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbInactivo">Inactivo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbTodos" name="fl_RdbEstatus" value="0" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbTodos">Todos</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_ddlLinea">Línea</label>
+                <select id="fl_ddlLinea" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchWFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblEstadosCuenta" class="cell-border table-striped" data-title-datatable="Lista de Estados de Cuenta">
+        <thead>
+            <tr>
+                <td>Acciones</td>
+                <td>Id cliente</td>
+                <td>Rfc</td>
+                <td>Nombre / Razón Social</td>
+                <td>Estatus</td>
+                <td>Id cuenta</td>
+                <td>Estado de cuenta</td>
+                <td>Periodo</td>
+                <td>Descripción</td>
+                <td>Línea</td>
+                <td>Fecha carga</td>
+                <td>Usuario creo</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

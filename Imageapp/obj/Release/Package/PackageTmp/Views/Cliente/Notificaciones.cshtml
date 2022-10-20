@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Notificaciones";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+
+
+<h2>Requerimientos de la Autoridad</h2>
+
+<script>
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetNotificaciones = '@Url.Action("GetNotificaciones", "Cliente")';       
+   
+</script>
+
+<script src="~/Content/Js/Personal/CRM/Notificaciones.js"></script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+            <br />
+            <table id="tbl_Entregables" class="cell-border table-striped" data-title-datatable="Notificaciones">
+                <thead>
+                    <tr>                        
+                        <td>Tipo</td>
+                        <td>Autoridad Emisora</td>
+                        <td>Acto Administrativo</td>
+                        <td>Periodo</td>
+                        <td>Fecha recepción</td>
+                        <td>Fecha notificación</td>                        
+                        <td>Notificación</td>                        
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>

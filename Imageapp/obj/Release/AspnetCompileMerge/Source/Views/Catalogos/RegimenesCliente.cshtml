@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Regímenes del Cliente";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Regímenes del Cliente</h2>
+
+<script>
+    var id_RV = '@ViewBag.id_RV' //! ID de la vista
+    var id_cliente = '@ViewBag.id_cliente' //! ID del cliente
+
+    var url_Catalogos_GetClientes = '@Url.Action("GetClientes", "Catalogos")';
+    var url_Catalogos_GetCatalogos = '@Url.Action("GetCatalogos", "Catalogos")';
+
+    var url_Catalogos_GetPermisos = '@Url.Action("GetPermisos", "Catalogos")';
+
+    var url_Catalogos_AddCliente = '@Url.Action("AddCliente", "Catalogos")';
+    var url_Catalogos_UpdateCliente = '@Url.Action("UpdateCliente", "Catalogos")';
+    var url_Catalogos_DeleteCliente = '@Url.Action("DeleteCliente", "Catalogos")';
+</script>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+
+<script src="~/Content/Js/Personal/Catalogos/Clientes.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/ClientesModal.js"></script>
+
+
+<style>
+    .ui-draggable, .ui-droppable {
+        background-position: top;
+    }
+
+    .ui-menu {
+        z-index: 910 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .ui-datepicker {
+        z-index: 910 !important
+    }
+</style>
+
+
+@* Formulario de búsqueda *@

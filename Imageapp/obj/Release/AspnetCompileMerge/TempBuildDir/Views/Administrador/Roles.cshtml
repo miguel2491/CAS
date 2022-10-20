@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Roles</h2>
+
+<script src="~/Content/Js/Personal/Utils/ClsColumns.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Roles/Roles.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Roles/RolesModal.js"></script>
+<script src="~/Content/Js/Personal/Administrador/Roles/RlAcciones.js"></script>
+
+<script>
+    var id_RV = '@ViewBag.id_RV'
+    var url_Administrador_GetCatalogos = '@Url.Action("GetCatalogos", "Administrador")';
+    var url_Administrador_GetPermisos = '@Url.Action("GetPermisos", "Administrador")';
+
+    var url_Administrador_GetRoles = '@Url.Action("GetRoles", "Administrador")';
+    var url_Administrador_AddRol = '@Url.Action("AddRol", "Administrador")';
+    var url_Administrador_UpdateRol = '@Url.Action("UpdateRol", "Administrador")';
+    var url_Administrador_DeleteRol = '@Url.Action("DeleteRol", "Administrador")';
+
+    var url_Administrador_GetRlVista = '@Url.Action("GetRlVista", "Administrador")';
+    var url_Administrador_GetRlVistaAccion = '@Url.Action("GetRlVistaAccion", "Administrador")';
+</script>
+
+@* Formulario de búsqueda *@
+<div class="section frmFilter" id="frmFilter">
+    <form action="/" method="post">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fl_nombre">Nombre</label>
+                <input type="text" class="form-control" id="fl_nombre" placeholder="Buscar por nombre" autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+                <div>
+                    <label>Estatus</label>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbActivo" name="fl_RdbEstatus" value="1" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbActivo">Activo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbInactivo" name="fl_RdbEstatus" value="2" class="custom-control-input">
+                        <label class="custom-control-label" for="fl_RdbInactivo">Inactivo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="fl_RdbTodos" name="fl_RdbEstatus" value="0" class="custom-control-input" checked>
+                        <label class="custom-control-label" for="fl_RdbTodos">Todos</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex justify-content-around">
+                <button type="button" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
+                </button>
+                <button type="button" class="btn btn-style btn-second" id="btnClearFilters">
+                    <i class="fa fa-refresh"></i>&nbsp;&nbsp;Limpiar&nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@* Seccion para el datatable *@
+<div class="section" id="sectionDataTable">
+    <table id="tblRoles" class="cell-border" style=" width:100%">
+        <thead>
+            <tr>
+                <td>Id Rol</td>
+                <td>Nombre</td>
+                <td>Activo</td>
+                <td>Activo</td>
+                <td>Fecha creación</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@* Modal para crear, editar, modificar *@
+<div class="modal" id="mdlRoles">
+    <h3><span id="titleModal">Agregar</span> Rol</h3>
+
+    <ul class="nav nav-tabs" id="tabModal" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="form-tab" href="#formTab" aria-controls="formTab" role="tab" data-toggle="tab" aria-selected="true">Formulario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="rlVistas-tab" href="#rlVistas" aria-controls="rlVistas" role="tab" data-toggle="tab" aria-selected="true">Vistas</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="modalTabContent">
+        <div class="tab-pane fade show active" id="formTab" aria-labelledby="form-tab" role="tabpanel">
+            <form action="/" method="post" id="frmPrincipal">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="fr_nombre">Nombre</label>
+                        <input type="text" class="form-control text-uppercase" onkeypress="return validarLetras(event);" id="fr_nombre" name="fr_nombre" autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="fr_activo">Activo</label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="fr_activo" name="fr_activo">
+                            <label class="custom-control-label" for="fr_activo"></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="rlVistas" aria-labelledby="rlVistas-tab" role="tabpanel">
+            <div class="form">
+                <div class="form-group col-md-12 d-flex justify-content-around">
+                    <button type="button" class="btn btn-style btn-ok" id="btnShowCtVistas">
+                        <i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar vistas&nbsp;&nbsp;
+                    </button>
+                </div>
+                <div class="">
+                    <table id="tblRlVistas" class="cell-border" style="width:100%">
+                        <thead>
+                            <tr>
+                                <td>Acciones</td>
+                                <td>Id relación</td>
+                                <td>Id rol</td>
+                                <td>Id vista</td>
+                                <td>Nombre</td>
+                                <td>Ruta de acceso</td>
+                                <td>Permiso servidor</td>
+                                <td>Permiso servidor</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group form col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdl">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptar">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdl">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </div>
+</div>
+
+@* Modal para permisos *@
+<div class="modal" id="mdlRlActions">
+    <h3>Agregar permisos</h3>
+    <div class="form">
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnShowCtAcciones">
+                <i class="fa fa-plus"></i>&nbsp;&nbsp;Agregar permisos&nbsp;&nbsp;
+            </button>
+        </div>
+        <div class="">
+            <table id="tblRlActions" class="cell-border" style="width:100%;">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Id Rl rol-vista-accion</td>
+                        <td>Id Rl rol_vista</td>
+                        <td>Id permiso</td>
+                        <td>Código</td>
+                        <td>Nombre</td>
+                        <td>Permiso servidor</td>
+                        <td>Permiso servidor</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlRlAcciones">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;Agregar cambios&nbsp;&nbsp;
+            </button>
+            <a href="#mdlRlAcciones" rel="modal:close" class="btn btn-style btn-danger">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </a>
+        </div>
+    </div>
+
+</div>
+
+@* Modal para catalogos *@
+<div class="modal" id="mdlCtVistas" style="width:80%;">
+    <h3>Selecciona una vista</h3>
+    <div class="form">
+        <table id="tblCatVistas" class="cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <td>Seleccionar</td>
+                    <td>Id vista</td>
+                    <td>Nombre</td>
+                    <td>Ruta de acceso</td>
+                    <td>Es raíz</td>
+                    <td>Es visible</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlCtVistas">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;Agregar&nbsp;&nbsp;
+            </button>
+            <a href="#mdlCtVistas" rel="modal:close" class="btn btn-style btn-danger">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </a>
+        </div>
+    </div>
+</div>
+
+@* Modal para catalogos *@
+<div class="modal" id="mdlCtActions" style="width:80%;">
+    <h3>Selecciona una vista</h3>
+    <div class="form">
+        <table id="tblCatActions" class="cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <td>Seleccionar</td>
+                    <td>Id permiso</td>
+                    <td>Código</td>
+                    <td>Nombre</td>
+                    <td>Es visible</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlCtActions">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;Agregar&nbsp;&nbsp;
+            </button>
+            <a href="#mdlCtVistas" rel="modal:close" class="btn btn-style btn-danger">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </a>
+        </div>
+    </div>
+</div>

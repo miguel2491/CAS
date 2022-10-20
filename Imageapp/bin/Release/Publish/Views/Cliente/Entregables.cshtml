@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Entregables";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<script src="https://stuk.github.io/jszip/dist/jszip.js"></script>
+<script src="https://stuk.github.io/jszip/vendor/FileSaver.js"></script>
+
+
+<h2>Entregables</h2>
+
+<script>
+    var data_rfc = "@ViewBag.rfc";
+    var id_RV = '@ViewBag.id_RV'; //! ID de la vista
+    var url_Cliente_GetPermisos = '@Url.Action("GetPermisos", "Cliente")';
+    var url_Cliente_GetEntregables = '@Url.Action("GetEntregables", "Cliente")';
+    var id_regimen = @ViewBag.id_regimen;
+</script>
+<script src="~/Content/Js/Personal/CRM/Entregables.js"></script>
+
+<div class="section">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Mes:</label>
+            <div class="input-group mb-3">
+                <select class="form-control" id="fr_mesEntregable" name="fr_mesEntregable">
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Año:</label>
+            <div class="input-group mb-3">
+                <select class="form-control" id="fr_periodoEntregable" name="fr_periodoEntregable">
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label>&nbsp; </label>
+            <div class="input-group mb-3">
+                <button class="btn btn-primary" id="btnGenerarZip">Descargar en ZIP</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="section">
+            <br />
+            <table class="cell-border table-striped " id="tbl_Entregables" style="width:100%" data-title-datatable="Entregables">
+                <thead>
+                    <tr>
+                        <td>Entregable</td>
+                        <td>Descripción</td>
+                        <td>Fecha</td>
+                        <td>Descarga</td>
+                        <td>Id cliente</td>
+                        <td>Id entregable</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>

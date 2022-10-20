@@ -1,0 +1,2603 @@
+﻿@model IEnumerable<Imageapp.Models.Balanzas>
+@{
+    ViewBag.Title = "CierreAnual";
+    Layout = "~/Views/_Layout/Master.cshtml";
+}
+
+<h2>Cierre Anual</h2>
+
+
+
+<div class="section frmFilter" id="frmFilter">
+    <form id="frmFilterPrincipal" action="@Url.Action("CierreAnual","Catalogos")" method="post" enctype="multipart/form-data">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>RFC</label>
+                <input autocomplete="off" class="form-control" id="fl_rfc" name="fl_rfc" readonly type="text" value="@ViewBag.rfc">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Nombre / Razón Social</label>
+                <input autocomplete="off" class="form-control" disabled type="text" value="@ViewBag.nombre_razon">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Cargar balanzas:</label><br />
+                <input accept=".xlsx" class="form-control" type="file" name="file_Balanzas" id="file_Balanzas" required />
+            </div>
+            <div class="form-group col-md-4">
+                <label>&nbsp;</label> <br />
+                <button type="submit" class="btn btn-style btn-ok" id="btnSearchFilter">
+                    <i class="fa fa-upload"></i>&nbsp;&nbsp;Cargar Excel&nbsp;&nbsp;
+                </button>
+            </div>
+            <div class="form-group col-md-4">
+                <input type="hidden" id="frs_id_cliente_2" name="frs_id_cliente_2" value="@ViewBag.id_cliente">
+                <input type="hidden" id="frs_rfc_2" name="frs_rfc_2" value="@ViewBag.rfc">
+                <input type="hidden" id="frs_nombre_razon_2" name="frs_nombre_razon_2" value="@ViewBag.nombre_razon">
+                <input type="hidden" id="frs_id_regimen_2" name="frs_id_regimen_2" value="@ViewBag.id_regimen">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@{
+    Decimal saldoInicial = 0, totalDebe = 0, totalHaber = 0, saldoFinal = 0;
+
+
+    Decimal ventas_servicios_nacionales = 0;
+    Decimal devoluciones_descuentos = 0;
+
+    Decimal inventario_inicial = 0;
+    Decimal compras_netas = 0;
+    Decimal inventario_final = 0;
+
+    Decimal costo_ventas = 0;
+
+
+    Decimal gastos_operacion = 0;
+
+    Decimal intereses_devengados_a_favor = 0;
+    Decimal intereses_devengados_a_cargo = 0;
+
+    Decimal ganancia_cambiaria = 0;
+    Decimal perdida_cambiaria = 0;
+
+
+
+    Decimal otros_gastos_nacionales = 0;
+    Decimal otros_productos_nacionales = 0;
+
+
+    Decimal isr = 0;
+
+    Decimal ptu = 0;
+
+    Dictionary<Int32, Decimal> INPC = new Dictionary<int, decimal>();
+    INPC.Add(2018, 109);
+    INPC.Add(2019, 109);
+    INPC.Add(2020, 109.271M);
+    INPC.Add(2021, 114.601M);
+
+
+
+    ////////////////////////////////////////////////////////////////////
+    Decimal efectivo_caja_depositos = 0;
+    Decimal inversiones_valores = 0;
+    Decimal cuentas_documentos = 0;
+    Decimal contribuciones_afavor = 0;
+    Decimal inventarios_balance = 0;
+    Decimal otros_activas_circulantes = 0;
+    Decimal terrenos = 0, construcciones = 0;
+    Decimal mobiliario_oficina = 0, equipo_computo = 0, equipo_transporte = 0, otros_activos_fijos = 0, depreciacion_acumulada = 0,
+        cargos_gastos_diferidos = 0, amortizacion_acumulada = 0;
+
+    Decimal cuentas_documentos_pagar = 0;
+    Decimal contribuciones_pagar = 0;
+    Decimal anticipos_clientes = 0;
+    Decimal otros_pasivos = 0;
+
+
+    Decimal capital_social_capitalizacion = 0;
+    Decimal reservas = 0;
+
+    Decimal resultado_ejercicio_anterior = 0;
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    Decimal bancos = 0;
+    Decimal inversiones_valores_ajuste = 0;
+    Decimal clientes = 0;
+    Decimal deudores_diversos = 0; //Editable
+    Decimal saldos_afavor_contribuciones = 0;
+    Decimal proveedores = 0;
+    Decimal acreedores_diversos = 0;
+    Decimal creditos_bancarios = 0;
+    Decimal impuestos_por_pagar = 0; //Editable
+
+    Decimal cuotas_imss = 0;
+    Decimal retiro_vejez = 0;
+    Decimal infonavit = 0;
+    Decimal impuesto_nominas = 0;
+    Decimal iva_pagar = 0;
+    Decimal retenciones_sueldos_salarios = 0;
+    Decimal retenciones_asimilados = 0;
+    Decimal retenciones_servicios_profesionales = 0;
+    Decimal retenciones_arrendamiento = 0;
+    Decimal iva_retenciones = 0;
+
+
+
+
+    //INVERSIONES
+
+    Decimal contrucciones_inversion = 0;
+    Decimal mobiliario_oficina_inversion = 0;
+    Decimal equipo_computo_inversion = 0;
+    decimal equipo_transporte_otros_inversion = 0;
+    Decimal gastos_cargos_preoperativos_inversion = 0;
+    Decimal terrenos_adquisicion_inversion = 0;
+
+
+
+    Decimal anticipo_clientes = 0;
+    Decimal costo_venta_contable = 0;
+    Decimal depreciacion_amortizacion_contable = 0;
+    Decimal gasto_no_reunen_requisitos = 0;
+
+    Decimal anticipos_clientes_ejercicio_anteriores = 0;
+}
+@if (Model.Count() > 0)
+{
+    <script>
+        $(document).ready(function () {
+
+            var tblDebeHaber = new clsDataTable();
+            var tblSaldosFinales = new clsDataTable();
+            var tblBalanzaAnual = new clsDataTable();
+            var tblEstadoResultado = new clsDataTable();
+            var tblBalanceGeneral = new clsDataTable();
+            var tblAjusteAnualInflacion = new clsDataTable();
+            var tblInversiones = new clsDataTable();
+            var tblConciliacionBancaria = new clsDataTable();
+
+
+
+            let paramsDataTable = {
+                idTable: "#tblDebeHaber",
+                order: [0, 'asc'],
+                columnDefs: [
+                    { "width": "110px", "targets": 0 },
+                    { "width": "350px", "targets": 1 },
+
+
+                    { "width": "75px", "targets": 2 },
+                    { "width": "75px", "targets": 3 },
+                    { "width": "75px", "targets": 4 },
+                    { "width": "75px", "targets": 5 },
+                    { "width": "75px", "targets": 6 },
+                    { "width": "75px", "targets": 7 },
+                    { "width": "75px", "targets": 8 },
+                    { "width": "75px", "targets": 9 },
+                    { "width": "75px", "targets": 10 },
+                    { "width": "75px", "targets": 11 },
+                    { "width": "75px", "targets": 12 },
+                    { "width": "75px", "targets": 13 },
+                    { "width": "75px", "targets": 14 },
+                    { "width": "75px", "targets": 15 },
+                    { "width": "75px", "targets": 16 },
+                    { "width": "75px", "targets": 17 },
+                    { "width": "75px", "targets": 18 },
+                    { "width": "75px", "targets": 19 },
+                    { "width": "75px", "targets": 20 },
+                    { "width": "75px", "targets": 21 },
+                    { "width": "75px", "targets": 22 },
+                    { "width": "75px", "targets": 23 },
+                    { "width": "75px", "targets": 24 },
+                    { "width": "75px", "targets": 25 },
+
+                    { "width": "75px", "targets": 26 }
+                ]
+            }
+            initDataTable(paramsDataTable); //! Inicializar datatable
+            tblDebeHaber.setTable($("#tblDebeHaber").DataTable()); //! Inicializar clase datatable
+
+            let paramsDataTable2 = {
+                idTable: "#tblSaldosFinales",
+                order: [0, 'asc'],
+                columnDefs: [
+                    { "width": "110px", "targets": 0 },
+                    { "width": "350px", "targets": 1 },
+
+
+                    { "width": "75px", "targets": 2 },
+                    { "width": "75px", "targets": 3 },
+                    { "width": "75px", "targets": 4 },
+                    { "width": "75px", "targets": 5 },
+                    { "width": "75px", "targets": 6 },
+                    { "width": "75px", "targets": 7 },
+                    { "width": "75px", "targets": 8 },
+                    { "width": "75px", "targets": 9 },
+                    { "width": "75px", "targets": 10 },
+                    { "width": "75px", "targets": 11 },
+                    { "width": "75px", "targets": 12 },
+                    { "width": "75px", "targets": 13 }
+                ]
+            }
+            initDataTable(paramsDataTable2); //! Inicializar datatable
+            tblSaldosFinales.setTable($("#tblSaldosFinales").DataTable()); //! Inicializar clase datatable
+
+            let paramsDataTable3 = {
+                idTable: "#tblBalanzaAnual",
+                order: [0, 'asc'],
+                columnDefs: [
+                    { "width": "110px", "targets": 0 },
+                    { "width": "350px", "targets": 1 },
+                    { "width": "75px", "targets": 2 },
+                    { "width": "75px", "targets": 3 },
+                    { "width": "75px", "targets": 4 },
+                    { "width": "75px", "targets": 5 },
+                ]
+            }
+            initDataTable(paramsDataTable3); //! Inicializar datatable
+            tblBalanzaAnual.setTable($("#tblBalanzaAnual").DataTable()); //! Inicializar clase datatable
+
+            let paramsDataTable4 = {
+                idTable: "#tblEstadoResultado",
+                order: [],
+                columnDefs: [
+                    { "width": "400px", "targets": 0 },
+                    { "width": "120px", "targets": 1 },
+                    { "width": "120px", "targets": 2 },
+                    { "width": "120px", "targets": 3 }
+                ]
+            }
+            initDataTable(paramsDataTable4); //! Inicializar datatable
+            tblEstadoResultado.setTable($("#tblEstadoResultado").DataTable()); //! Inicializar clase datatable
+
+
+            let paramsDataTable5 = {
+                idTable: "#tblBalanceGeneral",
+                order: [],
+                columnDefs: [
+                    { "width": "450px", "targets": 0 },
+                    { "width": "120px", "targets": 1 },
+                ]
+            }
+            initDataTable(paramsDataTable5); //! Inicializar datatable
+            tblBalanceGeneral.setTable($("#tblBalanceGeneral").DataTable()); //! Inicializar clase datatable
+
+            let paramsDataTable6 = {
+                idTable: "#tblAjusteAnualInflacion",
+                order: [],
+                columnDefs: [
+                    { "width": "450px", "targets": 0 },
+                    { "width": "120px", "targets": 1 },
+                ]
+            }
+            initDataTable(paramsDataTable6); //! Inicializar datatable
+            tblAjusteAnualInflacion.setTable($("#tblAjusteAnualInflacion").DataTable()); //! Inicializar clase datatable
+
+
+
+            let paramsDataTable7 = {
+                idTable: "#tblInversiones",
+                order: [],
+                columnDefs: [
+                    { "width": "150px", "targets": 0 },
+                    { "width": "450px", "targets": 1 },
+                    { "width": "120px", "targets": 2 },
+                    { "width": "120px", "targets": 3 },
+                    { "width": "120px", "targets": 4 },
+                ]
+            }
+            initDataTable(paramsDataTable7); //! Inicializar datatable
+            tblInversiones.setTable($("#tblInversiones").DataTable()); //! Inicializar clase datatable
+
+
+            let paramsDataTable8 = {
+                idTable: "#tblConciliacionBancaria",
+                order: [],
+                columnDefs: [
+                    { "width": "450px", "targets": 0 },
+                    { "width": "120px", "targets": 1 },
+                ]
+            }
+            initDataTable(paramsDataTable8); //! Inicializar datatable
+            tblConciliacionBancaria.setTable($("#tblConciliacionBancaria").DataTable()); //! Inicializar clase datatable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+    </script>
+    <div class="section" id="sectionDataTable">
+        <h3>Resumen Debe Haber</h3>
+        <table id="tblDebeHaber" class="cell-border table-striped" data-title-datatable="Resumen Debe Haber">
+            <thead>
+                <tr>
+                    <td>Cuenta</td>
+                    <td>Descripción</td>
+                    <td>Debe Enero</td>
+                    <td>Haber Enero</td>
+                    <td>Debe Febrero</td>
+                    <td>Haber Febrero</td>
+                    <td>Debe Marzo</td>
+                    <td>Haber Marzo</td>
+                    <td>Debe Abril</td>
+                    <td>Haber Abril</td>
+                    <td>Debe Mayo</td>
+                    <td>Haber Mayo</td>
+                    <td>Debe Junio</td>
+                    <td>Haber Junio</td>
+                    <td>Debe Julio</td>
+                    <td>Haber Julio</td>
+                    <td>Debe Agosto</td>
+                    <td>Haber Agosto</td>
+                    <td>Debe Septiembre</td>
+                    <td>Haber Septiembre</td>
+                    <td>Debe Octubre</td>
+                    <td>Haber Octubre</td>
+                    <td>Debe Noviembre</td>
+                    <td>Haber Noviembre</td>
+                    <td>Debe Diciembre</td>
+                    <td>Haber Diciembre</td>
+                    <td>Saldo Final</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{totalDebe = 0;
+                    totalHaber = 0; saldoFinal = 0; saldoInicial = 0;}
+                @foreach (var cuenta in Model.Select(s => new { Cuenta = s.Cuenta, Descripcion = s.Descripcion }).Distinct())
+                {
+                    var item = Model.Where(s => s.Cuenta == cuenta.Cuenta).ToList();
+                    var enero = item.Where(s => s.Mes == "Enero").SingleOrDefault();
+                    Decimal eneroDebe = 0, eneroHaber = 0;
+                    totalHaber = 0; totalDebe = 0;
+                    if (enero != null)
+                    {
+                        eneroDebe = enero.Debe;
+                        eneroHaber = enero.Haber;
+                        saldoFinal = enero.Saldo_Final;
+                    }
+                    var febrero = item.Where(s => s.Mes == "Febrero").SingleOrDefault();
+                    Decimal febreroDebe = 0, febreroHaber = 0;
+                    if (febrero != null)
+                    {
+                        febreroDebe = febrero.Debe;
+                        febreroHaber = febrero.Haber;
+                        saldoFinal = febrero.Saldo_Final;
+                    }
+                    var marzo = item.Where(s => s.Mes == "Marzo").SingleOrDefault();
+                    Decimal marzoDebe = 0, marzoHaber = 0;
+                    if (marzo != null)
+                    {
+                        marzoDebe = marzo.Debe;
+                        marzoHaber = marzo.Haber;
+                        saldoFinal = marzo.Saldo_Final;
+                    }
+                    var abril = item.Where(s => s.Mes == "Abril").SingleOrDefault();
+                    Decimal abrilDebe = 0, abrilHaber = 0;
+                    if (abril != null)
+                    {
+                        abrilDebe = abril.Debe;
+                        abrilHaber = abril.Haber;
+                        saldoFinal = abril.Saldo_Final;
+                    }
+                    var mayo = item.Where(s => s.Mes == "Mayo").SingleOrDefault();
+                    Decimal mayoDebe = 0, mayoHaber = 0;
+                    if (mayo != null)
+                    {
+                        mayoDebe = mayo.Debe;
+                        mayoHaber = mayo.Haber;
+                        saldoFinal = mayo.Saldo_Final;
+                    }
+                    var junio = item.Where(s => s.Mes == "Junio").SingleOrDefault();
+                    Decimal junioDebe = 0, junioHaber = 0;
+                    if (junio != null)
+                    {
+                        junioDebe = junio.Debe;
+                        junioHaber = junio.Haber;
+                        saldoFinal = junio.Saldo_Final;
+                    }
+                    var julio = item.Where(s => s.Mes == "Julio").SingleOrDefault();
+                    Decimal julioDebe = 0, julioHaber = 0;
+                    if (julio != null)
+                    {
+                        julioDebe = julio.Debe;
+                        julioHaber = julio.Haber;
+                        saldoFinal = julio.Saldo_Final;
+                    }
+                    var agosto = item.Where(s => s.Mes == "Agosto").SingleOrDefault();
+                    Decimal agostoDebe = 0, agostoHaber = 0;
+                    if (agosto != null)
+                    {
+                        agostoDebe = agosto.Debe;
+                        agostoHaber = agosto.Haber;
+                        saldoFinal = agosto.Saldo_Final;
+                    }
+                    var septiembre = item.Where(s => s.Mes == "Septiembre").SingleOrDefault();
+                    Decimal septiembreDebe = 0, septiembreHaber = 0;
+                    if (septiembre != null)
+                    {
+                        septiembreDebe = septiembre.Debe;
+                        septiembreHaber = septiembre.Haber;
+                        saldoFinal = septiembre.Saldo_Final;
+                    }
+                    var octubre = item.Where(s => s.Mes == "Octubre").SingleOrDefault();
+                    Decimal octubreDebe = 0, octubreHaber = 0;
+                    if (octubre != null)
+                    {
+                        octubreDebe = octubre.Debe;
+                        octubreHaber = octubre.Haber;
+                        saldoFinal = octubre.Saldo_Final;
+                    }
+                    var noviembre = item.Where(s => s.Mes == "Noviembre").SingleOrDefault();
+                    Decimal noviembreDebe = 0, noviembreHaber = 0;
+                    if (noviembre != null)
+                    {
+                        noviembreDebe = noviembre.Debe;
+                        noviembreHaber = noviembre.Haber;
+                        saldoFinal = noviembre.Saldo_Final;
+                    }
+                    var diciembre = item.Where(s => s.Mes == "Diciembre").SingleOrDefault();
+                    Decimal diciembreDebe = 0, diciembreHaber = 0;
+                    if (diciembre != null)
+                    {
+                        diciembreDebe = diciembre.Debe;
+                        diciembreHaber = diciembre.Haber;
+                        saldoFinal = diciembre.Saldo_Final;
+                    }
+                    <tr>
+                        <td>@cuenta.Cuenta</td>
+                        <td>@cuenta.Descripcion</td>
+
+                        <td>@string.Format("{0:0,0.00}", eneroDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", eneroHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", febreroDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", febreroHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", marzoDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", marzoHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", abrilDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", abrilHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", mayoDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", mayoHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", junioDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", junioHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", julioDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", julioHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", agostoDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", agostoHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", septiembreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", septiembreHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", octubreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", octubreHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", noviembreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", noviembreHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", diciembreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", diciembreHaber)</td>
+
+                        <td>@string.Format("{0:0,0.00}", saldoFinal)</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="section" id="sectionDataTable">
+        <h3>Resumen Saldos Finales</h3>
+        <table id="tblSaldosFinales" class="cell-border table-striped" data-title-datatable="Resumen Saldos Finales">
+            <thead>
+                <tr>
+                    <td>Cuenta</td>
+                    <td>Descripción</td>
+                    <td>Final Enero</td>
+                    <td>Final Febrero</td>
+                    <td>Final Marzo</td>
+                    <td>Final Abril</td>
+                    <td>Final Mayo</td>
+                    <td>Final Junio</td>
+                    <td>Final Julio</td>
+                    <td>Final Agosto</td>
+                    <td>Final Septiembre</td>
+                    <td>Final Octubre</td>
+                    <td>Final Noviembre</td>
+                    <td>Final Diciembre</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{totalDebe = 0;
+                    totalHaber = 0; saldoFinal = 0; saldoInicial = 0;}
+                @foreach (var cuenta in Model.Select(s => new { Cuenta = s.Cuenta, Descripcion = s.Descripcion }).Distinct())
+                {
+                    var item = Model.Where(s => s.Cuenta == cuenta.Cuenta).ToList();
+                    var enero = item.Where(s => s.Mes == "Enero").SingleOrDefault();
+                    Decimal eneroDebe = 0, eneroHaber = 0;
+                    totalHaber = 0; totalDebe = 0;
+                    if (enero != null)
+                    {
+                        eneroDebe = enero.Saldo_Final;
+                        eneroHaber = enero.Haber;
+                        saldoFinal = enero.Saldo_Inicial;
+                    }
+                    var febrero = item.Where(s => s.Mes == "Febrero").SingleOrDefault();
+                    Decimal febreroDebe = 0, febreroHaber = 0;
+                    if (febrero != null)
+                    {
+                        febreroDebe = febrero.Saldo_Final;
+                        febreroHaber = febrero.Haber;
+                        saldoFinal = febrero.Saldo_Inicial;
+                    }
+                    var marzo = item.Where(s => s.Mes == "Marzo").SingleOrDefault();
+                    Decimal marzoDebe = 0, marzoHaber = 0;
+                    if (marzo != null)
+                    {
+                        marzoDebe = marzo.Saldo_Final;
+                        marzoHaber = marzo.Haber;
+                        saldoFinal = marzo.Saldo_Inicial;
+                    }
+                    var abril = item.Where(s => s.Mes == "Abril").SingleOrDefault();
+                    Decimal abrilDebe = 0, abrilHaber = 0;
+                    if (abril != null)
+                    {
+                        abrilDebe = abril.Saldo_Final;
+                        abrilHaber = abril.Haber;
+                        saldoFinal = abril.Saldo_Inicial;
+                    }
+                    var mayo = item.Where(s => s.Mes == "Mayo").SingleOrDefault();
+                    Decimal mayoDebe = 0, mayoHaber = 0;
+                    if (mayo != null)
+                    {
+                        mayoDebe = mayo.Saldo_Final;
+                        mayoHaber = mayo.Haber;
+                        saldoFinal = mayo.Saldo_Inicial;
+                    }
+                    var junio = item.Where(s => s.Mes == "Junio").SingleOrDefault();
+                    Decimal junioDebe = 0, junioHaber = 0;
+                    if (junio != null)
+                    {
+                        junioDebe = junio.Saldo_Final;
+                        junioHaber = junio.Haber;
+                        saldoFinal = junio.Saldo_Inicial;
+                    }
+                    var julio = item.Where(s => s.Mes == "Julio").SingleOrDefault();
+                    Decimal julioDebe = 0, julioHaber = 0;
+                    if (julio != null)
+                    {
+                        julioDebe = julio.Saldo_Final;
+                        julioHaber = julio.Haber;
+                        saldoFinal = julio.Saldo_Inicial;
+                    }
+                    var agosto = item.Where(s => s.Mes == "Agosto").SingleOrDefault();
+                    Decimal agostoDebe = 0, agostoHaber = 0;
+                    if (agosto != null)
+                    {
+                        agostoDebe = agosto.Saldo_Final;
+                        agostoHaber = agosto.Haber;
+                        saldoFinal = agosto.Saldo_Inicial;
+                    }
+                    var septiembre = item.Where(s => s.Mes == "Septiembre").SingleOrDefault();
+                    Decimal septiembreDebe = 0, septiembreHaber = 0;
+                    if (septiembre != null)
+                    {
+                        septiembreDebe = septiembre.Saldo_Final;
+                        septiembreHaber = septiembre.Haber;
+                        saldoFinal = septiembre.Saldo_Inicial;
+                    }
+                    var octubre = item.Where(s => s.Mes == "Octubre").SingleOrDefault();
+                    Decimal octubreDebe = 0, octubreHaber = 0;
+                    if (octubre != null)
+                    {
+                        octubreDebe = octubre.Saldo_Final;
+                        octubreHaber = octubre.Haber;
+                        saldoFinal = octubre.Saldo_Inicial;
+                    }
+                    var noviembre = item.Where(s => s.Mes == "Noviembre").SingleOrDefault();
+                    Decimal noviembreDebe = 0, noviembreHaber = 0;
+                    if (noviembre != null)
+                    {
+                        noviembreDebe = noviembre.Saldo_Final;
+                        noviembreHaber = noviembre.Haber;
+                        saldoFinal = noviembre.Saldo_Inicial;
+                    }
+                    var diciembre = item.Where(s => s.Mes == "Diciembre").SingleOrDefault();
+                    Decimal diciembreDebe = 0, diciembreHaber = 0;
+                    if (diciembre != null)
+                    {
+                        diciembreDebe = diciembre.Saldo_Final;
+                        diciembreHaber = diciembre.Haber;
+                        saldoFinal = diciembre.Saldo_Inicial;
+                    }
+                    <tr>
+                        <td>@cuenta.Cuenta</td>
+                        <td>@cuenta.Descripcion</td>
+
+                        <td>@string.Format("{0:0,0.00}", eneroDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", febreroDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", marzoDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", abrilDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", mayoDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", junioDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", julioDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", agostoDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", septiembreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", octubreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", noviembreDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", diciembreDebe)</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="sectionDataTable">
+        <h3>Balanza Anual</h3>
+        <table id="tblBalanzaAnual" class="cell-border table-striped" data-title-datatable="Balanza Anual">
+            <thead>
+                <tr>
+                    <td>Cuenta</td>
+                    <td>Descripción</td>
+                    <td>Saldo Inicial</td>
+                    <td>Total de Cargos</td>
+                    <td>Total de Abonos</td>
+                    <td>Saldo Final</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{totalDebe = 0;
+                    totalHaber = 0; saldoFinal = 0; saldoInicial = 0;}
+                @foreach (var cuenta in Model.Select(s => new { Cuenta = s.Cuenta, Descripcion = s.Descripcion }).Distinct())
+                {
+                    var item = Model.Where(s => s.Cuenta == cuenta.Cuenta).ToList();
+                    var num_meses = item.Count;
+                    var enero = item.Where(s => s.Mes == "Enero").SingleOrDefault();
+                    Decimal eneroDebe = 0, eneroHaber = 0;
+                    totalHaber = 0; totalDebe = 0;
+                    if (enero != null)
+                    {
+                        saldoInicial = enero.Saldo_Inicial;
+                        totalDebe += enero.Debe;
+                        totalHaber += enero.Haber;
+                        saldoFinal = enero.Saldo_Final;
+                    }
+                    var febrero = item.Where(s => s.Mes == "Febrero").SingleOrDefault();
+                    Decimal febreroDebe = 0, febreroHaber = 0;
+                    if (febrero != null)
+                    {
+                        totalDebe += febrero.Debe;
+                        totalHaber += febrero.Haber;
+                        saldoFinal = febrero.Saldo_Final;
+                    }
+                    var marzo = item.Where(s => s.Mes == "Marzo").SingleOrDefault();
+                    Decimal marzoDebe = 0, marzoHaber = 0;
+                    if (marzo != null)
+                    {
+                        totalDebe += marzo.Debe;
+                        totalHaber += marzo.Haber;
+                        saldoFinal = marzo.Saldo_Final;
+                    }
+                    var abril = item.Where(s => s.Mes == "Abril").SingleOrDefault();
+                    Decimal abrilDebe = 0, abrilHaber = 0;
+                    if (abril != null)
+                    {
+                        totalDebe += abril.Debe;
+                        totalHaber += abril.Haber;
+                        saldoFinal = abril.Saldo_Final;
+                    }
+                    var mayo = item.Where(s => s.Mes == "Mayo").SingleOrDefault();
+                    Decimal mayoDebe = 0, mayoHaber = 0;
+                    if (mayo != null)
+                    {
+                        totalDebe += mayo.Debe;
+                        totalHaber += mayo.Haber;
+                        saldoFinal = mayo.Saldo_Final;
+                    }
+                    var junio = item.Where(s => s.Mes == "Junio").SingleOrDefault();
+                    Decimal junioDebe = 0, junioHaber = 0;
+                    if (junio != null)
+                    {
+                        totalDebe += junio.Debe;
+                        totalHaber += junio.Haber;
+                        saldoFinal = junio.Saldo_Final;
+                    }
+                    var julio = item.Where(s => s.Mes == "Julio").SingleOrDefault();
+                    Decimal julioDebe = 0, julioHaber = 0;
+                    if (julio != null)
+                    {
+                        totalDebe += julio.Debe;
+                        totalHaber += julio.Haber;
+                        saldoFinal = julio.Saldo_Final;
+                    }
+                    var agosto = item.Where(s => s.Mes == "Agosto").SingleOrDefault();
+                    Decimal agostoDebe = 0, agostoHaber = 0;
+                    if (agosto != null)
+                    {
+                        totalDebe += agosto.Debe;
+                        totalHaber += agosto.Haber;
+                        saldoFinal = agosto.Saldo_Final;
+                    }
+                    var septiembre = item.Where(s => s.Mes == "Septiembre").SingleOrDefault();
+                    Decimal septiembreDebe = 0, septiembreHaber = 0;
+                    if (septiembre != null)
+                    {
+                        totalDebe += septiembre.Debe;
+                        totalHaber += septiembre.Haber;
+                        saldoFinal = septiembre.Saldo_Final;
+                    }
+                    var octubre = item.Where(s => s.Mes == "Octubre").SingleOrDefault();
+                    Decimal octubreDebe = 0, octubreHaber = 0;
+                    if (octubre != null)
+                    {
+                        totalDebe += octubre.Debe;
+                        totalHaber += octubre.Haber;
+                        saldoFinal = octubre.Saldo_Final;
+                    }
+                    var noviembre = item.Where(s => s.Mes == "Noviembre").SingleOrDefault();
+                    Decimal noviembreDebe = 0, noviembreHaber = 0;
+                    if (noviembre != null)
+                    {
+                        totalDebe += noviembre.Debe;
+                        totalHaber += noviembre.Haber;
+                        saldoFinal = noviembre.Saldo_Final;
+                    }
+                    var diciembre = item.Where(s => s.Mes == "Diciembre").SingleOrDefault();
+                    Decimal diciembreDebe = 0, diciembreHaber = 0;
+                    if (diciembre != null)
+                    {
+                        totalDebe += diciembre.Debe;
+                        totalHaber += diciembre.Haber;
+                        saldoFinal = diciembre.Saldo_Final;
+                    }
+
+
+                    <tr>
+                        <td>@cuenta.Cuenta</td>
+                        <td>@cuenta.Descripcion</td>
+
+                        <td>@string.Format("{0:0,0.00}", saldoInicial)</td>
+                        <td>@string.Format("{0:0,0.00}", totalDebe)</td>
+                        <td>@string.Format("{0:0,0.00}", totalHaber)</td>
+                        <td>@string.Format("{0:0,0.00}", saldoFinal)</td>
+
+                    </tr>
+
+                    if (cuenta.Cuenta == "4100-000-000")
+                    {
+                        ventas_servicios_nacionales = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "4200-000-000")
+                    {
+                        devoluciones_descuentos = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1190-000-000")
+                    {
+                        inventario_inicial = saldoInicial;
+                        compras_netas = totalDebe - totalHaber;
+                        inventario_final = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "5000-000-000")
+                    {
+                        costo_ventas = saldoFinal;
+                    }
+
+
+                    if (cuenta.Cuenta.Contains("6100-000") || cuenta.Cuenta.Contains("6200-000") || cuenta.Cuenta.Contains("6300-000") || cuenta.Cuenta.Contains("6400-000"))
+                    {
+                        gastos_operacion += saldoFinal;
+                    }
+
+
+                    if (cuenta.Cuenta == "7100-000-000")
+                    {
+                        intereses_devengados_a_favor = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "7200-000-000")
+                    {
+                        intereses_devengados_a_cargo += saldoFinal;
+                    }
+
+
+
+                    if (cuenta.Cuenta == "7100-003-000")
+                    {
+                        ganancia_cambiaria = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "7200-002-000")
+                    {
+                        ganancia_cambiaria = saldoFinal;
+                        intereses_devengados_a_cargo -= saldoFinal;
+                    }
+
+
+                    if (cuenta.Cuenta == "7400-000-000")
+                    {
+                        otros_gastos_nacionales = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "7300-000-000")
+                    {
+                        otros_productos_nacionales = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "8100-001-000")
+                    {
+                        isr = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "8200-000-000")
+                    {
+                        ptu = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1110-000-000" || cuenta.Cuenta == "1120-000-000")
+                    {
+                        efectivo_caja_depositos += saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1140-000-000")
+                    {
+                        inversiones_valores = saldoFinal;
+                        inversiones_valores_ajuste = item.Sum(s => s.Saldo_Final) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "1150-000-000")
+                    {
+                        cuentas_documentos = saldoFinal;
+                        clientes = item.Sum(s => s.Saldo_Final) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "1180-000-000")
+                    {
+                        contribuciones_afavor = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1190-000-000")
+                    {
+                        inventarios_balance = saldoFinal;
+                    }
+
+
+                    if (cuenta.Cuenta == "1130-000-000" ||
+                        cuenta.Cuenta == "1160-000-000" ||
+                        cuenta.Cuenta == "1170-000-000" ||
+                        cuenta.Cuenta == "1200-000-000" ||
+                        cuenta.Cuenta == "1210-000-000" ||
+                        cuenta.Cuenta == "1215-000-000" ||
+                        cuenta.Cuenta == "1220-000-000" ||
+                        cuenta.Cuenta == "1201-000-000" ||
+                        cuenta.Cuenta == "1470-000-000")
+                    {
+                        otros_activas_circulantes += saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1310-001-000")
+                    {
+                        terrenos = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1310-002-000")
+                    {
+                        construcciones = saldoFinal;
+                    }
+
+
+                    if (cuenta.Cuenta == "1310-005-000")
+                    {
+                        mobiliario_oficina = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1310-004-000")
+                    {
+                        equipo_computo = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1310-003-000")
+                    {
+                        equipo_transporte = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1310-000-000")
+                    {
+                        otros_activos_fijos = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1360-000-000")
+                    {
+                        depreciacion_acumulada = saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1410-000-000" || cuenta.Cuenta == "1420-000-000")
+                    {
+                        cargos_gastos_diferidos += saldoFinal;
+                    }
+                    if (cuenta.Cuenta == "1460-002-000")
+                    {
+                        amortizacion_acumulada = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "2110-000-000" ||
+                        cuenta.Cuenta == "2120-000-000" ||
+                        cuenta.Cuenta == "2130-000-000" ||
+                        cuenta.Cuenta == "2200-000-000")
+                    {
+                        cuentas_documentos_pagar += saldoFinal;
+                    }
+
+
+                    if (cuenta.Cuenta == "2140-000-000" ||
+                        cuenta.Cuenta == "2150-000-000" ||
+                        cuenta.Cuenta == "2170-000-000")
+                    {
+                        contribuciones_pagar += saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "2190-000-000")
+                    {
+                        anticipos_clientes = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "2160-000-000" ||
+                        cuenta.Cuenta == "2180-000-000" ||
+                        cuenta.Cuenta == "2181-000-000")
+                    {
+                        otros_pasivos += saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "3100-000-000")
+                    {
+                        capital_social_capitalizacion = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "3200-000-000")
+                    {
+                        reservas = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "3300-000-000")
+                    {
+                        resultado_ejercicio_anterior = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1120-000-000")
+                    {
+                        bancos = item.Sum(s => s.Saldo_Final) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "1180-001-000" || cuenta.Cuenta == "1180-002-000")
+                    {
+                        saldos_afavor_contribuciones += item.Sum(s => s.Debe) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2110-000-000")
+                    {
+                        proveedores = item.Sum(s => s.Saldo_Final) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2120-001-000")
+                    {
+                        acreedores_diversos = item.Sum(s => s.Saldo_Final) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2130-001-000" || cuenta.Cuenta == "2200-000-000")
+                    {
+                        creditos_bancarios += item.Sum(s => s.Saldo_Final) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2170-001-000")
+                    {
+                        cuotas_imss = item.Sum(s => s.Haber) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2170-002-000")
+                    {
+                        retiro_vejez = item.Sum(s => s.Haber) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2170-003-000")
+                    {
+                        infonavit = item.Sum(s => s.Haber) / num_meses;
+                    }
+
+                    if (cuenta.Cuenta == "2140-004-000")
+                    {
+                        impuesto_nominas = item.Sum(s => s.Haber) / num_meses;
+                    }
+                    if (cuenta.Cuenta == "2140-001-000")
+                    {
+                        iva_pagar = item.Sum(s => s.Haber) / num_meses;
+                    }
+                    if (cuenta.Cuenta == "2150-001-000")
+                    {
+                        retenciones_sueldos_salarios = item.Sum(s => s.Haber) / num_meses;
+                    }
+                    if (cuenta.Cuenta == "2150-002-000")
+                    {
+                        retenciones_asimilados = item.Sum(s => s.Haber) / num_meses;
+                    }
+                    if (cuenta.Cuenta == "2150-003-000")
+                    {
+                        retenciones_servicios_profesionales = item.Sum(s => s.Haber) / num_meses;
+                    }
+                    if (cuenta.Cuenta == "2150-004-000")
+                    {
+                        retenciones_arrendamiento = item.Sum(s => s.Haber) / num_meses;
+                    }
+
+
+                    if (cuenta.Cuenta == "2150-006-000" || cuenta.Cuenta == "2150-007-000")
+                    {
+                        iva_retenciones += item.Sum(s => s.Haber) / num_meses;
+                    }
+
+
+                    if (cuenta.Cuenta == "1310-002-000")
+                    {
+                        contrucciones_inversion = totalDebe - totalHaber;
+                    }
+
+
+                    if (cuenta.Cuenta == "1310-005-000")
+                    {
+                        mobiliario_oficina_inversion = totalDebe - totalHaber;
+                    }
+
+                    if (cuenta.Cuenta == "1310-004-000")
+                    {
+                        equipo_computo_inversion = totalDebe - totalHaber;
+                    }
+
+
+                    if (cuenta.Cuenta == "1310-003-000")
+                    {
+                        equipo_transporte_otros_inversion = totalDebe - totalHaber;
+                    }
+
+                    if (cuenta.Cuenta == "1420-000-000")
+                    {
+                        gastos_cargos_preoperativos_inversion = totalDebe - totalHaber;
+                    }
+
+                    if (cuenta.Cuenta == "1310-001-000")
+                    {
+                        terrenos_adquisicion_inversion = totalDebe - totalHaber;
+                    }
+
+                    if (cuenta.Cuenta == "2190-000-000")
+                    {
+                        anticipo_clientes = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "5000-000-000")
+                    {
+                        costo_venta_contable = saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "1360-000-000")
+                    {
+                        depreciacion_amortizacion_contable = totalHaber - totalDebe;
+                    }
+
+                    if (cuenta.Descripcion.Contains("NO DEDUCIBLES"))
+                    {
+                        gasto_no_reunen_requisitos += saldoFinal;
+                    }
+
+                    if (cuenta.Cuenta == "2190-000-000")
+                    {
+                        anticipos_clientes_ejercicio_anteriores = saldoFinal;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="section" id="sectionDataTable">
+        <h3>Estado de Resultados</h3>
+        <table id="tblEstadoResultado" class="cell-border table-striped" data-title-datatable="Estado de Resultados">
+            <thead>
+                <tr>
+                    <td>Concepto</td>
+                    <td>Partes Relacionadas</td>
+                    <td>Partes no Relacionadas</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>VENTAS Y/O SERVICIOS NACIONALES</td>
+                    <td>0.00</td>
+
+                    <td>@string.Format("{0:0,0.00}", ventas_servicios_nacionales)</td>
+                    <td>@string.Format("{0:0,0.00}", ventas_servicios_nacionales)</td>
+                </tr>
+                <tr>
+                    <td>VENTAS Y/O SERVICIOS EXTRANJEROS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>DEVOLUCIONES, DESCUENTOS Y BONIFICACIONES SOBRE VENTAS NACIONALES</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", devoluciones_descuentos)</td>
+                    <td>@string.Format("{0:0,0.00}", devoluciones_descuentos)</td>
+                </tr>
+                <tr>
+                    <td>DEVOLUCIONES, DESCUENTOS Y BONIFICACIONES SOBRE VENTAS EXTRANJERO</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INGRESOS NETOS</td>
+                    <td>0.00</td>
+                    <td>@string.Format("{0:0,0.00}", ventas_servicios_nacionales - devoluciones_descuentos)</td>
+                    <td>@string.Format("{0:0,0.00}", ventas_servicios_nacionales - devoluciones_descuentos)</td>
+                </tr>
+                <tr>
+                    <td>INVENTARIO INICIAL</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", inventario_inicial)</td>
+                    <td>@string.Format("{0:0,0.00}", inventario_inicial)</td>
+                </tr>
+                <tr>
+                    <td>COMPRAS NETAS NACIONALES</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", compras_netas)</td>
+                    <td>@string.Format("{0:0,0.00}", compras_netas)</td>
+                </tr>
+                <tr>
+                    <td>COMPRAS NETAS DE IMPORTACION</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INVENTARIO FINAL</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", inventario_final)</td>
+                    <td>@string.Format("{0:0,0.00}", inventario_final)</td>
+                </tr>
+                <tr>
+                    <td>COSTO DE VENTAS</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", costo_ventas)</td>
+                    <td>@string.Format("{0:0,0.00}", costo_ventas)</td>
+                </tr>
+                <tr>
+                    <td>MANO DE OBRA</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>MAQUILAS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>GASTOS INDIRECTOS DE FABRICACION</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>COSTO DE VENTAS Y/O SERVICIOS</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", costo_ventas)</td>
+                    <td>@string.Format("{0:0,0.00}", costo_ventas)</td>
+                </tr>
+                @{ Boolean flag_utilidad_perdida = true;}
+                @if ((ventas_servicios_nacionales - devoluciones_descuentos) > costo_ventas)
+                {
+                    flag_utilidad_perdida = true;
+                    <tr>
+                        <td>UTILIDAD BRUTA</td>
+                        <td>00.00</td>
+                        <td>@string.Format("{0:0,0.00}", ((ventas_servicios_nacionales - devoluciones_descuentos) - costo_ventas))</td>
+                        <td>@string.Format("{0:0,0.00}", ((ventas_servicios_nacionales - devoluciones_descuentos) - costo_ventas))</td>
+                    </tr>
+                    <tr>
+                        <td>PERDIDA BRUTA</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                    </tr>
+                }
+                else
+                {
+                    flag_utilidad_perdida = false;
+                    <tr>
+                        <td>UTILIDAD BRUTA</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                    </tr>
+                    <tr>
+                        <td>PERDIDA BRUTA</td>
+                        <td>00.00</td>
+                        <td>@string.Format("{0:0,0.00}", (costo_ventas - (ventas_servicios_nacionales - devoluciones_descuentos)))</td>
+                        <td>@string.Format("{0:0,0.00}", (costo_ventas - (ventas_servicios_nacionales - devoluciones_descuentos)))</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>GASTOS DE OPERACIÓN</td>
+                    <td>0.00</td>
+                    <td>@string.Format("{0:0,0.00}", gastos_operacion)</td>
+                    <td>@string.Format("{0:0,0.00}", gastos_operacion)</td>
+                </tr>
+                @{
+                    Decimal utilidad_operacion_condicion = ((ventas_servicios_nacionales - devoluciones_descuentos) - costo_ventas);
+                    Decimal utilidad_operacion = 0;
+                    Decimal perdida_operacion = 0;
+                    Decimal resultado_integral_financiamiento = 0;
+                }
+                @if (flag_utilidad_perdida)
+                {
+
+                    if (utilidad_operacion_condicion - gastos_operacion > 0)
+                    {
+                        utilidad_operacion = utilidad_operacion_condicion - gastos_operacion;
+                        <tr>
+                            <td>UTILIDAD DE OPERACIÓN</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_operacion)</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_operacion)</td>
+
+                        </tr>
+                        <tr>
+                            <td>PERDIDA DE OPERACIÓN</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        perdida_operacion = gastos_operacion - utilidad_operacion_condicion;
+                        <tr>
+                            <td>UTILIDAD DE OPERACIÓN</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>PERDIDA DE OPERACIÓN</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_operacion)</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_operacion)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    perdida_operacion = gastos_operacion + utilidad_operacion_condicion;
+                    <tr>
+                        <td>UTILIDAD DE OPERACIÓN</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+
+                    </tr>
+                    <tr>
+                        <td>PERDIDA DE OPERACIÓN</td>
+                        <td>00.00</td>
+                        <td>@string.Format("{0:0,0.00}", perdida_operacion)</td>
+                        <td>@string.Format("{0:0,0.00}", perdida_operacion)</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>INTERESES DEVENGADOS A FAVOR NACIONALES </td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", intereses_devengados_a_favor)</td>
+                    <td>@string.Format("{0:0,0.00}", intereses_devengados_a_favor)</td>
+                </tr>
+                <tr>
+                    <td>INTERESES DEVENGADOS A FAVOR DEL EXTRANJERO</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INTERESES MORATORIOS A FAVOR NACIONALES</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+
+
+                <tr>
+                    <td>INTERESES MORATORIOS A FAVOR DEL EXTRANJERO</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>GANANCIA CAMBIARIA</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", ganancia_cambiaria)</td>
+                    <td>@string.Format("{0:0,0.00}", ganancia_cambiaria)</td>
+                </tr>
+                <tr>
+                    <td>INTERESES DEVENGADOS A CARGO NACIONALES</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", intereses_devengados_a_cargo)</td>
+                    <td>@string.Format("{0:0,0.00}", intereses_devengados_a_cargo)</td>
+                </tr>
+                <tr>
+                    <td>INTERESES DEVENGADOS A CARGO DEL EXTRANJERO</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INTERESES MORATORIOS A CARGO NACIONALES</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INTERESES MORATORIOS A CARGO DEL EXTRANJERO</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>PERDIDA CAMBIARIA</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", perdida_cambiaria)</td>
+                    <td>@string.Format("{0:0,0.00}", perdida_cambiaria)</td>
+                </tr>
+
+                <tr>
+                    <td>RESULTADO POR POSICION MONETARIA FAVORABLE</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>RESULTADO POR POSICION MONETARIA DESFAVORABLE</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTRAS OPERACIONES FINANCIERAS NACIONALES</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTRAS OPERACIONES FINANCIERAS EXTRANJERAS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTRAS OPERACIONES FINANCIERAS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                @{
+                    resultado_integral_financiamiento = intereses_devengados_a_favor + ganancia_cambiaria - intereses_devengados_a_cargo - perdida_cambiaria;
+                }
+                <tr>
+                    <td>RESULTADO INTEGRAL DE FINANCIAMIENTO</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", resultado_integral_financiamiento)</td>
+                    <td>@string.Format("{0:0,0.00}", resultado_integral_financiamiento)</td>
+                </tr>
+                <tr>
+                    <td>OTROS GASTOS NACIONALES</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", otros_gastos_nacionales)</td>
+                    <td>@string.Format("{0:0,0.00}", otros_gastos_nacionales)</td>
+                </tr>
+                <tr>
+                    <td>OTROS GASTOS EXTRANJEROS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>OTROS GASTOS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTROS PRODUCTOS NACIONALES</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", otros_productos_nacionales)</td>
+                    <td>@string.Format("{0:0,0.00}", otros_productos_nacionales)</td>
+                </tr>
+                <tr>
+                    <td>OTROS PRODUCTOS EXTRANJEROS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTROS PRODUCTOS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INGRESOS POR PARTIDAS DISCONTINUAS Y EXTRAORDINARIAS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>GASTOS POR PARTIDAS DISCONTINUAS Y EXTRAORDINARIAS</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>RESULTADO OTROS PRODUCTOS, GASTOS Y PARTIDAS DISCONTINUAS</td>
+                    <td>0.00</td>
+                    <td>@string.Format("{0:0,0.00}", otros_productos_nacionales - otros_gastos_nacionales)</td>
+                    <td>@string.Format("{0:0,0.00}", otros_productos_nacionales - otros_gastos_nacionales)</td>
+                </tr>
+                @{
+                    Decimal utilidad_antes_impuesto = 0;
+                    Decimal perdida_antes_impuesto = 0;
+                }
+                @if (flag_utilidad_perdida)
+                {
+                    utilidad_antes_impuesto = utilidad_operacion + resultado_integral_financiamiento + (otros_productos_nacionales - otros_gastos_nacionales);
+                    if (utilidad_antes_impuesto > 0)
+                    {
+                        <tr>
+                            <td>UTILIDAD ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_antes_impuesto)</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_antes_impuesto)</td>
+                        </tr>
+                        <tr>
+                            <td>PERDIDA ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>UTILIDAD ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                        <tr>
+                            <td>PERDIDA ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_antes_impuesto * -1)</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_antes_impuesto * -1)</td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    perdida_antes_impuesto = perdida_cambiaria + resultado_integral_financiamiento + (otros_productos_nacionales - otros_gastos_nacionales);
+                    if (perdida_antes_impuesto > 0)
+                    {
+                        <tr>
+                            <td>UTILIDAD ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_antes_impuesto)</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_antes_impuesto)</td>
+                        </tr>
+                        <tr>
+                            <td>PERDIDA ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>UTILIDAD ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                        <tr>
+                            <td>PERDIDA ANTES DE IMPUESTOS</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_antes_impuesto * -1)</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_antes_impuesto * -1)</td>
+                        </tr>
+                    }
+                }
+
+                <tr>
+                    <td>ISR</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", isr)</td>
+                    <td>@string.Format("{0:0,0.00}", isr)</td>
+                </tr>
+                <tr>
+                    <td>PTU</td>
+                    <td>00.00</td>
+                    <td>@string.Format("{0:0,0.00}", ptu)</td>
+                    <td>@string.Format("{0:0,0.00}", ptu)</td>
+                </tr>
+                <tr>
+                    <td>UTILIDAD EN PARTICIPACION SUBSIDIARIA</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>PERDIDA EN PARTICIPACION SUBSIDIARIA</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>EFECTOS DE REEXPRESIÓN FAVORABLES EXCEPTO RESULTADO POR POSICION MONETARIA</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>EFECTOS DE REEXPRESIÓN DESFAVORABLES EXCEPTO RESULTADO POR POSICION MONETARIA</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                    <td>00.00</td>
+                </tr>
+                @{
+                    Decimal utilidad_neta = 0;
+                    Decimal perdida_neta = 0;
+                }
+                @if (utilidad_antes_impuesto > 0)
+                {
+                    utilidad_neta = utilidad_antes_impuesto - isr - ptu;
+                    if (utilidad_neta > 0)
+                    {
+                        <tr>
+                            <td>UTILIDAD NETA</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_neta)</td>
+                            <td>@string.Format("{0:0,0.00}", utilidad_neta)</td>
+                        </tr>
+                        <tr>
+                            <td>PERDIDA NETA</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        perdida_neta = utilidad_neta * -1;
+                        <tr>
+                            <td>UTILIDAD NETA</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                            <td>00.00</td>
+                        </tr>
+                        <tr>
+                            <td>PERDIDA NETA</td>
+                            <td>00.00</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_neta)</td>
+                            <td>@string.Format("{0:0,0.00}", perdida_neta)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    perdida_neta = perdida_antes_impuesto + isr + ptu;
+                    <tr>
+                        <td>UTILIDAD NETA</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                        <td>00.00</td>
+                    </tr>
+                    <tr>
+                        <td>PERDIDA NETA</td>
+                        <td>00.00</td>
+                        <td>@string.Format("{0:0,0.00}", perdida_neta)</td>
+                        <td>@string.Format("{0:0,0.00}", perdida_neta)</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="sectionDataTable">
+        <h3>Balance General</h3>
+        <table id="tblBalanceGeneral" class="cell-border table-striped" data-title-datatable="Balance General">
+            <thead>
+                <tr>
+                    <td>Concepto</td>
+                    <td>Importe</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>EFECTIVO EN CAJA Y DEPÓSITOS EN INSTITUCIONES DE CRÉDITO NACIONALES</td>
+                    <td>@string.Format("{0:0,0.00}", efectivo_caja_depositos)</td>
+                </tr>
+                <tr>
+                    <td>EFECTIVO EN CAJA Y DEPÓSITOS EN INSTITUCIONES DE CRÉDITO DEL EXTRANJERO</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INVERSIONES EN VALORES CON INSTITUCIONES NACIONALES (EXCEPTO ACCIONES)</td>
+                    <td>@string.Format("{0:0,0.00}", inversiones_valores)</td>
+                </tr>
+                <tr>
+                    <td>INVERSIONES EN VALORES CON INSTITUCIONES EXTRANJERAS (EXCEPTO ACCIONES)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR COBRAR NACIONALES (PARTES RELACIONADAS)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR COBRAR NACIONALES (PARTES NO RELACIONADAS)</td>
+                    <td>@string.Format("{0:0,0.00}", cuentas_documentos)</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR COBRAR NACIONALES (TOTAL)</td>
+                    <td>@string.Format("{0:0,0.00}", cuentas_documentos)</td>
+                </tr>
+
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR COBRAR DEL EXTRANJERO (PARTES RELACIONADAS)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR COBRAR DEL EXTRANJERO (PARTES NO RELACIONADAS)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR COBRAR DEL EXTRANJERO (TOTAL)</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>CONTRIBUCIONES A FAVOR</td>
+                    <td>@string.Format("{0:0,0.00}", contribuciones_afavor)</td>
+                </tr>
+                <tr>
+                    <td>INVENTARIOS</td>
+                    <td>@string.Format("{0:0,0.00}", inventarios_balance)</td>
+                </tr>
+                <tr>
+                    <td>OTROS ACTIVOS CIRCULANTES</td>
+                    <td>@string.Format("{0:0,0.00}", otros_activas_circulantes)</td>
+                </tr>
+                <tr>
+                    <td>INVERSIONES EN ACCIONES NACIONALES</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INVERSIONES EN ACCIONES DEL EXTRANJERO</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INVERSIONES EN ACCIONES (TOTAL)</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>TERRENOS</td>
+                    <td>@string.Format("{0:0,0.00}", terrenos)</td>
+                </tr>
+                <tr>
+                    <td>CONSTRUCCIONES</td>
+                    <td>@string.Format("{0:0,0.00}", construcciones)</td>
+                </tr>
+
+                <tr>
+                    <td>CONSTRUCCIONES EN PROCESO</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>MAQUINARIA Y EQUIPO</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>MOBILIARIO Y EQUIPO DE OFICINA</td>
+                    <td>@string.Format("{0:0,0.00}", mobiliario_oficina)</td>
+                </tr>
+                <tr>
+                    <td>EQUIPO DE CÓMPUTO</td>
+                    <td>@string.Format("{0:0,0.00}", equipo_computo)</td>
+                </tr>
+                <tr>
+                    <td>EQUIPO DE TRANSPORTE</td>
+                    <td>@string.Format("{0:0,0.00}", equipo_transporte)</td>
+                </tr>
+                <tr>
+                    <td>OTROS ACTIVOS FIJOS</td>
+                    <td>@string.Format("{0:0,0.00}", otros_activos_fijos - terrenos - construcciones - equipo_transporte - equipo_computo - mobiliario_oficina)</td>
+                </tr>
+                <tr>
+                    <td>DEPRECIACIÓN ACUMULADA</td>
+                    <td>@string.Format("{0:0,0.00}", depreciacion_acumulada)</td>
+                </tr>
+                <tr>
+                    <td>CARGOS Y GASTOS DIFERIDOS</td>
+                    <td>@string.Format("{0:0,0.00}", cargos_gastos_diferidos)</td>
+                </tr>
+                <tr>
+                    <td>AMORTIZACIÓN ACUMULADA</td>
+                    <td>@string.Format("{0:0,0.00}", amortizacion_acumulada)</td>
+                </tr>
+                @{
+                    Decimal suma_activo = efectivo_caja_depositos + inversiones_valores +
+                     cuentas_documentos +
+                     contribuciones_afavor +
+                     inventarios_balance +
+                     otros_activas_circulantes +
+                     terrenos + construcciones +
+                     mobiliario_oficina + equipo_computo + equipo_transporte + (otros_activos_fijos - terrenos - construcciones - equipo_transporte - equipo_computo - mobiliario_oficina) - depreciacion_acumulada +
+                        cargos_gastos_diferidos + amortizacion_acumulada;
+                }
+                <tr>
+                    <td>SUMA ACTIVO</td>
+                    <td>@string.Format("{0:0,0.00}", suma_activo)</td>
+                </tr>
+
+
+
+
+
+
+
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR NACIONALES(PARTES RELACIONADAS)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR NACIONALES(PARTES NO RELACIONADAS)</td>
+                    <td>@string.Format("{0:0,0.00}", cuentas_documentos_pagar)</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR NACIONALES(TOTAL)</td>
+                    <td>@string.Format("{0:0,0.00}", cuentas_documentos_pagar)</td>
+                </tr>
+
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR DEL EXTRANJERO (PARTES RELACIONADAS)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR DEL EXTRANJERO (PARTES NO RELACIONADAS)</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR DELEXTRANJERO (TOTAL)</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>CONTRIBUCIONES POR PAGAR</td>
+                    <td>@string.Format("{0:0,0.00}", contribuciones_pagar)</td>
+                </tr>
+                <tr>
+                    <td>ANTICIPOS DE CLIENTES PARTES RELACIONADAS</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>ANTICIPOS DE CLIENTES PARTES NO RELACIONADAS</td>
+                    <td>@string.Format("{0:0,0.00}", anticipos_clientes)</td>
+                </tr>
+
+                <tr>
+                    <td>APORTACIONES PARA FUTUROS AUMENTOS DE CAPITAL</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTROS PASIVOS</td>
+                    <td>@string.Format("{0:0,0.00}", otros_pasivos)</td>
+                </tr>
+
+                @{
+                    Decimal suma_pasivos = otros_pasivos + anticipos_clientes + contribuciones_pagar + cuentas_documentos_pagar;
+                }
+                <tr>
+                    <td>SUMA PASIVOS</td>
+                    <td>@string.Format("{0:0,0.00}", suma_pasivos)</td>
+                </tr>
+
+
+
+
+
+
+                <tr>
+                    <td>CAPITAL SOCIAL PROVENIENTE DE APORTACIONES</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CAPITAL SOCIAL PROVENIENTE DE CAPITALIZACIÓN</td>
+                    <td>@string.Format("{0:0,0.00}", capital_social_capitalizacion)</td>
+                </tr>
+                <tr>
+                    <td>RESERVAS</td>
+                    <td>@string.Format("{0:0,0.00}", reservas)</td>
+                </tr>
+
+                <tr>
+                    <td>OTRAS CUENTAS DE CAPITAL</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>APORTACIONES PARA FUTUROS AUMENTOS DECAPITAL</td>
+                    <td>00.00</td>
+                </tr>
+                @{
+                    Decimal suma_capital_contable = capital_social_capitalizacion + reservas + resultado_ejercicio_anterior + utilidad_neta - perdida_neta;
+                }
+                @if (resultado_ejercicio_anterior > 0)
+                {
+
+                    <tr>
+                        <td>UTILIDADES ACUMULADAS</td>
+                        <td>@string.Format("{0:0,0.00}", resultado_ejercicio_anterior)</td>
+                    </tr>
+                    <tr>
+                        <td>UTILIDAD DEL EJERCICIO</td>
+                        <td>@string.Format("{0:0,0.00}", utilidad_neta)</td>
+                    </tr>
+
+                    <tr>
+                        <td>PERDIDAS ACUMULADAS</td>
+                        <td>00.00</td>
+                    </tr>
+                    <tr>
+                        <td>PERDIDA DEL EJERCICIO</td>
+                        <td>@string.Format("{0:0,0.00}", perdida_neta)</td>
+                    </tr>
+                }
+
+                else
+                {
+                    <tr>
+                        <td>UTILIDADES ACUMULADAS</td>
+                        <td>00.00</td>
+                    </tr>
+                    <tr>
+                        <td>UTILIDAD DEL EJERCICIO</td>
+                        <td>@string.Format("{0:0,0.00}", utilidad_neta)</td>
+                    </tr>
+
+                    <tr>
+                        <td>PERDIDAS ACUMULADAS</td>
+                        <td>@string.Format("{0:0,0.00}", resultado_ejercicio_anterior * -1)</td>
+                    </tr>
+                    <tr>
+                        <td>PERDIDA DEL EJERCICIO</td>
+                        <td>@string.Format("{0:0,0.00}", perdida_neta)</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>EXCESO EN LA ACTUALIZACIÓN DEL CAPITAL</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>INSUFICIENCIA EN LA ACTUALIZACIÓN DEL CAPITAL</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>ACTUALIZACIÓN DEL CAPITAL CONTABLE</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>SUMA CAPITAL CONTABLE</td>
+                    <td>@string.Format("{0:0,0.00}", suma_capital_contable)</td>
+                </tr>
+
+                <tr>
+                    <td>SUMA PASIVO MÁS CAPITAL CONTABLE</td>
+                    <td>@string.Format("{0:0,0.00}", suma_capital_contable + suma_pasivos)</td>
+                </tr>
+
+
+                <tr>
+                    <td>RECTIFICACIÓN BALANCE GENERAL</td>
+                    <td>@string.Format("{0:0,0.00}", suma_activo - suma_capital_contable - suma_pasivos)</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="section" id="sectionDataTable">
+        <h3>Ajuste Anual por Inflación</h3>
+        <table id="tblAjusteAnualInflacion" class="cell-border table-striped" data-title-datatable="Ajuste Anual por Inflación">
+            <thead>
+                <tr>
+                    <td>Concepto</td>
+                    <td>Importe</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BANCOS</td>
+                    <td>@string.Format("{0:0,0.00}", bancos)</td>
+                </tr>
+                <tr>
+                    <td>INVERSIONES EN VALORES</td>
+                    <td>@string.Format("{0:0,0.00}", inversiones_valores_ajuste)</td>
+                </tr>
+                <tr>
+                    <td>CLIENTES</td>
+                    <td>@string.Format("{0:0,0.00}", clientes)</td>
+                </tr>
+                <tr>
+                    <td>OTRAS CUENTAS POR COBRAR</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>DEUDORES DIVERSOS</td>
+                    <td>@string.Format("{0:0,0.00}", deudores_diversos)</td>
+                </tr>
+
+                <tr>
+                    <td>INTERESES POR COBRAR</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>SALDOS A FAVOR DE CONTRIBUCIONES</td>
+                    <td>@string.Format("{0:0,0.00}", saldos_afavor_contribuciones)</td>
+                </tr>
+                <tr>
+                    <td>OTRAS CUENTAS POR COBRAR LARGO PLAZO</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTROS CREDITOS</td>
+                    <td>00.00</td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>PROVEEDORES</td>
+                    <td>@string.Format("{0:0,0.00}", proveedores)</td>
+                </tr>
+
+                <tr>
+                    <td>ACREEDORES DIVERSOS</td>
+                    <td>@string.Format("{0:0,0.00}", acreedores_diversos)</td>
+                </tr>
+
+                <tr>
+                    <td>CREDITOS BANCARIOS</td>
+                    <td>@string.Format("{0:0,0.00}", creditos_bancarios)</td>
+                </tr>
+
+                <tr>
+                    <td>INTERESES POR PAGAR</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTRAS CUENTAS Y DOCUMENTOS POR PAGAR</td>
+                    <td>00.00</td>
+                </tr>
+                @{
+                    impuestos_por_pagar = cuotas_imss + retiro_vejez + infonavit + impuesto_nominas + iva_pagar + retenciones_sueldos_salarios +
+                        retenciones_asimilados + retenciones_servicios_profesionales + retenciones_arrendamiento + iva_retenciones;
+                }
+                <tr>
+                    <td>IMPUESTOS POR PAGAR</td>
+                    <td>@string.Format("{0:0,0.00}", impuestos_por_pagar)</td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CUOTAS AL IMSS</td>
+                    <td>@string.Format("{0:0,0.00}", cuotas_imss)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RETIRO CENSATIA Y VEJEZ</td>
+                    <td>@string.Format("{0:0,0.00}", retiro_vejez)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INFONAVIT</td>
+                    <td>@string.Format("{0:0,0.00}", infonavit)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMPUESTOS SOBRE NOMINA</td>
+                    <td>@string.Format("{0:0,0.00}", impuesto_nominas)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IVA POR PAGAR</td>
+                    <td>@string.Format("{0:0,0.00}", iva_pagar)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ISR RETENCIONES POR SUELDOS Y SALARIOS</td>
+                    <td>@string.Format("{0:0,0.00}", retenciones_sueldos_salarios)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ISR RETENCIONES POR ASIMILADOS A SALARIOS</td>
+                    <td>@string.Format("{0:0,0.00}", retenciones_asimilados)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ISR RETENCIONES POR SERVICIOS PROFESIONALES</td>
+                    <td>@string.Format("{0:0,0.00}", retenciones_servicios_profesionales)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ISR RETENCIONES POR ARRENDAMIENTO</td>
+                    <td>@string.Format("{0:0,0.00}", retenciones_arrendamiento)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IVA RETENCIONES</td>
+                    <td>@string.Format("{0:0,0.00}", iva_retenciones)</td>
+                </tr>
+
+                <tr>
+                    <td>SUELDOS Y SALARIOS POR PAGAR</td>
+                    <td>00.00</td>
+                </tr>
+
+                <tr>
+                    <td>CREDITOS BANCARIOS LARGO PLAZO</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>CUENTAS Y DOCUMENTOS POR PAGAR A LARGO PLAZO</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>APORTACIONES PARA FUTOROS AUMENTOS DE CAPITAL</td>
+                    <td>00.00</td>
+                </tr>
+                <tr>
+                    <td>OTRAS DEUDAS</td>
+                    <td>00.00</td>
+                </tr>
+
+                @{
+                    Decimal suma_creditos = bancos + inversiones_valores_ajuste + clientes + deudores_diversos + saldos_afavor_contribuciones;
+                    Decimal suma_deudas = proveedores + acreedores_diversos + creditos_bancarios + impuestos_por_pagar;
+                }
+                <tr>
+                    <td>SALDO PROMEDIO ANUAL DE LOS CREDITOS</td>
+                    <td>@string.Format("{0:0,0.00}", suma_creditos)</td>
+                </tr>
+                <tr>
+                    <td>SALDO PROMEDIO ANUAL DE LAS DEUDAS</td>
+                    <td>@string.Format("{0:0,0.00}", suma_deudas)</td>
+                </tr>
+                @if (suma_creditos > suma_deudas)
+                {
+                    <tr>
+                        <td>MAYOR SALDO PROMEDIO ANUAL DE LOS CREDITOS</td>
+                        <td>@string.Format("{0:0,0.00}", suma_creditos - suma_deudas)</td>
+                    </tr>
+                    <tr>
+                        <td>MAYOR SALDO PROMEDIO ANUAL DE LAS DEUDAS</td>
+                        <td>@string.Format("{0:0,0.00}", 0)</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>MAYOR SALDO PROMEDIO ANUAL DE LOS CREDITOS</td>
+                        <td>@string.Format("{0:0,0.00}", 0)</td>
+                    </tr>
+                    <tr>
+                        <td>MAYOR SALDO PROMEDIO ANUAL DE LAS DEUDAS</td>
+                        <td>@string.Format("{0:0,0.00}", suma_deudas - suma_creditos)</td>
+                    </tr>
+                }
+
+                <tr>
+                    <td>INPC 2021</td>
+                    <td>@string.Format("{0:0,0.00}", INPC[2021])</td>
+                </tr>
+                <tr>
+                    <td>INPC 2020</td>
+                    <td>@string.Format("{0:0,0.00}", INPC[2020])</td>
+                </tr>
+                @{
+                    Decimal factor_INPC = (INPC[2021] / INPC[2020]) - 1;
+                }
+                <tr>
+                    <td>FACTOR DE AJUSTE ANUAL</td>
+                    <td>@string.Format("{0:0,0.0000}", factor_INPC)</td>
+                </tr>
+
+
+                @if (suma_creditos > suma_deudas)
+                {
+                    <tr>
+                        <td>AJUSTE ANUAL POR INFLACION DEDUCIBLE</td>
+                        <td>@string.Format("{0:0,0.00}", (suma_creditos - suma_deudas) * factor_INPC)</td>
+                    </tr>
+                    <tr>
+                        <td>AJUSTE ANUAL POR INFLACION ACUMULABLE</td>
+                        <td>@string.Format("{0:0,0.00}", 0)</td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>AJUSTE ANUAL POR INFLACION DEDUCIBLE</td>
+                        <td>@string.Format("{0:0,0.00}", 0)</td>
+                    </tr>
+                    <tr>
+                        <td>AJUSTE ANUAL POR INFLACION ACUMULABLE</td>
+                        <td>@string.Format("{0:0,0.00}", (suma_deudas - suma_creditos) * factor_INPC)</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <div class="section" id="sectionDataTable">
+        <h3>Inversiones</h3>
+
+        <table id="tblInversiones" class="cell-border table-striped" data-title-datatable="Inversiones">
+            <thead>
+                <tr>
+                    <td>Clave</td>
+                    <td>Concepto</td>
+                    <td>Deducción en el ejercicio</td>
+                    <td>Deducción inmediata en el ejercicio</td>
+                    <td>Adquisiciones durante el ejercicio</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1310-002-000</td>
+                    <td>CONTRUCCIONES</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", contrucciones_inversion)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>INVERSIONES EN INMUEBLES CONSIDERADOS COMO HISTORICOS</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>MAQUINARIA Y EQUIPO</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+                </tr>
+                <tr>
+                    <td>1310-005-000</td>
+                    <td>MOBILIARIO Y EQUIPO DE OFICINA</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", mobiliario_oficina_inversion)</td>
+                </tr>
+                <tr>
+                    <td>1310-004-000</td>
+                    <td>EQUIPO DE COMPUTO</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", equipo_computo_inversion)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>EQUIPO DE TRANSPORTE</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+                </tr>
+                <tr>
+                    <td>1310-003-000</td>
+                    <td>EQUIPO DE TRANSPORTE OTROS</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", equipo_transporte_otros_inversion)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>OTRAS INVERSIONES EN ACTIVO FIJO</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+                </tr>
+
+                <tr>
+                    <td>1420-000-000</td>
+                    <td>GASTO, CARGOS DIFERIDOS Y EROGACIONES EN PERIODOS PREOPERATIVOS</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", gastos_cargos_preoperativos_inversion)</td>
+                </tr>
+
+                <tr>
+                    <td>1310-001-000</td>
+                    <td>TERRENOS COSTO DE ADQUISICION</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", terrenos_adquisicion_inversion)</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>TOTALES</td>
+                    <td></td>
+                    <td></td>
+                    <td>@string.Format("{0:0,0.00}", gastos_cargos_preoperativos_inversion + equipo_transporte_otros_inversion + contrucciones_inversion + mobiliario_oficina_inversion + equipo_computo_inversion + terrenos_adquisicion_inversion)</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <div class="section" id="sectionDataTable">
+        <h3>Conciliación Entre Resultado Contable y Fiscal</h3>
+
+        <table id="tblConciliacionBancaria" class="cell-border table-striped" data-title-datatable="Conciliación Bancaria">
+            <thead>
+                <tr>
+                    <td>Concepto</td>
+                    <td>Importe</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>UTILIDAD O PERDIDA NETA</td>
+                    <td>@string.Format("{0:0,0.00}", utilidad_neta + perdida_neta)</td>
+
+                </tr>
+                <tr>
+                    <td>EFECTOS DE REEXPRESIÓN</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>RESULTADO POR POSICIÓN MONETARIA</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>UTILIDAD O PERDIDA NETA HISTORICA</td>
+                    <td>@string.Format("{0:0,0.00}", utilidad_neta + perdida_neta)</td>
+
+                </tr>
+
+                <tr>
+                    <td>INGRESOS FISCALES NO CONTRABLES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+
+
+
+                <tr>
+                    <td>INGRESOS FISCALES NO CONTABLES</td>
+                    <td></td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>AJUSTE ANUAL POR INFLACIÓN ACUMULABLE</td>
+                    @if (suma_creditos > suma_deudas)
+                    {
+                        <td>@string.Format("{0:0,0.00}", 0)</td>
+                    }
+                    else
+                    {
+                        <td>@string.Format("{0:0,0.00}", (suma_deudas - suma_creditos) * factor_INPC)</td>
+
+                    }
+
+                </tr>
+                <tr>
+                    <td>ANTICIPOS DE CLIENTES</td>
+                    <td>@string.Format("{0:0,0.00}", anticipo_clientes)</td>
+
+                </tr>
+
+
+
+
+
+                <tr>
+                    <td>INTERESES MORATORIOS EFECTIVAMENTE COBRADOS</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>GANANCIA EN LA ENAJENACION DE ACCIONES O POR REEMBOLSO DE CAPITAL</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>GANANCIA EN LA ENAJENACION DE TERRENOS Y ACTIVO FIJO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>INVENTARIO ACUMULABLE DEL EJERCICIO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>OTROS INGRESOS FISCALES NO CONTABLES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+
+                <tr>
+                    <td>SUMA TOTAL</td>
+                    @if (suma_creditos > suma_deudas)
+                    {
+                        <td>@string.Format("{0:0,0.00}", anticipo_clientes)</td>
+                    }
+                    else
+                    {
+                        <td>@string.Format("{0:0,0.00}", ((suma_deudas - suma_creditos) * factor_INPC) + anticipo_clientes)</td>
+
+                    }
+                </tr>
+
+
+                <tr>
+                    <td>DEDUCCIONES CONTABLES NO FISCALES</td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <td>COSTO DE VENTAS CONTABLE</td>
+                    <td>@string.Format("{0:0,0.00}", costo_venta_contable)</td>
+
+                </tr>
+
+                <tr>
+                    <td>DEPRECIACION Y AMORTIZACION CONTABLE</td>
+                    <td>@string.Format("{0:0,0.00}", depreciacion_amortizacion_contable)</td>
+
+                </tr>
+
+                <tr>
+                    <td>GASTOS QUE NO REUNEN REQUISITOS FISCALES</td>
+                    <td>@string.Format("{0:0,0.00}", gasto_no_reunen_requisitos) @*suma exentos a trabajadores*@ </td>
+
+                </tr>
+
+                <tr>
+                    <td>ISR, PTU</td>
+                    <td>@string.Format("{0:0,0.00}", isr + ptu)</td>
+
+                </tr>
+
+
+                <tr>
+                    <td>PERDIDA CONTABLE EN LA ENAJENACION DE ACCIONES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>PERDIDA CONTABLE EN LA ENAJENACION DE ACTIVO FIJO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>PERDIDA EN PARTICIPACION SUBSIDIARIA</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>INTERESES DEVENGADOS QUE EXCEDEN DEL VALOR DE MERCADO Y MORATORIOS PAGADOS O NO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+
+                <tr>
+                    <td>OTRAS DEDUCCIONES CONTABLES NO FISCALES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                @{
+                    Decimal suma_deduccioncontable_nofiscal = costo_venta_contable + depreciacion_amortizacion_contable + gasto_no_reunen_requisitos +
+                         isr + ptu;
+                }
+                <tr>
+                    <td>SUMA TOTAL</td>
+                    <td>@string.Format("{0:0,0.00}", suma_deduccioncontable_nofiscal)</td>
+                </tr>
+
+
+
+
+
+                <tr>
+                    <td>DEDUCCIONES FISCALES NO CONTABLES</td>
+                    <td></td>
+                </tr>
+                @{
+                    Decimal inflasion_anual_deducible = 0;
+                }
+                @if (suma_creditos > suma_deudas)
+                {
+                    inflasion_anual_deducible = (suma_creditos - suma_deudas) * factor_INPC;
+                }
+
+                <tr>
+                    <td>AJUSTE ANUAL POR INFLACION DEDUCIBLE</td>
+                    <td>@string.Format("{0:0,0.00}", inflasion_anual_deducible)</td>
+                </tr>
+
+                <tr>
+                    <td>COSTO DE LO VENDIDO FISCAL</td>
+                    <td>@string.Format("{0:0,0.00}", costo_venta_contable)</td>
+
+                </tr>
+                <tr>
+                    <td>DEDUCCION DE INVERSIONES</td>
+                    <td>@string.Format("{0:0,0.00}", 0) @*total deduccion en el ejercicio*@</td>
+
+                </tr>
+                <tr>
+                    <td>ESTIMULO FISCAL POR DEDUCCION INMEDIATE DE INVERSIONES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>ESTIMULO FISCAL DE LAS PERSONAS CON DISCAPACIDAD Y/O ADULTOS MAYORES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+
+                <tr>
+                    <td>PERDIDA FISCAL EN ENAJENACION DE ACCIONES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+
+                <tr>
+                    <td>PERDIDA FISCAL EN ENAJENACION DE TERRENOS Y ACTIVO FIJO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+
+                <tr>
+                    <td>INTERESES MORATORIOS EFECTIVAMENTE PAGADOS</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>OTRAS DEDUCCIONES FISCALES NO CONTABLES</td>
+                    <td>@string.Format("{0:0,0.00}", 0) </td>
+
+                </tr>
+                @{
+                    decimal suma_deducionfiscales_nocontable = costo_venta_contable + inflasion_anual_deducible;
+                }
+                <tr>
+                    <td>SUMA TOTAL</td>
+                    <td>@string.Format("{0:0,0.00}", suma_deducionfiscales_nocontable)</td>
+                </tr>
+
+
+                <tr>
+                    <td>INGRESOS CONTABLES NO FISCALES</td>
+                    <td></td>
+                </tr>
+
+
+
+                <tr>
+                    <td>INTERESES MORATORIOS DEVENGADOS A FAVOR COBRADOS O NO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>ANTICIPOS DE CLIENTES DE EJERCICIOS ANTERIORES</td>
+                    <td>@string.Format("{0:0,0.00}", anticipos_clientes_ejercicio_anteriores)</td>
+
+                </tr>
+                <tr>
+                    <td>SALDOS A FAVOR DE IMPUESTOS Y SU ACTUALIZACION</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>UTILIDAD CONTABLE EN ENAJENACION DE ACTIVO FIJO</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>UTILIDAD CONTABLE EN ENAJENACION DE ACCIONES</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>UTILIDAD EN PARTICIPACION SUBSIDIARIA</td>
+                    <td>@string.Format("{0:0,0.00}", 0)</td>
+
+                </tr>
+                <tr>
+                    <td>OTROS INGRESOS CONTABLES NO FISCALES</td>
+                    <td>@string.Format("{0:0,0.00}", 0) @*campo editable*@</td>
+
+                </tr>
+
+                <tr>
+                    <td>SUMA TOTAL</td>
+                    <td>@string.Format("{0:0,0.00}", anticipos_clientes_ejercicio_anteriores)</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+    @*<div class="section" id="sectionDataTable">
+            <h3>Conciliación Entre Resultado Contable y Fiscal</h3>
+
+            <table id="tblConciliacionBancaria" class="cell-border table-striped" data-title-datatable="Conciliación Bancaria">
+                <thead>
+                    <tr>
+                        <td>Concepto</td>
+                        <td>Importe</td>
+
+                    </tr>
+                </thead>
+
+
+            </table>
+        </div>*@
+
+}
+

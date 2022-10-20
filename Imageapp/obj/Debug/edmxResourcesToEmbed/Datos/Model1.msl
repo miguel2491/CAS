@@ -1,0 +1,1216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_MenuEntitiesModelStoreContainer" CdmEntityContainer="DB_MenuEntities">
+    <EntitySetMapping Name="tbc_Acciones">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Acciones">
+        <MappingFragment StoreEntitySet="tbc_Acciones">
+          <ScalarProperty Name="id_accion" ColumnName="id_accion" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fontAwesome" ColumnName="fontAwesome" />
+          <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+          <ScalarProperty Name="order_position" ColumnName="order_position" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Actividades_Calendario">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Actividades_Calendario">
+        <MappingFragment StoreEntitySet="tbc_Actividades_Calendario">
+          <ScalarProperty Name="id_actividad_calendario" ColumnName="id_actividad_calendario" />
+          <ScalarProperty Name="id_lineas_produccion" ColumnName="id_lineas_produccion" />
+          <ScalarProperty Name="actividad" ColumnName="actividad" />
+          <ScalarProperty Name="paso" ColumnName="paso" />
+          <ScalarProperty Name="area" ColumnName="area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Auxiliares">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Auxiliares">
+        <MappingFragment StoreEntitySet="tbc_Auxiliares">
+          <ScalarProperty Name="id_auxiliar" ColumnName="id_auxiliar" />
+          <ScalarProperty Name="auxiliar" ColumnName="auxiliar" />
+          <ScalarProperty Name="tbc_lineas_produccion" ColumnName="tbc_lineas_produccion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Clientes">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Clientes">
+        <MappingFragment StoreEntitySet="tbc_Clientes">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="nombre_razon" ColumnName="nombre_razon" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="id_tipo_persona" ColumnName="id_tipo_persona" />
+          <ScalarProperty Name="direccion_fiscal" ColumnName="direccion_fiscal" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="id_sector" ColumnName="id_sector" />
+          <ScalarProperty Name="fecha_servicio" ColumnName="fecha_servicio" />
+          <ScalarProperty Name="ingresos_mayores" ColumnName="ingresos_mayores" />
+          <ScalarProperty Name="publico_general" ColumnName="publico_general" />
+          <ScalarProperty Name="estado_cuenta" ColumnName="estado_cuenta" />
+          <ScalarProperty Name="tiene_trabajadores" ColumnName="tiene_trabajadores" />
+          <ScalarProperty Name="actividad_principal" ColumnName="actividad_principal" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="fecha_caducidad_fiel" ColumnName="fecha_caducidad_fiel" />
+          <ScalarProperty Name="es_asesoria" ColumnName="es_asesoria" />
+          <ScalarProperty Name="aplica_coi" ColumnName="aplica_coi" />
+          <ScalarProperty Name="edo_financiero" ColumnName="edo_financiero" />
+          <ScalarProperty Name="fecha_cita" ColumnName="fecha_cita" />
+          <ScalarProperty Name="fecha_fiel_representante" ColumnName="fecha_fiel_representante" />
+          <ScalarProperty Name="es_nomina" ColumnName="es_nomina" />
+          <ScalarProperty Name="registro_patronal" ColumnName="registro_patronal" />
+          <ScalarProperty Name="patronal" ColumnName="patronal" />
+          <ScalarProperty Name="inicio_razon" ColumnName="inicio_razon" />
+          <ScalarProperty Name="clave_CIEC" ColumnName="clave_CIEC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Contactos_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Contactos_Cliente">
+        <MappingFragment StoreEntitySet="tbc_Contactos_Cliente">
+          <ScalarProperty Name="id_contacto_cliente" ColumnName="id_contacto_cliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="tipo_contacto" ColumnName="tipo_contacto" />
+          <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Estatus">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Estatus">
+        <MappingFragment StoreEntitySet="tbc_Estatus">
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="descripcion_estatus" ColumnName="descripcion_estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Factor_INPC">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Factor_INPC">
+        <MappingFragment StoreEntitySet="tbc_Factor_INPC">
+          <ScalarProperty Name="id_factor_inpc" ColumnName="id_factor_inpc" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="factor" ColumnName="factor" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Factor_Recargo">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Factor_Recargo">
+        <MappingFragment StoreEntitySet="tbc_Factor_Recargo">
+          <ScalarProperty Name="id_factor_recargo" ColumnName="id_factor_recargo" />
+          <ScalarProperty Name="factor" ColumnName="factor" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Forma_Pago">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Forma_Pago">
+        <MappingFragment StoreEntitySet="tbc_Forma_Pago">
+          <ScalarProperty Name="id_forma_pago" ColumnName="id_forma_pago" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Formatos">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Formatos">
+        <MappingFragment StoreEntitySet="tbc_Formatos">
+          <ScalarProperty Name="id_formato" ColumnName="id_formato" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="area" ColumnName="area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Grupo_Empresarial">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Grupo_Empresarial">
+        <MappingFragment StoreEntitySet="tbc_Grupo_Empresarial">
+          <ScalarProperty Name="id_grupo_empresarial" ColumnName="id_grupo_empresarial" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Lineas_Produccion">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Lineas_Produccion">
+        <MappingFragment StoreEntitySet="tbc_Lineas_Produccion">
+          <ScalarProperty Name="tbc_lineas_produccion1" ColumnName="tbc_lineas_produccion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="linea" ColumnName="linea" />
+          <ScalarProperty Name="supervisor" ColumnName="supervisor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Lista_Entregables">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Lista_Entregables">
+        <MappingFragment StoreEntitySet="tbc_Lista_Entregables">
+          <ScalarProperty Name="id_lista_entregable" ColumnName="id_lista_entregable" />
+          <ScalarProperty Name="entregable" ColumnName="entregable" />
+          <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Lista_Entregables_Nomina">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Lista_Entregables_Nomina">
+        <MappingFragment StoreEntitySet="tbc_Lista_Entregables_Nomina">
+          <ScalarProperty Name="id_lista_entregable_nomina" ColumnName="id_lista_entregable_nomina" />
+          <ScalarProperty Name="entregable" ColumnName="entregable" />
+          <ScalarProperty Name="id_tipo_nomina_entregable" ColumnName="id_tipo_nomina_entregable" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Lista_Repositorio">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Lista_Repositorio">
+        <MappingFragment StoreEntitySet="tbc_Lista_Repositorio">
+          <ScalarProperty Name="id_lista_repositorio" ColumnName="id_lista_repositorio" />
+          <ScalarProperty Name="id_tipo_repositorio" ColumnName="id_tipo_repositorio" />
+          <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+          <ScalarProperty Name="repositorio" ColumnName="repositorio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Lista_tramites">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Lista_tramites">
+        <MappingFragment StoreEntitySet="tbc_Lista_tramites">
+          <ScalarProperty Name="id_lista_tramite" ColumnName="id_lista_tramite" />
+          <ScalarProperty Name="tramite" ColumnName="tramite" />
+          <ScalarProperty Name="id_tipo_tramite" ColumnName="id_tipo_tramite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Menus">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Menus">
+        <MappingFragment StoreEntitySet="tbc_Menus">
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+          <ScalarProperty Name="id_menuPadre" ColumnName="id_menuPadre" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="isRaiz" ColumnName="isRaiz" />
+          <ScalarProperty Name="isVisible" ColumnName="isVisible" />
+          <ScalarProperty Name="pathDescription" ColumnName="pathDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Otros_Servicios">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Otros_Servicios">
+        <MappingFragment StoreEntitySet="tbc_Otros_Servicios">
+          <ScalarProperty Name="id_otro_servicio" ColumnName="id_otro_servicio" />
+          <ScalarProperty Name="servicio" ColumnName="servicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Permisos_Servidor">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Permisos_Servidor">
+        <MappingFragment StoreEntitySet="tbc_Permisos_Servidor">
+          <ScalarProperty Name="id_permiso_servidor" ColumnName="id_permiso_servidor" />
+          <ScalarProperty Name="descripcion_permiso" ColumnName="descripcion_permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Regimenes">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Regimenes">
+        <MappingFragment StoreEntitySet="tbc_Regimenes">
+          <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+          <ScalarProperty Name="regimen" ColumnName="regimen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_RIF_Sectores">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_RIF_Sectores">
+        <MappingFragment StoreEntitySet="tbc_RIF_Sectores">
+          <ScalarProperty Name="id_sector_tasa_iva" ColumnName="id_sector_tasa_iva" />
+          <ScalarProperty Name="actividad" ColumnName="actividad" />
+          <ScalarProperty Name="porcentaje_decimal" ColumnName="porcentaje_decimal" />
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_RIF_Tasa_Descuento">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_RIF_Tasa_Descuento">
+        <MappingFragment StoreEntitySet="tbc_RIF_Tasa_Descuento">
+          <ScalarProperty Name="id_tasa_descuento" ColumnName="id_tasa_descuento" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="porcentaje_decimal" ColumnName="porcentaje_decimal" />
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_RIF_Tasa_ISR">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_RIF_Tasa_ISR">
+        <MappingFragment StoreEntitySet="tbc_RIF_Tasa_ISR">
+          <ScalarProperty Name="id_tasa_isr" ColumnName="id_tasa_isr" />
+          <ScalarProperty Name="limite_inferior" ColumnName="limite_inferior" />
+          <ScalarProperty Name="limite_superior" ColumnName="limite_superior" />
+          <ScalarProperty Name="cuota_fija" ColumnName="cuota_fija" />
+          <ScalarProperty Name="porcentaje_decimal" ColumnName="porcentaje_decimal" />
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Roles">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Roles">
+        <MappingFragment StoreEntitySet="tbc_Roles">
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Seguimiento_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Seguimiento_Cliente">
+        <MappingFragment StoreEntitySet="tbc_Seguimiento_Cliente">
+          <ScalarProperty Name="id_seguimiento_cliente" ColumnName="id_seguimiento_cliente" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Supervisores">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Supervisores">
+        <MappingFragment StoreEntitySet="tbc_Supervisores">
+          <ScalarProperty Name="id_supervisor" ColumnName="id_supervisor" />
+          <ScalarProperty Name="supervisor" ColumnName="supervisor" />
+          <ScalarProperty Name="tbc_lineas_produccion" ColumnName="tbc_lineas_produccion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Tipo_Comprobante">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Tipo_Comprobante">
+        <MappingFragment StoreEntitySet="tbc_Tipo_Comprobante">
+          <ScalarProperty Name="id_tipo_comprobante" ColumnName="id_tipo_comprobante" />
+          <ScalarProperty Name="sigla" ColumnName="sigla" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Tipo_Persona">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Tipo_Persona">
+        <MappingFragment StoreEntitySet="tbc_Tipo_Persona">
+          <ScalarProperty Name="id_tipo_persona" ColumnName="id_tipo_persona" />
+          <ScalarProperty Name="tipo_persona" ColumnName="tipo_persona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Tipos_Nomina_Entregables">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Tipos_Nomina_Entregables">
+        <MappingFragment StoreEntitySet="tbc_Tipos_Nomina_Entregables">
+          <ScalarProperty Name="id_tipo_nomina_entregable" ColumnName="id_tipo_nomina_entregable" />
+          <ScalarProperty Name="tipo_nomina_entregable" ColumnName="tipo_nomina_entregable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Tipos_Repositorio">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Tipos_Repositorio">
+        <MappingFragment StoreEntitySet="tbc_Tipos_Repositorio">
+          <ScalarProperty Name="id_tipo_repositorio" ColumnName="id_tipo_repositorio" />
+          <ScalarProperty Name="tipo_repositorio" ColumnName="tipo_repositorio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Tipos_Tramite">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Tipos_Tramite">
+        <MappingFragment StoreEntitySet="tbc_Tipos_Tramite">
+          <ScalarProperty Name="id_tipo_tramite" ColumnName="id_tipo_tramite" />
+          <ScalarProperty Name="tipo_tramite" ColumnName="tipo_tramite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Uso_CFDI">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Uso_CFDI">
+        <MappingFragment StoreEntitySet="tbc_Uso_CFDI">
+          <ScalarProperty Name="id_uso_cfdi" ColumnName="id_uso_cfdi" />
+          <ScalarProperty Name="sigla" ColumnName="sigla" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="factor" ColumnName="factor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Usuarios">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Usuarios">
+        <MappingFragment StoreEntitySet="tbc_Usuarios">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+          <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+          <ScalarProperty Name="ultimo_movimiento" ColumnName="ultimo_movimiento" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="telefono_movil" ColumnName="telefono_movil" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Vistas">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Vistas">
+        <MappingFragment StoreEntitySet="tbc_Vistas">
+          <ScalarProperty Name="id_vista" ColumnName="id_vista" />
+          <ScalarProperty Name="id_menu" ColumnName="id_menu" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Actividades_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Actividades_Cliente">
+        <MappingFragment StoreEntitySet="tbd_Actividades_Cliente">
+          <ScalarProperty Name="id_actividad_cliente" ColumnName="id_actividad_cliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+          <ScalarProperty Name="actividad" ColumnName="actividad" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Activo_Fijo">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Activo_Fijo">
+        <MappingFragment StoreEntitySet="tbd_Activo_Fijo">
+          <ScalarProperty Name="id_activo_fijo" ColumnName="id_activo_fijo" />
+          <ScalarProperty Name="fecha_adquisicion" ColumnName="fecha_adquisicion" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="id_uso_cfdi" ColumnName="id_uso_cfdi" />
+          <ScalarProperty Name="limite" ColumnName="limite" />
+          <ScalarProperty Name="fecha_termino" ColumnName="fecha_termino" />
+          <ScalarProperty Name="monto_mensual" ColumnName="monto_mensual" />
+          <ScalarProperty Name="porcentaje_mensual" ColumnName="porcentaje_mensual" />
+          <ScalarProperty Name="concepto" ColumnName="concepto" />
+          <ScalarProperty Name="fecha_aplicacion" ColumnName="fecha_aplicacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Avance_Calendario">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Avance_Calendario">
+        <MappingFragment StoreEntitySet="tbd_Avance_Calendario">
+          <ScalarProperty Name="id_avance_calendario" ColumnName="id_avance_calendario" />
+          <ScalarProperty Name="id_actividad_calendario" ColumnName="id_actividad_calendario" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_finalizo" ColumnName="fecha_finalizo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Calendario_Produccion">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Calendario_Produccion">
+        <MappingFragment StoreEntitySet="tbd_Calendario_Produccion">
+          <ScalarProperty Name="id_calendario_produccion" ColumnName="id_calendario_produccion" />
+          <ScalarProperty Name="id_actividad_calendario" ColumnName="id_actividad_calendario" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="avance" ColumnName="avance" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="fecha_finalizado" ColumnName="fecha_finalizado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Cambio_Domicilio">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Cambio_Domicilio">
+        <MappingFragment StoreEntitySet="tbd_Cambio_Domicilio">
+          <ScalarProperty Name="id_solicitud" ColumnName="id_solicitud" />
+          <ScalarProperty Name="fecha_cambio" ColumnName="fecha_cambio" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+          <ScalarProperty Name="num_ext" ColumnName="num_ext" />
+          <ScalarProperty Name="num_int" ColumnName="num_int" />
+          <ScalarProperty Name="entre_calle" ColumnName="entre_calle" />
+          <ScalarProperty Name="y_calle" ColumnName="y_calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="localidad" ColumnName="localidad" />
+          <ScalarProperty Name="entidad_federativa" ColumnName="entidad_federativa" />
+          <ScalarProperty Name="tipo_inmueble" ColumnName="tipo_inmueble" />
+          <ScalarProperty Name="tipo_calle" ColumnName="tipo_calle" />
+          <ScalarProperty Name="caracteristicas_domicilio" ColumnName="caracteristicas_domicilio" />
+          <ScalarProperty Name="referencias_adicionales" ColumnName="referencias_adicionales" />
+          <ScalarProperty Name="codigo_fiscal" ColumnName="codigo_fiscal" />
+          <ScalarProperty Name="url_comprobante" ColumnName="url_comprobante" />
+          <ScalarProperty Name="url_acuse_movimiento" ColumnName="url_acuse_movimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Certificado_Digital">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Certificado_Digital">
+        <MappingFragment StoreEntitySet="tbd_Certificado_Digital">
+          <ScalarProperty Name="id_solicitud" ColumnName="id_solicitud" />
+          <ScalarProperty Name="id_tipo_persona" ColumnName="id_tipo_persona" />
+          <ScalarProperty Name="url_tarjeta_patronal" ColumnName="url_tarjeta_patronal" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="usuario_imss" ColumnName="usuario_imss" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="funcion_empresa" ColumnName="funcion_empresa" />
+          <ScalarProperty Name="url_identificacion" ColumnName="url_identificacion" />
+          <ScalarProperty Name="url_comprobante" ColumnName="url_comprobante" />
+          <ScalarProperty Name="url_certificado" ColumnName="url_certificado" />
+          <ScalarProperty Name="url_termino" ColumnName="url_termino" />
+          <ScalarProperty Name="url_llave" ColumnName="url_llave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Conceptos_Factura">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Conceptos_Factura">
+        <MappingFragment StoreEntitySet="tbd_Conceptos_Factura">
+          <ScalarProperty Name="id_concepto_xml" ColumnName="id_concepto_xml" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="claveprodserv" ColumnName="claveprodserv" />
+          <ScalarProperty Name="claveunidad" ColumnName="claveunidad" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="unidad" ColumnName="unidad" />
+          <ScalarProperty Name="valorunitario" ColumnName="valorunitario" />
+          <ScalarProperty Name="id_xml" ColumnName="id_xml" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="impuesto_trasladado" ColumnName="impuesto_trasladado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Constancia_Sem_Cotizadas">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Constancia_Sem_Cotizadas">
+        <MappingFragment StoreEntitySet="tbd_Constancia_Sem_Cotizadas">
+          <ScalarProperty Name="id_solicitud" ColumnName="id_solicitud" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="nss" ColumnName="nss" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="url_documento" ColumnName="url_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Depositos">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Depositos">
+        <MappingFragment StoreEntitySet="tbd_Depositos">
+          <ScalarProperty Name="id_deposito" ColumnName="id_deposito" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="id_usuario_elimino" ColumnName="id_usuario_elimino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Depreciaciones">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Depreciaciones">
+        <MappingFragment StoreEntitySet="tbd_Depreciaciones">
+          <ScalarProperty Name="id_depreciacion" ColumnName="id_depreciacion" />
+          <ScalarProperty Name="saldo_inicial" ColumnName="saldo_inicial" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="id_uso_CFDI" ColumnName="id_uso_CFDI" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Descargas_XML">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Descargas_XML">
+        <MappingFragment StoreEntitySet="tbd_Descargas_XML">
+          <ScalarProperty Name="id_descarga_xml" ColumnName="id_descarga_xml" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="num_xml" ColumnName="num_xml" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fecha_procesado" ColumnName="fecha_procesado" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+          <ScalarProperty Name="xml_procesados" ColumnName="xml_procesados" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Entregables_Nomina_RFC">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Entregables_Nomina_RFC">
+        <MappingFragment StoreEntitySet="tbd_Entregables_Nomina_RFC">
+          <ScalarProperty Name="id_entregable_nomina_RFC" ColumnName="id_entregable_nomina_RFC" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="id_lista_entregable_nomina" ColumnName="id_lista_entregable_nomina" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
+          <ScalarProperty Name="periodicidad" ColumnName="periodicidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Entregables_RFC">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Entregables_RFC">
+        <MappingFragment StoreEntitySet="tbd_Entregables_RFC">
+          <ScalarProperty Name="id_entregable_rfc" ColumnName="id_entregable_rfc" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="id_lista_entregable" ColumnName="id_lista_entregable" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Error_Lectura_XML">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Error_Lectura_XML">
+        <MappingFragment StoreEntitySet="tbd_Error_Lectura_XML">
+          <ScalarProperty Name="id_error_lectura_xml" ColumnName="id_error_lectura_xml" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="xml" ColumnName="xml" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Estados_Cuenta">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Estados_Cuenta">
+        <MappingFragment StoreEntitySet="tbd_Estados_Cuenta">
+          <ScalarProperty Name="id_estado_cuenta" ColumnName="id_estado_cuenta" />
+          <ScalarProperty Name="estado_cuenta" ColumnName="estado_cuenta" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Estatus_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Estatus_Cliente">
+        <MappingFragment StoreEntitySet="tbd_Estatus_Cliente">
+          <ScalarProperty Name="id_estatus_cliente" ColumnName="id_estatus_cliente" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="fecha_baja" ColumnName="fecha_baja" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Estatus_XML">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Estatus_XML">
+        <MappingFragment StoreEntitySet="tbd_Estatus_XML">
+          <ScalarProperty Name="id_estatus_xml" ColumnName="id_estatus_xml" />
+          <ScalarProperty Name="id_xml" ColumnName="id_xml" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Facturas">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Facturas">
+        <MappingFragment StoreEntitySet="tbd_Facturas">
+          <ScalarProperty Name="id_xml" ColumnName="id_xml" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="RFCEmisor" ColumnName="RFCEmisor" />
+          <ScalarProperty Name="RFCReceptor" ColumnName="RFCReceptor" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="impuesto_trasladado" ColumnName="impuesto_trasladado" />
+          <ScalarProperty Name="impuesto_retenido" ColumnName="impuesto_retenido" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="forma_pago" ColumnName="forma_pago" />
+          <ScalarProperty Name="metodo_pago" ColumnName="metodo_pago" />
+          <ScalarProperty Name="fecha_timbrado" ColumnName="fecha_timbrado" />
+          <ScalarProperty Name="moneda" ColumnName="moneda" />
+          <ScalarProperty Name="nombre_emisor" ColumnName="nombre_emisor" />
+          <ScalarProperty Name="nombre_receptor" ColumnName="nombre_receptor" />
+          <ScalarProperty Name="url_xml" ColumnName="url_xml" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="usoCFDI" ColumnName="usoCFDI" />
+          <ScalarProperty Name="tipo_comprobante" ColumnName="tipo_comprobante" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="ieps" ColumnName="ieps" />
+          <ScalarProperty Name="retencion_iva" ColumnName="retencion_iva" />
+          <ScalarProperty Name="retencion_isr" ColumnName="retencion_isr" />
+          <ScalarProperty Name="retencion_ieps" ColumnName="retencion_ieps" />
+          <ScalarProperty Name="retencion_local" ColumnName="retencion_local" />
+          <ScalarProperty Name="traslado_local" ColumnName="traslado_local" />
+          <ScalarProperty Name="cfdi_relacionados" ColumnName="cfdi_relacionados" />
+          <ScalarProperty Name="tipo_relacion_cfdi" ColumnName="tipo_relacion_cfdi" />
+          <ScalarProperty Name="conceptos" ColumnName="conceptos" />
+          <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+          <ScalarProperty Name="total_original" ColumnName="total_original" />
+          <ScalarProperty Name="serie" ColumnName="serie" />
+          <ScalarProperty Name="isr_nomina" ColumnName="isr_nomina" />
+          <ScalarProperty Name="subsidio_nomina" ColumnName="subsidio_nomina" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="divisa" ColumnName="divisa" />
+          <ScalarProperty Name="fecha_pago_p" ColumnName="fecha_pago_p" />
+          <ScalarProperty Name="forma_pago_p" ColumnName="forma_pago_p" />
+          <ScalarProperty Name="moneda_p" ColumnName="moneda_p" />
+          <ScalarProperty Name="registropatronal" ColumnName="registropatronal" />
+          <ScalarProperty Name="tiponomina" ColumnName="tiponomina" />
+          <ScalarProperty Name="fechapago" ColumnName="fechapago" />
+          <ScalarProperty Name="fechainicialpago" ColumnName="fechainicialpago" />
+          <ScalarProperty Name="fechafinalpago" ColumnName="fechafinalpago" />
+          <ScalarProperty Name="numdiaspagados" ColumnName="numdiaspagados" />
+          <ScalarProperty Name="totalpercepciones" ColumnName="totalpercepciones" />
+          <ScalarProperty Name="totaldeducciones" ColumnName="totaldeducciones" />
+          <ScalarProperty Name="totalotrospagos" ColumnName="totalotrospagos" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="numseguridadsocial" ColumnName="numseguridadsocial" />
+          <ScalarProperty Name="fechainiciorellaboral" ColumnName="fechainiciorellaboral" />
+          <ScalarProperty Name="numempleado" ColumnName="numempleado" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="periodicidadpago" ColumnName="periodicidadpago" />
+          <ScalarProperty Name="salariobasecotapor" ColumnName="salariobasecotapor" />
+          <ScalarProperty Name="salariodiariointegrado" ColumnName="salariodiariointegrado" />
+          <ScalarProperty Name="totalsueldos" ColumnName="totalsueldos" />
+          <ScalarProperty Name="totalgravado" ColumnName="totalgravado" />
+          <ScalarProperty Name="totalexento" ColumnName="totalexento" />
+          <ScalarProperty Name="totalotrasdeducciones" ColumnName="totalotrasdeducciones" />
+          <ScalarProperty Name="totalimpuestosretenidos" ColumnName="totalimpuestosretenidos" />
+          <ScalarProperty Name="totalseparacionindemnizacionper" ColumnName="totalseparacionindemnizacionper" />
+          <ScalarProperty Name="totaljubilacionpensionretiroper" ColumnName="totaljubilacionpensionretiroper" />
+          <ScalarProperty Name="estatus_aplicacion" ColumnName="estatus_aplicacion" />
+          <ScalarProperty Name="fecha_validacion" ColumnName="fecha_validacion" />
+          <ScalarProperty Name="EFOS" ColumnName="EFOS" />
+          <ScalarProperty Name="sueldosGravado" ColumnName="sueldosGravado" />
+          <ScalarProperty Name="sueldosExento" ColumnName="sueldosExento" />
+          <ScalarProperty Name="aguinaldoGravado" ColumnName="aguinaldoGravado" />
+          <ScalarProperty Name="aguinaldoExento" ColumnName="aguinaldoExento" />
+          <ScalarProperty Name="primaDominicalGravado" ColumnName="primaDominicalGravado" />
+          <ScalarProperty Name="primaDominicalExento" ColumnName="primaDominicalExento" />
+          <ScalarProperty Name="primaVacacionalGravado" ColumnName="primaVacacionalGravado" />
+          <ScalarProperty Name="primaVacacionalExento" ColumnName="primaVacacionalExento" />
+          <ScalarProperty Name="primaAntiguedadGravado" ColumnName="primaAntiguedadGravado" />
+          <ScalarProperty Name="primaAntiguedadExento" ColumnName="primaAntiguedadExento" />
+          <ScalarProperty Name="indemnizacionGravado" ColumnName="indemnizacionGravado" />
+          <ScalarProperty Name="indemnizacionExento" ColumnName="indemnizacionExento" />
+          <ScalarProperty Name="subsidioCausado" ColumnName="subsidioCausado" />
+          <ScalarProperty Name="subsidioPagado" ColumnName="subsidioPagado" />
+          <ScalarProperty Name="C_seguroSocial" ColumnName="_seguroSocial" />
+          <ScalarProperty Name="C_isrDeduccion" ColumnName="_isrDeduccion" />
+          <ScalarProperty Name="C_aportaciones" ColumnName="_aportaciones" />
+          <ScalarProperty Name="C_infonavit" ColumnName="_infonavit" />
+          <ScalarProperty Name="ish" ColumnName="ish" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Ficha_Tecnica">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Ficha_Tecnica">
+        <MappingFragment StoreEntitySet="tbd_Ficha_Tecnica">
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="matriz" ColumnName="matriz" />
+          <ScalarProperty Name="sucursales" ColumnName="sucursales" />
+          <ScalarProperty Name="representante" ColumnName="representante" />
+          <ScalarProperty Name="objeto_social" ColumnName="objeto_social" />
+          <ScalarProperty Name="capital_inicial" ColumnName="capital_inicial" />
+          <ScalarProperty Name="recomendacion" ColumnName="recomendacion" />
+          <ScalarProperty Name="humano" ColumnName="humano" />
+          <ScalarProperty Name="inmobiliario" ColumnName="inmobiliario" />
+          <ScalarProperty Name="equipo" ColumnName="equipo" />
+          <ScalarProperty Name="costos" ColumnName="costos" />
+          <ScalarProperty Name="grupo" ColumnName="grupo" />
+          <ScalarProperty Name="canales" ColumnName="canales" />
+          <ScalarProperty Name="alianzas" ColumnName="alianzas" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="prestamos" ColumnName="prestamos" />
+          <ScalarProperty Name="politicas" ColumnName="politicas" />
+          <ScalarProperty Name="contratos" ColumnName="contratos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Formulario">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Formulario">
+        <MappingFragment StoreEntitySet="tbd_Formulario">
+          <ScalarProperty Name="id_formulario" ColumnName="id_formulario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Historial_Movimientos">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Historial_Movimientos">
+        <MappingFragment StoreEntitySet="tbd_Historial_Movimientos">
+          <ScalarProperty Name="id_historial_movimiento" ColumnName="id_historial_movimiento" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="movimiento" ColumnName="movimiento" />
+          <ScalarProperty Name="fecha_movimiento" ColumnName="fecha_movimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Localizacion_NSS">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Localizacion_NSS">
+        <MappingFragment StoreEntitySet="tbd_Localizacion_NSS">
+          <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="url_documento" ColumnName="url_documento" />
+          <ScalarProperty Name="url_comprobante_localizacion" ColumnName="url_comprobante_localizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Nomina_Factura">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Nomina_Factura">
+        <MappingFragment StoreEntitySet="tbd_Nomina_Factura">
+          <ScalarProperty Name="id_nomina_xml" ColumnName="id_nomina_xml" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="concepto" ColumnName="concepto" />
+          <ScalarProperty Name="importeexento" ColumnName="importeexento" />
+          <ScalarProperty Name="importegravado" ColumnName="importegravado" />
+          <ScalarProperty Name="tipopercepcion" ColumnName="tipopercepcion" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="id_xml" ColumnName="id_xml" />
+          <ScalarProperty Name="registropatronal" ColumnName="registropatronal" />
+          <ScalarProperty Name="tiponomina" ColumnName="tiponomina" />
+          <ScalarProperty Name="fechapago" ColumnName="fechapago" />
+          <ScalarProperty Name="fechainicialpago" ColumnName="fechainicialpago" />
+          <ScalarProperty Name="fechafinalpago" ColumnName="fechafinalpago" />
+          <ScalarProperty Name="numdiaspagados" ColumnName="numdiaspagados" />
+          <ScalarProperty Name="totalpercepciones" ColumnName="totalpercepciones" />
+          <ScalarProperty Name="totaldeducciones" ColumnName="totaldeducciones" />
+          <ScalarProperty Name="totalotrospagos" ColumnName="totalotrospagos" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="numseguridadsocial" ColumnName="numseguridadsocial" />
+          <ScalarProperty Name="fechainiciorellaboral" ColumnName="fechainiciorellaboral" />
+          <ScalarProperty Name="numempleado" ColumnName="numempleado" />
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="periodicidadpago" ColumnName="periodicidadpago" />
+          <ScalarProperty Name="salariobasecotapor" ColumnName="salariobasecotapor" />
+          <ScalarProperty Name="salariodiariointegrado" ColumnName="salariodiariointegrado" />
+          <ScalarProperty Name="totalsueldos" ColumnName="totalsueldos" />
+          <ScalarProperty Name="totalgravado" ColumnName="totalgravado" />
+          <ScalarProperty Name="totalexento" ColumnName="totalexento" />
+          <ScalarProperty Name="totalotrasdeducciones" ColumnName="totalotrasdeducciones" />
+          <ScalarProperty Name="totalimpuestosretenidos" ColumnName="totalimpuestosretenidos" />
+          <ScalarProperty Name="totalseparacionindemnizacionper" ColumnName="totalseparacionindemnizacionper" />
+          <ScalarProperty Name="totaljubilacionpensionretiroper" ColumnName="totaljubilacionpensionretiroper" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Notificaciones_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Notificaciones_Cliente">
+        <MappingFragment StoreEntitySet="tbd_Notificaciones_Cliente">
+          <ScalarProperty Name="id_notificacion" ColumnName="id_notificacion" />
+          <ScalarProperty Name="autoridad_emisora" ColumnName="autoridad_emisora" />
+          <ScalarProperty Name="acto_administrativo" ColumnName="acto_administrativo" />
+          <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
+          <ScalarProperty Name="fecha_notificacion" ColumnName="fecha_notificacion" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="url_aviso_not" ColumnName="url_aviso_not" />
+          <ScalarProperty Name="url_acuse_not" ColumnName="url_acuse_not" />
+          <ScalarProperty Name="url_acto_not" ColumnName="url_acto_not" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="es_anual" ColumnName="es_anual" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Otros_Gastos">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Otros_Gastos">
+        <MappingFragment StoreEntitySet="tbd_Otros_Gastos">
+          <ScalarProperty Name="id_otros_gastos" ColumnName="id_otros_gastos" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="id_usuario_elimino" ColumnName="id_usuario_elimino" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Repositorio">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Repositorio">
+        <MappingFragment StoreEntitySet="tbd_Repositorio">
+          <ScalarProperty Name="id_repositorio" ColumnName="id_repositorio" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="id_usuario_elimino" ColumnName="id_usuario_elimino" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="id_lista_repositorio" ColumnName="id_lista_repositorio" />
+          <ScalarProperty Name="fecha_vigencia" ColumnName="fecha_vigencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Repositorio_Nomina">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Repositorio_Nomina">
+        <MappingFragment StoreEntitySet="tbd_Repositorio_Nomina">
+          <ScalarProperty Name="id_repositorio_nomina" ColumnName="id_repositorio_nomina" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="id_usuario_elimino" ColumnName="id_usuario_elimino" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_RIF_ISR_Pagos">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_RIF_ISR_Pagos">
+        <MappingFragment StoreEntitySet="tbd_RIF_ISR_Pagos">
+          <ScalarProperty Name="id_RIF_isr_pago" ColumnName="id_RIF_isr_pago" />
+          <ScalarProperty Name="isr" ColumnName="isr" />
+          <ScalarProperty Name="recargo" ColumnName="recargo" />
+          <ScalarProperty Name="impuesto_actualizado" ColumnName="impuesto_actualizado" />
+          <ScalarProperty Name="total_pagar" ColumnName="total_pagar" />
+          <ScalarProperty Name="bimestre" ColumnName="bimestre" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_recalculo" ColumnName="fecha_recalculo" />
+          <ScalarProperty Name="monto_pago" ColumnName="monto_pago" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="diferencia" ColumnName="diferencia" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_RIF_Pagos">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_RIF_Pagos">
+        <MappingFragment StoreEntitySet="tbd_RIF_Pagos">
+          <ScalarProperty Name="id_RIF_pago" ColumnName="id_RIF_pago" />
+          <ScalarProperty Name="iva" ColumnName="iva" />
+          <ScalarProperty Name="recargo" ColumnName="recargo" />
+          <ScalarProperty Name="impuesto_actualizado" ColumnName="impuesto_actualizado" />
+          <ScalarProperty Name="total_pagar" ColumnName="total_pagar" />
+          <ScalarProperty Name="bimestre" ColumnName="bimestre" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_recalculo" ColumnName="fecha_recalculo" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+          <ScalarProperty Name="monto_pago" ColumnName="monto_pago" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="diferencia" ColumnName="diferencia" />
+          <ScalarProperty Name="importe" ColumnName="importe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Servicios_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Servicios_Cliente">
+        <MappingFragment StoreEntitySet="tbd_Servicios_Cliente">
+          <ScalarProperty Name="id_servicio_cliente" ColumnName="id_servicio_cliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="servicio" ColumnName="servicio" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="tbc_lineas_produccion" ColumnName="tbc_lineas_produccion" />
+          <ScalarProperty Name="encargado" ColumnName="encargado" />
+          <ScalarProperty Name="inicio_servicio" ColumnName="inicio_servicio" />
+          <ScalarProperty Name="id_grupo_empresarial" ColumnName="id_grupo_empresarial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Tramites">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Tramites">
+        <MappingFragment StoreEntitySet="tbd_Tramites">
+          <ScalarProperty Name="id_tramite" ColumnName="id_tramite" />
+          <ScalarProperty Name="id_lista_tramite" ColumnName="id_lista_tramite" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="id_estatus" ColumnName="id_estatus" />
+          <ScalarProperty Name="fecha_finalizado" ColumnName="fecha_finalizado" />
+          <ScalarProperty Name="id_solicitud" ColumnName="id_solicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_XMLError">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_XMLError">
+        <MappingFragment StoreEntitySet="tbd_XMLError">
+          <ScalarProperty Name="id_xml_error" ColumnName="id_xml_error" />
+          <ScalarProperty Name="id_xml" ColumnName="id_xml" />
+          <ScalarProperty Name="uuid" ColumnName="uuid" />
+          <ScalarProperty Name="fecha_timbrado" ColumnName="fecha_timbrado" />
+          <ScalarProperty Name="url_xml" ColumnName="url_xml" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbr_Agente_Cliente">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbr_Agente_Cliente">
+        <MappingFragment StoreEntitySet="tbr_Agente_Cliente">
+          <ScalarProperty Name="id_agente_cliente" ColumnName="id_agente_cliente" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbr_Cliente_Usuario">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbr_Cliente_Usuario">
+        <MappingFragment StoreEntitySet="tbr_Cliente_Usuario">
+          <ScalarProperty Name="id_cliente_usuario" ColumnName="id_cliente_usuario" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbr_Rol_Vista">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbr_Rol_Vista">
+        <MappingFragment StoreEntitySet="tbr_Rol_Vista">
+          <ScalarProperty Name="id_rol_vista" ColumnName="id_rol_vista" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="id_vista" ColumnName="id_vista" />
+          <ScalarProperty Name="id_permiso_servidor" ColumnName="id_permiso_servidor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbr_Rol_Vista_Accion">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbr_Rol_Vista_Accion">
+        <MappingFragment StoreEntitySet="tbr_Rol_Vista_Accion">
+          <ScalarProperty Name="id_rol_vista_accion" ColumnName="id_rol_vista_accion" />
+          <ScalarProperty Name="id_rol_vista" ColumnName="id_rol_vista" />
+          <ScalarProperty Name="id_accion" ColumnName="id_accion" />
+          <ScalarProperty Name="id_permiso_servidor" ColumnName="id_permiso_servidor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbc_Configuracion">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Configuracion">
+        <MappingFragment StoreEntitySet="tbc_Configuracion">
+          <ScalarProperty Name="id_configuracion" ColumnName="id_configuracion" />
+          <ScalarProperty Name="recargo_decimal" ColumnName="recargo_decimal" />
+          <ScalarProperty Name="recargo" ColumnName="recargo" />
+          <ScalarProperty Name="aplicar_fecha_pago" ColumnName="aplicar_fecha_pago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbd_Otros_Servicios_RFC">
+      <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Otros_Servicios_RFC">
+        <MappingFragment StoreEntitySet="tbd_Otros_Servicios_RFC">
+          <ScalarProperty Name="id_otro_servicio_rfc" ColumnName="id_otro_servicio_rfc" />
+          <ScalarProperty Name="id_otro_servicio" ColumnName="id_otro_servicio" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="mes" ColumnName="mes" />
+          <ScalarProperty Name="fecha_carga" ColumnName="fecha_carga" />
+          <ScalarProperty Name="url_archivo" ColumnName="url_archivo" />
+          <ScalarProperty Name="id_usuario_creo" ColumnName="id_usuario_creo" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="nombre_archivo" ColumnName="nombre_archivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Administrador_ADD_Accion" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Accion" />
+    <FunctionImportMapping FunctionImportName="Administrador_ADD_Menu" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Menu" />
+    <FunctionImportMapping FunctionImportName="Administrador_ADD_Rol" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Rol" />
+    <FunctionImportMapping FunctionImportName="Administrador_ADD_Usuario" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Usuario" />
+    <FunctionImportMapping FunctionImportName="Administrador_ADD_Vista" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Vista" />
+    <FunctionImportMapping FunctionImportName="Administrador_DEL_Accion" FunctionName="DB_MenuEntitiesModel.Store.Administrador_DEL_Accion" />
+    <FunctionImportMapping FunctionImportName="Administrador_DEL_Menu" FunctionName="DB_MenuEntitiesModel.Store.Administrador_DEL_Menu" />
+    <FunctionImportMapping FunctionImportName="Administrador_DEL_Rol" FunctionName="DB_MenuEntitiesModel.Store.Administrador_DEL_Rol" />
+    <FunctionImportMapping FunctionImportName="Administrador_DEL_Usuario" FunctionName="DB_MenuEntitiesModel.Store.Administrador_DEL_Usuario" />
+    <FunctionImportMapping FunctionImportName="Administrador_DEL_Vista" FunctionName="DB_MenuEntitiesModel.Store.Administrador_DEL_Vista" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_ListaAcciones" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_ListaAcciones" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_ListaMenus" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_ListaMenus" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_ListaRoles" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_ListaRoles" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_ListaUsuarios" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_ListaUsuarios" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_ListaVistas" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_ListaVistas" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_RlVista" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_RlVista" />
+    <FunctionImportMapping FunctionImportName="Administrador_SEL_RlVistaAccion" FunctionName="DB_MenuEntitiesModel.Store.Administrador_SEL_RlVistaAccion" />
+    <FunctionImportMapping FunctionImportName="Administrador_UPD_Accion" FunctionName="DB_MenuEntitiesModel.Store.Administrador_UPD_Accion" />
+    <FunctionImportMapping FunctionImportName="Administrador_UPD_Menu" FunctionName="DB_MenuEntitiesModel.Store.Administrador_UPD_Menu" />
+    <FunctionImportMapping FunctionImportName="Administrador_UPD_Rol" FunctionName="DB_MenuEntitiesModel.Store.Administrador_UPD_Rol" />
+    <FunctionImportMapping FunctionImportName="Administrador_UPD_Usuario" FunctionName="DB_MenuEntitiesModel.Store.Administrador_UPD_Usuario" />
+    <FunctionImportMapping FunctionImportName="Administrador_UPD_Vista" FunctionName="DB_MenuEntitiesModel.Store.Administrador_UPD_Vista" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Actividad" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Actividad" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_ActividadCalendario" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_ActividadCalendario" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_ActividadProduccion" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_ActividadProduccion" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_ActivoFijo" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_ActivoFijo" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Cliente" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Cliente" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Contactos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Contactos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Deposito" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Deposito" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_DocumentoNotificacion" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_DocumentoNotificacion" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_DocumentoTramite" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_DocumentoTramite" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Entregables" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Entregables" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_EstadoCuenta" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_EstadoCuenta" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_EstadoCuentaC" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_EstadoCuentaC" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Estatus" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Estatus" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_FechaCalendarioActividades" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_FechaCalendarioActividades" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Formato" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Formato" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Notificacion" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Notificacion" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_OtroGasto" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_OtroGasto" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_OtrosServicios" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_OtrosServicios" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Pago" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Pago" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Pago_ISR" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Pago_ISR" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Prospecto" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Prospecto" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Repositorio" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Repositorio" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_RepositorioC" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_RepositorioC" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_RepositorioNomina" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_RepositorioNomina" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_RepositorioNomina2" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_RepositorioNomina2" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Seguimiento" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Seguimiento" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_ServicioAdicional" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_ServicioAdicional" />
+    <FunctionImportMapping FunctionImportName="Catalogo_ADD_Tramite" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_ADD_Tramite" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Actividad" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Actividad" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Cliente" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Cliente" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Contactos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Contactos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Entregables" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Entregables" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_EstadoCuenta" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_EstadoCuenta" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Estatus" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Estatus" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_FechaCalendarioActividades" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_FechaCalendarioActividades" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Formato" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Formato" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Notificacion" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Notificacion" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_OtrosServicios" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_OtrosServicios" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Repositorio" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Repositorio" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_RepositorioNomina" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_RepositorioNomina" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_Seguimiento" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_Seguimiento" />
+    <FunctionImportMapping FunctionImportName="Catalogo_DEL_ServicioAdicional" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_DEL_ServicioAdicional" />
+    <FunctionImportMapping FunctionImportName="Catalogo_GET_ClienteRIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_GET_ClienteRIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_Bimestres_RIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_Bimestres_RIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_CalendarioActividades" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_CalendarioActividades" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_CalendarioActividadesLP1" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_CalendarioActividadesLP1" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_CanceladosEmitidosCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_CanceladosEmitidosCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_CanceladosRecibidosCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_CanceladosRecibidosCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_Cliente" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_Cliente" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ComplementosCobroCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ComplementosCobroCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ComplementosPagoCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ComplementosPagoCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_DocuemntosCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_DocuemntosCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_DocuemntosNominasCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_DocuemntosNominasCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EdoCuentaCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EdoCuentaCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EgresosCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EgresosCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EliminarActivoFijo" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EliminarActivoFijo" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EliminarDeposito" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EliminarDeposito" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EliminarOtroGasto" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EliminarOtroGasto" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EliminarPago_RIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EliminarPago_RIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EliminarPago_RIF_ISR" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EliminarPago_RIF_ISR" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_EntregablesCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_EntregablesCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_FichaTecnica" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_FichaTecnica" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_GetXMLCancelados" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_GetXMLCancelados" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_IngresosCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_IngresosCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_InicioCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_InicioCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaActividades" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaActividades" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaActividadesCalendario" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaActividadesCalendario" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaActividadesProduccion" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaActividadesProduccion" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaActivoFijo" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaActivoFijo" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaClientes" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaClientes" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaClientesCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaClientesCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaClientesLinea" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaClientesLinea" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaContactos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaContactos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaDeposito" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaDeposito" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaDocumentosDigitales" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaDocumentosDigitales" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaDocumentosNomina" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaDocumentosNomina" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaEntregables" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaEntregables" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaEstadosCuenta" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaEstadosCuenta" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaEstatus" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaEstatus" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaFormatos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaFormatos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaNotificaciones" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaNotificaciones" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaNotificacionesCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaNotificacionesCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaOtrosGastos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaOtrosGastos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaOtrosServicios" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaOtrosServicios" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaPagos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaPagos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaPagos_ISR" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaPagos_ISR" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaProspectos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaProspectos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaProveedoresCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaProveedoresCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaRepositorio" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaRepositorio" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaRepositorioNomina" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaRepositorioNomina" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaSeguimiento" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaSeguimiento" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaServiciosAdicionales" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaServiciosAdicionales" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaTramites" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaTramites" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaTramitesCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaTramitesCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ListaTramitesIMSS" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ListaTramitesIMSS" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_NominasCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_NominasCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_NotasCreditoCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_NotasCreditoCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_NotasCreditoGastoCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_NotasCreditoGastoCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_Recalcular_RIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_Recalcular_RIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_Recalcular_RIF_ISR" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_Recalcular_RIF_ISR" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesArrendamiento" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesArrendamiento" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesAsesoria" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesAsesoria" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesCOI" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesCOI" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesEDO" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesEDO" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesHonorarios" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesHonorarios" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesNomina" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesNomina" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesPFAE" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesPFAE" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesPM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesPM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesRIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesRIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteEntregablesSueldos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteEntregablesSueldos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteExpedienteFiscalArrendamiento" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteExpedienteFiscalArrendamiento" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteExpedienteFiscalHonorarios" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteExpedienteFiscalHonorarios" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteExpedienteFiscalPFAE" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteExpedienteFiscalPFAE" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteExpedienteFiscalPM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteExpedienteFiscalPM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteExpedienteFiscalRIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteExpedienteFiscalRIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteExpedienteFiscalSueldos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteExpedienteFiscalSueldos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteGeneral" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteGeneral" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReporteGeneralAnual" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReporteGeneralAnual" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_ReportePropuestasEconomicas" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_ReportePropuestasEconomicas" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_SueldosCRM" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_SueldosCRM" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLDepreciaciones" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLDepreciaciones" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLDPersonales" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLDPersonales" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLEgresos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLEgresos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLEmitidos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLEmitidos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLIngresos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLIngresos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLNoDeducible" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLNoDeducible" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLNominas" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLNominas" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLRecibidos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLRecibidos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLSueldos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLSueldos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLTrasladoEmitidos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLTrasladoEmitidos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLTrasladoRecibidos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLTrasladoRecibidos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLZip" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLZip" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLZipCRMGastos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLZipCRMGastos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SEL_XMLZipCRMIngresos" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SEL_XMLZipCRMIngresos" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SET_EstatusSAT" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SET_EstatusSAT" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SET_EstatusSATWS" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SET_EstatusSATWS" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SET_EstatusXML" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SET_EstatusXML" />
+    <FunctionImportMapping FunctionImportName="Catalogo_SET_FechaPago" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_SET_FechaPago" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_CalendarioActividades" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_CalendarioActividades" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_Cliente" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_Cliente" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_ClienteRIF" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_ClienteRIF" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_FichaTecnica" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_FichaTecnica" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_Prospecto" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_Prospecto" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_Repositorio" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_Repositorio" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_RepositorioNomina" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_RepositorioNomina" />
+    <FunctionImportMapping FunctionImportName="Catalogo_UPD_ServicioAdicional" FunctionName="DB_MenuEntitiesModel.Store.Catalogo_UPD_ServicioAdicional" />
+    <FunctionImportMapping FunctionImportName="Historial_ADD" FunctionName="DB_MenuEntitiesModel.Store.Historial_ADD" />
+    <FunctionImportMapping FunctionImportName="Inicio_SEL_Menus" FunctionName="DB_MenuEntitiesModel.Store.Inicio_SEL_Menus" />
+    <FunctionImportMapping FunctionImportName="Inicio_SEL_ValidarUsuario" FunctionName="DB_MenuEntitiesModel.Store.Inicio_SEL_ValidarUsuario" />
+    <FunctionImportMapping FunctionImportName="ReportesGenerales_SEL_EstadoCuenta" FunctionName="DB_MenuEntitiesModel.Store.ReportesGenerales_SEL_EstadoCuenta" />
+    <FunctionImportMapping FunctionImportName="Utils_SEL_Catalogos" FunctionName="DB_MenuEntitiesModel.Store.Utils_SEL_Catalogos" />
+    <FunctionImportMapping FunctionImportName="Utils_SEL_Permisos" FunctionName="DB_MenuEntitiesModel.Store.Utils_SEL_Permisos" />
+    <FunctionImportMapping FunctionImportName="Utils_SEL_ValidarAccesoVista" FunctionName="DB_MenuEntitiesModel.Store.Utils_SEL_ValidarAccesoVista" />
+  </EntityContainerMapping>
+</Mapping>

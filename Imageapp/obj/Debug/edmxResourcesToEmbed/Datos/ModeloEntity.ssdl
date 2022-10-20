@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_MenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbc_Clientes">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_razon" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="id_tipo_persona" Type="int" Nullable="false" />
+    <Property Name="direccion_fiscal" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="id_regimen" Type="int" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="date" />
+    <Property Name="id_sector" Type="int" />
+    <Property Name="fecha_servicio" Type="date" />
+    <Property Name="ingresos_mayores" Type="bit" />
+    <Property Name="publico_general" Type="bit" />
+    <Property Name="estado_cuenta" Type="bit" />
+    <Property Name="tiene_trabajadores" Type="bit" />
+    <Property Name="actividad_principal" Type="varchar" MaxLength="1000" />
+    <Property Name="observaciones" Type="varchar" MaxLength="5000" />
+    <Property Name="fecha_caducidad_fiel" Type="date" />
+    <Property Name="es_asesoria" Type="bit" />
+    <Property Name="aplica_coi" Type="bit" />
+    <Property Name="edo_financiero" Type="bit" />
+    <Property Name="fecha_cita" Type="date" />
+    <Property Name="fecha_fiel_representante" Type="date" />
+    <Property Name="es_nomina" Type="bit" />
+    <Property Name="registro_patronal" Type="bit" />
+    <Property Name="patronal" Type="nvarchar" MaxLength="50" />
+    <Property Name="inicio_razon" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbc_Usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="id_rol" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido_paterno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido_materno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="contrasenia" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ultimo_movimiento" Type="datetime" />
+    <Property Name="id_estatus" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono_movil" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="fecha_nacimiento" Type="datetime" Nullable="false" />
+    <Property Name="correo_electronico" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbd_Formulario">
+    <Key>
+      <PropertyRef Name="id_formulario" />
+    </Key>
+    <Property Name="id_formulario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="mensaje" Type="varchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbr_Cliente_Usuario">
+    <Key>
+      <PropertyRef Name="id_cliente_usuario" />
+    </Key>
+    <Property Name="id_cliente_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DB_MenuModelStoreContainer">
+    <EntitySet Name="tbc_Clientes" EntityType="Self.tbc_Clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbc_Usuarios" EntityType="Self.tbc_Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbd_Formulario" EntityType="Self.tbd_Formulario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbr_Cliente_Usuario" EntityType="Self.tbr_Cliente_Usuario" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

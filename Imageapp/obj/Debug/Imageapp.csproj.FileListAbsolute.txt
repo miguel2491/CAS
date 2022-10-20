@@ -1,0 +1,712 @@
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Imageapp.dll.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Imageapp.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Imageapp.pdb
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\csc.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\csc.exe.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\csc.rsp
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\csi.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\csi.rsp
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\vbc.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\vbc.exe.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\vbc.rsp
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\EntityFramework.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Newtonsoft.Json.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\QRCoder.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Helpers.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Http.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Mvc.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Razor.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Webpages.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\EntityFramework.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Newtonsoft.Json.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Http.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Razor.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Webpages.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Helpers.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\System.Web.Mvc.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\obj\Debug\Imageapp.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Imageapp\Imageapp\obj\Debug\Imageapp.pdb
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Imageapp.dll.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Imageapp.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Imageapp.pdb
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\csc.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\csc.exe.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\csc.rsp
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\csi.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\csi.rsp
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\vbc.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\vbc.exe.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\vbc.rsp
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\EntityFramework.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Newtonsoft.Json.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\QRCoder.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Helpers.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Http.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Mvc.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Razor.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Webpages.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\EntityFramework.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Newtonsoft.Json.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Http.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Razor.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Webpages.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Helpers.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\System.Web.Mvc.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\obj\Debug\Imageapp.dll
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\obj\Debug\Imageapp.pdb
+C:\Users\Developer\Personal\Ingeniapp\Proyectos\GIT\Menu\Imageapp\obj\Debug\Imageapp.csprojAssemblyReference.cache
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Imageapp.dll.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Imageapp.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Imageapp.pdb
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\csc.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\csc.exe.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\csc.rsp
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\csi.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\csi.rsp
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\vbc.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\vbc.exe.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\vbc.rsp
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\EntityFramework.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Newtonsoft.Json.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\QRCoder.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Helpers.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Http.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Mvc.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Razor.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Webpages.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\EntityFramework.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Newtonsoft.Json.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Http.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Razor.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Webpages.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Helpers.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\System.Web.Mvc.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\obj\Debug\Imageapp.csprojAssemblyReference.cache
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\obj\Debug\Imageapp.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Ingeniapp\Menu\Menu\Imageapp\obj\Debug\Imageapp.pdb
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Imageapp.dll.config
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Imageapp.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Imageapp.pdb
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\csc.exe
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\csc.exe.config
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\csc.rsp
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\csi.exe
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\csi.rsp
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\System.AppContext.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\vbc.exe
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\vbc.exe.config
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\vbc.rsp
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\EntityFramework.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\EntityFramework.SqlServer.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Newtonsoft.Json.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\QRCoder.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Net.Http.Formatting.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Helpers.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Http.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Http.WebHost.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Mvc.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Razor.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Webpages.Deployment.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Webpages.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Webpages.Razor.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\EntityFramework.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\EntityFramework.SqlServer.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Newtonsoft.Json.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Net.Http.Formatting.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Http.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Http.WebHost.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Razor.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Webpages.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Webpages.Deployment.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Webpages.Razor.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Helpers.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\System.Web.Mvc.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\es\System.Web.Razor.resources.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\es\System.Web.Webpages.resources.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\es\System.Web.Helpers.resources.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\bin\es\System.Web.Mvc.resources.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\obj\Debug\Imageapp.csprojAssemblyReference.cache
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\obj\Debug\Imageapp.dll
+E:\Clientes Descarga Masiva\Rene Mesa\Menu\Imageapp\obj\Debug\Imageapp.pdb
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Imageapp.dll.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Imageapp.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Imageapp.pdb
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\csc.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\csc.exe.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\csc.rsp
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\csi.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\csi.rsp
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\vbc.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\vbc.exe.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\vbc.rsp
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\EntityFramework.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Newtonsoft.Json.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\QRCoder.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Helpers.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Http.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Mvc.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Razor.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Webpages.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\EntityFramework.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Newtonsoft.Json.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Http.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Razor.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Webpages.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Helpers.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\System.Web.Mvc.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\obj\Debug\Imageapp.csprojAssemblyReference.cache
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\obj\Debug\Imageapp.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\obj\Debug\Imageapp.pdb
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.pdb
+C:\Users\rene_\OneDrive\Documentos\Proyectos\Personal\Sistema\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Imageapp.dll.config
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Imageapp.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Imageapp.pdb
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\csc.exe
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\csc.exe.config
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\csc.rsp
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\csi.exe
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\csi.rsp
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\vbc.exe
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\vbc.exe.config
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\vbc.rsp
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\EntityFramework.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Newtonsoft.Json.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\QRCoder.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Helpers.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Http.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Mvc.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Razor.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Webpages.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\EntityFramework.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.pdb
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Newtonsoft.Json.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Http.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Razor.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Webpages.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Helpers.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\System.Web.Mvc.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\obj\Debug\Imageapp.csprojAssemblyReference.cache
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\obj\Debug\Imageapp.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\obj\Debug\Imageapp.pdb
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\itextsharp.dll
+C:\Proyectos\Plataformas\Menu\Menu\Imageapp\bin\BouncyCastle.Crypto.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Imageapp.dll.config
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Imageapp.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Imageapp.pdb
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\csc.exe
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\csc.exe.config
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\csc.rsp
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\csi.exe
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\csi.rsp
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\vbc.exe
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\vbc.exe.config
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\vbc.rsp
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\BouncyCastle.Crypto.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\EntityFramework.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\itextsharp.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Newtonsoft.Json.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\QRCoder.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Helpers.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Http.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Mvc.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Razor.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Webpages.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\EntityFramework.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.pdb
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\ICSharpCode.SharpZipLib.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Newtonsoft.Json.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Http.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Razor.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Webpages.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Helpers.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\System.Web.Mvc.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\obj\Debug\Imageapp.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\obj\Debug\Imageapp.pdb
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\EPPlus.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Excel.dll
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\bin\Excel.pdb
+C:\Proyectos\Plataformas\Menu - Copy\Menu\Imageapp\obj\Debug\Imageapp.csproj.AssemblyReference.cache
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Imageapp.dll.config
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Imageapp.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Imageapp.pdb
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\csc.exe
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\csc.exe.config
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\csc.rsp
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\csi.exe
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\csi.rsp
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\vbc.exe
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\vbc.exe.config
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\vbc.rsp
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\EntityFramework.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Newtonsoft.Json.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\QRCoder.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Helpers.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Http.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Mvc.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Razor.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Webpages.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\EntityFramework.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\ICSharpCode.SharpZipLib.pdb
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\ICSharpCode.SharpZipLib.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Newtonsoft.Json.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Http.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Razor.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Webpages.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Helpers.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\System.Web.Mvc.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\obj\Debug\Imageapp.dll
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\obj\Debug\Imageapp.pdb
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\obj\Debug\Imageapp.csproj.ResolveComReference.cache
+C:\Users\DEVS_MGDRKZ\Magodarkz\Proyectos\Personal\Castelan\WEB\Imageapp\obj\Debug\Imageapp.csprojAssemblyReference.cache
+C:\Proyectos\Cas\Imageapp\bin\Imageapp.dll.config
+C:\Proyectos\Cas\Imageapp\bin\Imageapp.dll
+C:\Proyectos\Cas\Imageapp\bin\Imageapp.pdb
+C:\Proyectos\Cas\Imageapp\bin\roslyn\csc.exe
+C:\Proyectos\Cas\Imageapp\bin\roslyn\csc.exe.config
+C:\Proyectos\Cas\Imageapp\bin\roslyn\csc.rsp
+C:\Proyectos\Cas\Imageapp\bin\roslyn\csi.exe
+C:\Proyectos\Cas\Imageapp\bin\roslyn\csi.rsp
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Proyectos\Cas\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Proyectos\Cas\Imageapp\bin\roslyn\vbc.exe
+C:\Proyectos\Cas\Imageapp\bin\roslyn\vbc.exe.config
+C:\Proyectos\Cas\Imageapp\bin\roslyn\vbc.rsp
+C:\Proyectos\Cas\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Proyectos\Cas\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Proyectos\Cas\Imageapp\bin\BouncyCastle.Crypto.dll
+C:\Proyectos\Cas\Imageapp\bin\EntityFramework.dll
+C:\Proyectos\Cas\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Proyectos\Cas\Imageapp\bin\EPPlus.dll
+C:\Proyectos\Cas\Imageapp\bin\Excel.dll
+C:\Proyectos\Cas\Imageapp\bin\ICSharpCode.SharpZipLib.dll
+C:\Proyectos\Cas\Imageapp\bin\itextsharp.dll
+C:\Proyectos\Cas\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Proyectos\Cas\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Proyectos\Cas\Imageapp\bin\Newtonsoft.Json.dll
+C:\Proyectos\Cas\Imageapp\bin\QRCoder.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Helpers.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Http.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Mvc.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Razor.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Webpages.dll
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Proyectos\Cas\Imageapp\bin\EntityFramework.xml
+C:\Proyectos\Cas\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Proyectos\Cas\Imageapp\bin\Excel.pdb
+C:\Proyectos\Cas\Imageapp\bin\ICSharpCode.SharpZipLib.pdb
+C:\Proyectos\Cas\Imageapp\bin\ICSharpCode.SharpZipLib.xml
+C:\Proyectos\Cas\Imageapp\bin\Newtonsoft.Json.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Http.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Razor.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Webpages.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Helpers.xml
+C:\Proyectos\Cas\Imageapp\bin\System.Web.Mvc.xml
+C:\Proyectos\Cas\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Proyectos\Cas\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Proyectos\Cas\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Proyectos\Cas\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Proyectos\Cas\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Proyectos\Cas\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Proyectos\Cas\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Proyectos\Cas\Imageapp\obj\Debug\Imageapp.csproj.ResolveComReference.cache
+C:\Proyectos\Cas\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Proyectos\Cas\Imageapp\obj\Debug\Imageapp.dll
+C:\Proyectos\Cas\Imageapp\obj\Debug\Imageapp.pdb
+C:\Proyectos\Cas\Imageapp\obj\Debug\Imageapp.csproj.AssemblyReference.cache
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Imageapp.dll.config
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Imageapp.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Imageapp.pdb
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\csc.exe
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\csc.exe.config
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\csc.rsp
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\csi.exe
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\csi.rsp
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\System.AppContext.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\vbc.exe
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\vbc.exe.config
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\vbc.rsp
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\VBCSCompiler.exe
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\EntityFramework.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\EntityFramework.SqlServer.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Newtonsoft.Json.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\QRCoder.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Net.Http.Formatting.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Helpers.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Http.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Http.WebHost.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Mvc.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Razor.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Webpages.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Webpages.Razor.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\EntityFramework.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\EntityFramework.SqlServer.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Excel.pdb
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\ICSharpCode.SharpZipLib.pdb
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\ICSharpCode.SharpZipLib.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Newtonsoft.Json.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Net.Http.Formatting.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Http.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Http.WebHost.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Razor.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Webpages.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Webpages.Razor.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Helpers.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\System.Web.Mvc.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\es\System.Web.Razor.resources.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\es\System.Web.Webpages.resources.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\es\System.Web.Webpages.Deployment.resources.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\es\System.Web.Webpages.Razor.resources.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\obj\Debug\Imageapp.csproj.AssemblyReference.cache
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\obj\Debug\Imageapp.csproj.ResolveComReference.cache
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\obj\Debug\Imageapp.csproj.CoreCompileInputs.cache
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\obj\Debug\Imageapp.csproj.CopyComplete
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\obj\Debug\Imageapp.dll
+C:\Users\Desarrollo\source\repos\Plataforma Castelan\Cas\Imageapp\obj\Debug\Imageapp.pdb
