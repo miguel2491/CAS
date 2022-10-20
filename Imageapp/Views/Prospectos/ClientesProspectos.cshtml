@@ -37,6 +37,7 @@
 
 <script src="~/Content/Js/Personal/Catalogos/SeguimientoModal.js"></script>
 <script src="~/Content/Js/Personal/Catalogos/ContactosModal.js"></script>
+<script src="~/Content/Js/Personal/Catalogos/ServiciosModal.js"></script>
 
 
 <style>
@@ -328,6 +329,65 @@
     </form>
 </div>
 
-<div id="mdlServicios" class="modal">
+<div class="modal" id="mdlServicios">
+    <h3>Agregar Servicios</h3>
+    <form id="frmServicios">
+        <!---->
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_contacto">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Nombre Completo</label>
+                <input class="form-control" id="fr_nombre_completo_contacto" name="fr_nombre_completo_contacto" />
+            </div>
+            <div class="form-group col-md-4">
+                <label>Tipo</label>
+                <input class="form-control" id="fr_tipo_contacto" name="fr_tipo_contacto" />
+            </div>
 
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+
+            </div>
+            <div class="form-group col-md-6">
+                <label>Correo</label>
+                <input class="form-control" id="fr_correo_contacto" name="fr_correo_contacto" />
+            </div>
+            <div class="form-group col-md-4">
+                <label>Teléfono</label>
+                <input class="form-control" id="fr_telefono_contacto" name="fr_telefono_contacto" />
+            </div>
+
+        </div>
+        <br />
+        @* Seccion para el datatable Depositos*@
+        <div class="section" id="sectionDataTable">
+            <table id="tblContactos" class="cell-border table-striped" data-title-datatable="Contactos">
+                <thead>
+                    <tr>
+                        <td>Acciones</td>
+                        <td>Nombre completo</td>
+                        <td>Tipo contacto</td>
+                        <td>Teléfono</td>
+                        <td>Correo</td>
+                        <td>Fecha Creación</td>
+                        <td>Id contacto</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!---->
+        <div class="form-group col-md-12 d-flex justify-content-around">
+            <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlServicios">
+                <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarServicios">Agregar</span>&nbsp;&nbsp;
+            </button>
+            <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlServicios">
+                <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+            </button>
+        </div>
+    </form>
 </div>

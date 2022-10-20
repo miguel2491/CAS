@@ -23,6 +23,8 @@ const clsCliente = function () {
     var tblContactos = new clsDataTable();
     var mdlContactos = new mdlContactosCliente();
 
+    var mdlServicio = new mdlServiciosCliente();//
+
     var tblSeguimiento = new clsDataTable();
     var mdlSeguimiento = new mdlSeguimientoCliente();
    
@@ -54,6 +56,8 @@ const clsCliente = function () {
             mdlContactos.inicializarValidaciones();
             mdlSeguimiento.inicio();
             mdlSeguimiento.inicializarValidaciones();
+            mdlServicio.inicio();//
+            mdlServicio.inicializarValidaciones();//
             $waitMsn.close();
         }).catch(() => {
             $waitMsn.close();
@@ -313,6 +317,16 @@ const clsCliente = function () {
         $('#btnAceptarMdlSeguimiento').on('click', function (e) { //Evento boton aceptar [modal] Actividades 
             mdlSeguimiento.enviarStoredProcedure();
         });
+
+        //
+        $('#btnCloseMdlServicios').on('click', function () { //Evento boton cerrar [modal] Actividades
+            mdlServicio.confirmarModal({ eventButton: "cerrar_modal", title: "Confirma!", message: "¿Segúro que deséa cancelar la operación?" });
+        });
+
+        $('#btnAceptarMdlServicios').on('click', function (e) { //Evento boton aceptar [modal] Actividades
+            mdlServicio.enviarStoredProcedure();
+        });
+        //
     }
 
 
@@ -360,6 +374,18 @@ const clsCliente = function () {
             mdlSeguimiento.mostrarModal();
         });
 
+        //
+        $('#BTN-SERVICIO').on('click', function () {
+
+            let tmpTbl_Principal = tblPrincipal.getTable();
+            let rowSelected = tmpTbl_Principal.$('tr.selected');
+            if (rowSelected.length <= 0)
+                return jsSimpleAlert("Alerta", "No ha seleccionado una fila", "orange");
+            tblPrincipal.setRowSelected(rowSelected);
+            mdlServicio.setTipoEvento("BTN-SERVICIO");
+            mdlServicio.mostrarModal();
+        });
+        //
 
         setParamsDatePicker();
     }
@@ -400,6 +426,7 @@ const clsCliente = function () {
         mdlContactos: mdlContactos,
         tblContactos: tblContactos,
         mdlSeguimiento: mdlSeguimiento,
-        tblSeguimiento: tblSeguimiento
+        tblSeguimiento: tblSeguimiento,
+        mdlServicio: mdlServicios//
     }
 };

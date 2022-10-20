@@ -22,6 +22,7 @@ const clsCliente = function () {
     var mdlActividades = new mdlActividadesCliente();
     var tblContactos = new clsDataTable();
     var mdlContactos = new mdlContactosCliente();
+    var mdlServicio = new mdlServiciosCliente();//
     var tblServicios = new clsDataTable();
     var mdlServicios = new mdlServiciosCliente();
     var tblEstatus = new clsDataTable();
@@ -62,6 +63,8 @@ const clsCliente = function () {
             mdlEstatus.inicializarValidaciones();
             mdlContactos.inicio();
             mdlContactos.inicializarValidaciones();
+            mdlServicio.inicio();//
+            mdlServicio.inicializarValidaciones();//
             mdlUpdServicio.initValidations();
             $waitMsn.close();
         }).catch(() => {
@@ -409,6 +412,17 @@ const clsCliente = function () {
         $('#btnAceptarMdlServicio').on('click', function (e) { //Evento boton aceptar [modal] Actividades 
             mdlServicios.enviarStoredProcedure();
         });
+
+        //
+        $('#btnCloseMdlServicios').on('click', function () { //Evento boton cerrar [modal] Actividades
+            mdlServicio.confirmarModal({ eventButton: "cerrar_modal", title: "Confirma!", message: "¿Segúro que deséa cancelar la operación?" });
+        });
+
+        $('#btnAceptarMdlServicios').on('click', function (e) { //Evento boton aceptar [modal] Actividades
+            mdlServicio.enviarStoredProcedure();
+        });
+
+        //
         
         $('#tblServicios').on('click', '.btnServicioUpdateFecha', function (e) {
             let closesTr = $(this).closest('tr');
@@ -498,6 +512,18 @@ const clsCliente = function () {
             mdlServicios.setTipoEvento("BTN-SERVICIOS");
             mdlServicios.mostrarModal();
         });
+        //
+        $('#BTN-SERVICIO').on('click', function () {
+
+            let tmpTbl_Principal = tblPrincipal.getTable();
+            let rowSelected = tmpTbl_Principal.$('tr.selected');
+            if (rowSelected.length <= 0)
+                return jsSimpleAlert("Alerta", "No ha seleccionado una fila", "orange");
+            tblPrincipal.setRowSelected(rowSelected);
+            mdlServicio.setTipoEvento("BTN-SERVICIO");
+            mdlServicio.mostrarModal();
+        });
+        //
 
         setParamsDatePickerNacimiento();
     }
@@ -542,6 +568,7 @@ const clsCliente = function () {
         mdlServicios: mdlServicios,
         tblServicios: tblServicios,
         mdlContactos: mdlContactos,
-        tblContactos: tblContactos
+        tblContactos: tblContactos,
+        mdlServicio: mdlServicio
     }
 };
