@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_MenuEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_MenuEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.Hoja1$' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="Hoja1$">
@@ -301,6 +301,16 @@ advertencia 6002: La tabla o vista 'DB_MenuEntities.dbo.tbc_Configuracion' no ti
           <Property Name="id_cliente" Type="int" Nullable="false" />
           <Property Name="id_usuario" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbc_Servicios">
+          <Key>
+            <PropertyRef Name="id_servicio" />
+          </Key>
+          <Property Name="id_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="tipo_servicio" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="area" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estatus" Type="tinyint" />
+        </EntityType>
         <EntityType Name="tbc_Supervisores">
           <Key>
             <PropertyRef Name="id_supervisor" />
@@ -480,6 +490,21 @@ advertencia 6002: La tabla o vista 'DB_MenuEntities.dbo.tbc_Configuracion' no ti
           <Property Name="url_certificado" Type="varchar" MaxLength="500" />
           <Property Name="url_termino" Type="varchar" MaxLength="500" />
           <Property Name="url_llave" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbd_Cliente_Servicio">
+          <Key>
+            <PropertyRef Name="id_cliente_servicio" />
+          </Key>
+          <Property Name="id_cliente_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="id_servicio" Type="int" Nullable="false" />
+          <Property Name="costos" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ingreso" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="porcentaje" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="numero_trabajadores" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="descuento" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="tbd_Conceptos_Factura">
           <Key>
@@ -2029,6 +2054,16 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="idUsuario" Type="int" Mode="In" />
         </Function>
+        <Function Name="Prospecto_ADD_Servicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Prospecto_SEL_Servicio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="ReportesGenerales_SEL_EstadoCuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="jsonJS" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="jsonProperties" Type="nvarchar(max)" Mode="In" />
@@ -2083,6 +2118,7 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <EntitySet Name="tbc_RIF_Tasa_ISR" EntityType="Self.tbc_RIF_Tasa_ISR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbc_Roles" EntityType="Self.tbc_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbc_Seguimiento_Cliente" EntityType="Self.tbc_Seguimiento_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbc_Servicios" EntityType="Self.tbc_Servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbc_Supervisores" EntityType="Self.tbc_Supervisores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbc_Tipo_Comprobante" EntityType="Self.tbc_Tipo_Comprobante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbc_Tipo_Persona" EntityType="Self.tbc_Tipo_Persona" Schema="dbo" store:Type="Tables" />
@@ -2098,6 +2134,7 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <EntitySet Name="tbd_Calendario_Produccion" EntityType="Self.tbd_Calendario_Produccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbd_Cambio_Domicilio" EntityType="Self.tbd_Cambio_Domicilio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbd_Certificado_Digital" EntityType="Self.tbd_Certificado_Digital" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbd_Cliente_Servicio" EntityType="Self.tbd_Cliente_Servicio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbd_Conceptos_Factura" EntityType="Self.tbd_Conceptos_Factura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbd_Constancia_Sem_Cotizadas" EntityType="Self.tbd_Constancia_Sem_Cotizadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbd_Depositos" EntityType="Self.tbd_Depositos" Schema="dbo" store:Type="Tables" />
@@ -2203,8 +2240,7 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
             <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_MenuEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2480,6 +2516,17 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <Property Name="id_cliente" Type="Int32" Nullable="false" />
           <Property Name="id_usuario" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbc_Servicios">
+          <Key>
+            <PropertyRef Name="id_servicio" />
+          </Key>
+          <Property Name="id_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="String" />
+          <Property Name="tipo_servicio" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="tbc_Supervisores">
           <Key>
             <PropertyRef Name="id_supervisor" />
@@ -2664,6 +2711,14 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <Property Name="url_certificado" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="url_termino" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="url_llave" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbd_cliente_servicio">
+          <Key>
+            <PropertyRef Name="id_cliente_servicio" />
+          </Key>
+          <Property Name="id_cliente_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_servicio" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tbd_Conceptos_Factura">
           <Key>
@@ -3392,6 +3447,7 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <EntitySet Name="tbc_RIF_Tasa_ISR" EntityType="Self.tbc_RIF_Tasa_ISR" />
           <EntitySet Name="tbc_Roles" EntityType="Self.tbc_Roles" />
           <EntitySet Name="tbc_Seguimiento_Cliente" EntityType="Self.tbc_Seguimiento_Cliente" />
+          <EntitySet Name="tbc_Servicios" EntityType="Self.tbc_Servicios" />
           <EntitySet Name="tbc_Supervisores" EntityType="Self.tbc_Supervisores" />
           <EntitySet Name="tbc_Tipo_Comprobante" EntityType="Self.tbc_Tipo_Comprobante" />
           <EntitySet Name="tbc_Tipo_Persona" EntityType="Self.tbc_Tipo_Persona" />
@@ -3407,6 +3463,7 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <EntitySet Name="tbd_Calendario_Produccion" EntityType="Self.tbd_Calendario_Produccion" />
           <EntitySet Name="tbd_Cambio_Domicilio" EntityType="Self.tbd_Cambio_Domicilio" />
           <EntitySet Name="tbd_Certificado_Digital" EntityType="Self.tbd_Certificado_Digital" />
+          <EntitySet Name="tbd_cliente_servicio" EntityType="Self.tbd_cliente_servicio" />
           <EntitySet Name="tbd_Conceptos_Factura" EntityType="Self.tbd_Conceptos_Factura" />
           <EntitySet Name="tbd_Constancia_Sem_Cotizadas" EntityType="Self.tbd_Constancia_Sem_Cotizadas" />
           <EntitySet Name="tbd_Depositos" EntityType="Self.tbd_Depositos" />
@@ -3491,6 +3548,7 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
             <End Role="tbr_Rol_Vista" EntitySet="tbr_Rol_Vista" />
             <End Role="tbr_Rol_Vista_Accion" EntitySet="tbr_Rol_Vista_Accion" />
           </AssociationSet>
+          <EntitySet Name="tbd_Cliente_Servicio1Set" EntityType="DB_MenuEntitiesModel.tbd_Cliente_Servicio1" />
           <FunctionImport Name="Administrador_ADD_Accion" ReturnType="Collection(String)">
             <Parameter Name="jsonJS" Mode="In" Type="String" />
             <Parameter Name="jsonProperties" Mode="In" Type="String" />
@@ -4345,6 +4403,16 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
             <Parameter Name="jsonProperties" Mode="In" Type="String" />
             <Parameter Name="idUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Prospecto_ADD_Servicio" ReturnType="Collection(String)">
+            <Parameter Name="jsonJS" Mode="In" Type="String" />
+            <Parameter Name="jsonProperties" Mode="In" Type="String" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Prospecto_SEL_Servicio" ReturnType="Collection(String)">
+            <Parameter Name="jsonJS" Mode="In" Type="String" />
+            <Parameter Name="jsonProperties" Mode="In" Type="String" />
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ReportesGenerales_SEL_EstadoCuenta" ReturnType="Collection(String)">
             <Parameter Name="jsonJS" Mode="In" Type="String" />
             <Parameter Name="jsonProperties" Mode="In" Type="String" />
@@ -4366,6 +4434,21 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
             <Parameter Name="idUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
+        <EntityType Name="tbd_Cliente_Servicio1">
+          <Key>
+            <PropertyRef Name="id_cliente_servicio" />
+          </Key>
+          <Property Name="id_cliente_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_servicio" Type="Int32" Nullable="false" />
+          <Property Name="costos" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ingreso" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="monto" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="porcentaje" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="numero_trabajadores" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="descuento" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4654,6 +4737,17 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
                 <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
                 <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbc_Servicios">
+            <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbc_Servicios">
+              <MappingFragment StoreEntitySet="tbc_Servicios">
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="tipo_servicio" ColumnName="tipo_servicio" />
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5408,6 +5502,22 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbd_Cliente_Servicio1Set">
+            <EntityTypeMapping TypeName="DB_MenuEntitiesModel.tbd_Cliente_Servicio1">
+              <MappingFragment StoreEntitySet="tbd_Cliente_Servicio">
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="numero_trabajadores" ColumnName="numero_trabajadores" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="ingreso" ColumnName="ingreso" />
+                <ScalarProperty Name="costos" ColumnName="costos" />
+                <ScalarProperty Name="id_servicio" ColumnName="id_servicio" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_cliente_servicio" ColumnName="id_cliente_servicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Administrador_ADD_Accion" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Accion" />
           <FunctionImportMapping FunctionImportName="Administrador_ADD_Menu" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Menu" />
           <FunctionImportMapping FunctionImportName="Administrador_ADD_Rol" FunctionName="DB_MenuEntitiesModel.Store.Administrador_ADD_Rol" />
@@ -5579,6 +5689,8 @@ advertencia 6013: La tabla o vista 'DB_MenuEntities.dbo.vwRandom' no tiene defin
           <FunctionImportMapping FunctionImportName="Historial_ADD" FunctionName="DB_MenuEntitiesModel.Store.Historial_ADD" />
           <FunctionImportMapping FunctionImportName="Inicio_SEL_Menus" FunctionName="DB_MenuEntitiesModel.Store.Inicio_SEL_Menus" />
           <FunctionImportMapping FunctionImportName="Inicio_SEL_ValidarUsuario" FunctionName="DB_MenuEntitiesModel.Store.Inicio_SEL_ValidarUsuario" />
+          <FunctionImportMapping FunctionImportName="Prospecto_ADD_Servicio" FunctionName="DB_MenuEntitiesModel.Store.Prospecto_ADD_Servicio" />
+          <FunctionImportMapping FunctionImportName="Prospecto_SEL_Servicio" FunctionName="DB_MenuEntitiesModel.Store.Prospecto_SEL_Servicio" />
           <FunctionImportMapping FunctionImportName="ReportesGenerales_SEL_EstadoCuenta" FunctionName="DB_MenuEntitiesModel.Store.ReportesGenerales_SEL_EstadoCuenta" />
           <FunctionImportMapping FunctionImportName="Utils_SEL_Catalogos" FunctionName="DB_MenuEntitiesModel.Store.Utils_SEL_Catalogos" />
           <FunctionImportMapping FunctionImportName="Utils_SEL_Permisos" FunctionName="DB_MenuEntitiesModel.Store.Utils_SEL_Permisos" />

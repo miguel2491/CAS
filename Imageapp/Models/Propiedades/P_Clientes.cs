@@ -14,6 +14,8 @@ namespace Imageapp.Models.Propiedades
         public string nombre_imagen { get; set; }
         public string nombre_carpeta_mes { get; set; }
         public string nombre_archivo { get; set; }
+
+
         public P_Clientes()
         {
             this.id_RV = -1;
@@ -22,6 +24,7 @@ namespace Imageapp.Models.Propiedades
             this.nombre_carpeta_mes = string.Empty;
             this.nombre_archivo = string.Empty;
         }
+        
         #endregion
     }
 }

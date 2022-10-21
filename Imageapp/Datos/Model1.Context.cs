@@ -52,6 +52,7 @@ namespace Imageapp.Datos
         public virtual DbSet<tbc_RIF_Tasa_ISR> tbc_RIF_Tasa_ISR { get; set; }
         public virtual DbSet<tbc_Roles> tbc_Roles { get; set; }
         public virtual DbSet<tbc_Seguimiento_Cliente> tbc_Seguimiento_Cliente { get; set; }
+        public virtual DbSet<tbc_Servicios> tbc_Servicios { get; set; }
         public virtual DbSet<tbc_Supervisores> tbc_Supervisores { get; set; }
         public virtual DbSet<tbc_Tipo_Comprobante> tbc_Tipo_Comprobante { get; set; }
         public virtual DbSet<tbc_Tipo_Persona> tbc_Tipo_Persona { get; set; }
@@ -67,6 +68,7 @@ namespace Imageapp.Datos
         public virtual DbSet<tbd_Calendario_Produccion> tbd_Calendario_Produccion { get; set; }
         public virtual DbSet<tbd_Cambio_Domicilio> tbd_Cambio_Domicilio { get; set; }
         public virtual DbSet<tbd_Certificado_Digital> tbd_Certificado_Digital { get; set; }
+        public virtual DbSet<tbd_cliente_servicio> tbd_cliente_servicio { get; set; }
         public virtual DbSet<tbd_Conceptos_Factura> tbd_Conceptos_Factura { get; set; }
         public virtual DbSet<tbd_Constancia_Sem_Cotizadas> tbd_Constancia_Sem_Cotizadas { get; set; }
         public virtual DbSet<tbd_Depositos> tbd_Depositos { get; set; }
@@ -99,6 +101,7 @@ namespace Imageapp.Datos
         public virtual DbSet<tbr_Rol_Vista_Accion> tbr_Rol_Vista_Accion { get; set; }
         public virtual DbSet<tbc_Configuracion> tbc_Configuracion { get; set; }
         public virtual DbSet<tbd_Otros_Servicios_RFC> tbd_Otros_Servicios_RFC { get; set; }
+        public virtual DbSet<tbd_Cliente_Servicio1> tbd_Cliente_Servicio1Set { get; set; }
     
         public virtual ObjectResult<string> Administrador_ADD_Accion(string jsonJS, string jsonProperties, Nullable<int> idUsuario)
         {
@@ -3001,6 +3004,40 @@ namespace Imageapp.Datos
                 new ObjectParameter("idUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Inicio_SEL_ValidarUsuario", jsonJSParameter, jsonPropertiesParameter, idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<string> Prospecto_ADD_Servicio(string jsonJS, string jsonProperties, Nullable<int> idUsuario)
+        {
+            var jsonJSParameter = jsonJS != null ?
+                new ObjectParameter("jsonJS", jsonJS) :
+                new ObjectParameter("jsonJS", typeof(string));
+    
+            var jsonPropertiesParameter = jsonProperties != null ?
+                new ObjectParameter("jsonProperties", jsonProperties) :
+                new ObjectParameter("jsonProperties", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Prospecto_ADD_Servicio", jsonJSParameter, jsonPropertiesParameter, idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<string> Prospecto_SEL_Servicio(string jsonJS, string jsonProperties, Nullable<int> idUsuario)
+        {
+            var jsonJSParameter = jsonJS != null ?
+                new ObjectParameter("jsonJS", jsonJS) :
+                new ObjectParameter("jsonJS", typeof(string));
+    
+            var jsonPropertiesParameter = jsonProperties != null ?
+                new ObjectParameter("jsonProperties", jsonProperties) :
+                new ObjectParameter("jsonProperties", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Prospecto_SEL_Servicio", jsonJSParameter, jsonPropertiesParameter, idUsuarioParameter);
         }
     
         public virtual ObjectResult<string> ReportesGenerales_SEL_EstadoCuenta(string jsonJS, string jsonProperties, Nullable<int> idUsuario)

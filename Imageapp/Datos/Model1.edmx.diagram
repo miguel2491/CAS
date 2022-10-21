@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d43ad3701714cb0a55882007719a9af" Name="Diagram1">
+      <Diagram DiagramId="3f09072343f447f0a12231cc8423253f" Name="Diagram1">
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Acciones" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Actividades_Calendario" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Auxiliares" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
@@ -30,53 +30,55 @@
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_RIF_Tasa_ISR" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Roles" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Seguimiento_Cliente" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Supervisores" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipo_Comprobante" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipo_Persona" Width="1.5" PointX="7.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipos_Nomina_Entregables" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipos_Repositorio" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipos_Tramite" Width="1.5" PointX="11.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Uso_CFDI" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Servicios" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Supervisores" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipo_Comprobante" Width="1.5" PointX="7.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipo_Persona" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipos_Nomina_Entregables" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipos_Repositorio" Width="1.5" PointX="11.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Tipos_Tramite" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Uso_CFDI" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Usuarios" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Vistas" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Actividades_Cliente" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Activo_Fijo" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Avance_Calendario" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Calendario_Produccion" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Cambio_Domicilio" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Certificado_Digital" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Conceptos_Factura" Width="1.5" PointX="13.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Constancia_Sem_Cotizadas" Width="1.5" PointX="18.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Depositos" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Depreciaciones" Width="1.5" PointX="8.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Descargas_XML" Width="1.5" PointX="10.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Entregables_Nomina_RFC" Width="1.5" PointX="15.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Entregables_RFC" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Error_Lectura_XML" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Estados_Cuenta" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Estatus_Cliente" Width="1.5" PointX="20.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Estatus_XML" Width="1.5" PointX="20.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Facturas" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Actividades_Cliente" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Activo_Fijo" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Avance_Calendario" Width="1.5" PointX="18.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Calendario_Produccion" Width="1.5" PointX="18.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Cambio_Domicilio" Width="1.5" PointX="18.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Certificado_Digital" Width="1.5" PointX="13.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_cliente_servicio" Width="1.5" PointX="18.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Conceptos_Factura" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Constancia_Sem_Cotizadas" Width="1.5" PointX="8.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Depositos" Width="1.5" PointX="10.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Depreciaciones" Width="1.5" PointX="15.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Descargas_XML" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Entregables_Nomina_RFC" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Entregables_RFC" Width="1.5" PointX="2.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Error_Lectura_XML" Width="1.5" PointX="20.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Estados_Cuenta" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Estatus_Cliente" Width="1.5" PointX="20.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Estatus_XML" Width="1.5" PointX="20.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Facturas" Width="1.5" PointX="20.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Ficha_Tecnica" Width="1.5" PointX="8" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Formulario" Width="1.5" PointX="17.75" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Historial_Movimientos" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Localizacion_NSS" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Nomina_Factura" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Notificaciones_Cliente" Width="1.5" PointX="22.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Otros_Gastos" Width="1.5" PointX="22.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Repositorio" Width="1.5" PointX="22.75" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Repositorio_Nomina" Width="1.5" PointX="4.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_RIF_ISR_Pagos" Width="1.5" PointX="6.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_RIF_Pagos" Width="1.5" PointX="8.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Localizacion_NSS" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Nomina_Factura" Width="1.5" PointX="22.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Notificaciones_Cliente" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Otros_Gastos" Width="1.5" PointX="22.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Repositorio" Width="1.5" PointX="8.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Repositorio_Nomina" Width="1.5" PointX="10.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_RIF_ISR_Pagos" Width="1.5" PointX="12.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_RIF_Pagos" Width="1.5" PointX="14.75" PointY="23.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Servicios_Cliente" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Tramites" Width="1.5" PointX="10.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_XMLError" Width="1.5" PointX="12.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbr_Agente_Cliente" Width="1.5" PointX="14.75" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbr_Cliente_Usuario" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Tramites" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_XMLError" Width="1.5" PointX="0.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbr_Agente_Cliente" Width="1.5" PointX="2.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbr_Cliente_Usuario" Width="1.5" PointX="24.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbr_Rol_Vista" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbr_Rol_Vista_Accion" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Configuracion" Width="1.5" PointX="24.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Otros_Servicios_RFC" Width="1.5" PointX="24.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbc_Configuracion" Width="1.5" PointX="4.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Otros_Servicios_RFC" Width="1.5" PointX="24.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="DB_MenuEntitiesModel.FK_tbr_Rol_Vista_Accion_tbc_Acciones" ManuallyRouted="false" />
         <AssociationConnector Association="DB_MenuEntitiesModel.FK_tbd_Ficha_Tecnica_tbc_Clientes" ManuallyRouted="false" />
         <AssociationConnector Association="DB_MenuEntitiesModel.FK_tbc_Roles_tbc_Estatus" ManuallyRouted="false" />
@@ -90,6 +92,7 @@
         <AssociationConnector Association="DB_MenuEntitiesModel.FK_tbr_Rol_Vista_tbc_Rol" ManuallyRouted="false" />
         <AssociationConnector Association="DB_MenuEntitiesModel.FK_tbr_Rol_Vista_tbc_Vistas" ManuallyRouted="false" />
         <AssociationConnector Association="DB_MenuEntitiesModel.FK_tbr_Rol_Vista_Accion_tbr_Rol_Vista" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_MenuEntitiesModel.tbd_Cliente_Servicio1" Width="1.5" PointX="17.375" PointY="24.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

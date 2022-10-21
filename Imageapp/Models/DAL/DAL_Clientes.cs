@@ -201,6 +201,8 @@ namespace Imageapp.Models.DAL
             Catalogo_SEL_ListaProspectos,
             Catalogo_ADD_Prospecto,
             Catalogo_UPD_Prospecto,
+            Prospecto_ADD_Servicio,
+            Prospecto_SEL_Servicio,
 
             //Seguimiento
             Catalogo_SEL_ListaSeguimiento,
@@ -216,15 +218,17 @@ namespace Imageapp.Models.DAL
 
         public P_Clientes p_Clientes { get; set; }
         public Result result { get; set; }
-
+        public  P_Clientes_Servicio p_Clientes_Servicio { get; set; }
         #endregion
 
         #region Constructores
         public DAL_Clientes()
         {
             p_Clientes = new P_Clientes();
+            p_Clientes_Servicio = new P_Clientes_Servicio();
             result = new Result();
         }
+
         #endregion
 
 
@@ -3014,6 +3018,41 @@ namespace Imageapp.Models.DAL
 
 
 
+        #endregion
+
+        #region Clientes_Servicios
+        public void AddProspectoServicio(string jsonJS)
+        {
+            result = new Result();
+
+            try
+            {
+                //! Ejecutar stored procedure
+                StoredProcedure storedProcedure = new StoredProcedure(Procedimientos.Prospecto_ADD_Servicio.ToString(), p_Clientes_Servicio, jsonJS);
+                storedProcedure.InicializarStored();
+                result = storedProcedure.Ejecutar();
+            }
+            catch (Exception e)
+            {
+                result.setErrorExeption("Al agregar Servicio Cliente", e);
+            }
+        }
+        public void SelProspectoServicio(string jsonJS)
+        {
+            result = new Result();
+
+            try
+            {
+                //! Ejecutar stored procedure
+                StoredProcedure storedProcedure = new StoredProcedure(Procedimientos.Prospecto_SEL_Servicio.ToString(), p_Clientes_Servicio, jsonJS);
+                storedProcedure.InicializarStored();
+                result = storedProcedure.Ejecutar();
+            }
+            catch (Exception e)
+            {
+                result.setErrorExeption("Al consultar Servicio Cliente", e);
+            }
+        }
         #endregion
     }
 }

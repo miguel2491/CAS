@@ -26,6 +26,7 @@
     var url_Catalogos_EliminarSeguimiento = '@Url.Action("DeleteSeguimiento", "Prospectos")';
     var url_Catalogos_AddSeguimiento = '@Url.Action("AddSeguimiento", "Prospectos")';
 
+    var url_Catalogos_Servicios = '@Url.Action("GetCatalogos", "Catalogos")';
 
 </script>
 
@@ -101,6 +102,7 @@
 </style>
 <script>
     $(document).ready(function () {
+        GetServicios();
         var $formServicio1 = $("#frmServicio1");
         var $formServicio2 = $("#frmServicio2");
         var $formServicio3 = $("#frmServicio3");
@@ -363,6 +365,37 @@
             document.getElementById("frmServicio10").style.display = "block";
         }
     }
+
+    
+
+    function GetServicios() {
+        let arrayCatalogos = JSON.stringify({
+            arrayCatalogos: "tbc_Servicios,"
+        });
+
+        return new Promise(function (resolve, reject) {
+            //! Peticion de la lista de Modalidades
+            doAjax("POST", url_Catalogos_Servicios, { jsonJS: arrayCatalogos }).done(function (data) {
+                console.log(data);
+                let result = new Result(data);
+
+                if (result.validResult(false, false) && result.resultStoredProcedure.validResultStored()) {
+                    initServicios(result.resultStoredProcedure.msnSuccess);
+                }
+
+                resolve();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                jsSimpleAlert("Error", "Estatus:" + textStatus + ", HTTP:" + errorThrown);
+                reject();
+            });
+        });
+    }
+
+    function initServicios(contenido) {
+        if (contenido.hasOwnProperty("tbc_Servicios")) {
+            $("#fr_servicio").html(dataToStringDropDown(contenido.tbc_Servicios, true));
+        }
+    }
 </script>
 
 @* Formulario de búsqueda *@
@@ -602,9 +635,9 @@
             <div class="form-row">
                 <div class="col-md-5">
                     <label for="fr_servicio">Servicio</label>
-                    @*<select class="form-control" id="fr_servicio" name="fr_servicio"></select>*@
-                    <div class="input-group mb-3">
-                        <select id="id_tipo_servicio" class="form-control" onchange="cambioservicio();">
+                    <select class="form-control" id="fr_servicio" name="fr_servicio" onchange="cambioservicio();"></select>
+                    @*<div class="input-group mb-3">
+                        <select id="id_tipo_servicio" class="form-control" >
                             <option value="1">Servicio 1</option>
                             <option value="2">Servicio 2</option>
                             <option value="3">Servicio 3</option>
@@ -614,9 +647,8 @@
                             <option value="7">Servicio 7</option>
                             <option value="8">Servicio 8</option>
                             <option value="9">Servicio 9</option>
-                            <option value="10">Servicio 10</option>
                         </select>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </form>

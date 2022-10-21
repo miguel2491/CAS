@@ -70,7 +70,23 @@ namespace Imageapp.Controllers
             return dAL_Clientes.result.returnToJsonString();
         }
 
+        #region Clientes_Servicios
+        public string AddProspectoServicio(string jsonJS, int? id_RV)
+        {
+            DAL_Clientes dAL_Clientes = new DAL_Clientes();
+            dAL_Clientes.p_Clientes_Servicio.id_RV = id_RV;
+            dAL_Clientes.AddProspectoServicio(jsonJS);
+            return dAL_Clientes.result.returnToJsonString();
+        }
 
+        public string SelProspectoServicio(string jsonJS, int? id_RV)
+        {
+            DAL_Clientes dAL_Clientes = new DAL_Clientes();
+            dAL_Clientes.p_Clientes_Servicio.id_RV = id_RV;
+            dAL_Clientes.SelProspectoServicio(jsonJS);
+            return dAL_Clientes.result.returnToJsonString();
+        }
+        #endregion
 
         #region FUNCIONES PRIVADAS
         private bool ValidarAccesoVista(string controlador, string vista)
