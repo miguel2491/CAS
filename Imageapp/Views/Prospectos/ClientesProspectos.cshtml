@@ -110,6 +110,7 @@
         var $formServicio7 = $("#frmServicio7");
         var $formServicio8 = $("#frmServicio8");
         var $formServicio9 = $("#frmServicio9");
+        var $formServicio10 = $("#frmServicio10");
 
         var Servicio1Form = {
             rules: {
@@ -202,6 +203,17 @@
             }
         }
         $formServicio9.validate(Servicio9Form);
+
+        var Servicio10Form = {
+            rules: {
+                fr_NumeroTrabajadores: "required"
+            },
+            messages: {
+                fr_NumeroTrabajadores: "Debe especificar el número de trabajadores."
+            }
+        }
+        $formServicio10.validate(Servicio10Form);
+
         cambioservicio();
     });
     function ocultarVistas() {
@@ -214,6 +226,7 @@
         $("#form-Servicio7").hide();
         $("#form-Servicio8").hide();
         $("#form-Servicio9").hide();
+        $("#form-Servicio10").hide();
     }
 
     function cambioservicio() {
@@ -230,6 +243,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "2") {
             $("#form-Servicio2").show();
@@ -242,6 +256,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "3") {
             $("#form-Servicio3").show();
@@ -254,6 +269,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "4") {
             $("#form-Servicio4").show();
@@ -266,6 +282,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "5") {
             $("#form-Servicio5").show();
@@ -278,6 +295,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "6") {
             $("#form-Servicio6").show();
@@ -290,6 +308,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "7") {
             $("#form-Servicio7").show();
@@ -302,6 +321,7 @@
             document.getElementById("frmServicio7").style.display = "block";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "8") {
             $("#form-Servicio8").show();
@@ -314,6 +334,7 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "block";
             document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "none";
         }
         else if (tipo == "9") {
             $("#form-Servicio9").show();
@@ -326,7 +347,20 @@
             document.getElementById("frmServicio7").style.display = "none";
             document.getElementById("frmServicio8").style.display = "none";
             document.getElementById("frmServicio9").style.display = "block";
-
+            document.getElementById("frmServicio10").style.display = "none";
+        }
+        else if (tipo == "10") {
+            $("#form-Servicio10").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+            document.getElementById("frmServicio10").style.display = "block";
         }
     }
 </script>
@@ -580,6 +614,7 @@
                             <option value="7">Servicio 7</option>
                             <option value="8">Servicio 8</option>
                             <option value="9">Servicio 9</option>
+                            <option value="10">Servicio 10</option>
                         </select>
                     </div>
                 </div>
@@ -592,7 +627,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width: 100%;" name="fr_IngresoAnual" id="fr_IngresoAnual" />
+                    <input type="number" class="form-control" style="width: 100%;" name="fr_IngresoAnual" id="fr_IngresoAnual" />
                 </div>
             </div>
         </div>
@@ -603,7 +638,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 2:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual2" id="fr_IngresoAnual2" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual2" id="fr_IngresoAnual2" />
                 </div>
             </div>
         </div>
@@ -614,7 +649,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 3:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual3" id="fr_IngresoAnual3" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual3" id="fr_IngresoAnual3" />
                 </div>
             </div>
         </div>
@@ -625,7 +660,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 4:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual4" id="fr_IngresoAnual4" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual4" id="fr_IngresoAnual4" />
                 </div>
             </div>
         </div>
@@ -636,7 +671,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 5:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual5" id="fr_IngresoAnual5" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual5" id="fr_IngresoAnual5" />
                 </div>
             </div>
         </div>
@@ -647,7 +682,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 6:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual6" id="fr_IngresoAnual6" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual6" id="fr_IngresoAnual6" />
                 </div>
             </div>
         </div>
@@ -658,7 +693,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 7:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual7" id="fr_IngresoAnual7" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual7" id="fr_IngresoAnual7" />
                 </div>
             </div>
         </div>
@@ -669,7 +704,7 @@
             <div class="col-md-4">
                 <label>Ingreso Anual 8:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual8" id="fr_IngresoAnual8" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual8" id="fr_IngresoAnual8" />
                 </div>
             </div>
         </div>
@@ -680,7 +715,7 @@
             <div class="col-md-4">
                 <label>Retención Fiscal:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_RetencionFiscal" id="fr_RetencionFiscal" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_RetencionFiscal" id="fr_RetencionFiscal" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -691,6 +726,30 @@
             </div>
         </div>
     </form>
+
+    <form action="/" method="post" id="frmServicio10">
+        <div class="form-row" id="form-Servicio10">
+            <div class="col-md-4">
+                <label>Número de Trabajadores:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_NumeroTrabajadores" id="fr_NumeroTrabajadores" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio14">
+        <div class="form-row" id="form-Servicio14">
+            <div class="col-md-4">
+                <label>Monto Total Obra:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_MontoTotalObra" id="fr_NumeroTrabajadores" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    
     <form id="frmServicios">
         <!---->
         <div class="form-row">
