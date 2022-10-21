@@ -95,10 +95,241 @@
         }
 
     #mdlFechaServicio {
-        width: 300px
+        width: 300px;
     }
-</style>
 
+</style>
+<script>
+    $(document).ready(function () {
+        var $formServicio1 = $("#frmServicio1");
+        var $formServicio2 = $("#frmServicio2");
+        var $formServicio3 = $("#frmServicio3");
+        var $formServicio4 = $("#frmServicio4");
+        var $formServicio5 = $("#frmServicio5");
+        var $formServicio6 = $("#frmServicio6");
+        var $formServicio7 = $("#frmServicio7");
+        var $formServicio8 = $("#frmServicio8");
+        var $formServicio9 = $("#frmServicio9");
+
+        var Servicio1Form = {
+            rules: {
+                fr_IngresoAnual: "required"
+            },
+            messages: {
+                fr_IngresoAnual: "Debe especificar los ingresos anuales."
+            }
+        }
+        $formServicio1.validate(Servicio1Form);
+
+        var Servicio2Form = {
+            rules: {
+                fr_IngresoAnual2: "required"
+            },
+            messages: {
+                fr_IngresoAnual2: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio2.validate(Servicio2Form);
+
+        var Servicio3Form = {
+            rules: {
+                fr_IngresoAnual3: "required"
+            },
+            messages: {
+                fr_IngresoAnual3: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio3.validate(Servicio3Form);
+
+        var Servicio4Form = {
+            rules: {
+                fr_IngresoAnual4: "required"
+            },
+            messages: {
+                fr_IngresoAnual4: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio4.validate(Servicio4Form);
+
+        var Servicio5Form = {
+            rules: {
+                fr_IngresoAnual5: "required"
+            },
+            messages: {
+                fr_IngresoAnual5: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio5.validate(Servicio5Form);
+
+        var Servicio6Form = {
+            rules: {
+                fr_IngresoAnual6: "required"
+            },
+            messages: {
+                fr_IngresoAnual6: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio6.validate(Servicio6Form);
+
+        var Servicio7Form = {
+            rules: {
+                fr_IngresoAnual7: "required"
+            },
+            messages: {
+                fr_IngresoAnual7: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio7.validate(Servicio7Form);
+
+        var Servicio8Form = {
+            rules: {
+                fr_IngresoAnual8: "required"
+            },
+            messages: {
+                fr_IngresoAnual8: "Debe especificar los ingresos anuales. 2"
+            }
+        }
+        $formServicio8.validate(Servicio8Form);
+
+        var Servicio9Form = {
+            rules: {
+                fr_RetencionFiscal: "required",
+                fr_Porcentaje: "required"
+            },
+            messages: {
+                fr_RetencionFiscal: "Debe especificar la retención fiscal. 2",
+                fr_Porcentaje: "Debe especificar el porcentaje"
+            }
+        }
+        $formServicio9.validate(Servicio9Form);
+        cambioservicio();
+    });
+    function ocultarVistas() {
+        $("#form-Servicio1").hide();
+        $("#form-Servicio2").hide();
+        $("#form-Servicio3").hide();
+        $("#form-Servicio4").hide();
+        $("#form-Servicio5").hide();
+        $("#form-Servicio6").hide();
+        $("#form-Servicio7").hide();
+        $("#form-Servicio8").hide();
+        $("#form-Servicio9").hide();
+    }
+
+    function cambioservicio() {
+        ocultarVistas();
+        var tipo = $("#id_tipo_servicio").val();
+        if (tipo == "1") {
+            $("#form-Servicio1").show();
+            document.getElementById("frmServicio1").style.display = "block";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "2") {
+            $("#form-Servicio2").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "block";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "3") {
+            $("#form-Servicio3").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "block";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "4") {
+            $("#form-Servicio4").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "block";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "5") {
+            $("#form-Servicio5").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "block";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "6") {
+            $("#form-Servicio6").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "block";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "7") {
+            $("#form-Servicio7").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "block";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "8") {
+            $("#form-Servicio8").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "block";
+            document.getElementById("frmServicio9").style.display = "none";
+        }
+        else if (tipo == "9") {
+            $("#form-Servicio9").show();
+            document.getElementById("frmServicio1").style.display = "none";
+            document.getElementById("frmServicio2").style.display = "none";
+            document.getElementById("frmServicio3").style.display = "none";
+            document.getElementById("frmServicio4").style.display = "none";
+            document.getElementById("frmServicio5").style.display = "none";
+            document.getElementById("frmServicio6").style.display = "none";
+            document.getElementById("frmServicio7").style.display = "none";
+            document.getElementById("frmServicio8").style.display = "none";
+            document.getElementById("frmServicio9").style.display = "block";
+
+        }
+    }
+</script>
 
 @* Formulario de búsqueda *@
 <div class="section frmFilter" id="frmFilter">
@@ -331,6 +562,135 @@
 
 <div class="modal" id="mdlServicios">
     <h3>Agregar Servicios</h3>
+
+    <div>
+        <form>
+            <div class="form-row">
+                <div class="col-md-5">
+                    <label for="fr_servicio">Servicio</label>
+                    @*<select class="form-control" id="fr_servicio" name="fr_servicio"></select>*@
+                    <div class="input-group mb-3">
+                        <select id="id_tipo_servicio" class="form-control" onchange="cambioservicio();">
+                            <option value="1">Servicio 1</option>
+                            <option value="2">Servicio 2</option>
+                            <option value="3">Servicio 3</option>
+                            <option value="4">Servicio 4</option>
+                            <option value="5">Servicio 5</option>
+                            <option value="6">Servicio 6</option>
+                            <option value="7">Servicio 7</option>
+                            <option value="8">Servicio 8</option>
+                            <option value="9">Servicio 9</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <form action="/" method="post" id="frmServicio1">
+        <div class="form-row" id="form-Servicio1">
+            <div class="col-md-4">
+                <label>Ingreso Anual:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width: 100%;" name="fr_IngresoAnual" id="fr_IngresoAnual" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio2">
+        <div class="form-row" id="form-Servicio2">
+            <div class="col-md-4">
+                <label>Ingreso Anual 2:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual2" id="fr_IngresoAnual2" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio3">
+        <div class="form-row" id="form-Servicio3">
+            <div class="col-md-4">
+                <label>Ingreso Anual 3:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual3" id="fr_IngresoAnual3" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio4">
+        <div class="form-row" id="form-Servicio4">
+            <div class="col-md-4">
+                <label>Ingreso Anual 4:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual4" id="fr_IngresoAnual4" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio5">
+        <div class="form-row" id="form-Servicio5">
+            <div class="col-md-4">
+                <label>Ingreso Anual 5:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual5" id="fr_IngresoAnual5" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio6">
+        <div class="form-row" id="form-Servicio6">
+            <div class="col-md-4">
+                <label>Ingreso Anual 6:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual6" id="fr_IngresoAnual6" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio7">
+        <div class="form-row" id="form-Servicio7">
+            <div class="col-md-4">
+                <label>Ingreso Anual 7:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual7" id="fr_IngresoAnual7" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio8">
+        <div class="form-row" id="form-Servicio8">
+            <div class="col-md-4">
+                <label>Ingreso Anual 8:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_IngresoAnual8" id="fr_IngresoAnual8" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form action="/" method="post" id="frmServicio9">
+        <div class="form-row" id="form-Servicio9">
+            <div class="col-md-4">
+                <label>Retención Fiscal:</label>
+                <div class="input-group mb-3">
+                    <input class="form-control" style="width:100%;" name="fr_RetencionFiscal" id="fr_RetencionFiscal" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Porcentaje:</label>
+                <div class="input-group mb-3">
+                    <input type="number" class="form-control" style="width:100%;" name="fr_Porcentaje" id="fr_Porcentaje" />
+                </div>
+            </div>
+        </div>
+    </form>
     <form id="frmServicios">
         <!---->
         <div class="form-row">
