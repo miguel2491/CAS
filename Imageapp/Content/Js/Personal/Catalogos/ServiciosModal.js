@@ -1,4 +1,4 @@
-﻿const mdlServiciosCliente = function () {    
+﻿const mdlServiciosCliente = function () {
     //! Doom del modal
     var $formServicios = $("#frmServicios"),
         $modalServicios = $("#mdlServicios"),
@@ -6,13 +6,13 @@
         tblPrincipal = null,
         objOriginal = {};
 
-    //! Campos modal [CRUD]
-    //var $fr_id_cliente = $("#fr_id_paciente");
-    var $fr_rfc_contacto = $("#fr_rfc_contacto");
-    var $fr_tipo_contacto = $("#fr_tipo_contacto"); //la descripcion del modal 
-    var $fr_nombre_completo_contacto = $("#fr_nombre_completo_contacto");
-    var $fr_telefono_contacto = $("#fr_telefono_contacto");
-    var $fr_correo_contacto = $("#fr_correo_contacto");
+    //! Campos modal [CRUD] 
+    var $fr_rfc_servicio = $("#fr_rfc_servicio");
+    var $fr_servicio = $("#fr_servicio");
+    var $fr_Ingreso = $("#fr_Ingreso");
+    var $fr_NumeroTrabajadores = $("#fr_NumeroTrabajadores");
+    var $fr_Cantidad = $("#fr_Cantidad");
+    var $id_opcion_porcentaje = $("#id_opcion_porcentaje");
 
     var id_cliente;
 
@@ -22,7 +22,7 @@
     }
 
     function inicio() {
-        tblPrincipal = objClsCliente.tblContactos;
+        tblPrincipal = objClsCliente.tblServicios;
     }
 
     //! Obtiene el tipo de evento del modal (CRUD)
@@ -48,8 +48,8 @@
         setDatosFormulario();//Enviar los datos de la fila seleccionada al formulario del modal
         $modalServicios.modal();//Mostrar modal
         await sleep(200);//Dale tiempo para mostrar el modal
-        objClsCliente.tblContactos.adjustColumns();//renderiza mejor las columnas
-        GetContactosCliente(true);//obtiene la lista de repositorios del paciente y los muestra en el modal
+        objClsCliente.tblServicios.adjustColumns();//renderiza mejor las columnas
+        GetServiciosCliente(true);//obtiene la lista de repositorios del paciente y los muestra en el modal
     }
 
     //function clearData() {   
@@ -57,14 +57,14 @@
     //    $txtArchivo.val("");
     //}
 
-    function GetContactosCliente(showWait = false) {
+    function GetServiciosCliente(showWait = false) {
         tblPrincipal.clearRows();
         let objSend = JSON.stringify({ id_cliente: id_cliente });
         let id_RVA = objClsCliente.getlistaPermisos()["BTN-SERVICIO"].id_RVA;
 
 
         //Peticion de la lista de registros para Repositorio Pacientes
-        doAjax("POST", url_Catalogos_GetContactos, { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
+        doAjax("POST", url_Catalogos_GetServicios, { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
             let result = new Result(data);
 
             //! Si tiene registros
@@ -82,7 +82,7 @@
         });
     }
 
-    function eliminar(id_contacto_cliente, showWait = false) {
+    function eliminar(id_servicio_cliente, showWait = false) {
 
         $.confirm({
             theme: 'modern',
@@ -92,14 +92,14 @@
             buttons: {
                 SI: function () {
                     let id_RVA = objClsCliente.getlistaPermisos()["BTN-SERVICIO"].id_RVA;
-                    var objSend = JSON.stringify({ id_contacto_cliente: id_contacto_cliente });
-                    doAjax("POST", url_Catalogos_EliminarContactos, { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
+                    var objSend = JSON.stringify({ id_servicio_cliente: id_servicio_cliente });
+                    doAjax("POST", url_Catalogos_EliminarServicio , { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
                         let result = new Result(data);
 
                         //! Si tiene registros
                         if (result.validResult() && result.resultStoredProcedure.validResultStored(false, true)) {
                             jsSimpleAlert("Correcto", result.resultStoredProcedure.msnSuccess, "green");
-                            GetContactosCliente(true);
+                            GetServiciosCliente(true);
 
                         }
 
@@ -120,7 +120,7 @@
         let tableRow = objClsCliente.tblPrincipal.getRowSelected();
         objOriginal = tableRow;
         ////! Asignar datos
-        $fr_rfc_contacto.val(tableRow.rfc);
+        $fr_rfc_servicio.val(tableRow.rfc);
         id_cliente = tableRow.id_cliente;
     }
 
@@ -130,10 +130,12 @@
         //let id_paciente = objClsPacientes.tblPrincipal.getRowSelected().id_paciente;
 
         objSendStored.id_cliente = id_cliente;
-        objSendStored.tipo_contacto = $fr_tipo_contacto.val();
-        objSendStored.nombre_completo_contacto = $fr_nombre_completo_contacto.val();
-        objSendStored.telefono_contacto = $fr_telefono_contacto.val();
-        objSendStored.correo_contacto = $fr_correo_contacto.val();
+        objSendStored.id_servicio = $fr_servicio.val();
+        objSendStored.ingreso = $fr_Ingreso.val();
+        objSendStored.numero_trabajadores = $fr_NumeroTrabajadores.val();
+        objSendStored.cantidad = $fr_Cantidad.val();
+        objSendStored.porcentaje = $id_opcion_porcentaje.val();
+        
         return objSendStored;
     }
 
@@ -174,7 +176,7 @@
 
         $.ajax({
             type: "POST",
-            url: url_Catalogos_AddContactos,
+            url: url_Catalogos_AddServicio,
             contentType: false,
             processData: false,
             data: frmData
@@ -209,7 +211,7 @@
         if (result.validResult() && result.resultStoredProcedure.validResultStored(false, true)) {
             resetearModal();
             jsSimpleAlert("Correcto", result.resultStoredProcedure.msnSuccess, "green");
-            GetContactosCliente(true);
+            GetServiciosCliente(true);
             //clearData();
             //! INTEGRAR REGISTRO AL SERVIDOR PRINCIPAL
             //IntegrarAlServidor(url_Integracion_SetIntegracion_Servidor, result.resultStoredProcedure.newGuid);
@@ -293,4 +295,3 @@
         eliminar: eliminar
     }
 };
-//sfsdfdsf

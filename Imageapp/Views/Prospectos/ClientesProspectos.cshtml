@@ -26,7 +26,11 @@
     var url_Catalogos_EliminarSeguimiento = '@Url.Action("DeleteSeguimiento", "Prospectos")';
     var url_Catalogos_AddSeguimiento = '@Url.Action("AddSeguimiento", "Prospectos")';
 
+    // Agregamos
     var url_Catalogos_Servicios = '@Url.Action("GetCatalogos", "Catalogos")';
+    var url_Catalogos_GetServicios = '@Url.Action("SelProspectoServicio", "Prospectos")';//
+    var url_Catalogos_EliminarServicio = '@Url.Action("DelProspectoServicio", "Prospectos")';//
+    var url_Catalogos_AddServicio = '@Url.Action("AddProspectoServicio", "Prospectos")';
 
 </script>
 
@@ -38,6 +42,8 @@
 
 <script src="~/Content/Js/Personal/Catalogos/SeguimientoModal.js"></script>
 <script src="~/Content/Js/Personal/Catalogos/ContactosModal.js"></script>
+
+//Agregamos
 <script src="~/Content/Js/Personal/Catalogos/ServiciosModal.js"></script>
 
 
@@ -98,115 +104,34 @@
     #mdlFechaServicio {
         width: 300px;
     }
-
 </style>
 <script>
     $(document).ready(function () {
         GetServicios();
         var $formServicio1 = $("#frmServicio1");
-        var $formServicio2 = $("#frmServicio2");
-        var $formServicio3 = $("#frmServicio3");
-        var $formServicio4 = $("#frmServicio4");
-        var $formServicio5 = $("#frmServicio5");
-        var $formServicio6 = $("#frmServicio6");
-        var $formServicio7 = $("#frmServicio7");
-        var $formServicio8 = $("#frmServicio8");
-        var $formServicio9 = $("#frmServicio9");
-        var $formServicio10 = $("#frmServicio10");
+        var $id = $("#fr_servicio");
 
         var Servicio1Form = {
             rules: {
-                fr_IngresoAnual: "required"
+                fr_Ingreso: "required"
             },
             messages: {
-                fr_IngresoAnual: "Debe especificar los ingresos anuales."
+                fr_Ingreso: "Debe especificar los ingresos."
             }
         }
-        $formServicio1.validate(Servicio1Form);
 
         var Servicio2Form = {
             rules: {
-                fr_IngresoAnual2: "required"
+                fr_Ingreso: "required",
+                id_opcion_porcentaje: "requiered"
             },
             messages: {
-                fr_IngresoAnual2: "Debe especificar los ingresos anuales. 2"
+                fr_Ingreso: "Debe especificar los ingresos.",
+                id_opcion_porcentaje: "Debe especificar el porcentaje."
             }
         }
-        $formServicio2.validate(Servicio2Form);
 
         var Servicio3Form = {
-            rules: {
-                fr_IngresoAnual3: "required"
-            },
-            messages: {
-                fr_IngresoAnual3: "Debe especificar los ingresos anuales. 2"
-            }
-        }
-        $formServicio3.validate(Servicio3Form);
-
-        var Servicio4Form = {
-            rules: {
-                fr_IngresoAnual4: "required"
-            },
-            messages: {
-                fr_IngresoAnual4: "Debe especificar los ingresos anuales. 2"
-            }
-        }
-        $formServicio4.validate(Servicio4Form);
-
-        var Servicio5Form = {
-            rules: {
-                fr_IngresoAnual5: "required"
-            },
-            messages: {
-                fr_IngresoAnual5: "Debe especificar los ingresos anuales. 2"
-            }
-        }
-        $formServicio5.validate(Servicio5Form);
-
-        var Servicio6Form = {
-            rules: {
-                fr_IngresoAnual6: "required"
-            },
-            messages: {
-                fr_IngresoAnual6: "Debe especificar los ingresos anuales. 2"
-            }
-        }
-        $formServicio6.validate(Servicio6Form);
-
-        var Servicio7Form = {
-            rules: {
-                fr_IngresoAnual7: "required"
-            },
-            messages: {
-                fr_IngresoAnual7: "Debe especificar los ingresos anuales. 2"
-            }
-        }
-        $formServicio7.validate(Servicio7Form);
-
-        var Servicio8Form = {
-            rules: {
-                fr_IngresoAnual8: "required"
-            },
-            messages: {
-                fr_IngresoAnual8: "Debe especificar los ingresos anuales. 2"
-            }
-        }
-        $formServicio8.validate(Servicio8Form);
-
-        var Servicio9Form = {
-            rules: {
-                fr_RetencionFiscal: "required",
-                fr_Porcentaje: "required"
-            },
-            messages: {
-                fr_RetencionFiscal: "Debe especificar la retención fiscal. 2",
-                fr_Porcentaje: "Debe especificar el porcentaje"
-            }
-        }
-        $formServicio9.validate(Servicio9Form);
-
-        var Servicio10Form = {
             rules: {
                 fr_NumeroTrabajadores: "required"
             },
@@ -214,159 +139,108 @@
                 fr_NumeroTrabajadores: "Debe especificar el número de trabajadores."
             }
         }
-        $formServicio10.validate(Servicio10Form);
 
+        var Servicio4Form = {
+            rules: {
+                fr_Ingreso: "required",
+                fr_Cantidad: "requiered"
+            },
+            messages: {
+                fr_Ingreso: "Debe especificar los ingresos.",
+                fr_Cantidad: "Debe especificar la cantidad."
+            }
+        }
+        var Servicio5Form = {
+            rules: {
+                id_opcion_porcentaje: "requiered"
+            },
+            messages: {
+                id_opcion_porcentaje: "Debe especificar el porcentaje."
+            }
+        }
+
+        var Servicio6Form = {
+            rules: {
+                fr_Cantidad: "requiered"
+            },
+            messages: {
+                fr_Cantidad: "Debe especificar la cantidad."
+            }
+        }
+
+
+        if ($id.val() == "1" || $id.val() == "2" || $id.val() == "3" || $id.val() == "4" || $id.val() == "5" || $id.val() == "6" || $id.val() == "7" || $id.val() == "13" || $id.val() == "16" || $id.val() == "17" || $id.val() == "21" || $id.val() == "23" || $id.val() == "26" || $id.val() == "27" || $id.val() == "29" ) {
+            $formServicio1.validate(Servicio1Form);
+        }
+        else if ($id.val() == "8" || $id.val() == "19") {
+            $formServicio1.validate(Servicio2Form);
+        }
+        else if ($id.val() == "9") {
+            $formServicio1.validate(Servicio3Form);
+        }
+        else if ($id.val() == "14") {
+            $formServicio1.validate(Servicio4Form);
+        }
+        else if ($id.val() == "15") {
+            $formServicio1.validate(Servicio5Form);
+        }
+        else if ($id.val() == "25") {
+            $formServicio1.validate(Servicio6Form);
+        }
         cambioservicio();
     });
     function ocultarVistas() {
         $("#form-Servicio1").hide();
-        $("#form-Servicio2").hide();
-        $("#form-Servicio3").hide();
-        $("#form-Servicio4").hide();
-        $("#form-Servicio5").hide();
-        $("#form-Servicio6").hide();
-        $("#form-Servicio7").hide();
-        $("#form-Servicio8").hide();
-        $("#form-Servicio9").hide();
-        $("#form-Servicio10").hide();
     }
 
     function cambioservicio() {
         ocultarVistas();
-        var tipo = $("#id_tipo_servicio").val();
-        if (tipo == "1") {
+        var tipo = $("#fr_servicio").val();
+        if (tipo == "1" || tipo == "2" || tipo == "3" || tipo == "4" || tipo == "5" || tipo == "6" || tipo == "7" || tipo == "13" || tipo == "16" || tipo == "17" || tipo == "21" || tipo == "23" || tipo == "26" || tipo == "27" || tipo == "29") {
             $("#form-Servicio1").show();
-            document.getElementById("frmServicio1").style.display = "block";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
+            document.getElementById("Ingreso").style.display = "block";
+            document.getElementById("num_trabajadores").style.display = "none";
+            document.getElementById("cantidad_").style.display = "none";
+            document.getElementById("porcentaje_").style.display = "none";
         }
-        else if (tipo == "2") {
-            $("#form-Servicio2").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "block";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
-        }
-        else if (tipo == "3") {
-            $("#form-Servicio3").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "block";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
-        }
-        else if (tipo == "4") {
-            $("#form-Servicio4").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "block";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
-        }
-        else if (tipo == "5") {
-            $("#form-Servicio5").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "block";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
-        }
-        else if (tipo == "6") {
-            $("#form-Servicio6").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "block";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
-        }
-        else if (tipo == "7") {
-            $("#form-Servicio7").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "block";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
-        }
-        else if (tipo == "8") {
-            $("#form-Servicio8").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "block";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "none";
+        else if (tipo == "8" || tipo == "19") {
+            $("#form-Servicio1").show();
+            document.getElementById("Ingreso").style.display = "block";
+            document.getElementById("num_trabajadores").style.display = "none";
+            document.getElementById("cantidad_").style.display = "none";
+            document.getElementById("porcentaje_").style.display = "block";
         }
         else if (tipo == "9") {
-            $("#form-Servicio9").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "block";
-            document.getElementById("frmServicio10").style.display = "none";
+            $("#form-Servicio1").show();
+            document.getElementById("Ingreso").style.display = "none";
+            document.getElementById("num_trabajadores").style.display = "block";
+            document.getElementById("cantidad_").style.display = "none";
+            document.getElementById("porcentaje_").style.display = "none";
         }
-        else if (tipo == "10") {
-            $("#form-Servicio10").show();
-            document.getElementById("frmServicio1").style.display = "none";
-            document.getElementById("frmServicio2").style.display = "none";
-            document.getElementById("frmServicio3").style.display = "none";
-            document.getElementById("frmServicio4").style.display = "none";
-            document.getElementById("frmServicio5").style.display = "none";
-            document.getElementById("frmServicio6").style.display = "none";
-            document.getElementById("frmServicio7").style.display = "none";
-            document.getElementById("frmServicio8").style.display = "none";
-            document.getElementById("frmServicio9").style.display = "none";
-            document.getElementById("frmServicio10").style.display = "block";
+        else if (tipo == "14") {
+            $("#form-Servicio1").show();
+            document.getElementById("Ingreso").style.display = "block";
+            document.getElementById("num_trabajadores").style.display = "none";
+            document.getElementById("cantidad_").style.display = "block";
+            document.getElementById("porcentaje_").style.display = "none";
         }
+        else if (tipo == "15") {
+            $("#form-Servicio1").show();
+            document.getElementById("Ingreso").style.display = "none";
+            document.getElementById("num_trabajadores").style.display = "none";
+            document.getElementById("cantidad_").style.display = "none";
+            document.getElementById("porcentaje_").style.display = "block";
+        }
+        else if (tipo == "25") {
+            $("#form-Servicio1").show();
+            document.getElementById("Ingreso").style.display = "none";
+            document.getElementById("num_trabajadores").style.display = "none";
+            document.getElementById("cantidad_").style.display = "block";
+            document.getElementById("porcentaje_").style.display = "none";
+        }        
     }
 
-    
+
 
     function GetServicios() {
         let arrayCatalogos = JSON.stringify({
@@ -411,7 +285,7 @@
                 <input type="text" class="form-control" id="fl_rfc" placeholder="Buscar por rfc" autocomplete="off">
             </div>
         </div>
-        <div class="form-row">            
+        <div class="form-row">
             <div class="form-group col-md-12 d-flex justify-content-around">
                 <button type="button" class="btn btn-style btn-ok" id="btnSearchWFilter">
                     <i class="fa fa-search"></i>&nbsp;&nbsp;Buscar&nbsp;&nbsp;
@@ -429,13 +303,13 @@
     <table id="tblClientes" class="cell-border table-striped" data-title-datatable="Lista de Clientes">
         <thead>
             <tr>
-                <td>Id cliente</td>                
+                <td>Id cliente</td>
                 <td>Rfc</td>
-                <td>Nombre / Razón Social</td>                         
+                <td>Nombre / Razón Social</td>
                 <td>Fecha creación</td>
                 <td>Correo electrónico</td>
                 <td>Teléfono</td>
-                <td>Teléfono movil</td>                
+                <td>Teléfono movil</td>
                 <td>Agente</td>
             </tr>
         </thead>
@@ -586,7 +460,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
-                
+
             </div>
             <div class="form-group col-md-4">
                 <label>Motivo</label>
@@ -604,7 +478,7 @@
             <table id="tblSeguimiento" class="cell-border table-striped" data-title-datatable="Seguimiento">
                 <thead>
                     <tr>
-                        <td>Acciones</td>                        
+                        <td>Acciones</td>
                         <td>Tipo seguimiento</td>
                         <td>Fecha</td>
                         <td>Motivo</td>
@@ -629,209 +503,65 @@
 
 <div class="modal" id="mdlServicios">
     <h3>Agregar Servicios</h3>
-
-    <div>
-        <form>
-            <div class="form-row">
-                <div class="col-md-5">
-                    <label for="fr_servicio">Servicio</label>
-                    <select class="form-control" id="fr_servicio" name="fr_servicio" onchange="cambioservicio();"></select>
-                    @*<div class="input-group mb-3">
-                        <select id="id_tipo_servicio" class="form-control" >
-                            <option value="1">Servicio 1</option>
-                            <option value="2">Servicio 2</option>
-                            <option value="3">Servicio 3</option>
-                            <option value="4">Servicio 4</option>
-                            <option value="5">Servicio 5</option>
-                            <option value="6">Servicio 6</option>
-                            <option value="7">Servicio 7</option>
-                            <option value="8">Servicio 8</option>
-                            <option value="9">Servicio 9</option>
-                        </select>
-                    </div>*@
-                </div>
+    <form id="frmServicios">
+        <div class="form-row">
+            <div class="form-group col-md-4" style="display:none;">
+                <label>RFC</label>
+                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_servicio">
             </div>
-        </form>
-    </div>
-
-    <form action="/" method="post" id="frmServicio1">
+            <div class="form-group col-md-5">
+                <label for="fr_servicio">Servicio</label>
+                <select class="form-control" id="fr_servicio" name="fr_servicio" onchange="cambioservicio();"></select>
+            </div>
+        </div>
         <div class="form-row" id="form-Servicio1">
-            <div class="col-md-4">
-                <label>Ingreso Anual:</label>
+            <div class="form-group col-md-4" id="Ingreso">
+                <label>Ingreso:</label>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width: 100%;" name="fr_IngresoAnual" id="fr_IngresoAnual" />
+                    <input type="number" class="form-control" style="width: 100%;" name="fr_Ingreso" id="fr_Ingreso" />
                 </div>
             </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio2">
-        <div class="form-row" id="form-Servicio2">
-            <div class="col-md-4">
-                <label>Ingreso Anual 2:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual2" id="fr_IngresoAnual2" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio3">
-        <div class="form-row" id="form-Servicio3">
-            <div class="col-md-4">
-                <label>Ingreso Anual 3:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual3" id="fr_IngresoAnual3" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio4">
-        <div class="form-row" id="form-Servicio4">
-            <div class="col-md-4">
-                <label>Ingreso Anual 4:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual4" id="fr_IngresoAnual4" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio5">
-        <div class="form-row" id="form-Servicio5">
-            <div class="col-md-4">
-                <label>Ingreso Anual 5:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual5" id="fr_IngresoAnual5" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio6">
-        <div class="form-row" id="form-Servicio6">
-            <div class="col-md-4">
-                <label>Ingreso Anual 6:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual6" id="fr_IngresoAnual6" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio7">
-        <div class="form-row" id="form-Servicio7">
-            <div class="col-md-4">
-                <label>Ingreso Anual 7:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual7" id="fr_IngresoAnual7" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio8">
-        <div class="form-row" id="form-Servicio8">
-            <div class="col-md-4">
-                <label>Ingreso Anual 8:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_IngresoAnual8" id="fr_IngresoAnual8" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio9">
-        <div class="form-row" id="form-Servicio9">
-            <div class="col-md-4">
-                <label>Retención Fiscal:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_RetencionFiscal" id="fr_RetencionFiscal" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label>Porcentaje:</label>
-                <div class="input-group mb-3">
-                    <input type="number" class="form-control" style="width:100%;" name="fr_Porcentaje" id="fr_Porcentaje" />
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio10">
-        <div class="form-row" id="form-Servicio10">
-            <div class="col-md-4">
+            <div class="form-group col-md-4" id="num_trabajadores">
                 <label>Número de Trabajadores:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_NumeroTrabajadores" id="fr_NumeroTrabajadores" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_NumeroTrabajadores" id="fr_NumeroTrabajadores" />
                 </div>
             </div>
-        </div>
-    </form>
-
-    <form action="/" method="post" id="frmServicio14">
-        <div class="form-row" id="form-Servicio14">
-            <div class="col-md-4">
-                <label>Monto Total Obra:</label>
+            <div class="form-group col-md-4" id="cantidad_">
+                <label>Cantidad:</label>
                 <div class="input-group mb-3">
-                    <input class="form-control" style="width:100%;" name="fr_MontoTotalObra" id="fr_NumeroTrabajadores" />
+                    <input type="number" class="form-control" style="width:100%;" name="fr_Cantidad" id="fr_Cantidad" />
                 </div>
             </div>
-        </div>
-    </form>
-
-    
-    <form id="frmServicios">
-        <!---->
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <label>RFC</label>
-                <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_contacto">
+            <div class="form-group col-md-4" id="porcentaje_">
+                <label>Porcentaje</label>
+                <div class="input-group mb-3">
+                    <select id="id_opcion_porcentaje" name="id_opcion_porcentaje" class="form-control">
+                        <option value="1">20%</option>
+                        <option value="2">30%</option>
+                        <option value="3">60%</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label>Nombre Completo</label>
-                <input class="form-control" id="fr_nombre_completo_contacto" name="fr_nombre_completo_contacto" />
-            </div>
-            <div class="form-group col-md-4">
-                <label>Tipo</label>
-                <input class="form-control" id="fr_tipo_contacto" name="fr_tipo_contacto" />
-            </div>
-
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-
-            </div>
-            <div class="form-group col-md-6">
-                <label>Correo</label>
-                <input class="form-control" id="fr_correo_contacto" name="fr_correo_contacto" />
-            </div>
-            <div class="form-group col-md-4">
-                <label>Teléfono</label>
-                <input class="form-control" id="fr_telefono_contacto" name="fr_telefono_contacto" />
-            </div>
-
-        </div>
+        </div>                                            
         <br />
         @* Seccion para el datatable Depositos*@
         <div class="section" id="sectionDataTable">
-            <table id="tblContactos" class="cell-border table-striped" data-title-datatable="Contactos">
+            <table id="tblServicios" class="cell-border table-striped" data-title-datatable="Servicios">
                 <thead>
                     <tr>
                         <td>Acciones</td>
-                        <td>Nombre completo</td>
-                        <td>Tipo contacto</td>
-                        <td>Teléfono</td>
-                        <td>Correo</td>
-                        <td>Fecha Creación</td>
-                        <td>Id contacto</td>
+                        <td>Nombre Servicio</td>
+                        <td>Ingreso</td>
+                        <td># Trabajadores</td>
+                        <td>Cantidad</td>
+                        <td>Porcentje</td>       
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
-        <!---->
         <div class="form-group col-md-12 d-flex justify-content-around">
             <button type="button" class="btn btn-style btn-ok" id="btnAceptarMdlServicios">
                 <i class="fa fa-check"></i>&nbsp;&nbsp;<span id="titleBtnAceptarServicios">Agregar</span>&nbsp;&nbsp;
@@ -840,5 +570,5 @@
                 <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
             </button>
         </div>
-    </form>
+    </form>    
 </div>

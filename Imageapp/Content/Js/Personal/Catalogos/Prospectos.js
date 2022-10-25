@@ -10,9 +10,10 @@ const clsCliente = function () {
     //! Variables globales
     const idTable_Principal = "#tblClientes";
     
-    const idTable_Contactos = "#tblContactos";
+    const idTable_Contactos = "#tblContactos";    
 
     const idTable_Seguimiento = "#tblSeguimiento";
+    const idTable_Servicios = "#tblServicios";//
 
     const idMdl_Colums = "#mdlColumns";
     const nameColsStorage = "stColsDt_Prospectos";
@@ -23,10 +24,10 @@ const clsCliente = function () {
     var tblContactos = new clsDataTable();
     var mdlContactos = new mdlContactosCliente();
 
-    var mdlServicio = new mdlServiciosCliente();//
-
     var tblSeguimiento = new clsDataTable();
     var mdlSeguimiento = new mdlSeguimientoCliente();
+    var tblServicios = new clsDataTable();//
+    var mdlServicio = new mdlServiciosCliente();//
    
     var $frs_id_cliente = $("#frs_id_cliente");   
     var $frs_rfc = $("#frs_rfc");
@@ -225,6 +226,25 @@ const clsCliente = function () {
 
         initDataTable(paramsDataTable6); //! Inicializar datatable
         tblSeguimiento.setTable($(idTable_Seguimiento).DataTable()); //! Inicializar clase datatable
+
+        //!Definir columnas
+        let columnDefs7 = [
+            { visible: true, orderable: false, searchable: false, targets: 0, width: 120, name: "acciones", data: "acciones" },
+            { visible: true, orderable: true, searchable: true, targets: 1, width: 450, name: "nombre_servicio", data: "nombre_servicio" },
+            { visible: true, orderable: true, searchable: true, targets: 2, width: 150, name: "ingreso", data: "ingreso" },
+            { visible: true, orderable: true, searchable: true, targets: 3, width: 150, name: "numero_trabajadores", data: "numero_trabajadores" },
+            { visible: true, orderable: true, searchable: true, targets: 4, width: 200, name: "cantidad", data: "cantidad" },
+            { visible: true, orderable: true, searchable: true, targets: 5, width: 250, name: "porcentaje", data: "porcentaje" },
+            { visible: true, orderable: false, searchable: false, targets: 6, width: 250, name: "id_cliente_servicio", data: "id_cliente_servicio" }
+        ];
+
+        let paramsDataTable7 = {
+            columnDefs: columnDefs7,
+            idTable: idTable_Servicios
+        }
+
+        initDataTable(paramsDataTable7);
+        tblServicios.setTable($(idTable_Servicios).DataTable());
     }
 
     function initEvents() {
@@ -319,7 +339,7 @@ const clsCliente = function () {
         });
 
         //
-        $('#btnCloseMdlServicios').on('click', function () { //Evento boton cerrar [modal] Actividades
+        $('#btnCloseMdlServicios').on('click', function () { //Evento boton cerrar [modal] Servicios
             mdlServicio.confirmarModal({ eventButton: "cerrar_modal", title: "Confirma!", message: "¿Segúro que deséa cancelar la operación?" });
         });
 
@@ -427,6 +447,7 @@ const clsCliente = function () {
         tblContactos: tblContactos,
         mdlSeguimiento: mdlSeguimiento,
         tblSeguimiento: tblSeguimiento,
-        mdlServicio: mdlServicios//
+        mdlServicio: mdlServicio,//
+        tblServicios: tblServicios
     }
 };
