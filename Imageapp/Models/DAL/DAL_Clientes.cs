@@ -203,7 +203,7 @@ namespace Imageapp.Models.DAL
             Catalogo_UPD_Prospecto,
             Prospecto_ADD_Servicio,
             Prospecto_SEL_Servicio,
-
+            Prospecto_DEL_SC,
             //Seguimiento
             Catalogo_SEL_ListaSeguimiento,
             Catalogo_ADD_Seguimiento,
@@ -3045,6 +3045,23 @@ namespace Imageapp.Models.DAL
             {
                 //! Ejecutar stored procedure
                 StoredProcedure storedProcedure = new StoredProcedure(Procedimientos.Prospecto_SEL_Servicio.ToString(), p_Clientes_Servicio, jsonJS);
+                storedProcedure.InicializarStored();
+                result = storedProcedure.Ejecutar();
+            }
+            catch (Exception e)
+            {
+                result.setErrorExeption("Al consultar Servicio Cliente", e);
+            }
+        }
+
+        public void DelProspectoServicio(string jsonJS)
+        {
+            result = new Result();
+
+            try
+            {
+                //! Ejecutar stored procedure
+                StoredProcedure storedProcedure = new StoredProcedure(Procedimientos.Prospecto_DEL_SC.ToString(), p_Clientes_Servicio, jsonJS);
                 storedProcedure.InicializarStored();
                 result = storedProcedure.Ejecutar();
             }
