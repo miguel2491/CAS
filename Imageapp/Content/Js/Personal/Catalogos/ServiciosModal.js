@@ -74,7 +74,7 @@
                     //item.acciones = '<a href="' + item.subraizIIS + item.url_archivo + item.nombre_archivo + '" download class="btn btn-style btn-info "><i class="fa fa-download"></i ></a> ';
 
                     //item.acciones += '<a href="#" class="btn btn-style btn-warning" title="editar pago"><i class="fa fa-edit"></i ></a>&nbsp;&nbsp;';
-                    item.acciones = '<a href="#" onclick="objClsCliente.mdlContactos.eliminar(' + item.id_contacto_cliente + ')" class="btn btn-style btn-danger" title="eliminar contactos"><i class="fa fa-trash"></i ></a>';
+                    item.acciones = '<a href="#" onclick="objClsCliente.mdlServicio.eliminar(' + item.id_cliente_servicio + ')" class="btn btn-style btn-danger" title="eliminar servicio"><i class="fa fa-trash"></i ></a>';
                 });
                 tblPrincipal.addRows(contenido);
             }
@@ -82,7 +82,7 @@
         });
     }
 
-    function eliminar(id_servicio_cliente, showWait = false) {
+    function eliminar(id_cliente_servicio, showWait = false) {
 
         $.confirm({
             theme: 'modern',
@@ -92,8 +92,9 @@
             buttons: {
                 SI: function () {
                     let id_RVA = objClsCliente.getlistaPermisos()["BTN-SERVICIO"].id_RVA;
-                    var objSend = JSON.stringify({ id_servicio_cliente: id_servicio_cliente });
-                    doAjax("POST", url_Catalogos_EliminarServicio , { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
+                    var objSend = JSON.stringify({ id_cliente_servicio: id_cliente_servicio });
+                    doAjax("POST", url_Catalogos_EliminarServicio, { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
+                        console.log(data)
                         let result = new Result(data);
 
                         //! Si tiene registros
@@ -143,6 +144,7 @@
     function enviarStoredProcedure() {
         let objSend = {};
         //! Valildar formulario
+
         if (eventModal == 'BTN-SERVICIO') {
             if (!$formServicios.valid())
                 return jsSimpleAlert("Alerta", "Hay elementos en el formulario que debe validar/verificar.", "orange");
@@ -257,17 +259,18 @@
         //! Setear reglas del formulario
         principalForm = {
             rules: {
-                fr_tipo_contacto: "required",
-                fr_nombre_completo_contacto: "required",
-                fr_telefono_contacto: "required",
-                fr_correo_contacto: "required",
+                $fr_Ingreso: "required",
+                $fr_NumeroTrabajadores: "required",
+                $fr_Cantidad: "required",
+                $id_opcion_porcentaje: "required"
 
             },
             messages: {
-                fr_tipo_contacto: "Ingrese un tipo",
-                fr_porcentaje: "Ingrese un porcentaje",
-                fr_telefono_contacto: "Ingrese un teléfono",
-                fr_correo_contacto: "Ingrese un correo",
+                $fr_Ingreso: "Ingrese un tipo",
+                $fr_NumeroTrabajadores: "required",
+                $fr_Cantidad: "required",
+                $id_opcion_porcentaje: "required"
+                
             }
         }
         $formServicios.validate(principalForm);

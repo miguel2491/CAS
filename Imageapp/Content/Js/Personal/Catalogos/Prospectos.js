@@ -235,7 +235,7 @@ const clsCliente = function () {
             { visible: true, orderable: true, searchable: true, targets: 3, width: 150, name: "numero_trabajadores", data: "numero_trabajadores" },
             { visible: true, orderable: true, searchable: true, targets: 4, width: 200, name: "cantidad", data: "cantidad" },
             { visible: true, orderable: true, searchable: true, targets: 5, width: 250, name: "porcentaje", data: "porcentaje" },
-            { visible: true, orderable: false, searchable: false, targets: 6, width: 250, name: "id_cliente_servicio", data: "id_cliente_servicio" }
+            { visible: false, orderable: false, searchable: false, targets: 6, width: 250, name: "id_cliente_servicio", data: "id_cliente_servicio" }
         ];
 
         let paramsDataTable7 = {

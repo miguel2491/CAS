@@ -108,137 +108,138 @@
 <script>
     $(document).ready(function () {
         GetServicios();
-        var $formServicio1 = $("#frmServicio1");
-        var $id = $("#fr_servicio");
+        //var $formServicio1 = $("#frmServicio1");
+        //var $id = $("#fr_servicio");
 
-        var Servicio1Form = {
-            rules: {
-                fr_Ingreso: "required"
-            },
-            messages: {
-                fr_Ingreso: "Debe especificar los ingresos."
-            }
-        }
+        //var Servicio1Form = {
+        //    rules: {
+        //        fr_Ingreso: "required"
+        //    },
+        //    messages: {
+        //        fr_Ingreso: "Debe especificar los ingresos."
+        //    }
+        //}
 
-        var Servicio2Form = {
-            rules: {
-                fr_Ingreso: "required",
-                id_opcion_porcentaje: "requiered"
-            },
-            messages: {
-                fr_Ingreso: "Debe especificar los ingresos.",
-                id_opcion_porcentaje: "Debe especificar el porcentaje."
-            }
-        }
+        //var Servicio2Form = {
+        //    rules: {
+        //        fr_Ingreso: "required",
+        //        id_opcion_porcentaje: "requiered"
+        //    },
+        //    messages: {
+        //        fr_Ingreso: "Debe especificar los ingresos.",
+        //        id_opcion_porcentaje: "Debe especificar el porcentaje."
+        //    }
+        //}
 
-        var Servicio3Form = {
-            rules: {
-                fr_NumeroTrabajadores: "required"
-            },
-            messages: {
-                fr_NumeroTrabajadores: "Debe especificar el número de trabajadores."
-            }
-        }
+        //var Servicio3Form = {
+        //    rules: {
+        //        fr_NumeroTrabajadores: "required"
+        //    },
+        //    messages: {
+        //        fr_NumeroTrabajadores: "Debe especificar el número de trabajadores."
+        //    }
+        //}
 
-        var Servicio4Form = {
-            rules: {
-                fr_Ingreso: "required",
-                fr_Cantidad: "requiered"
-            },
-            messages: {
-                fr_Ingreso: "Debe especificar los ingresos.",
-                fr_Cantidad: "Debe especificar la cantidad."
-            }
-        }
-        var Servicio5Form = {
-            rules: {
-                id_opcion_porcentaje: "requiered"
-            },
-            messages: {
-                id_opcion_porcentaje: "Debe especificar el porcentaje."
-            }
-        }
+        //var Servicio4Form = {
+        //    rules: {
+        //        fr_Ingreso: "required",
+        //        fr_Cantidad: "requiered"
+        //    },
+        //    messages: {
+        //        fr_Ingreso: "Debe especificar los ingresos.",
+        //        fr_Cantidad: "Debe especificar la cantidad."
+        //    }
+        //}
+        //var Servicio5Form = {
+        //    rules: {
+        //        id_opcion_porcentaje: "requiered"
+        //    },
+        //    messages: {
+        //        id_opcion_porcentaje: "Debe especificar el porcentaje."
+        //    }
+        //}
 
-        var Servicio6Form = {
-            rules: {
-                fr_Cantidad: "requiered"
-            },
-            messages: {
-                fr_Cantidad: "Debe especificar la cantidad."
-            }
-        }
+        //var Servicio6Form = {
+        //    rules: {
+        //        fr_Cantidad: "requiered"
+        //    },
+        //    messages: {
+        //        fr_Cantidad: "Debe especificar la cantidad."
+        //    }
+        //}
 
-
-        if ($id.val() == "1" || $id.val() == "2" || $id.val() == "3" || $id.val() == "4" || $id.val() == "5" || $id.val() == "6" || $id.val() == "7" || $id.val() == "13" || $id.val() == "16" || $id.val() == "17" || $id.val() == "21" || $id.val() == "23" || $id.val() == "26" || $id.val() == "27" || $id.val() == "29" ) {
-            $formServicio1.validate(Servicio1Form);
-        }
-        else if ($id.val() == "8" || $id.val() == "19") {
-            $formServicio1.validate(Servicio2Form);
-        }
-        else if ($id.val() == "9") {
-            $formServicio1.validate(Servicio3Form);
-        }
-        else if ($id.val() == "14") {
-            $formServicio1.validate(Servicio4Form);
-        }
-        else if ($id.val() == "15") {
-            $formServicio1.validate(Servicio5Form);
-        }
-        else if ($id.val() == "25") {
-            $formServicio1.validate(Servicio6Form);
-        }
-        cambioservicio();
+        //var $id = $("#fr_servicio").val();
+        //if ($id.val() == "1" || $id.val() == "2" || $id.val() == "3" || $id.val() == "4" || $id.val() == "5" || $id.val() == "6" || $id.val() == "7" || $id.val() == "13" || $id.val() == "16" || $id.val() == "17" || $id.val() == "21" || $id.val() == "23" || $id.val() == "26" || $id.val() == "27" || $id.val() == "29" ) {
+        //    $formServicio1.validate(Servicio1Form);
+        //}
+        //else if ($id.val() == "8" || $id.val() == "19") {
+        //    $formServicio1.validate(Servicio2Form);
+        //}
+        //else if ($id.val() == "9") {
+        //    $formServicio1.validate(Servicio3Form);
+        //}
+        //else if ($id.val() == "14") {
+        //    $formServicio1.validate(Servicio4Form);
+        //}
+        //else if ($id.val() == "15") {
+        //    $formServicio1.validate(Servicio5Form);
+        //}
+        //else if ($id.val() == "25") {
+        //    $formServicio1.validate(Servicio6Form);
+        //}
+        //cambioservicio();
     });
-    function ocultarVistas() {
-        $("#form-Servicio1").hide();
-    }
+    //function ocultarVistas() {
+    //    $("#form-Servicio1").hide();
+    //}
 
-    function cambioservicio() {
-        ocultarVistas();
-        var tipo = $("#fr_servicio").val();
-        if (tipo == "1" || tipo == "2" || tipo == "3" || tipo == "4" || tipo == "5" || tipo == "6" || tipo == "7" || tipo == "13" || tipo == "16" || tipo == "17" || tipo == "21" || tipo == "23" || tipo == "26" || tipo == "27" || tipo == "29") {
-            $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "block";
-            document.getElementById("num_trabajadores").style.display = "none";
-            document.getElementById("cantidad_").style.display = "none";
-            document.getElementById("porcentaje_").style.display = "none";
-        }
-        else if (tipo == "8" || tipo == "19") {
-            $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "block";
-            document.getElementById("num_trabajadores").style.display = "none";
-            document.getElementById("cantidad_").style.display = "none";
-            document.getElementById("porcentaje_").style.display = "block";
-        }
-        else if (tipo == "9") {
-            $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "none";
-            document.getElementById("num_trabajadores").style.display = "block";
-            document.getElementById("cantidad_").style.display = "none";
-            document.getElementById("porcentaje_").style.display = "none";
-        }
-        else if (tipo == "14") {
-            $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "block";
-            document.getElementById("num_trabajadores").style.display = "none";
-            document.getElementById("cantidad_").style.display = "block";
-            document.getElementById("porcentaje_").style.display = "none";
-        }
-        else if (tipo == "15") {
-            $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "none";
-            document.getElementById("num_trabajadores").style.display = "none";
-            document.getElementById("cantidad_").style.display = "none";
-            document.getElementById("porcentaje_").style.display = "block";
-        }
-        else if (tipo == "25") {
-            $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "none";
-            document.getElementById("num_trabajadores").style.display = "none";
-            document.getElementById("cantidad_").style.display = "block";
-            document.getElementById("porcentaje_").style.display = "none";
-        }        
-    }
+    //function cambioservicio() {
+    //    ocultarVistas();
+    //    var tipo = $("#fr_servicio").val();
+    //    if (tipo == "1" || tipo == "2" || tipo == "3" || tipo == "4" || tipo == "5" || tipo == "6" || tipo == "7" || tipo == "13" || tipo == "16" || tipo == "17" || tipo == "21" || tipo == "23" || tipo == "26" || tipo == "27" || tipo == "29") {
+    //        $("#form-Servicio1").show();
+    //        document.getElementById("Ingreso").style.display = "block";
+    //        document.getElementById("fr_Ingreso").required = true;
+    //        document.getElementById("num_trabajadores").style.display = "none";
+    //        document.getElementById("cantidad_").style.display = "none";
+    //        document.getElementById("porcentaje_").style.display = "none";
+    //    }
+    //    else if (tipo == "8" || tipo == "19") {
+    //        $("#form-Servicio1").show();
+    //        document.getElementById("Ingreso").style.display = "block";
+    //        document.getElementById("num_trabajadores").style.display = "none";
+    //        document.getElementById("cantidad_").style.display = "none";
+    //        document.getElementById("porcentaje_").style.display = "block";
+    //    }
+    //    else if (tipo == "9") {
+    //        $("#form-Servicio1").show();
+    //        document.getElementById("Ingreso").style.display = "none";
+    //        document.getElementById("num_trabajadores").style.display = "block";
+    //        document.getElementById("cantidad_").style.display = "none";
+    //        document.getElementById("porcentaje_").style.display = "none";
+    //    }
+    //    else if (tipo == "14") {
+    //        $("#form-Servicio1").show();
+    //        document.getElementById("Ingreso").style.display = "block";
+    //        document.getElementById("num_trabajadores").style.display = "none";
+    //        document.getElementById("cantidad_").style.display = "block";
+    //        document.getElementById("porcentaje_").style.display = "none";
+    //    }
+    //    else if (tipo == "15") {
+    //        $("#form-Servicio1").show();
+    //        document.getElementById("Ingreso").style.display = "none";
+    //        document.getElementById("num_trabajadores").style.display = "none";
+    //        document.getElementById("cantidad_").style.display = "none";
+    //        document.getElementById("porcentaje_").style.display = "block";
+    //    }
+    //    else if (tipo == "25") {
+    //        $("#form-Servicio1").show();
+    //        document.getElementById("Ingreso").style.display = "none";
+    //        document.getElementById("num_trabajadores").style.display = "none";
+    //        document.getElementById("cantidad_").style.display = "block";
+    //        document.getElementById("porcentaje_").style.display = "none";
+    //    }        
+    //}
 
 
 
