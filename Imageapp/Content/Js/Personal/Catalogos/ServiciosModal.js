@@ -13,6 +13,8 @@
     var $fr_NumeroTrabajadores = $("#fr_NumeroTrabajadores");
     var $fr_Cantidad = $("#fr_Cantidad");
     var $id_opcion_porcentaje = $("#id_opcion_porcentaje");
+    var $fr_inicio_servicio = $("#fr_inicio_servicio");
+    var $fr_numero_periodos = $("#fr_numero_periodos");
 
     var id_cliente;
 
@@ -66,7 +68,6 @@
         //Peticion de la lista de registros para Repositorio Pacientes
         doAjax("POST", url_Catalogos_GetServicios, { jsonJS: objSend, id_RV: id_RV, id_RVA: id_RVA }, showWait).done(function (data) {
             let result = new Result(data);
-
             //! Si tiene registros
             if (result.validResult() && result.resultStoredProcedure.validResultStored()) {
                 let contenido = result.resultStoredProcedure.msnSuccess;
@@ -78,6 +79,7 @@
                 });
                 tblPrincipal.addRows(contenido);
             }
+            tblPrincipal.adjustColumns();
             tblPrincipal.adjustColumns();
         });
     }
@@ -136,7 +138,9 @@
         objSendStored.numero_trabajadores = $fr_NumeroTrabajadores.val();
         objSendStored.cantidad = $fr_Cantidad.val();
         objSendStored.porcentaje = $id_opcion_porcentaje.val();
-        
+        objSendStored.descuento = 0;
+        objSendStored.fecha_inicio_servicio = $fr_inicio_servicio.val();
+        objSendStored.numero_periodos = $fr_numero_periodos.val();
         return objSendStored;
     }
 
@@ -144,7 +148,6 @@
     function enviarStoredProcedure() {
         let objSend = {};
         //! Valildar formulario
-
         if (eventModal == 'BTN-SERVICIO') {
             if (!$formServicios.valid())
                 return jsSimpleAlert("Alerta", "Hay elementos en el formulario que debe validar/verificar.", "orange");
@@ -192,10 +195,34 @@
                     //! INTEGRAR REGISTRO AL SERVIDOR PRINCIPAL
                     //IntegrarAlServidor(url_Integracion_SetIntegracion_Servidor, result.resultStoredProcedure.newGuid);
                     finalizarStoredProcedure(data);
+                                        
+                    $fr_Ingreso.css("display", "none");
+                    $fr_Ingreso.val(0);
+                    $("#labIngreso").css("display", "none");
+
+                    $fr_NumeroTrabajadores.css("display", "none");
+                    $fr_NumeroTrabajadores.val(0);
+                    $("#labNumerotrabajadores").css("display", "none");
+
+                    $fr_Cantidad.css("display", "none");
+                    $fr_Cantidad.val(0);
+                    $("#labCantidad").css("display", "none");
+
+                    $id_opcion_porcentaje.css("display", "none");
+                    $id_opcion_porcentaje.val(0);
+                    $("#labPorcentaje").css("display", "none");
+
+                    $fr_inicio_servicio.css("display", "none");
+                    $fr_inicio_servicio.val(0);
+                    $("#labFechaInicioServicio").css("display", "none");
+
+                    $fr_numero_periodos.css("display", "none");
+                    $fr_numero_periodos.val(0);
+                    $("#labNumeroPeriodos").css("display", "none");
                 }
             })
             .fail(function (jqXHR, textStatus, errorThrown) { jsSimpleAlert("Error", errorThrown); })
-            .always(function () { $msnWait.close() });
+            .always(function () { $msnWait.close() });        
     }
 
     //! Peticion para eliminar respositorio de paciente
@@ -259,18 +286,22 @@
         //! Setear reglas del formulario
         principalForm = {
             rules: {
-                $fr_Ingreso: "required",
-                $fr_NumeroTrabajadores: "required",
-                $fr_Cantidad: "required",
-                $id_opcion_porcentaje: "required"
-
+                fr_servicio: "required",
+                fr_Ingreso: "required",
+                fr_NumeroTrabajadores: "required",
+                fr_Cantidad: "required",
+                id_opcion_porcentaje: "required",
+                fr_inicio_servicio: "required",
+                fr_numero_periodos: "required"
             },
             messages: {
-                $fr_Ingreso: "Ingrese un tipo",
-                $fr_NumeroTrabajadores: "required",
-                $fr_Cantidad: "required",
-                $id_opcion_porcentaje: "required"
-                
+                fr_servicio: "Debe seleccionar un servicio",
+                fr_Ingreso: "Este cambo no puede estar vacío.",
+                fr_NumeroTrabajadores: "Este cambo no puede estar vacío.",
+                fr_Cantidad: "Este cambo no puede estar vacío.",
+                id_opcion_porcentaje: "Este cambo no puede estar vacío.",
+                fr_inicio_servicio: "Este cambo no puede estar vacío.",
+                fr_numero_periodos: "Este cambo no puede estar vacío."
             }
         }
         $formServicios.validate(principalForm);

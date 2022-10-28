@@ -187,7 +187,7 @@
 
                     //! INTEGRAR REGISTRO AL SERVIDOR PRINCIPAL
                     //IntegrarAlServidor(url_Integracion_SetIntegracion_Servidor, result.resultStoredProcedure.newGuid);
-                    finalizarStoredProcedure(data);
+                    finalizarStoredProcedure(data);                    
                 }
             })
             .fail(function (jqXHR, textStatus, errorThrown) { jsSimpleAlert("Error", errorThrown); })

@@ -229,13 +229,19 @@ const clsCliente = function () {
 
         //!Definir columnas
         let columnDefs7 = [
-            { visible: true, orderable: false, searchable: false, targets: 0, width: 120, name: "acciones", data: "acciones" },
+            { visible: true, orderable: false, searchable: false, targets: 0, FormData, width: 120, name: "acciones", data: "acciones" },
             { visible: true, orderable: true, searchable: true, targets: 1, width: 450, name: "nombre_servicio", data: "nombre_servicio" },
-            { visible: true, orderable: true, searchable: true, targets: 2, width: 150, name: "ingreso", data: "ingreso" },
-            { visible: true, orderable: true, searchable: true, targets: 3, width: 150, name: "numero_trabajadores", data: "numero_trabajadores" },
-            { visible: true, orderable: true, searchable: true, targets: 4, width: 200, name: "cantidad", data: "cantidad" },
-            { visible: true, orderable: true, searchable: true, targets: 5, width: 250, name: "porcentaje", data: "porcentaje" },
-            { visible: false, orderable: false, searchable: false, targets: 6, width: 250, name: "id_cliente_servicio", data: "id_cliente_servicio" }
+            { visible: true, orderable: true, searchable: true, targets: 2, width: 150, name: "costos", data: "costos", render: formatCurrency  },
+            { visible: false, orderable: true, searchable: true, targets: 3, width: 150, name: "ingreso", data: "ingreso" },
+            { visible: false, orderable: true, searchable: true, targets: 4, width: 150, name: "numero_trabajadores", data: "numero_trabajadores" },
+            { visible: false, orderable: true, searchable: true, targets: 5, width: 200, name: "cantidad", data: "cantidad" },
+            { visible: false, orderable: true, searchable: true, targets: 6, width: 250, name: "porcentaje", data: "porcentaje" },
+            { visible: true, orderable: true, searchable: true, targets: 7, width: 150, name: "iva", data: "iva", render: formatCurrency },
+            { visible: true, orderable: true, searchable: true, targets: 8, width: 150, name: "total", data: "total", render: formatCurrency },
+            { visible: true, orderable: true, searchable: true, targets: 9, width: 200, name: "fecha_elaboracion", data: "fecha_elaboracion" },
+            { visible: true, orderable: true, searchable: true, targets: 10, width: 200, name: "fecha_inicio_servicio", data: "fecha_inicio_servicio" },
+            { visible: true, orderable: true, searchable: true, targets: 11, width: 200, name: "numero_periodos", data: "numero_periodos" },
+            { visible: false, orderable: false, searchable: false, targets: 12, width: 100, name: "id_cliente_servicio", data: "id_cliente_servicio" }
         ];
 
         let paramsDataTable7 = {
@@ -245,6 +251,15 @@ const clsCliente = function () {
 
         initDataTable(paramsDataTable7);
         tblServicios.setTable($(idTable_Servicios).DataTable());
+    }
+
+    function formatCurrency(cantidad) {
+        const options2 = { style: 'currency', currency: 'USD' };
+        const numberFormat2 = new Intl.NumberFormat('en-US', options2);
+
+        var valor = numberFormat2.format(cantidad);
+
+        return "$" + valor.substring(1);
     }
 
     function initEvents() {
