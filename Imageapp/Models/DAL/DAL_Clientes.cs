@@ -201,9 +201,11 @@ namespace Imageapp.Models.DAL
             Catalogo_SEL_ListaProspectos,
             Catalogo_ADD_Prospecto,
             Catalogo_UPD_Prospecto,
+            Catalogo_SEL_Gestoria,
             Prospecto_ADD_Servicio,
             Prospecto_SEL_Servicio,
             Prospecto_DEL_SC,
+            Prospecto_ADD_SerGes,
             //Seguimiento
             Catalogo_SEL_ListaSeguimiento,
             Catalogo_ADD_Seguimiento,
@@ -3070,6 +3072,42 @@ namespace Imageapp.Models.DAL
                 result.setErrorExeption("Al consultar Servicio Cliente", e);
             }
         }
+
+        public void AddProspectoSerGest(string jsonJS)
+        {
+            result = new Result();
+
+            try
+            {
+                //! Ejecutar stored procedure
+                StoredProcedure storedProcedure = new StoredProcedure(Procedimientos.Prospecto_ADD_SerGes.ToString(), p_Clientes_Servicio, jsonJS);
+                storedProcedure.InicializarStored();
+                result = storedProcedure.Ejecutar();
+            }
+            catch (Exception e)
+            {
+                result.setErrorExeption("Al Agregar Servicio Gestoria", e);
+            }
+        }
+
+        public void SelGestoria(string jsonJS)
+        {
+            result = new Result();
+
+            try
+            {
+                //! Ejecutar stored procedure
+                StoredProcedure storedProcedure = new StoredProcedure(Procedimientos.Catalogo_SEL_Gestoria.ToString(), p_Clientes_Servicio, jsonJS);
+                storedProcedure.InicializarStored();
+                result = storedProcedure.Ejecutar();
+            }
+            catch (Exception e)
+            {
+                result.setErrorExeption("Al consultar Sub Servicios", e);
+            }
+            
+        }
+
         #endregion
     }
 }

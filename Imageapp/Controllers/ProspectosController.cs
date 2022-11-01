@@ -79,6 +79,14 @@ namespace Imageapp.Controllers
             return dAL_Clientes.result.returnToJsonString();
         }
 
+        public string AddProspectoSerGest(string jsonJS, int? id_RV)
+        {
+            DAL_Clientes dAL_Clientes = new DAL_Clientes();
+            dAL_Clientes.p_Clientes_Servicio.id_RV = id_RV;
+            dAL_Clientes.AddProspectoSerGest(jsonJS);
+            return dAL_Clientes.result.returnToJsonString();
+        }
+
         public string SelProspectoServicio(string jsonJS, int? id_RV)
         {
             DAL_Clientes dAL_Clientes = new DAL_Clientes();
@@ -87,6 +95,14 @@ namespace Imageapp.Controllers
             return dAL_Clientes.result.returnToJsonString();
         }
 
+        public string SelGestoria(string jsonJS, int? id_RV)
+        {
+            DAL_Clientes dAL_Clientes = new DAL_Clientes();
+            dAL_Clientes.p_Clientes_Servicio.id_RV = id_RV;
+            dAL_Clientes.SelGestoria(jsonJS);
+            return dAL_Clientes.result.returnToJsonString();
+        }
+        
         public string DelProspectoServicio(string jsonJS, int? id_RV)
         {
             DAL_Clientes dAL_Clientes = new DAL_Clientes();
@@ -94,6 +110,8 @@ namespace Imageapp.Controllers
             dAL_Clientes.DelProspectoServicio(jsonJS);
             return dAL_Clientes.result.returnToJsonString();
         }
+
+
         #endregion
 
         #region FUNCIONES PRIVADAS
