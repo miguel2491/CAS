@@ -32,6 +32,11 @@
     var url_Catalogos_EliminarServicio = '@Url.Action("DelProspectoServicio", "Prospectos")';//
     var url_Catalogos_AddServicio = '@Url.Action("AddProspectoServicio", "Prospectos")';
 
+    var url_Catalogos_Gestorias = '@Url.Action("GetCatalogos", "Catalogos")';
+    var url_add_gest_cli = '@Url.Action("AddProspectoSerGest", "Prospectos")'
+    const idTable_Gestoria = "#tblGestorias";
+    const nameColsStorage = "stColsDt_Prospectos";
+    var tblGestorias = new clsDataTable();
 </script>
 
 @*<script src="~/Content/Js/Externo/html2pdf.bundle.min.js"></script>*@
@@ -106,20 +111,93 @@
     }
 </style>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () {        
         GetServicios();        
         cambioservicio();
+
+        $(".btn_add_gestoria").click(function () {
+            var arrayGestorias = TableGestoria.rows().data().toArray();
+            console.log(arrayGestorias);
+            for (var x = 0; x < arrayGestorias.length; x++) {
+                var frmData = new FormData();
+                let id_RVA = objClsCliente.getlistaPermisos()["BTN-SERVICIO"].id_RVA;
+
+                let tableRow = objClsCliente.tblPrincipal.getRowSelected();
+                let id_cliente = tableRow.id_cliente;
+
+                frmData.append('jsonJS', JSON.stringify({ id_gestoria: arrayGestorias[x][0], cantidad: arrayGestorias[x][2], id_cliente: id_cliente, id_servicio: 19 }));
+                frmData.append('id_RV', id_RV);
+                frmData.append('id_RVA', id_RVA);
+
+                let $msnWait = jsSimpleAlertReturn("Espera", "Realizando petición...", "orange");
+                $msnWait.open();
+                //---AJAX
+                $.ajax({
+                    type: "POST",
+                    url: url_add_gest_cli,
+                    contentType: false,
+                    processData: false,
+                    data: frmData
+                })
+                    .done(function (data) {
+                        let result = new Result(data);
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) { jsSimpleAlert("Error", errorThrown); })
+                    .always(function () { $msnWait.close() });
+                //--FIN--
+            }
+            //Add a Servicio por Cliente
+            var frmData = new FormData();
+            let id_RVA = objClsCliente.getlistaPermisos()["BTN-SERVICIO"].id_RVA;
+
+            let tableRow = objClsCliente.tblPrincipal.getRowSelected();
+            let id_cliente = tableRow.id_cliente;
+
+            frmData.append('jsonJS', JSON.stringify({
+                id_cliente: id_cliente,
+                id_servicio: 19,
+                ingreso: 0,
+                porcen_: 0,
+                numero_trabajadores: 0,
+                cantidad: 0,
+                descuento: 0,
+                numero_periodos: 0,
+                fecha_inicio_servicio: "",
+            }));
+            frmData.append('id_RV', id_RV);
+            frmData.append('id_RVA', id_RVA);
+
+            let $msnWait = jsSimpleAlertReturn("Espera", "Realizando petición...", "orange");
+            $msnWait.open();
+            //---AJAX
+            $.ajax({
+                type: "POST",
+                url: url_Catalogos_AddServicio,
+                contentType: false,
+                processData: false,
+                data: frmData
+            })
+                .done(function (data) {
+                    console.log(data);
+                    let result = new Result(data);
+
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) { jsSimpleAlert("Error", errorThrown); })
+                .always(function () { $msnWait.close() });
+            //FIN
+        });
     });
-    function ocultarVistas() {
+    function ocultarVistas()  {
         $("#form-Servicio1").hide();
     }
 
-    function cambioservicio() {
+    function cambioservicio() {        
         ocultarVistas();
         // crea un nuevo objeto `Date`
         var today = new Date();
-        var tipo = $("#fr_servicio").val();
-        if (tipo == "1" || tipo == "22" || tipo == "24" || tipo == "25" || tipo == "27" || tipo == "31") {
+        var tipo = $("#fr_servicio").val();        
+
+        if (tipo == "1" || tipo == "22" || tipo == "24" || tipo == "25" || tipo == "26" || tipo == "27" || tipo == "31" || tipo == "32") {
             $("#form-Servicio1").show();
             document.getElementById("Ingreso").style.display = "none";
             document.getElementById("labIngreso").innerHTML = "Ingreso Anual";
@@ -137,15 +215,24 @@
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje";
             document.getElementById("id_opcion_porcentaje").value = 0;
 
-            document.getElementById("fecha_").style.display = "block"; 
-            document.getElementById("labFechaInicioServicio").style.display = "block";
-            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-
+            if (tipo == "1") {
+                document.getElementById("fecha_").style.display = "block";
+                document.getElementById("labFechaInicioServicio").style.display = "block";
+                document.getElementById("fr_inicio_servicio").style.display = "block";
+                document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+            }
+            else {
+                document.getElementById("fecha_").style.display = "none";
+                document.getElementById("labFechaInicioServicio").style.display = "none";
+                document.getElementById("fr_inicio_servicio").style.display = "none";
+                document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+            }
+            
             document.getElementById("numeroperiodos").style.display = "none";
             document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
             document.getElementById("fr_numero_periodos").value = 0;
         }
-        else if (tipo == "2" || tipo == "3" || tipo == "4" || tipo == "5" || tipo == "6" || tipo == "7" || tipo == "8" || tipo == "9" || tipo == "10" || tipo == "16" || tipo == "19" || tipo == "20" || tipo == "21" || tipo == "23" || tipo == "29" || tipo == "30" || tipo == "32" || tipo == "33" || tipo == "34") {
+        else if (tipo == "2" || tipo == "3" || tipo == "4" || tipo == "5" || tipo == "6" || tipo == "7" || tipo == "8" || tipo == "9" || tipo == "10" || tipo == "16" || tipo == "20" || tipo == "21" || tipo == "23" || tipo == "29" || tipo == "30" || tipo == "33" || tipo == "34" || tipo == "37") {
             $("#form-Servicio1").show();
 
             document.getElementById("Ingreso").style.display = "block";
@@ -185,10 +272,18 @@
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
             document.getElementById("id_opcion_porcentaje").value = 0;            
 
-            document.getElementById("fecha_").style.display = "block";
-            document.getElementById("fr_inicio_servicio").style.display = "block";
-            document.getElementById("labFechaInicioServicio").style.display = "block";
-            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+            if (tipo == "20" || tipo == "21" || tipo == "23" || tipo == "29" || tipo == "30" || tipo == "33" || tipo == "34" || tipo == "37") {
+                document.getElementById("fecha_").style.display = "none";
+                document.getElementById("fr_inicio_servicio").style.display = "none";
+                document.getElementById("labFechaInicioServicio").style.display = "none";
+                document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+            }
+            else {
+                document.getElementById("fecha_").style.display = "block";
+                document.getElementById("fr_inicio_servicio").style.display = "block";
+                document.getElementById("labFechaInicioServicio").style.display = "block";
+                document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+            }            
 
             document.getElementById("numeroperiodos").style.display = "none";
             document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
@@ -196,8 +291,10 @@
         }
         else if (tipo == "11") {
             $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "block";
+            document.getElementById("Ingreso").style.display = "none";
             document.getElementById("labIngreso").innerHTML = "Retención Fiscal:";
+            document.getElementById("fr_Ingreso").style.display = "none";
+            document.getElementById("fr_Ingreso").value = 0;
 
             document.getElementById("num_trabajadores").style.display = "none";
             document.getElementById("labNumerotrabajadores").innerHTML = "Número de Trabajadores:";
@@ -207,8 +304,18 @@
             document.getElementById("labCantidad").innerHTML = "Cantidad:";
             document.getElementById("fr_Cantidad").value = 0;
 
-            document.getElementById("porcentaje_").style.display = "block";
+            document.getElementById("porcentaje_").style.display = "none";
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
+            document.getElementById("id_opcion_porcentaje").value = 0;
+
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("fr_inicio_servicio").style.display = "none";
+            document.getElementById("labFechaInicioServicio").style.display = "none";
+            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+            document.getElementById("numeroperiodos").style.display = "none";
+            document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
+            document.getElementById("fr_numero_periodos").value = 0;
         }
         else if (tipo == "12") {
             $("#form-Servicio1").show();
@@ -217,7 +324,10 @@
             document.getElementById("fr_Ingreso").value = 0;
 
             document.getElementById("num_trabajadores").style.display = "block";
+            document.getElementById("labNumerotrabajadores").style.display = "block";
             document.getElementById("labNumerotrabajadores").innerHTML = "Número de Trabajadores:";
+            document.getElementById("fr_NumeroTrabajadores").style.display = "block";
+            document.getElementById("fr_NumeroTrabajadores").value = "";
 
             document.getElementById("cantidad_").style.display = "none";
             document.getElementById("labCantidad").innerHTML = "Cantidad:";
@@ -226,6 +336,15 @@
             document.getElementById("porcentaje_").style.display = "none";
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
             document.getElementById("id_opcion_porcentaje").value = 0;
+
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("fr_inicio_servicio").style.display = "none";
+            document.getElementById("labFechaInicioServicio").style.display = "none";
+            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+            document.getElementById("numeroperiodos").style.display = "none";
+            document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
+            document.getElementById("fr_numero_periodos").value = 0;
         }
         else if (tipo == "13" || tipo == "14" || tipo == "15") {
             $("#form-Servicio1").show();
@@ -244,16 +363,28 @@
             document.getElementById("porcentaje_").style.display = "none";
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
             document.getElementById("id_opcion_porcentaje").value = 0;
+
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("fr_inicio_servicio").style.display = "none";
+            document.getElementById("labFechaInicioServicio").style.display = "none";
+            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+            document.getElementById("numeroperiodos").style.display = "none";
+            document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
+            document.getElementById("fr_numero_periodos").value = 0;
         }
-        else if (tipo == "17" || tipo == "26") {
+        else if (tipo == "17") {
             $("#form-Servicio1").show();
             document.getElementById("Ingreso").style.display = "block";
+            document.getElementById("fr_Ingreso").style.display = "block";
+            document.getElementById("labIngreso").style.display = "block";
             if (tipo == "26") {
-                document.getElementById("labIngreso").innerHTML = "Monto:";
+                document.getElementById("labIngreso").innerHTML = "Monto Total:";
                 document.getElementById("fr_Ingreso").value = 1500;
             }
             else {
                 document.getElementById("labIngreso").innerHTML = "Monto Total:";
+                document.getElementById("fr_Ingreso").value = "";
             }
 
             document.getElementById("num_trabajadores").style.display = "none";
@@ -261,16 +392,29 @@
             document.getElementById("fr_NumeroTrabajadores").value = 0;
 
             document.getElementById("cantidad_").style.display = "block";
+            document.getElementById("labCantidad").style.display = "block";
             document.getElementById("labCantidad").innerHTML = "Cantidad:";
+            document.getElementById("fr_Cantidad").style.display = "block";
+            document.getElementById("fr_Cantidad").value = "";
 
             document.getElementById("porcentaje_").style.display = "none";
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
             document.getElementById("id_opcion_porcentaje").value = 0;
+
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("fr_inicio_servicio").style.display = "none";
+            document.getElementById("labFechaInicioServicio").style.display = "none";
+            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+            document.getElementById("numeroperiodos").style.display = "none";
+            document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
+            document.getElementById("fr_numero_periodos").value = 0;
         }
         else if (tipo == "18") {
             $("#form-Servicio1").show();
-            document.getElementById("Ingreso").style.display = "block";
+            document.getElementById("Ingreso").style.display = "none";
             document.getElementById("labIngreso").innerHTML = "Ingreso Anual:";
+            document.getElementById("fr_Ingreso").value = 0;
 
             document.getElementById("num_trabajadores").style.display = "none";
             document.getElementById("labNumerotrabajadores").innerHTML = "Número de Trabajadores:";
@@ -280,9 +424,26 @@
             document.getElementById("labCantidad").innerHTML = "Cantidad:";
             document.getElementById("fr_Cantidad").value = 0;
 
-            document.getElementById("porcentaje_").style.display = "none";
+            document.getElementById("porcentaje_").style.display = "block";
+            document.getElementById("labPorcentaje").style.display = "block";
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
-            document.getElementById("id_opcion_porcentaje").value = 0;
+            document.getElementById("id_opcion_porcentaje").style.display = "block";
+            document.getElementById("id_opcion_porcentaje").value = "";
+
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("fr_inicio_servicio").style.display = "none";
+            document.getElementById("labFechaInicioServicio").style.display = "none";
+            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+            document.getElementById("numeroperiodos").style.display = "none";
+            document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
+            document.getElementById("fr_numero_periodos").value = 0;
+        }
+            else if (tipo == "19") {
+            document.getElementById("Ingreso").style.display = "none";
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("d_gestorias").style.display = "block";
+            GetGestorias();
         }
         else if (tipo == "28") {
             $("#form-Servicio1").show();
@@ -295,11 +456,23 @@
             document.getElementById("fr_NumeroTrabajadores").value = 0;
 
             document.getElementById("cantidad_").style.display = "block";
-            document.getElementById("labCantidad").innerHTML = "Número de Meses:";
+            document.getElementById("labCantidad").style.display = "block";
+            document.getElementById("labCantidad").innerHTML = "Número de Meses:";            
+            document.getElementById("fr_Cantidad").style.display = "block";
+            document.getElementById("fr_Cantidad").value = "";
 
             document.getElementById("porcentaje_").style.display = "none";
             document.getElementById("labPorcentaje").innerHTML = "Porcentaje:";
             document.getElementById("id_opcion_porcentaje").value = 0;
+
+            document.getElementById("fecha_").style.display = "none";
+            document.getElementById("fr_inicio_servicio").style.display = "none";
+            document.getElementById("labFechaInicioServicio").style.display = "none";
+            document.getElementById("fr_inicio_servicio").value = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+            document.getElementById("numeroperiodos").style.display = "none";
+            document.getElementById("labNumeroPeriodos").innerHTML = "Porcentaje";
+            document.getElementById("fr_numero_periodos").value = 0;
         }
         else {
             $("#form-Servicio1").show();
@@ -334,7 +507,7 @@
 
 
 
-    function GetServicios() {
+    function GetServicios() {        
         let arrayCatalogos = JSON.stringify({
             arrayCatalogos: "tbc_Servicios,"
         });
@@ -359,7 +532,69 @@
 
     function initServicios(contenido) {
         if (contenido.hasOwnProperty("tbc_Servicios")) {
-            $("#fr_servicio").html(dataToStringDropDown(contenido.tbc_Servicios, true));
+            $("#fr_servicio").html(dataToStringDropDown(contenido.tbc_Servicios, true));            
+        }
+    }
+
+    var TableGestoria;
+
+    function GetGestorias() {
+        TableGestoria = $("#tblGestorias").DataTable({
+            responsive: true,
+            'columnDefs': [
+                { 'sortable': false, 'searchable': false, 'visible': true, 'targets': [0, 1] }
+            ],
+            order: [[2, 'asc']]
+        });
+        //-----------------------------------------------------------------------------------------------------------------------------------------------
+
+        GetListaPrincipal();
+    }
+
+    function GetListaPrincipal(showWait = false, forzeDraw = false) {
+        let filtersSearch = JSON.stringify({ arrayCatalogos: "tbc_Gestorias," });
+
+        return new Promise(function (resolve, reject) {
+            doAjax("POST", url_Catalogos_Gestorias, { jsonJS: filtersSearch, id_RV: id_RV }, showWait).done(function (data) {
+                let result = new Result(data);
+                if (result.validResult(false, false) && result.resultStoredProcedure.validResultStored()) {
+                    initGestorias(result.resultStoredProcedure.msnSuccess);
+                }
+                resolve();
+
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                jsSimpleAlert("Error", "Estatus:" + textStatus + ", HTTP:" + errorThrown);
+                reject();
+            });
+        });
+    }
+
+    function initGestorias(contenido) {
+        if (contenido.hasOwnProperty("tbc_Gestorias")) {
+
+            $("#s_gestoria").html(dataToStringDropDown(contenido.tbc_Gestorias, true));
+        }
+    }
+
+    function Add_Gestoria() {
+        var id_gestoria = $("#s_gestoria option:selected").val();
+        var gestoria = $("#s_gestoria option:selected").text();
+        var cantidad = $("#s_cantidad").val();
+        var t = TableGestoria;
+        if (id_gestoria != 0 && cantidad > 0) {
+            //t.clear().draw(false);
+            t.row.add(
+                {
+                    0: id_gestoria,
+                    1: gestoria,
+                    2: cantidad
+                }
+            );
+            t.columns.adjust().draw(false);
+            $("#s_gestoria").val(0);
+            $("#s_cantidad").val(0);
+        } else {
+            jsSimpleAlert("Error", "No has agregado una gestoria o cantidad no permitida");
         }
     }
 </script>
@@ -597,6 +832,7 @@
     <h3>Agregar Servicios</h3>
     <form id="frmServicios">
         <div class="form-row">
+            <input id="id_cliente_servicio" value="0" style="display: none;"/>
             <div class="form-group col-md-4" style="display:none;">
                 <label>RFC</label>
                 <input type="text" class="form-control text-uppercase" autocomplete="off" readonly id="fr_rfc_servicio">
@@ -605,7 +841,6 @@
                 <label @*for="fr_servicio"*@>Servicio</label>
                 <div class="input-group mb-3">
                     <select class="form-control" id="fr_servicio" name="fr_servicio" onchange="cambioservicio();">
-
                     </select>
                 </div>                
             </div>
@@ -614,19 +849,19 @@
             <div class="form-group col-md-4" id="Ingreso">
                 <label id="labIngreso"></label>
                 @*<div class="input-group mb-3">*@
-                <input type="number" class="form-control text-uppercase" style="width: 100%;" id="fr_Ingreso" name="fr_Ingreso" autocomplete="off" />
+                <input type="number" class="form-control text-uppercase" style="width: 100%; display: none" id="fr_Ingreso" name="fr_Ingreso" autocomplete="off" />
                 @*</div>*@
             </div>
             <div class="form-group col-md-4" id="num_trabajadores">
                 <label id="labNumerotrabajadores"></label>
                 @*<div class="input-group mb-3">*@
-                <input type="number" class="form-control text-uppercase" style="width:100%;" id="fr_NumeroTrabajadores" name="fr_NumeroTrabajadores" autocomplete="off" />
+                <input type="number" class="form-control text-uppercase" style="width: 100%; display: none" id="fr_NumeroTrabajadores" name="fr_NumeroTrabajadores" autocomplete="off" />
                 @*</div>*@
             </div>
             <div class="form-group col-md-4" id="cantidad_">
                 <label id="labCantidad"></label>
                 @*<div class="input-group mb-3">*@
-                <input type="number" class="form-control text-uppercase" style="width:100%;" id="fr_Cantidad" name="fr_Cantidad" autocomplete="off" />
+                <input type="number" class="form-control text-uppercase" style="width: 100%; display: none" id="fr_Cantidad" name="fr_Cantidad" autocomplete="off" />
                 @*</div>*@
             </div>
             <div class="form-group col-md-4" id="porcentaje_">
@@ -634,9 +869,14 @@
                 <div class="input-group mb-3">
                     <select class="form-control" id="id_opcion_porcentaje" name="id_opcion_porcentaje">
                         <option value="0">0%</option>
-                        <option value="1">20%</option>
-                        <option value="2">30%</option>
-                        <option value="3">60%</option>
+                        <option value="15">15%</option>
+                        <option value="16">16%</option>
+                        <option value="17">17%</option>
+                        <option value="18">18%</option>
+                        <option value="19">19%</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="60">60%</option>
                     </select>
                 </div>
             </div>
@@ -646,7 +886,46 @@
             </div>
             <div class="form-group col-md-4" id="numeroperiodos">
                 <label id="labNumeroPeriodos">Número de Periodos:</label>
-                <input type="text" class="form-control datepicker" id="fr_numero_periodos" name="fr_numero_periodos" autocomplete="off" style="display:none;">
+                <input type="text" class="form-control" id="fr_numero_periodos" name="fr_numero_periodos" autocomplete="off" style="display:none;">
+            </div>
+            <div class="form-group col-md-12" id="d_gestorias" style="display:none">
+                <label id="lblGestorias">Gestorias:</label>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group mb-3">
+                            <select class="form-control" id="s_gestoria" name="s_gestoria">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <label id="cantidad">Cantidad:</label>
+                            <input type="number" class="form-control" id="s_cantidad" name="s_cantidad" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <button class="btn btn-primary btn-sm" onclick="Add_Gestoria()"><i class="fa fa-plus-circle"></i> Agregar </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" id="sectionDataTable">
+                    <table id="tblGestorias" class="cell-border table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <td>Id Gestoria</td>
+                                <td>Trámite</td>
+                                <td>Cantidad</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-md btn-primary btn_add_gestoria">
+                        <i class="fa fa-plus-square"></i> Guardar
+                    </button>
+                </div>
             </div>
         </div>                                            
         <br />
@@ -664,9 +943,10 @@
                         <td>Porcentje</td>
                         <td>IVA</td>
                         <td>Total</td>
-                        <td>Fecha Creacionde de Propuesta</td>
+                        <td>Fecha Creacion de Propuesta</td>
                         <td>Fecha Inicio de Servicio</td>
                         <td>Número Periodos</td>
+                        <td></td>
                         <td></td>
                     </tr>
                 </thead>

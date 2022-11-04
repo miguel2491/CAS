@@ -241,7 +241,8 @@ const clsCliente = function () {
             { visible: true, orderable: true, searchable: true, targets: 9, width: 200, name: "fecha_elaboracion", data: "fecha_elaboracion" },
             { visible: true, orderable: true, searchable: true, targets: 10, width: 200, name: "fecha_inicio_servicio", data: "fecha_inicio_servicio" },
             { visible: true, orderable: true, searchable: true, targets: 11, width: 200, name: "numero_periodos", data: "numero_periodos" },
-            { visible: false, orderable: false, searchable: false, targets: 12, width: 100, name: "id_cliente_servicio", data: "id_cliente_servicio" }
+            { visible: true, orderable: false, searchable: false, targets: 12, width: 100, name: "id_cliente_servicio", data: "id_cliente_servicio" },
+            { visible: true, orderable: false, searchable: false, targets: 13, width: 100, name: "id_servicio", data: "id_servicio" }
         ];
 
         let paramsDataTable7 = {
