@@ -76,7 +76,7 @@
                     //item.acciones = '<a href="' + item.subraizIIS + item.url_archivo + item.nombre_archivo + '" download class="btn btn-style btn-info "><i class="fa fa-download"></i ></a> ';
 
                     //item.acciones += '<a href="#" class="btn btn-style btn-warning" title="editar pago"><i class="fa fa-edit"></i ></a>&nbsp;&nbsp;';                    
-                    item.acciones = '<a href="#" onclick="objClsCliente.mdlServicio.eliminar(' + item.id_cliente_servicio + ')" class="btn btn-style btn-danger" title="eliminar servicio"><i class="fa fa-trash"></i ></a>&nbsp;&nbsp;<a href="#" onclick="objClsCliente.mdlServicio.editarservicio(' + item.id_cliente_servicio + ',' + item.id_servicio + ',' + item.ingreso + ',' + item.numero_trabajadores + ',' + item.cantidad + ',' + item.porcentaje + ',' + "'" + item.fecha_inicio_servicio.toString() + "'" + ',' + item.numero_periodos + ')" class="btn btn-style btn-danger" title="editar servicio"><i class="fa fa-trash"></i ></a>';
+                    item.acciones = '<a href="#" onclick="objClsCliente.mdlServicio.eliminar(' + item.id_cliente_servicio + ')" class="btn btn-style btn-danger" title="eliminar servicio"><i class="fa fa-trash"></i ></a>&nbsp;&nbsp;<a href="#" onclick="objClsCliente.mdlServicio.editarservicio(' + item.id_cliente_servicio + ',' + item.id_servicio + ',' + item.ingreso + ',' + item.numero_trabajadores + ',' + item.cantidad + ',' + item.porcentaje + ',' + "'" + item.fecha_inicio_servicio.toString() + "'" + ',' + item.numero_periodos + ')" class="btn btn-style btn-warning" title="editar servicio"><i class="fa fa-edit"></i ></a>&nbsp;&nbsp;<a href="#" onclick="objClsCliente.mdlServicio.getDescargarpropuesta()" class="btn btn-style btn-success" title="Descargar propuesta"><i class="fa fa-download"></i ></a>&nbsp;&nbsp;<a href="#" onclick="objClsCliente.mdlServicio.getDescargarpropuesta()" class="btn btn-style btn-success" title="Vista previa"><i class="fa fa-eye" aria-hidden="true"></i ></a>';
                 });
                 tblPrincipal.addRows(contenido);
             }
@@ -114,9 +114,10 @@
                 }
             }
         });
+    }
 
-
-
+    function getDescargarpropuesta(/*id_cliente_servicio, showWait = false*/) {
+        window.location = url_Descarga_Propuesta;
     }
 
     function editarservicio(id_cliente_servicio, id_servicio, ingreso, numerotrabajadores, cantidad, porcentaje, fechainicioservicio, numeroperiodos, showWait = false) {
@@ -666,6 +667,7 @@
         getTipoEvento: getTipoEvento,
         inicializarValidaciones: inicializarValidaciones,
         eliminar: eliminar,
-        editarservicio: editarservicio
+        editarservicio: editarservicio,
+        getDescargarpropuesta: getDescargarpropuesta
     }
 };

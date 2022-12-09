@@ -110,6 +110,12 @@ namespace Imageapp.Controllers
             dAL_Clientes.DelProspectoServicio(jsonJS);
             return dAL_Clientes.result.returnToJsonString();
         }
+        [HttpGet]
+        public virtual FileResult getDescargarpropuesta(/*string file*/) {
+            string path = "D:\\VS\\CastelanGit\\CAS\\documentacion\\Formatos\\8CFA97A9-C3DC-524D-90A9-605B145E02A1.pdf";
+            //return File(path, "application/pdf", "Nota de Venta.PDF");
+            return File(path, "application/pdf", "prueba" + ".pdf");
+        }
 
 
         #endregion

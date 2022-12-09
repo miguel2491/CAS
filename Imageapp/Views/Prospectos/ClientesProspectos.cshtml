@@ -31,6 +31,7 @@
     var url_Catalogos_GetServicios = '@Url.Action("SelProspectoServicio", "Prospectos")';//
     var url_Catalogos_EliminarServicio = '@Url.Action("DelProspectoServicio", "Prospectos")';//
     var url_Catalogos_AddServicio = '@Url.Action("AddProspectoServicio", "Prospectos")';
+    var url_Descarga_Propuesta = '@Url.Action("getDescargarpropuesta", "Prospectos")'
 
     var url_Catalogos_Gestorias = '@Url.Action("GetCatalogos", "Catalogos")';
     var url_add_gest_cli = '@Url.Action("AddProspectoSerGest", "Prospectos")'
@@ -962,4 +963,12 @@
             </button>
         </div>
     </form>    
+</div>
+
+<div class="modal" id="mdlPreview">
+    <div class="form-group col-md-12 d-flex justify-content-around">
+        <button type="button" class="btn btn-style btn-danger" id="btnCloseMdlPreview">
+            <i class="fa fa-times"></i>&nbsp;&nbsp;Cerrar&nbsp;&nbsp;
+        </button>
+    </div>
 </div>
